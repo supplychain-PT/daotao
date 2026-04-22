@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║  HƯỚNG DẪN CÀI ĐẶT THEO DÕI HỌC VIÊN (Google Sheets)       ║
+  ╠══════════════════════════════════════════════════════════════╣
+  ║  1. Mở Google Sheets → Extensions → Apps Script             ║
+  ║  2. Dán đoạn code dưới vào Editor, bấm Save                 ║
+  ║  3. Deploy → New deployment → Web app                       ║
+  ║     Execute as: Me | Who has access: Anyone                  ║
+  ║  4. Copy URL → dán vào WEBHOOK_URL bên dưới                 ║
+  ║                                                              ║
+  ║  --- Apps Script code ---                                    ║
+  ║  function doPost(e) {                                        ║
+  ║    const data = JSON.parse(e.postData.contents);             ║
+  ║    const sheet = SpreadsheetApp                              ║
+  ║      .getActiveSpreadsheet().getActiveSheet();               ║
+  ║    if (sheet.getLastRow() === 0) {                           ║
+  ║      sheet.appendRow(['Thời gian','Họ tên','Email',          ║
+  ║        'Cửa hàng','Trạng thái','Điểm TB','Thời gian học',   ║
+  ║        'Hoàn thành lúc']);                                   ║
+  ║    }                                                         ║
+  ║    const row = sheet.getLastRow() + 1;                       ║
+  ║    if (data.event === 'register') {                          ║
+  ║      sheet.appendRow([data.time, data.name, data.email,      ║
+  ║        data.store, 'Đang học', '', '', '']);                 ║
+  ║    } else if (data.event === 'complete') {                   ║
+  ║      for (let r=2;r<=sheet.getLastRow();r++) {               ║
+  ║        if (sheet.getRange(r,3).getValue()===data.email) {    ║
+  ║          sheet.getRange(r,5).setValue('Đã hoàn thành ✓');   ║
+  ║          sheet.getRange(r,6).setValue(data.score+'%');       ║
+  ║          sheet.getRange(r,7).setValue(data.duration);        ║
+  ║          sheet.getRange(r,8).setValue(data.time);            ║
+  ║          break;                                              ║
+  ║        }                                                     ║
+  ║      }                                                       ║
+  ║    }                                                         ║
+  ║    return ContentService                                      ║
+  ║      .createTextOutput('ok');                                ║
+  ║  }                                                           ║
+  ╚══════════════════════════════════════════════════════════════╝
+-->
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vận Hành Kho Tại Cửa Hàng – Phúc Tea</title>
+<style>
+:root{--green:#2ecc71;--green-dark:#1a8a42;--green-deeper:#0f5c2b;--bg:#f4fbf6;--white:#fff;--gray:#6b7280;--gray-light:#f3f4f6;--red:#e53e3e;--text:#1a2e1a;--gold:#c8973a;--gold-light:#f0c060;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* HEADER */
+header{background:var(--green-deeper);color:#fff;padding:0 24px;display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.2);height:64px;}
+.logo-wrap{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.logo-img{height:46px;width:auto;object-fit:contain;}
+.logo-fallback{font-size:20px;font-weight:900;letter-spacing:1px;color:#fff;}
+.logo-fallback span{color:var(--green);}
+header h1{font-size:15px;font-weight:700;opacity:.95;flex:1;line-height:1.3;}
+.progress-header{display:flex;align-items:center;gap:10px;font-size:13px;flex-shrink:0;}
+.progress-bar-wrap{background:rgba(255,255,255,.2);border-radius:20px;width:130px;height:7px;overflow:hidden;}
+.progress-bar-fill{height:100%;background:var(--green);border-radius:20px;transition:width .5s;}
+
+/* LAYOUT */
+.app{display:flex;min-height:calc(100vh - 64px);}
+
+/* SIDEBAR */
+.sidebar{width:270px;background:#fff;border-right:1px solid #d4edda;padding:16px 0;position:sticky;top:64px;height:calc(100vh - 64px);overflow-y:auto;flex-shrink:0;}
+.sidebar-title{font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px;padding:0 18px 10px;}
+.lesson-item{display:flex;align-items:center;gap:12px;padding:11px 18px;cursor:pointer;border-left:3px solid transparent;transition:all .2s;font-size:13px;}
+.lesson-item:hover{background:#f0fbf4;border-left-color:var(--green);}
+.lesson-item.active{background:#e6f9ee;border-left-color:var(--green-dark);font-weight:700;}
+.lesson-item.locked{opacity:.4;cursor:not-allowed;}
+.lesson-item.done{color:var(--green-dark);}
+.li-icon{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;background:var(--gray-light);color:var(--gray);}
+.lesson-item.done .li-icon{background:#d4edda;color:var(--green-dark);}
+.lesson-item.active .li-icon{background:var(--green-dark);color:#fff;}
+.li-info{flex:1;}
+.li-name{font-size:13px;line-height:1.35;}
+.li-status{font-size:11px;color:var(--gray);margin-top:2px;}
+.lesson-item.done .li-status{color:var(--green-dark);}
+
+/* MAIN */
+.main{flex:1;padding:28px 32px;max-width:900px;}
+
+/* WELCOME */
+.welcome{background:#fff;border-radius:16px;padding:48px;text-align:center;box-shadow:0 2px 16px rgba(0,0,0,.06);max-width:700px;margin:0 auto;}
+.welcome-logo-big{height:90px;width:auto;margin-bottom:12px;}
+.welcome h2{font-size:26px;color:var(--green-deeper);margin-bottom:6px;}
+.welcome h3{font-size:17px;color:var(--green-dark);margin-bottom:16px;font-weight:600;}
+.welcome p{color:var(--gray);line-height:1.8;margin-bottom:20px;font-size:14px;}
+.welcome-stats{display:flex;justify-content:center;gap:28px;margin:24px 0;flex-wrap:wrap;}
+.stat{text-align:center;}
+.stat-num{font-size:30px;font-weight:800;color:var(--green-dark);}
+.stat-label{font-size:11px;color:var(--gray);margin-top:3px;}
+.info-box{background:#f0fbf4;border:1px solid #a8dbb9;border-radius:12px;padding:16px 20px;text-align:left;margin:20px 0;font-size:14px;line-height:1.8;}
+.info-box strong{color:var(--green-deeper);}
+
+/* LESSON */
+.lesson-header{background:linear-gradient(135deg,var(--green-deeper),var(--green-dark));color:#fff;border-radius:14px 14px 0 0;padding:24px 28px;}
+.lesson-num{font-size:11px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:1px;}
+.lesson-title{font-size:21px;font-weight:700;margin-top:5px;}
+.lesson-body{background:#fff;border-radius:0 0 14px 14px;padding:28px 32px;box-shadow:0 2px 16px rgba(0,0,0,.06);}
+
+/* TIMER BAR */
+.timer-bar{background:#fffbeb;border:1px solid #fcd34d;border-radius:10px;padding:12px 18px;margin-bottom:20px;display:flex;align-items:center;gap:14px;}
+.timer-bar.done-read{background:#f0fbf4;border-color:#a8dbb9;}
+.timer-progress-wrap{flex:1;background:#e5e7eb;border-radius:20px;height:8px;overflow:hidden;}
+.timer-progress-fill{height:100%;background:var(--gold);border-radius:20px;transition:width 1s linear;}
+.timer-bar.done-read .timer-progress-fill{background:var(--green-dark);}
+.timer-text{font-size:13px;font-weight:600;white-space:nowrap;}
+
+/* CONTENT SECTIONS */
+.section{margin-bottom:26px;}
+.section h3{font-size:15px;color:var(--green-deeper);border-left:4px solid var(--green-dark);padding-left:12px;margin-bottom:12px;}
+.section p,.section li{font-size:14px;line-height:1.9;color:#374151;}
+.section ul,.section ol{padding-left:20px;}
+.section li{margin-bottom:5px;}
+.highlight-box{background:#f0fbf4;border:1px solid #a8dbb9;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:14px;line-height:1.8;}
+.highlight-box.warn{background:#fffbeb;border-color:#fcd34d;}
+.highlight-box.info{background:#eff6ff;border-color:#93c5fd;}
+.step-list{padding:0;list-style:none;}
+.step-item{display:flex;gap:14px;margin-bottom:14px;align-items:flex-start;}
+.step-num{background:var(--green-dark);color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;}
+.step-content{flex:1;font-size:14px;line-height:1.7;padding-top:3px;}
+.table-wrap{overflow-x:auto;margin:14px 0;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{background:var(--green-dark);color:#fff;padding:9px 13px;text-align:left;}
+td{padding:8px 13px;border-bottom:1px solid #e5e7eb;}
+tr:hover td{background:#f9fafb;}
+.badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600;}
+.bg-green{background:#d1fae5;color:#065f46;}
+.bg-blue{background:#dbeafe;color:#1e40af;}
+.bg-orange{background:#ffedd5;color:#9a3412;}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:11px 24px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .2s;}
+.btn-primary{background:var(--green-dark);color:#fff;}
+.btn-primary:hover{background:var(--green-deeper);transform:translateY(-1px);box-shadow:0 4px 12px rgba(26,138,66,.3);}
+.btn-secondary{background:#fff;color:var(--green-dark);border:2px solid var(--green-dark);}
+.btn-secondary:hover{background:#f0fbf4;}
+.btn-gold{background:var(--gold);color:#fff;}
+.btn-gold:hover{background:#a87a2e;}
+.btn-disabled{background:#e5e7eb;color:#9ca3af;cursor:not-allowed;pointer-events:none;}
+.lesson-actions{display:flex;justify-content:space-between;align-items:center;margin-top:28px;padding-top:20px;border-top:1px solid #e5e7eb;}
+
+/* KIOTVIET MOCKUP */
+.kv-container{border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.15);margin:16px 0;font-family:Arial,sans-serif;}
+.kv-topbar{background:#0066cc;padding:8px 14px;display:flex;align-items:center;gap:10px;}
+.kv-topbar-brand{color:#fff;font-weight:700;font-size:14px;}
+.kv-topbar-badge{background:#ff6600;color:#fff;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:700;}
+.kv-body{display:flex;height:420px;}
+.kv-sidebar{width:140px;background:#1a3a6b;display:flex;flex-direction:column;padding:8px 0;flex-shrink:0;}
+.kv-menu-item{padding:10px 14px;color:rgba(255,255,255,.65);font-size:12px;cursor:pointer;border-left:3px solid transparent;transition:.15s;}
+.kv-menu-item:hover,.kv-menu-item.kv-active{color:#fff;background:rgba(255,255,255,.1);border-left-color:#2ecc71;}
+.kv-menu-icon{font-size:16px;display:block;margin-bottom:2px;}
+.kv-main{flex:1;background:#f0f4f8;display:flex;flex-direction:column;}
+.kv-toolbar{background:#fff;padding:8px 12px;display:flex;gap:8px;align-items:center;border-bottom:1px solid #ddd;flex-wrap:wrap;}
+.kv-toolbar-btn{padding:5px 12px;border:1px solid #ccc;border-radius:6px;font-size:12px;cursor:pointer;background:#fff;transition:.15s;}
+.kv-toolbar-btn:hover{background:#e8f4fd;border-color:#0066cc;}
+.kv-toolbar-btn.primary-btn{background:#0066cc;color:#fff;border-color:#0066cc;}
+.kv-toolbar-btn.primary-btn:hover{background:#0052a3;}
+.kv-toolbar-btn.orange-btn{background:#ff6600;color:#fff;border-color:#ff6600;}
+.kv-search-bar{background:#fff;padding:6px 12px;border-bottom:1px solid #ddd;display:flex;gap:8px;align-items:center;}
+.kv-search-bar input{flex:1;border:1px solid #ccc;border-radius:6px;padding:5px 10px;font-size:12px;outline:none;}
+.kv-search-bar input:focus{border-color:#0066cc;}
+.kv-content-area{flex:1;display:flex;overflow:hidden;}
+.kv-products{flex:1;padding:10px;overflow-y:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;align-content:start;}
+.kv-product-card{background:#fff;border-radius:8px;padding:10px 8px;text-align:center;cursor:pointer;border:2px solid transparent;transition:.15s;box-shadow:0 1px 4px rgba(0,0,0,.08);}
+.kv-product-card:hover{border-color:#0066cc;transform:translateY(-1px);}
+.kv-product-card.selected{border-color:#2ecc71;background:#f0fbf4;}
+.kv-product-icon{font-size:22px;margin-bottom:5px;}
+.kv-product-name{font-size:10px;color:#333;line-height:1.3;margin-bottom:3px;}
+.kv-product-price{font-size:11px;font-weight:700;color:#0066cc;}
+.kv-cart{width:200px;background:#fff;border-left:1px solid #ddd;display:flex;flex-direction:column;}
+.kv-cart-header{padding:8px 12px;background:#0066cc;color:#fff;font-size:12px;font-weight:700;}
+.kv-cart-customer{padding:8px 10px;border-bottom:1px solid #eee;font-size:11px;}
+.kv-cart-customer span{color:#0066cc;font-weight:600;}
+.kv-cart-items{flex:1;overflow-y:auto;padding:6px;}
+.kv-cart-item{background:#f8f9fa;border-radius:6px;padding:6px 8px;margin-bottom:5px;font-size:11px;}
+.kv-cart-item-name{font-weight:600;color:#333;}
+.kv-cart-item-detail{color:#666;margin-top:2px;display:flex;justify-content:space-between;}
+.kv-cart-total{padding:8px 10px;border-top:1px solid #eee;font-size:12px;font-weight:700;color:#e53e3e;}
+.kv-cart-actions{padding:8px 10px;display:flex;flex-direction:column;gap:5px;}
+.kv-btn-order{background:#ff6600;color:#fff;border:none;border-radius:7px;padding:8px;font-size:12px;font-weight:700;cursor:pointer;width:100%;transition:.15s;}
+.kv-btn-order:hover{background:#e55a00;}
+.kv-btn-save{background:#6c757d;color:#fff;border:none;border-radius:7px;padding:6px;font-size:11px;cursor:pointer;width:100%;transition:.15s;}
+.kv-btn-save:hover{background:#5a6268;}
+
+/* Annotation markers */
+.kv-annotation{position:relative;}
+.ann-badge{display:inline-flex;align-items:center;justify-content:center;background:#e53e3e;color:#fff;font-size:10px;font-weight:700;width:18px;height:18px;border-radius:50%;margin-left:4px;vertical-align:middle;flex-shrink:0;}
+
+/* QUIZ */
+.quiz-header-bar{background:#fff;border-radius:14px;padding:20px 28px;box-shadow:0 2px 16px rgba(0,0,0,.06);margin-bottom:18px;}
+.quiz-title-h{font-size:17px;font-weight:700;color:var(--green-deeper);}
+.quiz-subtitle-s{font-size:12px;color:var(--gray);margin-top:3px;}
+.quiz-pills{display:flex;gap:7px;margin-top:14px;}
+.qpill{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;border:2px solid #e5e7eb;color:var(--gray);}
+.qpill.qcurrent{border-color:var(--green-dark);background:var(--green-dark);color:#fff;}
+.qpill.qanswered{border-color:var(--green);background:#e6f9ee;color:var(--green-dark);}
+.question-card{background:#fff;border-radius:14px;padding:28px 32px;box-shadow:0 2px 16px rgba(0,0,0,.06);}
+.q-num{font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:7px;}
+.q-text{font-size:16px;font-weight:700;color:var(--text);line-height:1.6;margin-bottom:22px;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option{display:flex;align-items:flex-start;gap:13px;padding:13px 16px;border-radius:10px;border:2px solid #e5e7eb;cursor:pointer;transition:all .2s;font-size:14px;line-height:1.5;}
+.option:hover{border-color:var(--green);background:#f0fbf4;}
+.option.selected{border-color:var(--green-dark);background:#e6f9ee;}
+.option.opt-correct{border-color:#10b981;background:#d1fae5;}
+.option.opt-wrong{border-color:var(--red);background:#fee2e2;}
+.opt-letter{width:27px;height:27px;border-radius:50%;background:#f3f4f6;color:var(--gray);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;}
+.option.selected .opt-letter{background:var(--green-dark);color:#fff;}
+.option.opt-correct .opt-letter{background:#10b981;color:#fff;}
+.option.opt-wrong .opt-letter{background:var(--red);color:#fff;}
+.quiz-nav{display:flex;justify-content:space-between;align-items:center;margin-top:22px;}
+.feedback-box{border-radius:10px;padding:12px 16px;margin-top:14px;font-size:13px;line-height:1.7;display:none;}
+.fb-correct{background:#d1fae5;border:1px solid #6ee7b7;color:#065f46;}
+.fb-wrong{background:#fee2e2;border:1px solid #fca5a5;color:#7f1d1d;}
+
+/* RESULT */
+.result-card{background:#fff;border-radius:16px;padding:44px;text-align:center;box-shadow:0 2px 16px rgba(0,0,0,.06);}
+.result-icon{font-size:68px;margin-bottom:14px;}
+.result-score{font-size:60px;font-weight:900;margin:14px 0;}
+.score-pass{color:var(--green-dark);}
+.score-fail{color:var(--red);}
+.result-msg{font-size:20px;font-weight:700;margin-bottom:6px;}
+.result-sub{font-size:14px;color:var(--gray);line-height:1.7;margin-bottom:28px;}
+.ans-review{text-align:left;margin:20px 0;}
+.ans-row{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f3f4f6;font-size:13px;}
+.ans-icon{font-size:17px;flex-shrink:0;margin-top:1px;}
+
+/* CERT */
+.cert-wrap{background:#fff;border-radius:16px;padding:28px;box-shadow:0 2px 16px rgba(0,0,0,.06);}
+.cert-title-bar{text-align:center;margin-bottom:20px;}
+.cert-title-bar h2{font-size:20px;color:var(--green-deeper);}
+.cert-title-bar p{color:var(--gray);font-size:13px;margin-top:3px;}
+#certCanvas{width:100%;border-radius:8px;box-shadow:0 4px 24px rgba(0,0,0,.12);}
+.cert-actions{display:flex;justify-content:center;gap:14px;margin-top:20px;flex-wrap:wrap;}
+
+/* NAME FORM */
+.name-form{background:#fff;border-radius:16px;padding:44px;text-align:center;box-shadow:0 2px 16px rgba(0,0,0,.06);max-width:500px;margin:0 auto;}
+.name-form h2{font-size:24px;color:var(--green-deeper);margin-bottom:6px;}
+.name-form p{color:var(--gray);font-size:14px;line-height:1.7;margin-bottom:24px;}
+.form-group{margin-bottom:18px;text-align:left;}
+.form-group label{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:5px;}
+.form-group input{width:100%;padding:11px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;transition:border-color .2s;}
+.form-group input:focus{border-color:var(--green-dark);}
+
+.hidden{display:none!important;}
+.divider{border:none;border-top:1px solid #e5e7eb;margin:22px 0;}
+
+@media(max-width:768px){.sidebar{display:none;}.main{padding:14px;}header h1{display:none;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-wrap">
+    <img src="logo-phuc-tea.png" class="logo-img" alt="Phúc Tea"
+      onerror="this.style.display='none';document.getElementById('logoFallback').style.display='flex'">
+    <div class="logo-fallback" id="logoFallback" style="display:none">PHUC <span>TEA</span></div>
+  </div>
+  <h1 id="headerTitle">Vận Hành Kho Tại Cửa Hàng – Phúc Tea 2026</h1>
+  <div class="progress-header">
+    <span id="progressText">0/6 bài</span>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
+  </div>
+</header>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="main" id="mainContent"></main>
+</div>
+
+<script>
+// ─── CẤU HÌNH ─────────────────────────────────────────────────
+const COURSE_TITLE = 'Vận Hành Kho Tại Cửa Hàng';
+const MIN_READ_SECONDS = 60;
+
+// Dán URL Google Apps Script vào đây để ghi dữ liệu vào Google Sheets
+// Để trống ('') nếu chưa cài đặt – dữ liệu vẫn lưu vào localStorage
+const WEBHOOK_URL = '';
+
+// Mật khẩu xem trang Admin (mở bằng URL: file.html#admin)
+const ADMIN_PASSWORD = 'phuctea2026';
+
+// ─── TRACKING ─────────────────────────────────────────────────
+function trackEvent(event, extra = {}) {
+  const payload = {
+    event,
+    time: new Date().toLocaleString('vi-VN'),
+    name: S.userName,
+    email: S.userEmail,
+    store: S.userStore,
+    ...extra
+  };
+
+  // 1. Lưu localStorage
+  const key = 'phuctea_learners';
+  const all = JSON.parse(localStorage.getItem(key) || '[]');
+  if (event === 'register') {
+    all.push({ ...payload, status: 'Đang học', score: '', duration: '', completedAt: '' });
+  } else if (event === 'complete') {
+    const idx = all.findIndex(r => r.email === S.userEmail);
+    if (idx >= 0) {
+      all[idx].status = 'Đã hoàn thành ✓';
+      all[idx].score = extra.score;
+      all[idx].duration = extra.duration;
+      all[idx].completedAt = payload.time;
+    }
+  }
+  localStorage.setItem(key, JSON.stringify(all));
+
+  // 2. Gửi Google Sheets (nếu có cấu hình)
+  if (WEBHOOK_URL) {
+    fetch(WEBHOOK_URL, {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    }).catch(() => {});
+  }
+}
+
+const LESSONS = [
+{
+  id:0, icon:'🏪',
+  title:'Tổng Quan Chuỗi Cung Ứng',
+  subtitle:'Mục đích, phạm vi & vai trò',
+  content:`
+  <div class="section">
+    <h3>1. Mục Đích Của SOP</h3>
+    <p>Tài liệu SOP Chuỗi Cung Ứng được xây dựng nhằm <strong>chuẩn hóa toàn bộ quy trình đặt hàng, cung ứng, tiếp nhận hàng hóa và xử lý các vấn đề phát sinh</strong> trong hệ thống Phúc Tea.</p>
+    <div class="highlight-box">
+      <strong>5 mục tiêu cốt lõi:</strong>
+      <ul style="margin-top:8px">
+        <li>Đảm bảo Cửa Hàng luôn được cung cấp đầy đủ nguyên vật liệu</li>
+        <li>Kiểm soát chất lượng sản phẩm trong toàn hệ thống</li>
+        <li>Giảm thiểu sai sót trong quá trình đặt hàng và nhận hàng</li>
+        <li>Tăng tốc độ xử lý các vấn đề phát sinh</li>
+        <li>Chuẩn hóa cách làm việc giữa Cửa Hàng và bộ phận hệ thống</li>
+      </ul>
+    </div>
+  </div>
+  <div class="section">
+    <h3>2. Phạm Vi Áp Dụng</h3>
+    <p>SOP áp dụng cho <strong>toàn bộ hệ thống Phúc Tea</strong>:</p>
+    <ul>
+      <li>Các Cửa Hàng đang hoạt động</li>
+      <li>Các Đối Tác Nhượng Quyền (ĐTNQ)</li>
+      <li>Bộ phận Chuỗi Cung Ứng</li>
+      <li>Các phòng ban liên quan</li>
+    </ul>
+    <div class="highlight-box info" style="margin-top:12px">
+      Dùng cho: <strong>Đào tạo nhân sự mới · Hướng dẫn vận hành · Tài liệu tham khảo ĐTNQ</strong>
+    </div>
+  </div>
+  <div class="section">
+    <h3>3. Định Nghĩa Thuật Ngữ</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Thuật ngữ</th><th>Giải thích</th></tr>
+      <tr><td><strong>NVL Độc Quyền</strong></td><td>Nguyên vật liệu Phúc Tea nghiên cứu/đặt sản xuất riêng</td></tr>
+      <tr><td><strong>VL Độc Quyền</strong></td><td>Vật liệu nhận diện thương hiệu thiết kế riêng</td></tr>
+      <tr><td><strong>ĐTNQ</strong></td><td>Đối Tác Nhượng Quyền</td></tr>
+      <tr><td><strong>MOQ</strong></td><td>Minimum Order Quantity – Số lượng đặt hàng tối thiểu</td></tr>
+      <tr><td><strong>KiotViet</strong></td><td>Phần mềm quản lý bán hàng & đặt hàng của hệ thống</td></tr>
+    </table></div>
+  </div>
+  <div class="section">
+    <h3>4. Vai Trò & Trách Nhiệm</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Bộ phận</th><th>Trách nhiệm chính</th></tr>
+      <tr><td><strong>Chuỗi Cung Ứng</strong></td><td>Kiểm soát đơn hàng · Cung cấp hồ sơ sản phẩm · Xác nhận & xuất hàng · Gửi biên nhận · Quản lý công nợ</td></tr>
+      <tr><td><strong>Cửa Hàng / ĐTNQ</strong></td><td>Chủ động lập kế hoạch đặt hàng · Thanh toán đúng quy định · Kiểm tra hàng khi nhận · Báo cáo sự cố đúng hạn</td></tr>
+    </table></div>
+  </div>`,
+  questions:[
+    {q:'Mục đích chính của SOP Chuỗi Cung Ứng Phúc Tea là gì?',
+     opts:['Tăng doanh số và marketing','Chuẩn hóa quy trình đặt hàng, cung ứng, tiếp nhận hàng và xử lý vấn đề phát sinh','Quản lý nhân sự cửa hàng','Thiết kế sản phẩm và menu mới'],
+     c:1,exp:'SOP chuẩn hóa toàn bộ quy trình đặt hàng, cung ứng, tiếp nhận và xử lý vấn đề trong hệ thống.'},
+    {q:'SOP Chuỗi Cung Ứng áp dụng cho những đối tượng nào?',
+     opts:['Chỉ bộ phận kho','Chỉ đối tác nhượng quyền','Cửa hàng, ĐTNQ, Chuỗi Cung Ứng và các phòng ban liên quan','Chỉ quản lý cấp cao'],
+     c:2,exp:'SOP áp dụng toàn bộ hệ thống gồm cửa hàng, ĐTNQ, bộ phận Chuỗi Cung Ứng và các phòng ban liên quan.'},
+    {q:'"ĐTNQ" là viết tắt của cụm từ nào?',
+     opts:['Đặt Tên Nhãn Quảng cáo','Đối Tác Nhượng Quyền','Điều Tra Nhu Cầu Quản lý','Đơn Thanh toán Nợ Quyết toán'],
+     c:1,exp:'ĐTNQ = Đối Tác Nhượng Quyền – cá nhân/tổ chức đã mua quyền kinh doanh thương hiệu Phúc Tea.'},
+    {q:'Trách nhiệm của bộ phận Chuỗi Cung Ứng bao gồm?',
+     opts:['Trực tiếp bán hàng cho khách lẻ','Tiếp nhận, xác nhận đơn, chuẩn bị & xuất hàng, gửi biên nhận','Thiết kế bao bì và menu','Tuyển dụng nhân sự cửa hàng'],
+     c:1,exp:'Bộ phận Chuỗi Cung Ứng: kiểm soát đơn, xác nhận, xuất hàng, gửi biên nhận và quản lý công nợ.'},
+    {q:'Trách nhiệm của Cửa Hàng/ĐTNQ là gì?',
+     opts:['Chỉ nhận hàng, không cần kiểm tra','Tự sản xuất nguyên liệu','Chủ động lập kế hoạch đặt hàng, thanh toán đúng quy định, kiểm tra hàng khi nhận','Phân phối hàng cho cửa hàng khác'],
+     c:2,exp:'Cửa Hàng/ĐTNQ phải chủ động lập kế hoạch đặt hàng, thanh toán đúng hạn, kiểm tra hàng và báo sự cố kịp thời.'}
+  ]
+},
+{
+  id:1, icon:'🧋',
+  title:'Danh Mục Nguyên Vật Liệu',
+  subtitle:'Độc quyền & không độc quyền',
+  content:`
+  <div class="section">
+    <h3>1. Nguyên Liệu Độc Quyền (NVL Độc Quyền)</h3>
+    <p>Do Phúc Tea <strong>nghiên cứu, phát triển hoặc đặt sản xuất riêng</strong>. Bắt buộc nhập từ hệ thống.</p>
+    <div class="table-wrap"><table>
+      <tr><th>#</th><th>Sản phẩm</th><th>Đơn vị</th><th>Đơn giá</th></tr>
+      <tr><td>1</td><td>Cà Phê Mộc 9:1</td><td>Kg</td><td>258.000đ</td></tr>
+      <tr><td>2</td><td>Bột Pha Chế Phúc Tea PT35</td><td>Thùng</td><td>2.150.000đ</td></tr>
+      <tr><td>3</td><td>Trà Đen Phúc Tea (500gr/gói)</td><td>Gói</td><td>70.000đ</td></tr>
+      <tr><td>4</td><td>Trà Xanh Lài Phúc Tea (500gr/gói)</td><td>Gói</td><td>105.000đ</td></tr>
+      <tr><td>5</td><td>Trà Oolong Phúc Tea 02 (1kg/gói)</td><td>Gói</td><td>335.000đ</td></tr>
+      <tr><td>6</td><td>Bột Socola Phúc Tea 02 (500gr/gói)</td><td>Gói</td><td>180.000đ</td></tr>
+      <tr><td>7</td><td>Trà Hòa Tan Vị Đào Phúc Tea</td><td>Gói</td><td>70.000đ</td></tr>
+      <tr><td>8</td><td>Trà Hòa Tan Vị Vải Phúc Tea</td><td>Gói</td><td>70.000đ</td></tr>
+      <tr><td>9</td><td>Trân Châu Giòn Phúc Tea</td><td>Thùng</td><td>450.000đ</td></tr>
+      <tr><td>10</td><td>Vải Tươi Ngâm Đường Phúc Tea</td><td>Thùng</td><td>390.000đ</td></tr>
+    </table></div>
+    <div class="highlight-box warn">⚠️ Khi có điều chỉnh giá NVL Độc Quyền, hệ thống thông báo trước <strong>15 ngày</strong>.</div>
+  </div>
+  <div class="section">
+    <h3>2. Nguyên Liệu Không Độc Quyền</h3>
+    <div class="table-wrap"><table>
+      <tr><th>#</th><th>Sản phẩm</th><th>Đơn vị</th></tr>
+      <tr><td>11</td><td>Mứt Hibiscus</td><td>Hủ</td></tr>
+      <tr><td>12</td><td>Bột Milk Foam Phúc Tea</td><td>Gói</td></tr>
+      <tr><td>13</td><td>Gelatine Đức/Pháp</td><td>Gói</td></tr>
+      <tr><td>14</td><td>Syrup Đường Đen Luave</td><td>Can</td></tr>
+      <tr><td>15</td><td>Bột Matcha Đài Loan</td><td>Gói</td></tr>
+      <tr><td>16</td><td>Bột Khoai Môn Mole</td><td>Gói</td></tr>
+      <tr><td>17</td><td>Pudding Trứng Mole</td><td>Gói</td></tr>
+      <tr><td>18</td><td>Hạt Chia Úc/Peru</td><td>Gói</td></tr>
+      <tr><td>19</td><td>Đào Ngâm Fresko 820gr</td><td>Hộp</td></tr>
+      <tr><td>20</td><td>Sinh Tố Xoài Berrino</td><td>Chai</td></tr>
+      <tr><td>21–22</td><td>Mứt Thơm / Mứt Dâu Tằm Berrino</td><td>Hủ</td></tr>
+      <tr><td>23</td><td>Thạch Dừa Vải Casa 3,5kg</td><td>Hủ</td></tr>
+      <tr><td>24</td><td>Thạch Nha Đam</td><td>Gói</td></tr>
+      <tr><td>25</td><td>Xí Muội Thái</td><td>Gói</td></tr>
+      <tr><td>26</td><td>Syrup Đào Mama Rosa</td><td>Chai</td></tr>
+    </table></div>
+    <div class="highlight-box info">💡 Giá NL Không Độc Quyền <strong>cập nhật linh hoạt theo thị trường</strong>. Kiểm tra trên KiotViet khi đặt hàng.</div>
+  </div>
+  <div class="section">
+    <h3>3. Vật Liệu Bao Bì</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Phân loại</th><th>Sản phẩm tiêu biểu</th></tr>
+      <tr><td><span class="badge bg-green">VL Độc Quyền</span></td><td>Ly Giấy 600ml, Ly Nhựa 500ml/400ml/600ml (in thương hiệu), Cuộn Ép Màng, Ống Hút Bọc Kiếng, Bịch 1/2 Ly, Combo Xô 1 Lít</td></tr>
+      <tr><td><span class="badge bg-blue">VL Không ĐQ</span></td><td>Nắp Cầu Ly 400ml, Bịch Chữ T, Hũ Nhựa Topping, Muỗng Vàng, Nắp Bằng Cao, Giấy Chống Tràn</td></tr>
+    </table></div>
+  </div>`,
+  questions:[
+    {q:'"NVL Độc Quyền" trong hệ thống Phúc Tea là gì?',
+     opts:['Nguyên liệu mua tự do ngoài thị trường','Các nguyên vật liệu Phúc Tea nghiên cứu, phát triển hoặc đặt sản xuất riêng','Nguyên liệu nhập khẩu không thương hiệu','Nguyên liệu rẻ nhất trong danh sách'],
+     c:1,exp:'NVL Độc Quyền là nguyên liệu Phúc Tea tự nghiên cứu/đặt sản xuất riêng – bắt buộc nhập từ hệ thống.'},
+    {q:'Sản phẩm nào sau đây là NVL Độc Quyền?',
+     opts:['Gelatine Đức/Pháp','Bột Matcha Đài Loan','Cà Phê Mộc 9:1','Mứt Hibiscus'],
+     c:2,exp:'Cà Phê Mộc 9:1 là NVL Độc Quyền. Gelatine, Matcha và Mứt Hibiscus đều là NL Không Độc Quyền.'},
+    {q:'Sản phẩm nào là Vật Liệu Độc Quyền?',
+     opts:['Muỗng Vàng 20cm','Thạch Nha Đam','Ly Nhựa 500ml In 2 Màu (có thương hiệu)','Hạt Chia Úc/Peru'],
+     c:2,exp:'Ly Nhựa có in thương hiệu Phúc Tea là Vật Liệu Độc Quyền. Muỗng và Thạch thuộc VL Không Độc Quyền.'},
+    {q:'Đặc điểm của giá NL Không Độc Quyền là?',
+     opts:['Cố định cả năm','Chỉ mua từ hệ thống Phúc Tea','Cập nhật linh hoạt theo thị trường, kiểm tra trên KiotViet khi đặt','Được vận chuyển miễn phí'],
+     c:2,exp:'NL Không Độc Quyền có giá linh hoạt theo thị trường. Cần kiểm tra giá trực tiếp trên KiotViet trước khi đặt.'},
+    {q:'Khi NVL Độc Quyền điều chỉnh giá, hệ thống thông báo trước bao nhiêu ngày?',
+     opts:['7 ngày','10 ngày','15 ngày','30 ngày'],
+     c:2,exp:'Hệ thống cam kết thông báo trước 15 ngày để cửa hàng chủ động tài chính.'}
+  ]
+},
+{
+  id:2, icon:'📋',
+  title:'Quy Trình Đặt Hàng & KiotViet',
+  subtitle:'8 bước + hướng dẫn thao tác chi tiết',
+  content:`
+  <div class="section">
+    <h3>Quy Trình Đặt Hàng – 8 Bước</h3>
+    <ol class="step-list">
+      <li class="step-item"><div class="step-num">1</div><div class="step-content"><strong>Kiểm tra tồn kho tại Cửa Hàng</strong> – Xác định mặt hàng thiếu/sắp hết.</div></li>
+      <li class="step-item"><div class="step-num">2</div><div class="step-content"><strong>Liệt kê danh sách cần nhập</strong> – Sắp xếp theo nhóm sản phẩm.</div></li>
+      <li class="step-item"><div class="step-num">3</div><div class="step-content"><strong>Tạo đơn hàng trên KiotViet</strong> – Đăng nhập bằng tài khoản hệ thống cấp.</div></li>
+      <li class="step-item"><div class="step-num">4</div><div class="step-content"><strong>Thực hiện thanh toán</strong> – Thanh toán theo đơn hàng đã lên.</div></li>
+      <li class="step-item"><div class="step-num">5</div><div class="step-content"><strong>Chụp màn hình thanh toán → gửi Zalo kho</strong></div></li>
+      <li class="step-item"><div class="step-num">6</div><div class="step-content"><strong>Kho xác nhận đơn hàng</strong></div></li>
+      <li class="step-item"><div class="step-num">7</div><div class="step-content"><strong>Kho chuẩn bị hàng & gửi biên nhận</strong></div></li>
+      <li class="step-item"><div class="step-num">8</div><div class="step-content"><strong>Cửa Hàng nhận hàng, kiểm tra theo biên nhận</strong></div></li>
+    </ol>
+  </div>
+  <div class="section">
+    <h3>Hướng Dẫn Thao Tác KiotViet – Giao Diện Mẫu</h3>
+    <p style="margin-bottom:12px;font-size:13px;color:#6b7280">Dưới đây là <strong>mô phỏng giao diện KiotViet</strong> và các khu vực chức năng bạn sẽ dùng khi đặt hàng:</p>
+
+    <!-- KiotViet Mockup -->
+    <div class="kv-container">
+      <div class="kv-topbar">
+        <div class="kv-topbar-brand">🛒 KiotViet POS</div>
+        <div class="kv-topbar-badge">Phúc Tea – CN 162</div>
+        <div style="margin-left:auto;color:rgba(255,255,255,.7);font-size:11px">Phúc Tea Vĩnh Cửu</div>
+      </div>
+      <div class="kv-body">
+        <!-- Left nav -->
+        <div class="kv-sidebar">
+          <div class="kv-menu-item kv-active"><span class="kv-menu-icon">🛍️</span>Bán Hàng</div>
+          <div class="kv-menu-item"><span class="kv-menu-icon">🧾</span>Hóa Đơn</div>
+          <div class="kv-menu-item"><span class="kv-menu-icon">📦</span>Đặt Hàng</div>
+          <div class="kv-menu-item"><span class="kv-menu-icon">📊</span>Báo Cáo</div>
+          <div class="kv-menu-item"><span class="kv-menu-icon">⚙️</span>Cài Đặt</div>
+        </div>
+        <!-- Main area -->
+        <div class="kv-main">
+          <div class="kv-toolbar">
+            <button class="kv-toolbar-btn primary-btn">+ Đơn Mới</button>
+            <button class="kv-toolbar-btn">🔍 Tìm Sản Phẩm</button>
+            <button class="kv-toolbar-btn">👤 Khách lẻ ▼</button>
+            <button class="kv-toolbar-btn" style="background:#e6f9ee;border-color:#2ecc71;color:#0f5c2b">💾 Lưu Tạm</button>
+          </div>
+          <div class="kv-search-bar">
+            <span style="font-size:12px;color:#666">Tìm: </span>
+            <input type="text" placeholder="Nhập tên hoặc mã CỬA HÀNG (vd: 162)..." readonly>
+            <button class="kv-toolbar-btn primary-btn">Tìm</button>
+          </div>
+          <div class="kv-content-area">
+            <div class="kv-products">
+              <div class="kv-product-card selected"><div class="kv-product-icon">☕</div><div class="kv-product-name">Cà Phê Mộc 9:1</div><div class="kv-product-price">258.000đ/kg</div></div>
+              <div class="kv-product-card"><div class="kv-product-icon">🧋</div><div class="kv-product-name">Bột PT35</div><div class="kv-product-price">2.150.000đ</div></div>
+              <div class="kv-product-card"><div class="kv-product-icon">🍵</div><div class="kv-product-name">Trà Đen Phúc Tea</div><div class="kv-product-price">70.000đ/gói</div></div>
+              <div class="kv-product-card"><div class="kv-product-icon">🌿</div><div class="kv-product-name">Trà Xanh Lài</div><div class="kv-product-price">105.000đ/gói</div></div>
+              <div class="kv-product-card selected"><div class="kv-product-icon">🫧</div><div class="kv-product-name">Trân Châu Giòn</div><div class="kv-product-price">450.000đ/thùng</div></div>
+              <div class="kv-product-card"><div class="kv-product-icon">🍑</div><div class="kv-product-name">Trà Hoà Tan Đào</div><div class="kv-product-price">70.000đ/gói</div></div>
+              <div class="kv-product-card"><div class="kv-product-icon">🧊</div><div class="kv-product-name">Vải Tươi Ngâm</div><div class="kv-product-price">390.000đ/thùng</div></div>
+              <div class="kv-product-card"><div class="kv-product-icon">🥛</div><div class="kv-product-name">Bột Milk Foam</div><div class="kv-product-price">133.000đ/gói</div></div>
+            </div>
+            <!-- Cart -->
+            <div class="kv-cart">
+              <div class="kv-cart-header">🛒 ĐƠN HÀNG</div>
+              <div class="kv-cart-customer">Cửa hàng: <span>Phúc Tea CN 162</span></div>
+              <div class="kv-cart-items">
+                <div class="kv-cart-item">
+                  <div class="kv-cart-item-name">Cà Phê Mộc 9:1</div>
+                  <div class="kv-cart-item-detail"><span>x 2 kg</span><span>516.000đ</span></div>
+                </div>
+                <div class="kv-cart-item">
+                  <div class="kv-cart-item-name">Trân Châu Giòn</div>
+                  <div class="kv-cart-item-detail"><span>x 1 thùng</span><span>450.000đ</span></div>
+                </div>
+              </div>
+              <div class="kv-cart-total">Tổng: 966.000đ</div>
+              <div class="kv-cart-actions">
+                <button class="kv-btn-order">📤 ĐẶT HÀNG</button>
+                <button class="kv-btn-save">💾 Lưu Tạm</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Annotations -->
+    <div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div class="highlight-box" style="margin:0">
+        <strong>🛍️ Bán Hàng (menu trái)</strong><br>
+        Trang chính để đặt hàng. Tất cả sản phẩm hệ thống cung cấp hiển thị tại đây.
+      </div>
+      <div class="highlight-box" style="margin:0">
+        <strong>🧾 Hóa Đơn (menu trái)</strong><br>
+        Xem tổng hợp <em>tất cả đơn đã được hệ thống nhận</em>. Lọc được theo thời gian.
+      </div>
+      <div class="highlight-box" style="margin:0">
+        <strong>📦 Đặt Hàng (menu trái)</strong><br>
+        Các đơn đã tạo nhưng <em>chưa được hệ thống xác nhận</em>.
+      </div>
+      <div class="highlight-box warn" style="margin:0">
+        <strong>💾 Lưu Tạm</strong><br>
+        Khi cần dừng lại xem thêm – bấm "Lưu tạm". Đơn lưu xuất hiện ở <em>góc phải màn hình Bán Hàng</em>.
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <h3>Các Bước Thao Tác Chi Tiết Trong KiotViet</h3>
+    <ol class="step-list">
+      <li class="step-item"><div class="step-num">1</div><div class="step-content">Vào <strong>Bán Hàng</strong> → bấm <strong>"Khách lẻ"</strong> → tìm kiếm <strong>tên hoặc mã số cửa hàng</strong> (vd: 162 → Phúc Tea Vĩnh Cửu)</div></li>
+      <li class="step-item"><div class="step-num">2</div><div class="step-content">Chọn sản phẩm cần đặt, <strong>điều chỉnh số lượng</strong> phù hợp nhu cầu và MOQ</div></li>
+      <li class="step-item"><div class="step-num">3</div><div class="step-content">Kiểm tra lại giỏ hàng → bấm <strong>"Đặt Hàng"</strong></div></li>
+      <li class="step-item"><div class="step-num">4</div><div class="step-content"><strong>Chụp màn hình đơn hàng</strong> → gửi vào <strong>nhóm Zalo kho</strong></div></li>
+      <li class="step-item"><div class="step-num">5</div><div class="step-content"><strong>Thanh toán</strong> → chụp màn hình thanh toán → gửi tiếp vào <strong>nhóm Zalo kho</strong></div></li>
+    </ol>
+    <div class="highlight-box warn" style="margin-top:14px">
+      ⚠️ <strong>Bắt buộc:</strong> Chụp cả màn hình đặt hàng VÀ màn hình thanh toán gửi Zalo kho. Thiếu bước này kho sẽ không xử lý đơn.
+    </div>
+  </div>`,
+  questions:[
+    {q:'Bước ĐẦU TIÊN trong quy trình đặt hàng là gì?',
+     opts:['Tạo đơn ngay trên KiotViet','Thanh toán theo đơn','Kiểm tra tồn kho tại Cửa Hàng','Gửi biên nhận cho kho'],
+     c:2,exp:'Bước 1 luôn là kiểm tra tồn kho để xác định mặt hàng cần nhập trước khi tạo đơn.'},
+    {q:'Trong KiotViet, mục "Đặt Hàng" (Nhiều Hơn > Đặt Hàng) hiển thị những gì?',
+     opts:['Tất cả sản phẩm đang bán','Lịch sử thanh toán','Đơn đã tạo nhưng chưa được hệ thống xác nhận','Thông tin khách hàng'],
+     c:2,exp:'"Đặt Hàng" chứa các đơn cửa hàng đã tạo nhưng hệ thống chưa nhận/xác nhận.'},
+    {q:'Sau khi bấm "Đặt Hàng" xong, cửa hàng cần làm gì ngay?',
+     opts:['Gọi điện cho nhân viên kho','Chụp màn hình đơn hàng và gửi vào nhóm Zalo kho','In đơn gửi qua bưu điện','Chờ kho liên hệ trong 24 giờ'],
+     c:1,exp:'Ngay sau khi đặt hàng, phải chụp màn hình và gửi vào nhóm Zalo kho để kho xác nhận xử lý.'},
+    {q:'Tính năng "Lưu Tạm" trong KiotViet có tác dụng gì?',
+     opts:['Hủy vĩnh viễn đơn hàng','Xác nhận thanh toán ngay','Lưu đơn chưa hoàn tất để bổ sung sau','Gửi thông báo tự động cho kho'],
+     c:2,exp:'"Lưu Tạm" giúp lưu đơn đang làm để xem xét thêm. Đơn lưu tạm nằm ở góc phải màn hình Bán Hàng.'},
+    {q:'Sau khi thanh toán, cửa hàng phải làm thêm bước nào?',
+     opts:['Không cần làm gì thêm, kho tự biết','Chụp màn hình thanh toán và gửi vào nhóm Zalo kho','Gọi điện xác nhận với bộ phận kế toán','Đợi kho liên hệ trong vòng 3 ngày'],
+     c:1,exp:'Phải chụp màn hình thanh toán và gửi vào nhóm Zalo kho. Thiếu bước này kho không xử lý đơn.'}
+  ]
+},
+{
+  id:3, icon:'📦',
+  title:'Số Lượng Đặt Hàng Tối Thiểu (MOQ)',
+  subtitle:'Quy cách nhập hàng từng sản phẩm',
+  content:`
+  <div class="section">
+    <h3>MOQ – Nguyên Liệu Độc Quyền</h3>
+    <div class="table-wrap"><table>
+      <tr><th>#</th><th>Tên hàng hóa</th><th>ĐVT</th><th>MOQ tối thiểu</th></tr>
+      <tr><td>1</td><td>Cà Phê Mộc 9:1</td><td>Kg</td><td><strong>2 kg</strong></td></tr>
+      <tr><td>2</td><td>Bột Pha Chế PT35</td><td>Thùng</td><td><strong>1 thùng</strong></td></tr>
+      <tr><td>3</td><td>Trà Đen Phúc Tea</td><td>Gói</td><td><strong>5 gói</strong></td></tr>
+      <tr><td>4</td><td>Trà Xanh Lài Phúc Tea</td><td>Gói</td><td><strong>1 gói</strong></td></tr>
+      <tr><td>5</td><td>Trà Oolong Phúc Tea 02</td><td>Gói</td><td><strong>1 gói</strong></td></tr>
+      <tr><td>6</td><td>Bột Socola Phúc Tea 02</td><td>Gói</td><td><strong>1 gói</strong></td></tr>
+      <tr><td>7</td><td>Trà Hòa Tan Vị Đào</td><td>Gói</td><td><strong>5 gói</strong></td></tr>
+      <tr><td>8</td><td>Trà Hòa Tan Vị Vải</td><td>Gói</td><td><strong>5 gói</strong></td></tr>
+      <tr><td>9</td><td>Trân Châu Giòn Phúc Tea</td><td>Thùng</td><td><strong>1 thùng (6 gói)</strong></td></tr>
+      <tr><td>10</td><td>Vải Tươi Ngâm Đường Phúc Tea</td><td>Thùng</td><td><strong>1 thùng (12 lon)</strong></td></tr>
+    </table></div>
+  </div>
+  <div class="section">
+    <h3>MOQ – Nguyên Liệu Không Độc Quyền</h3>
+    <div class="table-wrap"><table>
+      <tr><th>#</th><th>Tên hàng hóa</th><th>MOQ tối thiểu</th></tr>
+      <tr><td>12</td><td>Bột Milk Foam Phúc Tea</td><td><strong>1 gói</strong></td></tr>
+      <tr><td>13</td><td>Gelatine Đức/Pháp</td><td><strong>1 gói</strong></td></tr>
+      <tr><td>14</td><td>Syrup Đường Đen Luave</td><td><strong>1 can (6 can/thùng)</strong></td></tr>
+      <tr><td>15</td><td>Bột Matcha Đài Loan</td><td><strong>1 gói</strong></td></tr>
+      <tr><td>18</td><td>Hạt Chia Úc/Peru</td><td><strong>1 gói (1kg)</strong></td></tr>
+      <tr><td>19</td><td>Đào Ngâm Fresko 820gr</td><td><strong>1 thùng (12 lon)</strong></td></tr>
+      <tr><td>20</td><td>Sinh Tố Xoài Berrino</td><td><strong>1 chai (12 chai/thùng)</strong></td></tr>
+      <tr><td>23</td><td>Thạch Dừa Vải Casa 3,5kg</td><td><strong>1 thùng (4 hủ)</strong></td></tr>
+      <tr><td>24</td><td>Thạch Nha Đam</td><td><strong>5 gói (10 gói/thùng)</strong></td></tr>
+    </table></div>
+  </div>
+  <div class="section">
+    <h3>MOQ – Vật Liệu Bao Bì</h3>
+    <div class="table-wrap"><table>
+      <tr><th>#</th><th>Tên hàng hóa</th><th>MOQ tối thiểu</th></tr>
+      <tr><td>27</td><td>Combo Ly Giấy 600ml</td><td><strong>1 thùng (1.000 cái)</strong></td></tr>
+      <tr><td>28</td><td>Ly Nhựa 500ml In 2 Màu</td><td><strong>1 thùng (1.000 cái)</strong></td></tr>
+      <tr><td>29</td><td>Ly Nhựa 400ml In 5 Màu</td><td><strong>1 thùng (1.000 cái)</strong></td></tr>
+      <tr><td>33</td><td>Ly Nhựa 600ml In 1 Màu</td><td><strong>1 thùng (1.000 cái)</strong></td></tr>
+      <tr><td>37</td><td>Ống Hút Bọc Kiếng Phúc Tea</td><td><strong>5 kg/kiện</strong></td></tr>
+      <tr><td>38–39</td><td>Bịch 1 Ly / Bịch 2 Ly Phúc Tea</td><td><strong>5 kg/kiện</strong></td></tr>
+      <tr><td>40</td><td>Combo Xô 1 Lít</td><td><strong>1 thùng (300 cái)</strong></td></tr>
+      <tr><td>35</td><td>Cuộn Ép Màng Ly Phúc Tea</td><td><strong>1 cuộn</strong></td></tr>
+    </table></div>
+    <div class="highlight-box">💡 File theo dõi tồn kho Min/Max sẽ được bộ phận Operation tạo riêng cho từng cửa hàng.</div>
+  </div>`,
+  questions:[
+    {q:'MOQ của Cà Phê Mộc 9:1 là bao nhiêu?',
+     opts:['1 kg','2 kg','5 kg','1 thùng'],
+     c:1,exp:'MOQ Cà Phê Mộc 9:1 = 2 kg mỗi lần đặt.'},
+    {q:'Trân Châu Giòn Phúc Tea có MOQ là bao nhiêu?',
+     opts:['1 gói','3 gói','1 thùng (6 gói)','2 thùng'],
+     c:2,exp:'MOQ Trân Châu Giòn = 1 thùng = 6 gói.'},
+    {q:'Khi đặt Vải Tươi Ngâm Đường Phúc Tea, số lượng tối thiểu là?',
+     opts:['1 lon','6 lon','1 thùng (12 lon)','2 thùng (24 lon)'],
+     c:2,exp:'MOQ Vải Tươi Ngâm Đường = 1 thùng = 12 lon.'},
+    {q:'MOQ của các loại Ly Nhựa có in thương hiệu là?',
+     opts:['500 cái/thùng','1 thùng (1.000 cái)','200 cái','2.000 cái'],
+     c:1,exp:'Tất cả các loại Ly Nhựa in thương hiệu đều có MOQ = 1 thùng (1.000 cái).'},
+    {q:'Trà Đen, Trà Hòa Tan Vị Đào và Trà Hòa Tan Vị Vải có MOQ là bao nhiêu gói?',
+     opts:['1 gói','3 gói','5 gói','10 gói'],
+     c:2,exp:'Trà Đen, Trà Hòa Tan Vị Đào và Vải đều có MOQ = 5 gói/lần đặt.'}
+  ]
+},
+{
+  id:4, icon:'🚚',
+  title:'Nhận Hàng & Thời Gian Giao',
+  subtitle:'Kiểm tra khi nhận & quy định thời gian',
+  content:`
+  <div class="section">
+    <h3>1. Thời Gian Giao Hàng</h3>
+    <p>Tính từ <strong>ngày hệ thống XÁC NHẬN đơn hàng</strong> (không phải ngày đặt).</p>
+    <div class="table-wrap"><table>
+      <tr><th>Khu vực</th><th>Thời gian giao hàng</th></tr>
+      <tr><td>🟢 <strong>Miền Nam</strong></td><td><strong>5 – 7 ngày làm việc</strong></td></tr>
+      <tr><td>🔵 <strong>Miền Trung & Miền Bắc</strong></td><td><strong>7 – 10 ngày làm việc</strong></td></tr>
+    </table></div>
+    <div class="highlight-box warn">⚠️ Thứ 7 và Chủ nhật <strong>không được tính</strong> vào ngày làm việc. Thời gian có thể thay đổi dịp Lễ/Tết hoặc sự cố vận chuyển.</div>
+  </div>
+  <div class="section">
+    <h3>2. Quy Trình Nhận Hàng – 5 Bước Kiểm Tra</h3>
+    <ol class="step-list">
+      <li class="step-item"><div class="step-num">1</div><div class="step-content"><strong>Kiểm tra số lượng hàng hóa</strong> – Đếm khớp với đơn đặt hàng.</div></li>
+      <li class="step-item"><div class="step-num">2</div><div class="step-content"><strong>Đối chiếu với đơn đặt hàng</strong> – Đúng sản phẩm, đúng chủng loại.</div></li>
+      <li class="step-item"><div class="step-num">3</div><div class="step-content"><strong>Kiểm tra tình trạng bao bì</strong> – Không rách, móp, ẩm, hư hại.</div></li>
+      <li class="step-item"><div class="step-num">4</div><div class="step-content"><strong>Kiểm tra hạn sử dụng</strong> – Còn đủ thời gian khai thác.</div></li>
+      <li class="step-item"><div class="step-num">5</div><div class="step-content"><strong>Kiểm tra chất lượng sản phẩm</strong> – Xem xét bên trong nếu cần.</div></li>
+    </ol>
+    <div class="highlight-box">✅ Phát hiện vấn đề → <strong>báo ngay vào nhóm Zalo kho</strong>. Không tự ý xử lý.</div>
+  </div>`,
+  questions:[
+    {q:'Thời gian giao hàng khu vực miền Nam là bao lâu?',
+     opts:['3–5 ngày làm việc','5–7 ngày làm việc','7–10 ngày làm việc','2–3 ngày làm việc'],
+     c:1,exp:'Miền Nam: 5–7 ngày làm việc kể từ ngày hệ thống xác nhận đơn.'},
+    {q:'Thời gian giao hàng miền Trung và miền Bắc là bao lâu?',
+     opts:['5–7 ngày làm việc','7–10 ngày làm việc','10–14 ngày làm việc','3–5 ngày làm việc'],
+     c:1,exp:'Miền Trung & Bắc: 7–10 ngày làm việc.'},
+    {q:'Thời gian giao hàng bắt đầu tính từ khi nào?',
+     opts:['Ngày cửa hàng tạo đơn','Ngày cửa hàng thanh toán','Ngày hệ thống xác nhận đơn hàng','Ngày kho bắt đầu đóng gói'],
+     c:2,exp:'Thời gian tính từ ngày HỆ THỐNG xác nhận đơn, không phải ngày tạo hay thanh toán.'},
+    {q:'Thứ 7 và Chủ nhật có tính vào thời gian giao hàng không?',
+     opts:['Có, tính bình thường','Có, tính nửa ngày','Không, không tính vào ngày làm việc','Tùy khu vực'],
+     c:2,exp:'Thứ 7 và Chủ nhật không tính vào ngày làm việc, nên không được cộng vào thời gian giao.'},
+    {q:'Khi phát hiện vấn đề lúc nhận hàng, cần làm gì?',
+     opts:['Từ chối toàn bộ đơn ngay','Báo ngay cho bộ phận hệ thống qua nhóm Zalo kho','Tự xử lý không cần báo','Liên hệ đơn vị vận chuyển'],
+     c:1,exp:'Khi phát hiện vấn đề, báo ngay vào nhóm Zalo kho để được hỗ trợ đúng quy trình.'}
+  ]
+},
+{
+  id:5, icon:'🛠️',
+  title:'Xử Lý Sự Cố & Hỗ Trợ',
+  subtitle:'Báo lỗi, thời hạn & liên hệ',
+  content:`
+  <div class="section">
+    <h3>1. Quy Trình Xử Lý Sự Cố – 5 Bước</h3>
+    <ol class="step-list">
+      <li class="step-item"><div class="step-num">1</div><div class="step-content"><strong>Chụp hình / quay video sản phẩm lỗi</strong> – Ghi lại bằng chứng ngay lập tức.</div></li>
+      <li class="step-item"><div class="step-num">2</div><div class="step-content"><strong>Gửi lên group nguyên liệu</strong> – Kèm: hình ảnh + tên SP + số lượng lỗi + mô tả lỗi.</div></li>
+      <li class="step-item"><div class="step-num">3</div><div class="step-content"><strong>Bộ phận hệ thống tiếp nhận & đánh giá</strong> – Phản hồi trong 30–60 phút.</div></li>
+      <li class="step-item"><div class="step-num">4</div><div class="step-content"><strong>Hệ thống đưa ra hướng xử lý</strong> – Đổi hàng, bồi thường hoặc phương án khác.</div></li>
+      <li class="step-item"><div class="step-num">5</div><div class="step-content"><strong>Cửa Hàng xác nhận phương án</strong></div></li>
+    </ol>
+  </div>
+  <div class="section">
+    <h3>2. Thời Hạn Quan Trọng</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Mốc thời gian</th><th>Quy định</th></tr>
+      <tr><td>Phản hồi ban đầu</td><td><strong>30–60 phút</strong></td></tr>
+      <tr><td>Tiếp nhận & đánh giá</td><td><strong>Trong vòng 24 giờ</strong></td></tr>
+      <tr><td>Thời hạn báo lỗi</td><td><strong>3 ngày</strong> kể từ khi nhận hàng</td></tr>
+      <tr><td>Đổi trả sản phẩm lỗi</td><td><strong>Tối đa 3 ngày</strong> sau khi xác nhận</td></tr>
+    </table></div>
+    <div class="highlight-box warn">⚠️ Quá <strong>3 ngày</strong> kể từ khi nhận hàng mà chưa báo lỗi → hệ thống có thể không xử lý được yêu cầu đổi trả.</div>
+  </div>
+  <div class="section">
+    <h3>3. Giờ Làm Việc & Liên Hệ</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Thời gian</th><th>Hoạt động hỗ trợ</th></tr>
+      <tr><td><strong>Thứ 2–6: 09:00–17:00</strong></td><td>Làm việc đầy đủ, phản hồi 30–60 phút</td></tr>
+      <tr><td><strong>Thứ 7–Chủ nhật</strong></td><td>Tiếp nhận thông tin, xử lý vào ngày làm việc tiếp theo</td></tr>
+    </table></div>
+    <div class="highlight-box info" style="margin-top:14px">
+      <strong>📞 Liên hệ trực tiếp:</strong><br>
+      Phụ trách: <strong>Trần Thị Hạnh Nhân</strong> – Chuỗi Cung Ứng Phúc Tea<br>
+      Điện thoại: <strong>0344 858 727</strong> | Email: <strong>hanhnhan@phuctea.com.vn</strong>
+    </div>
+  </div>`,
+  questions:[
+    {q:'Bước ĐẦU TIÊN khi xử lý sự cố nguyên liệu là gì?',
+     opts:['Liên hệ điện thoại ngay','Chụp hình/quay video sản phẩm lỗi','Trả lại toàn bộ hàng','Yêu cầu bồi thường bằng văn bản'],
+     c:1,exp:'Bước 1 là chụp hình/video sản phẩm lỗi để có bằng chứng trước khi báo cáo.'},
+    {q:'Thời hạn báo lỗi sau khi nhận hàng là bao nhiêu ngày?',
+     opts:['1 ngày','3 ngày','7 ngày','14 ngày'],
+     c:1,exp:'Thời hạn báo lỗi là 3 ngày kể từ khi nhận hàng. Quá hạn hệ thống có thể không xử lý được.'},
+    {q:'Thời gian phản hồi ban đầu của bộ phận hỗ trợ là bao lâu?',
+     opts:['5–10 phút','30–60 phút','2–4 giờ','24 giờ'],
+     c:1,exp:'Thời gian phản hồi ban đầu là 30–60 phút trong giờ làm việc (T2–T6, 09:00–17:00).'},
+    {q:'Thứ 7 và Chủ nhật, bộ phận hỗ trợ làm gì?',
+     opts:['Làm việc bình thường 24/7','Không tiếp nhận','Tiếp nhận thông tin, xử lý vào ngày làm việc tiếp theo','Chỉ xử lý khẩn cấp'],
+     c:2,exp:'Thứ 7–CN vẫn tiếp nhận thông tin nhưng xử lý vào ngày làm việc tiếp theo (Thứ 2).'},
+    {q:'Số điện thoại liên hệ bộ phận Chuỗi Cung Ứng Phúc Tea là?',
+     opts:['0344 858 727','0344 858 728','0344 285 727','0344 858 277'],
+     c:0,exp:'Số điện thoại đúng là 0344 858 727 – phụ trách Trần Thị Hạnh Nhân.'}
+  ]
+}
+];
+
+// ─── STATE ─────────────────────────────────────────────────────
+const S = {
+  view: 'register',
+  lesson: 0,
+  qIndex: 0,
+  qAnswers: [],
+  done: [],
+  scores: {},
+  readDone: {},
+  userName: '',
+  userEmail: '',
+  userStore: '',
+  courseStart: null,
+  completedAt: null
+};
+
+// ─── TIMER ──────────────────────────────────────────────────────
+let readTimer = null;
+let readLeft = MIN_READ_SECONDS;
+
+function startReadTimer(lessonId) {
+  if (S.readDone[lessonId]) { enableQuizBtn(); return; }
+  readLeft = MIN_READ_SECONDS;
+  if (readTimer) clearInterval(readTimer);
+  renderTimerBar();
+  readTimer = setInterval(() => {
+    readLeft--;
+    renderTimerBar();
+    if (readLeft <= 0) {
+      clearInterval(readTimer);
+      S.readDone[lessonId] = true;
+      enableQuizBtn();
+    }
+  }, 1000);
+}
+
+function renderTimerBar() {
+  const el = document.getElementById('timerBar');
+  if (!el) return;
+  const pct = Math.min(100, ((MIN_READ_SECONDS - readLeft) / MIN_READ_SECONDS) * 100);
+  if (readLeft > 0) {
+    const m = Math.floor(readLeft / 60), s = readLeft % 60;
+    el.className = 'timer-bar';
+    el.innerHTML = `<span style="font-size:18px">⏱</span>
+      <div class="timer-progress-wrap"><div class="timer-progress-fill" style="width:${pct}%"></div></div>
+      <span class="timer-text">Thời gian học tối thiểu: ${m}:${s.toString().padStart(2,'0')} còn lại</span>`;
+  } else {
+    el.className = 'timer-bar done-read';
+    el.innerHTML = `<span style="font-size:18px">✅</span>
+      <div class="timer-progress-wrap"><div class="timer-progress-fill" style="width:100%"></div></div>
+      <span class="timer-text" style="color:var(--green-dark)">Đã đọc đủ! Bạn có thể làm bài kiểm tra.</span>`;
+  }
+}
+
+function enableQuizBtn() {
+  const btn = document.getElementById('quizBtn');
+  if (!btn) return;
+  btn.className = 'btn btn-primary';
+  btn.onclick = () => startQuiz(S.lesson);
+  btn.innerHTML = '📝 Làm Bài Kiểm Tra →';
+}
+
+// ─── SIDEBAR ──────────────────────────────────────────────────
+function renderSidebar() {
+  const el = document.getElementById('sidebar');
+  el.innerHTML = '<div class="sidebar-title">Nội dung khóa học</div>' +
+    LESSONS.map((l, i) => {
+      const isDone = S.done.includes(i);
+      const isActive = S.lesson === i && S.view !== 'welcome' && S.view !== 'nameform' && S.view !== 'cert';
+      const isLocked = i > 0 && !S.done.includes(i - 1);
+      let cls = 'lesson-item';
+      if (isActive) cls += ' active';
+      if (isDone && !isActive) cls += ' done';
+      if (isLocked) cls += ' locked';
+      const status = isDone ? '✓ Hoàn thành' : (isLocked ? '🔒 Chưa mở' : 'Chưa học');
+      return `<div class="${cls}" onclick="navTo(${i})">
+        <div class="li-icon">${isDone && !isActive ? '✓' : i + 1}</div>
+        <div class="li-info">
+          <div class="li-name">${l.icon} ${l.title}</div>
+          <div class="li-status">${status}</div>
+        </div>
+      </div>`;
+    }).join('');
+  const pct = (S.done.length / LESSONS.length) * 100;
+  document.getElementById('progressText').textContent = `${S.done.length}/6 bài`;
+  document.getElementById('progressFill').style.width = pct + '%';
+}
+
+function navTo(i) {
+  if (i > 0 && !S.done.includes(i - 1)) return;
+  S.lesson = i;
+  showLesson(i);
+}
+
+// ─── VIEWS ────────────────────────────────────────────────────
+function showWelcome() {
+  if (readTimer) clearInterval(readTimer);
+  S.view = 'welcome'; S.lesson = 0;
+  renderSidebar();
+  document.getElementById('mainContent').innerHTML = `
+  <div class="welcome">
+    <img src="logo-phuc-tea.png" class="welcome-logo-big" alt="Phúc Tea"
+      onerror="this.style.display='none'">
+    <h2>Chào Mừng Đến Khóa Học</h2>
+    <h3>${COURSE_TITLE}</h3>
+    <p>Dành riêng cho <strong>Đối Tác Nhượng Quyền</strong> và <strong>Quản Lý Cửa Hàng</strong> Phúc Tea.<br>Hoàn thành toàn bộ 6 bài học để nhận <strong>Giấy Chứng Nhận</strong>.</p>
+    <div class="welcome-stats">
+      <div class="stat"><div class="stat-num">6</div><div class="stat-label">Bài học</div></div>
+      <div class="stat"><div class="stat-num">30</div><div class="stat-label">Câu hỏi</div></div>
+      <div class="stat"><div class="stat-num">70%</div><div class="stat-label">Điểm đạt/bài</div></div>
+      <div class="stat"><div class="stat-num">1'</div><div class="stat-label">Học tối thiểu/bài</div></div>
+    </div>
+    <div class="info-box">
+      <strong>📌 Quy tắc:</strong><br>
+      • Mỗi bài học yêu cầu <strong>đọc tối thiểu 1 phút</strong> trước khi làm bài kiểm tra<br>
+      • Mỗi bài có <strong>5 câu hỏi</strong> – cần đúng ≥ 4 câu (≥70%) để qua<br>
+      • Chưa qua bài hiện tại → <strong>không thể học bài tiếp theo</strong><br>
+      • Hoàn thành 6/6 bài → nhận <strong>Giấy Chứng Nhận</strong>
+    </div>
+    <button class="btn btn-primary" onclick="showLesson(0)" style="font-size:15px;padding:13px 36px">🚀 Bắt Đầu Học</button>
+  </div>`;
+}
+
+function showLesson(idx) {
+  if (!S.courseStart) S.courseStart = new Date();
+  if (readTimer) clearInterval(readTimer);
+  S.view = 'lesson'; S.lesson = idx;
+  const l = LESSONS[idx];
+  renderSidebar();
+  const alreadyRead = S.readDone[idx];
+  const prevBtn = idx > 0
+    ? `<button class="btn btn-secondary" onclick="showLesson(${idx-1})">← Bài trước</button>`
+    : `<button class="btn btn-secondary" onclick="showWelcome()">← Trang chủ</button>`;
+
+  document.getElementById('mainContent').innerHTML = `
+  <div>
+    <div class="lesson-header">
+      <div class="lesson-num">Bài ${idx + 1} / ${LESSONS.length}</div>
+      <div class="lesson-title">${l.icon} ${l.title}</div>
+    </div>
+    <div class="lesson-body">
+      <div class="timer-bar" id="timerBar"></div>
+      ${l.content}
+      <hr class="divider">
+      <div class="lesson-actions">
+        ${prevBtn}
+        <button id="quizBtn" class="btn btn-disabled" onclick="">📝 Làm Bài Kiểm Tra →</button>
+      </div>
+    </div>
+  </div>`;
+  startReadTimer(idx);
+}
+
+function startQuiz(idx) {
+  if (readTimer) clearInterval(readTimer);
+  S.view = 'quiz'; S.lesson = idx;
+  S.qIndex = 0;
+  S.qAnswers = new Array(5).fill(null);
+  renderSidebar();
+  renderQ();
+}
+
+function renderQ() {
+  const l = LESSONS[S.lesson];
+  const qi = S.qIndex;
+  const q = l.questions[qi];
+  const pills = l.questions.map((_,i) => {
+    let c = 'qpill';
+    if (i === qi) c += ' qcurrent';
+    else if (S.qAnswers[i] !== null) c += ' qanswered';
+    return `<div class="${c}">${i+1}</div>`;
+  }).join('');
+  const opts = q.opts.map((o,i) => {
+    const L = ['A','B','C','D'];
+    return `<div class="option" id="o${i}" onclick="pick(${i})">
+      <div class="opt-letter">${L[i]}</div><div>${o}</div></div>`;
+  }).join('');
+
+  document.getElementById('mainContent').innerHTML = `
+  <div class="quiz-header-bar">
+    <div class="quiz-title-h">📝 Kiểm Tra: ${l.icon} ${l.title}</div>
+    <div class="quiz-subtitle-s">Cần đúng ≥ 4/5 câu (≥70%) để qua bài</div>
+    <div class="quiz-pills">${pills}</div>
+  </div>
+  <div class="question-card">
+    <div class="q-num">Câu ${qi+1} / 5</div>
+    <div class="q-text">${q.q}</div>
+    <div class="options">${opts}</div>
+    <div class="feedback-box" id="fb"></div>
+    <div class="quiz-nav">
+      <button class="btn btn-secondary" onclick="showLesson(${S.lesson})">← Xem lại bài</button>
+      <div id="navRight">
+        ${qi > 0 ? `<button class="btn btn-secondary" style="margin-right:8px" onclick="prevQ()">← Câu trước</button>` : ''}
+        <button class="btn btn-disabled">Chọn đáp án</button>
+      </div>
+    </div>
+  </div>`;
+  if (S.qAnswers[qi] !== null) restoreQ(qi);
+}
+
+function pick(oi) {
+  const qi = S.qIndex;
+  if (S.qAnswers[qi] !== null) return;
+  S.qAnswers[qi] = oi;
+  const q = LESSONS[S.lesson].questions[qi];
+  const ok = oi === q.c;
+  document.querySelectorAll('.option').forEach((el,i)=>{
+    if (i === oi) el.classList.add(ok ? 'opt-correct' : 'opt-wrong');
+    if (!ok && i === q.c) el.classList.add('opt-correct');
+  });
+  const fb = document.getElementById('fb');
+  fb.style.display = 'block';
+  fb.className = 'feedback-box ' + (ok ? 'fb-correct' : 'fb-wrong');
+  fb.innerHTML = ok
+    ? `✅ <strong>Chính xác!</strong> ${q.exp}`
+    : `❌ <strong>Chưa đúng.</strong> Đáp án đúng: <strong>${q.opts[q.c]}</strong>. ${q.exp}`;
+  const isLast = qi === 4;
+  const prev = qi > 0 ? `<button class="btn btn-secondary" style="margin-right:8px" onclick="prevQ()">← Câu trước</button>` : '';
+  document.getElementById('navRight').innerHTML = prev + (isLast
+    ? `<button class="btn btn-primary" onclick="submitQuiz()">Nộp Bài ✓</button>`
+    : `<button class="btn btn-primary" onclick="nextQ()">Câu Tiếp →</button>`);
+}
+
+function restoreQ(qi) {
+  const q = LESSONS[S.lesson].questions[qi];
+  const a = S.qAnswers[qi];
+  const ok = a === q.c;
+  document.querySelectorAll('.option').forEach((el,i)=>{
+    if (i === a) el.classList.add(ok ? 'opt-correct' : 'opt-wrong');
+    if (!ok && i === q.c) el.classList.add('opt-correct');
+  });
+  const fb = document.getElementById('fb');
+  fb.style.display='block';
+  fb.className='feedback-box '+(ok?'fb-correct':'fb-wrong');
+  fb.innerHTML = ok
+    ? `✅ <strong>Chính xác!</strong> ${q.exp}`
+    : `❌ <strong>Chưa đúng.</strong> Đáp án đúng: <strong>${q.opts[q.c]}</strong>. ${q.exp}`;
+  const isLast = qi===4;
+  const prev = qi>0?`<button class="btn btn-secondary" style="margin-right:8px" onclick="prevQ()">← Câu trước</button>`:'';
+  document.getElementById('navRight').innerHTML = prev+(isLast
+    ?`<button class="btn btn-primary" onclick="submitQuiz()">Nộp Bài ✓</button>`
+    :`<button class="btn btn-primary" onclick="nextQ()">Câu Tiếp →</button>`);
+}
+
+function nextQ() { if (S.qIndex < 4) { S.qIndex++; renderQ(); } }
+function prevQ() { if (S.qIndex > 0) { S.qIndex--; renderQ(); } }
+
+function submitQuiz() {
+  const unanswered = S.qAnswers.indexOf(null);
+  if (unanswered !== -1) { S.qIndex = unanswered; renderQ(); return; }
+  const l = LESSONS[S.lesson];
+  const correct = S.qAnswers.filter((a,i) => a === l.questions[i].c).length;
+  const pct = correct / 5 * 100;
+  const passed = pct >= 70;
+  S.scores[S.lesson] = { correct, pct, passed };
+  if (passed && !S.done.includes(S.lesson)) S.done.push(S.lesson);
+  if (S.done.length === LESSONS.length && !S.completedAt) S.completedAt = new Date();
+  renderSidebar();
+  showResult(correct, pct, passed);
+}
+
+function showResult(correct, pct, passed) {
+  S.view = 'result';
+  const mi = S.lesson;
+  const l = LESSONS[mi];
+  const allDone = S.done.length === LESSONS.length;
+  const review = l.questions.map((q,i)=>{
+    const ok = S.qAnswers[i] === q.c;
+    return `<div class="ans-row">
+      <div class="ans-icon">${ok?'✅':'❌'}</div>
+      <div><strong>Câu ${i+1}:</strong> ${q.q}<br>
+      <span style="font-size:12px;color:${ok?'#059669':'#dc2626'}">${ok?'Đúng: ':'Đáp án đúng: '}${q.opts[q.c]}</span></div>
+    </div>`;
+  }).join('');
+
+  let nextBtn = '';
+  if (passed) {
+    if (allDone) nextBtn = `<button class="btn btn-gold" onclick="makeCert()">🏆 Nhận Giấy Chứng Nhận</button>`;
+    else if (mi < LESSONS.length-1) nextBtn = `<button class="btn btn-primary" onclick="showLesson(${mi+1})">Học Bài Tiếp →</button>`;
+  } else {
+    nextBtn = `<button class="btn btn-primary" onclick="showLesson(${mi})">📖 Ôn Lại & Làm Lại</button>`;
+  }
+
+  document.getElementById('mainContent').innerHTML = `
+  <div class="result-card">
+    <div class="result-icon">${passed?'🎉':'😅'}</div>
+    <div class="result-score ${passed?'score-pass':'score-fail'}">${correct}/5</div>
+    <div class="result-msg">${passed?'Xuất sắc! Bạn đã qua bài này!':'Chưa đạt – cần ôn lại và làm lại'}</div>
+    <div class="result-sub">
+      Bạn trả lời đúng <strong>${correct}/5 câu (${pct.toFixed(0)}%)</strong>.<br>
+      ${passed?'✅ Điểm đạt yêu cầu ≥70%.':'❌ Cần ít nhất 4/5 câu đúng. Hãy đọc kỹ lý thuyết trước khi làm lại.'}
+    </div>
+    <div class="ans-review"><h3 style="margin-bottom:10px;color:var(--green-deeper)">Chi tiết kết quả:</h3>${review}</div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-secondary" onclick="showLesson(${mi})">📖 Xem Lại Bài</button>
+      ${nextBtn}
+    </div>
+  </div>`;
+  renderSidebar();
+}
+
+function makeCert() {
+  // Thông tin đã thu thập từ form đăng ký, dùng trực tiếp
+  S.view = 'cert';
+
+  // Tính tổng điểm & thời gian
+  const totalCorrect = Object.values(S.scores).reduce((a,b)=>a+(b.correct||0),0);
+  const totalQ = LESSONS.length * 5;
+  const avgPct = Math.round(totalCorrect / totalQ * 100);
+  let duration = '';
+  if (S.courseStart && S.completedAt) {
+    const ms = S.completedAt - S.courseStart;
+    const mins = Math.floor(ms/60000);
+    if (mins < 60) duration = `${mins} phút`;
+    else duration = `${Math.floor(mins/60)} giờ ${mins%60} phút`;
+  }
+  S._certStats = { totalCorrect, totalQ, avgPct, duration };
+
+  // Ghi nhận hoàn thành
+  trackEvent('complete', { score: avgPct, duration });
+
+  document.getElementById('mainContent').innerHTML = `
+  <div class="cert-wrap">
+    <div class="cert-title-bar">
+      <h2>🏆 Giấy Chứng Nhận Của Bạn</h2>
+      <p>Nhấn "Tải về" để lưu dưới dạng ảnh PNG</p>
+    </div>
+    <canvas id="certCanvas" width="1200" height="860"></canvas>
+    <div class="cert-actions">
+      <button class="btn btn-secondary" onclick="showWelcome()">← Về Trang Chủ</button>
+      <button class="btn btn-gold" onclick="dlCert()">⬇️ Tải PNG</button>
+      <button class="btn btn-primary" onclick="printCert()">🖨️ In Chứng Nhận</button>
+    </div>
+  </div>`;
+  drawCert();
+  renderSidebar();
+}
+
+function drawCert() {
+  const cv = document.getElementById('certCanvas');
+  const ctx = cv.getContext('2d');
+  const W=1200, H=860;
+
+  // Background
+  const bg = ctx.createLinearGradient(0,0,W,H);
+  bg.addColorStop(0,'#f5fdf8'); bg.addColorStop(.5,'#ffffff'); bg.addColorStop(1,'#edf9f2');
+  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+
+  // Decorative border
+  ctx.strokeStyle='#1a8a42'; ctx.lineWidth=10; ctx.strokeRect(18,18,W-36,H-36);
+  ctx.strokeStyle='#c8973a'; ctx.lineWidth=2.5; ctx.strokeRect(30,30,W-60,H-60);
+
+  // Corner ornaments
+  [[54,54],[W-54,54],[54,H-54],[W-54,H-54]].forEach(([x,y])=>{
+    ctx.fillStyle='#1a8a42'; ctx.beginPath(); ctx.arc(x,y,8,0,Math.PI*2); ctx.fill();
+    ctx.strokeStyle='#c8973a'; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(x,y,15,0,Math.PI*2); ctx.stroke();
+  });
+
+  // Header band
+  const hg = ctx.createLinearGradient(0,58,W,58);
+  hg.addColorStop(0,'#0f5c2b'); hg.addColorStop(.45,'#1a8a42'); hg.addColorStop(1,'#0f5c2b');
+  ctx.fillStyle=hg; ctx.fillRect(42,58,W-84,108);
+
+  // Load logo then continue
+  const img = new Image();
+  img.onload = ()=>{ ctx.drawImage(img,52,64,95,95); _finishCert(ctx,W,H); };
+  img.onerror = ()=>{ _finishCert(ctx,W,H); };
+  img.src = 'logo-phuc-tea.png';
+}
+
+function _finishCert(ctx, W, H) {
+  const st = S._certStats;
+
+  // Brand name in header
+  ctx.textAlign='center';
+  ctx.fillStyle='#f0c060'; ctx.font='bold 46px Georgia,serif';
+  ctx.fillText('PHÚC TEA', W/2+20, 122);
+  ctx.fillStyle='rgba(255,255,255,.72)'; ctx.font='15px Arial';
+  ctx.fillText('HỆ THỐNG NHƯỢNG QUYỀN TRÀ & CÀ PHÊ', W/2+20, 152);
+
+  // ── GIẤY CHỨNG NHẬN ──
+  ctx.fillStyle='#0f5c2b'; ctx.font='bold 40px Georgia,serif';
+  ctx.fillText('GIẤY CHỨNG NHẬN', W/2, 222);
+
+  // Gold divider
+  ctx.strokeStyle='#c8973a'; ctx.lineWidth=2;
+  ctx.beginPath(); ctx.moveTo(200,238); ctx.lineTo(W-200,238); ctx.stroke();
+
+  // Sub-title
+  ctx.fillStyle='#1a8a42'; ctx.font='bold 20px Arial';
+  ctx.fillText(`Khóa Học: ${COURSE_TITLE}`, W/2, 272);
+
+  // "Chứng nhận rằng"
+  ctx.fillStyle='#6b7280'; ctx.font='italic 18px Georgia,serif';
+  ctx.fillText('Chứng nhận Học viên', W/2, 316);
+
+  // ── HỌ VÀ TÊN ──
+  ctx.fillStyle='#0f5c2b'; ctx.font='bold 54px Georgia,serif';
+  ctx.fillText(S.userName, W/2, 390);
+  // underline
+  const nw = ctx.measureText(S.userName).width;
+  ctx.strokeStyle='#c8973a'; ctx.lineWidth=2.5;
+  ctx.beginPath(); ctx.moveTo(W/2-nw/2,403); ctx.lineTo(W/2+nw/2,403); ctx.stroke();
+
+  // Store / unit
+  let bodyY = 446;
+  if (S.userStore) {
+    ctx.fillStyle='#374151'; ctx.font='italic 18px Georgia,serif';
+    ctx.fillText(`(${S.userStore})`, W/2, bodyY); bodyY+=36;
+  }
+
+  // Completion sentence
+  ctx.fillStyle='#374151'; ctx.font='18px Arial';
+  ctx.fillText('đã hoàn thành xuất sắc khóa học', W/2, bodyY);
+  ctx.fillStyle='#1a8a42'; ctx.font='bold 22px Arial';
+  ctx.fillText(`"${COURSE_TITLE}"`, W/2, bodyY+34);
+  ctx.fillStyle='#6b7280'; ctx.font='15px Arial';
+  ctx.fillText('thuộc Hệ Thống Đào Tạo Phúc Tea – Chuỗi Cung Ứng 2026', W/2, bodyY+62);
+
+  // ── STATS BOXES ──
+  const sy = bodyY + 108;
+  const stats = [
+    [st.totalCorrect+'/'+st.totalQ, 'Câu trả lời đúng'],
+    [st.avgPct+'%', 'Điểm trung bình'],
+    [st.duration || '—', 'Thời gian hoàn thành'],
+    ['6/6', 'Bài học']
+  ];
+  stats.forEach(([val, lbl], i)=>{
+    const x = 180 + i*220;
+    ctx.fillStyle='#f0fbf4';
+    ctx.beginPath(); ctx.roundRect(x-80,sy-36,160,70,10); ctx.fill();
+    ctx.strokeStyle='#a8dbb9'; ctx.lineWidth=1; ctx.stroke();
+    ctx.fillStyle='#1a8a42'; ctx.font='bold 26px Arial'; ctx.fillText(val, x, sy);
+    ctx.fillStyle='#6b7280'; ctx.font='12px Arial'; ctx.fillText(lbl, x, sy+20);
+  });
+
+  // ── DATE ──
+  const now = new Date();
+  const dateStr = `TP. Hồ Chí Minh, ngày ${now.getDate()} tháng ${now.getMonth()+1} năm ${now.getFullYear()}`;
+  ctx.fillStyle='#6b7280'; ctx.font='italic 14px Georgia,serif';
+  ctx.fillText(dateStr, W/2, H-178);
+
+  // ── SIGNATURES ──
+  // Left: Lý Tấn Tài
+  const lx=240, rx=W-240;
+
+  ctx.fillStyle='#374151'; ctx.font='bold 13px Arial';
+  ctx.fillText('NGƯỜI KÝ XÁC NHẬN', lx, H-158);
+  // Stylised signature for Lý Tấn Tài
+  ctx.save();
+  ctx.strokeStyle='#0f5c2b'; ctx.lineWidth=2.5; ctx.lineJoin='round'; ctx.lineCap='round';
+  const sx0=lx-55, sy0=H-142;
+  ctx.beginPath();
+  ctx.moveTo(sx0,sy0+10); ctx.bezierCurveTo(sx0+15,sy0-18,sx0+28,sy0-18,sx0+36,sy0+5);
+  ctx.bezierCurveTo(sx0+44,sy0+20,sx0+52,sy0+5,sx0+65,sy0);
+  ctx.bezierCurveTo(sx0+80,sy0-14,sx0+90,sy0+8,sx0+110,sy0+4);
+  ctx.stroke();
+  ctx.restore();
+  ctx.strokeStyle='#9ca3af'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(lx-70,H-110); ctx.lineTo(lx+70,H-110); ctx.stroke();
+  ctx.fillStyle='#1a2e1a'; ctx.font='bold 14px Arial';
+  ctx.fillText('Lý Tấn Tài', lx, H-94);
+  ctx.fillStyle='#6b7280'; ctx.font='12px Arial';
+  ctx.fillText('Giám Đốc Điều Hành – Phúc Tea', lx, H-76);
+
+  // Right: Chuỗi Cung Ứng
+  ctx.fillStyle='#374151'; ctx.font='bold 13px Arial';
+  ctx.fillText('XÁC NHẬN HOÀN THÀNH', rx, H-158);
+  ctx.strokeStyle='#9ca3af'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(rx-70,H-110); ctx.lineTo(rx+70,H-110); ctx.stroke();
+  ctx.fillStyle='#1a2e1a'; ctx.font='bold 14px Arial';
+  ctx.fillText('Trần Thị Hạnh Nhân', rx, H-94);
+  ctx.fillStyle='#6b7280'; ctx.font='12px Arial';
+  ctx.fillText('Trưởng Bộ Phận Chuỗi Cung Ứng', rx, H-76);
+
+  // ── SEAL ──
+  const scx=W/2, scy=H-100;
+  const sg=ctx.createRadialGradient(scx,scy,0,scx,scy,46);
+  sg.addColorStop(0,'#1a8a42'); sg.addColorStop(1,'#0f5c2b');
+  ctx.beginPath(); ctx.arc(scx,scy,46,0,Math.PI*2);
+  ctx.fillStyle=sg; ctx.fill();
+  ctx.strokeStyle='#f0c060'; ctx.lineWidth=3; ctx.stroke();
+  ctx.fillStyle='#f0c060'; ctx.font='bold 10px Arial'; ctx.textAlign='center';
+  ctx.fillText('PHÚC TEA',scx,scy-10);
+  ctx.font='9px Arial';
+  ctx.fillText('CHỨNG NHẬN',scx,scy+4);
+  ctx.fillText('2026',scx,scy+16);
+
+  // Bottom bar
+  const fg=ctx.createLinearGradient(0,H-44,W,H-44);
+  fg.addColorStop(0,'#0f5c2b'); fg.addColorStop(.5,'#1a8a42'); fg.addColorStop(1,'#0f5c2b');
+  ctx.fillStyle=fg; ctx.fillRect(42,H-48,W-84,12);
+}
+
+function dlCert() {
+  const a=document.createElement('a');
+  a.download=`GiayChungNhan-PhucTea-${S.userName.replace(/ /g,'_')}.png`;
+  a.href=document.getElementById('certCanvas').toDataURL('image/png');
+  a.click();
+}
+function printCert() {
+  const d=window.open('','_blank');
+  d.document.write(`<html><head><title>Giấy Chứng Nhận – ${S.userName}</title>
+  <style>body{margin:0}img{width:100%;height:auto}</style></head>
+  <body><img src="${document.getElementById('certCanvas').toDataURL()}" onload="window.print()"></body></html>`);
+  d.document.close();
+}
+
+// ─── REGISTER ─────────────────────────────────────────────────
+function showRegister() {
+  S.view = 'register';
+  document.getElementById('sidebar').innerHTML = '';
+  document.getElementById('progressText').textContent = '0/6 bài';
+  document.getElementById('progressFill').style.width = '0%';
+  document.getElementById('mainContent').innerHTML = `
+  <div style="max-width:520px;margin:24px auto">
+    <div style="background:#fff;border-radius:20px;box-shadow:0 4px 24px rgba(0,0,0,.09);overflow:hidden">
+      <!-- Header -->
+      <div style="background:linear-gradient(135deg,#0f5c2b,#1a8a42);padding:36px 40px;text-align:center">
+        <img src="logo-phuc-tea.png" style="height:70px;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto"
+          onerror="this.style.display='none'">
+        <div style="color:#f0c060;font-size:22px;font-weight:900;letter-spacing:1px">PHÚC TEA</div>
+        <div style="color:rgba(255,255,255,.8);font-size:13px;margin-top:4px">Hệ Thống Đào Tạo Nhượng Quyền</div>
+      </div>
+      <!-- Form body -->
+      <div style="padding:36px 40px">
+        <h2 style="font-size:20px;color:#0f5c2b;margin-bottom:6px;text-align:center">Đăng Ký Tham Gia Khóa Học</h2>
+        <p style="color:#6b7280;font-size:13px;text-align:center;margin-bottom:28px;line-height:1.7">
+          Vui lòng điền đầy đủ thông tin để bắt đầu khóa học<br>
+          <strong style="color:#1a8a42">${COURSE_TITLE}</strong>
+        </p>
+        <div class="form-group">
+          <label>Họ và tên đầy đủ <span style="color:#e53e3e">*</span></label>
+          <input type="text" id="regName" placeholder="Nguyễn Văn A" oninput="checkReg()">
+        </div>
+        <div class="form-group">
+          <label>Địa chỉ Email <span style="color:#e53e3e">*</span></label>
+          <input type="email" id="regEmail" placeholder="example@email.com" oninput="checkReg()">
+        </div>
+        <div class="form-group">
+          <label>Tên cửa hàng đầy đủ <span style="color:#e53e3e">*</span></label>
+          <input type="text" id="regStore" placeholder="PHUCTEA163 - TÂN NINH TÂY NINH" oninput="checkReg()">
+          <div style="font-size:11px;color:#9ca3af;margin-top:4px">Ví dụ: PHUCTEA163 - TÂN NINH TÂY NINH</div>
+        </div>
+        <button class="btn btn-primary" id="regBtn" disabled onclick="submitRegister()"
+          style="width:100%;justify-content:center;font-size:15px;padding:14px;margin-top:4px">
+          🚀 Bắt Đầu Khóa Học
+        </button>
+        <p style="text-align:center;font-size:11px;color:#9ca3af;margin-top:14px">
+          Thông tin được dùng để cấp Giấy Chứng Nhận khi hoàn thành khóa học
+        </p>
+      </div>
+    </div>
+  </div>`;
+}
+
+function checkReg() {
+  const name  = document.getElementById('regName').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const store = document.getElementById('regStore').value.trim();
+  const valid = name && email && store && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  document.getElementById('regBtn').disabled = !valid;
+  document.getElementById('regBtn').className = valid ? 'btn btn-primary' : 'btn btn-disabled';
+}
+
+function submitRegister() {
+  S.userName  = document.getElementById('regName').value.trim();
+  S.userEmail = document.getElementById('regEmail').value.trim();
+  S.userStore = document.getElementById('regStore').value.trim();
+  trackEvent('register');
+  showWelcome();
+}
+
+// ─── ADMIN PANEL ──────────────────────────────────────────────
+function showAdmin() {
+  const pwd = prompt('Nhập mật khẩu admin:');
+  if (pwd !== ADMIN_PASSWORD) { alert('Sai mật khẩu!'); showRegister(); return; }
+
+  const all = JSON.parse(localStorage.getItem('phuctea_learners') || '[]');
+  const total = all.length;
+  const done  = all.filter(r => r.status.includes('hoàn thành')).length;
+
+  const rows = all.length ? all.map((r,i) => `
+    <tr>
+      <td style="text-align:center">${i+1}</td>
+      <td><strong>${r.name}</strong></td>
+      <td>${r.email}</td>
+      <td>${r.store}</td>
+      <td>${r.time}</td>
+      <td><span style="padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;
+        background:${r.status.includes('hoàn thành')?'#d1fae5':'#fef9c3'};
+        color:${r.status.includes('hoàn thành')?'#065f46':'#92400e'}">${r.status}</span></td>
+      <td style="text-align:center">${r.score||'—'}</td>
+      <td>${r.duration||'—'}</td>
+      <td>${r.completedAt||'—'}</td>
+      <td style="text-align:center">
+        <button onclick="deleteEntry('${r.email}')"
+          style="background:#fee2e2;border:none;color:#dc2626;border-radius:6px;padding:3px 8px;cursor:pointer;font-size:12px">Xoá</button>
+      </td>
+    </tr>`).join('') :
+    `<tr><td colspan="10" style="text-align:center;padding:32px;color:#9ca3af">Chưa có học viên nào đăng ký</td></tr>`;
+
+  document.getElementById('sidebar').innerHTML = '';
+  document.getElementById('progressText').textContent = `${done}/${total} hoàn thành`;
+  document.getElementById('progressFill').style.width = total ? (done/total*100)+'%' : '0%';
+
+  document.getElementById('mainContent').innerHTML = `
+  <div style="background:#fff;border-radius:16px;padding:28px;box-shadow:0 2px 16px rgba(0,0,0,.06)">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px">
+      <div>
+        <h2 style="font-size:20px;color:#0f5c2b">📊 Quản Lý Học Viên</h2>
+        <p style="color:#6b7280;font-size:13px;margin-top:2px">Khóa học: ${COURSE_TITLE}</p>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <div style="background:#f0fbf4;border:1px solid #a8dbb9;border-radius:10px;padding:10px 20px;text-align:center">
+          <div style="font-size:24px;font-weight:800;color:#1a8a42">${total}</div>
+          <div style="font-size:11px;color:#6b7280">Đã đăng ký</div>
+        </div>
+        <div style="background:#f0fbf4;border:1px solid #a8dbb9;border-radius:10px;padding:10px 20px;text-align:center">
+          <div style="font-size:24px;font-weight:800;color:#1a8a42">${done}</div>
+          <div style="font-size:11px;color:#6b7280">Hoàn thành</div>
+        </div>
+        <div style="background:#fffbeb;border:1px solid #fcd34d;border-radius:10px;padding:10px 20px;text-align:center">
+          <div style="font-size:24px;font-weight:800;color:#92400e">${total-done}</div>
+          <div style="font-size:11px;color:#6b7280">Đang học</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="exportCSV()">⬇️ Xuất CSV</button>
+      <button class="btn btn-secondary" onclick="clearAll()">🗑️ Xoá Tất Cả</button>
+      <button class="btn btn-secondary" onclick="showRegister()">← Thoát Admin</button>
+    </div>
+    <div style="overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;min-width:900px">
+        <thead>
+          <tr style="background:#0f5c2b;color:#fff">
+            <th style="padding:10px 8px">#</th>
+            <th style="padding:10px 12px;text-align:left">Họ tên</th>
+            <th style="padding:10px 12px;text-align:left">Email</th>
+            <th style="padding:10px 12px;text-align:left">Cửa hàng</th>
+            <th style="padding:10px 12px;text-align:left">Đăng ký lúc</th>
+            <th style="padding:10px 12px;text-align:left">Trạng thái</th>
+            <th style="padding:10px 8px">Điểm TB</th>
+            <th style="padding:10px 12px;text-align:left">TG học</th>
+            <th style="padding:10px 12px;text-align:left">Hoàn thành lúc</th>
+            <th style="padding:10px 8px"></th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+  </div>`;
+}
+
+function deleteEntry(email) {
+  if (!confirm('Xoá học viên này?')) return;
+  const all = JSON.parse(localStorage.getItem('phuctea_learners') || '[]');
+  localStorage.setItem('phuctea_learners', JSON.stringify(all.filter(r => r.email !== email)));
+  showAdmin();
+}
+
+function clearAll() {
+  if (!confirm('Xoá toàn bộ dữ liệu học viên? Không thể hoàn tác!')) return;
+  localStorage.removeItem('phuctea_learners');
+  showAdmin();
+}
+
+function exportCSV() {
+  const all = JSON.parse(localStorage.getItem('phuctea_learners') || '[]');
+  if (!all.length) { alert('Chưa có dữ liệu!'); return; }
+  const header = ['Họ tên','Email','Cửa hàng','Đăng ký lúc','Trạng thái','Điểm TB','Thời gian học','Hoàn thành lúc'];
+  const rows = all.map(r => [r.name,r.email,r.store,r.time,r.status,r.score,r.duration,r.completedAt]
+    .map(v => `"${(v||'').replace(/"/g,'""')}"`).join(','));
+  const csv = '\uFEFF' + [header.join(','), ...rows].join('\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv], {type:'text/csv;charset=utf-8'}));
+  a.download = `phuctea-hocvien-${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+}
+
+// ─── INIT ─────────────────────────────────────────────────────
+if (location.hash === '#admin') showAdmin();
+else showRegister();
+</script>
+</body>
+</html>
