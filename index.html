@@ -144,47 +144,48 @@ tr:hover td{background:#f9fafb;}
 .lesson-actions{display:flex;justify-content:space-between;align-items:center;margin-top:28px;padding-top:20px;border-top:1px solid #e5e7eb;}
 
 /* KIOTVIET MOCKUP */
-.kv-container{border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.15);margin:16px 0;font-family:Arial,sans-serif;}
-.kv-topbar{background:#0066cc;padding:8px 14px;display:flex;align-items:center;gap:10px;}
-.kv-topbar-brand{color:#fff;font-weight:700;font-size:14px;}
-.kv-topbar-badge{background:#ff6600;color:#fff;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:700;}
-.kv-body{display:flex;height:420px;}
-.kv-sidebar{width:140px;background:#1a3a6b;display:flex;flex-direction:column;padding:8px 0;flex-shrink:0;}
-.kv-menu-item{padding:10px 14px;color:rgba(255,255,255,.65);font-size:12px;cursor:pointer;border-left:3px solid transparent;transition:.15s;}
-.kv-menu-item:hover,.kv-menu-item.kv-active{color:#fff;background:rgba(255,255,255,.1);border-left-color:#2ecc71;}
-.kv-menu-icon{font-size:16px;display:block;margin-bottom:2px;}
-.kv-main{flex:1;background:#f0f4f8;display:flex;flex-direction:column;}
-.kv-toolbar{background:#fff;padding:8px 12px;display:flex;gap:8px;align-items:center;border-bottom:1px solid #ddd;flex-wrap:wrap;}
-.kv-toolbar-btn{padding:5px 12px;border:1px solid #ccc;border-radius:6px;font-size:12px;cursor:pointer;background:#fff;transition:.15s;}
-.kv-toolbar-btn:hover{background:#e8f4fd;border-color:#0066cc;}
-.kv-toolbar-btn.primary-btn{background:#0066cc;color:#fff;border-color:#0066cc;}
-.kv-toolbar-btn.primary-btn:hover{background:#0052a3;}
-.kv-toolbar-btn.orange-btn{background:#ff6600;color:#fff;border-color:#ff6600;}
-.kv-search-bar{background:#fff;padding:6px 12px;border-bottom:1px solid #ddd;display:flex;gap:8px;align-items:center;}
-.kv-search-bar input{flex:1;border:1px solid #ccc;border-radius:6px;padding:5px 10px;font-size:12px;outline:none;}
-.kv-search-bar input:focus{border-color:#0066cc;}
-.kv-content-area{flex:1;display:flex;overflow:hidden;}
-.kv-products{flex:1;padding:10px;overflow-y:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;align-content:start;}
-.kv-product-card{background:#fff;border-radius:8px;padding:10px 8px;text-align:center;cursor:pointer;border:2px solid transparent;transition:.15s;box-shadow:0 1px 4px rgba(0,0,0,.08);}
-.kv-product-card:hover{border-color:#0066cc;transform:translateY(-1px);}
-.kv-product-card.selected{border-color:#2ecc71;background:#f0fbf4;}
-.kv-product-icon{font-size:22px;margin-bottom:5px;}
-.kv-product-name{font-size:10px;color:#333;line-height:1.3;margin-bottom:3px;}
-.kv-product-price{font-size:11px;font-weight:700;color:#0066cc;}
-.kv-cart{width:200px;background:#fff;border-left:1px solid #ddd;display:flex;flex-direction:column;}
-.kv-cart-header{padding:8px 12px;background:#0066cc;color:#fff;font-size:12px;font-weight:700;}
-.kv-cart-customer{padding:8px 10px;border-bottom:1px solid #eee;font-size:11px;}
-.kv-cart-customer span{color:#0066cc;font-weight:600;}
-.kv-cart-items{flex:1;overflow-y:auto;padding:6px;}
-.kv-cart-item{background:#f8f9fa;border-radius:6px;padding:6px 8px;margin-bottom:5px;font-size:11px;}
-.kv-cart-item-name{font-weight:600;color:#333;}
-.kv-cart-item-detail{color:#666;margin-top:2px;display:flex;justify-content:space-between;}
-.kv-cart-total{padding:8px 10px;border-top:1px solid #eee;font-size:12px;font-weight:700;color:#e53e3e;}
-.kv-cart-actions{padding:8px 10px;display:flex;flex-direction:column;gap:5px;}
-.kv-btn-order{background:#ff6600;color:#fff;border:none;border-radius:7px;padding:8px;font-size:12px;font-weight:700;cursor:pointer;width:100%;transition:.15s;}
-.kv-btn-order:hover{background:#e55a00;}
-.kv-btn-save{background:#6c757d;color:#fff;border:none;border-radius:7px;padding:6px;font-size:11px;cursor:pointer;width:100%;transition:.15s;}
-.kv-btn-save:hover{background:#5a6268;}
+/* ── KiotViet Mobile Mockup ── */
+.kv-phones{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin:16px 0;}
+.kv-phone{width:260px;border-radius:32px;background:#1a1a1a;padding:10px;box-shadow:0 8px 32px rgba(0,0,0,.35);flex-shrink:0;}
+.kv-screen{background:#f2f2f7;border-radius:24px;overflow:hidden;font-family:Arial,sans-serif;font-size:12px;}
+.kv-statusbar{background:#fff;display:flex;justify-content:space-between;align-items:center;padding:6px 14px 4px;font-size:11px;font-weight:600;}
+.kv-statusbar-icons{display:flex;gap:4px;align-items:center;font-size:10px;}
+.kv-appbar{background:#fff;padding:10px 14px 8px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #e5e5ea;}
+.kv-appbar-title{font-size:16px;font-weight:700;color:#000;flex:1;}
+.kv-appbar-back{font-size:16px;color:#000;}
+.kv-appbar-icon{font-size:15px;color:#555;}
+.kv-search{background:#fff;padding:6px 12px 8px;}
+.kv-search input{width:100%;box-sizing:border-box;background:#f2f2f7;border:none;border-radius:10px;padding:7px 10px;font-size:12px;color:#888;outline:none;}
+.kv-filter-row{background:#fff;border-top:1px solid #e5e5ea;border-bottom:1px solid #e5e5ea;padding:8px 12px;display:flex;gap:8px;align-items:center;}
+.kv-filter-chip{padding:4px 10px;border-radius:16px;font-size:11px;font-weight:600;border:1.5px solid #d1d1d6;color:#555;background:#fff;}
+.kv-filter-chip.active{border-color:#e53e3e;color:#e53e3e;}
+.kv-filter-chip.normal{border-color:#d1d1d6;color:#555;}
+.kv-product-list{background:#fff;margin-top:8px;}
+.kv-list-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid #f0f0f0;}
+.kv-list-img{width:44px;height:44px;border-radius:8px;background:#f2f2f7;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.kv-list-info{flex:1;}
+.kv-list-name{font-size:12px;font-weight:600;color:#111;line-height:1.4;}
+.kv-list-unit{color:#888;font-weight:400;}
+.kv-list-code{font-size:10px;color:#888;margin-top:2px;}
+.kv-list-price{font-size:13px;font-weight:700;color:#0066cc;margin-top:3px;}
+.kv-list-qty{display:flex;align-items:center;gap:6px;}
+.kv-qty-btn{width:26px;height:26px;border-radius:50%;border:1.5px solid #e53e3e;background:#fff;color:#e53e3e;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.kv-qty-val{font-size:13px;font-weight:700;color:#111;min-width:16px;text-align:center;}
+.kv-selector-row{background:#fff;padding:10px 14px;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;justify-content:space-between;}
+.kv-selector-label{font-size:13px;color:#111;display:flex;align-items:center;gap:6px;}
+.kv-selector-arrow{color:#c7c7cc;font-size:14px;}
+.kv-bottomnav{background:#fff;border-top:1px solid #e5e5ea;display:flex;padding:6px 0 4px;}
+.kv-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:9px;color:#8e8e93;}
+.kv-nav-item.active{color:#0066cc;}
+.kv-nav-icon{font-size:18px;}
+.kv-footer-bar{background:#fff;border-top:1px solid #e5e5ea;padding:10px 12px;}
+.kv-footer-total{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.kv-footer-label{font-size:12px;color:#555;}
+.kv-footer-amount{font-size:15px;font-weight:700;color:#111;}
+.kv-footer-badge{background:#e5e5ea;border-radius:50%;width:18px;height:18px;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;margin-left:4px;}
+.kv-footer-btns{display:flex;gap:8px;}
+.kv-btn-luu{flex:1;padding:10px;border-radius:10px;border:1.5px solid #0066cc;background:#fff;color:#0066cc;font-size:13px;font-weight:600;cursor:pointer;}
+.kv-btn-dat{flex:2;padding:10px;border-radius:10px;border:none;background:#0066cc;color:#fff;font-size:13px;font-weight:700;cursor:pointer;}
 
 /* Annotation markers */
 .kv-annotation{position:relative;}
@@ -520,88 +521,208 @@ const LESSONS = [
     <h3>Hướng Dẫn Thao Tác KiotViet – Giao Diện Mẫu</h3>
     <p style="margin-bottom:12px;font-size:13px;color:#6b7280">Dưới đây là <strong>mô phỏng giao diện KiotViet</strong> và các khu vực chức năng bạn sẽ dùng khi đặt hàng:</p>
 
-    <!-- KiotViet Mockup -->
-    <div class="kv-container">
-      <div class="kv-topbar">
-        <div class="kv-topbar-brand">🛒 KiotViet POS</div>
-        <div class="kv-topbar-badge">Phúc Tea – CN 162</div>
-        <div style="margin-left:auto;color:rgba(255,255,255,.7);font-size:11px">Phúc Tea Vĩnh Cửu</div>
-      </div>
-      <div class="kv-body">
-        <!-- Left nav -->
-        <div class="kv-sidebar">
-          <div class="kv-menu-item kv-active"><span class="kv-menu-icon">🛍️</span>Bán Hàng</div>
-          <div class="kv-menu-item"><span class="kv-menu-icon">🧾</span>Hóa Đơn</div>
-          <div class="kv-menu-item"><span class="kv-menu-icon">📦</span>Đặt Hàng</div>
-          <div class="kv-menu-item"><span class="kv-menu-icon">📊</span>Báo Cáo</div>
-          <div class="kv-menu-item"><span class="kv-menu-icon">⚙️</span>Cài Đặt</div>
-        </div>
-        <!-- Main area -->
-        <div class="kv-main">
-          <div class="kv-toolbar">
-            <button class="kv-toolbar-btn primary-btn">+ Đơn Mới</button>
-            <button class="kv-toolbar-btn">🔍 Tìm Sản Phẩm</button>
-            <button class="kv-toolbar-btn">👤 Khách lẻ ▼</button>
-            <button class="kv-toolbar-btn" style="background:#e6f9ee;border-color:#2ecc71;color:#0f5c2b">💾 Lưu Tạm</button>
+    <!-- KiotViet Mobile Mockup – 3 màn hình -->
+    <div class="kv-phones">
+
+      <!-- ── PHONE 1: Danh sách sản phẩm (chưa chọn cửa hàng) ── -->
+      <div class="kv-phone">
+        <div class="kv-screen">
+          <div class="kv-statusbar">
+            <span>09:35</span>
+            <div class="kv-statusbar-icons"><span>▌▌▌</span><span>📶</span><span style="background:#4caf50;color:#fff;padding:1px 5px;border-radius:3px;font-size:9px">73</span></div>
           </div>
-          <div class="kv-search-bar">
-            <span style="font-size:12px;color:#666">Tìm: </span>
-            <input type="text" placeholder="Nhập tên hoặc mã CỬA HÀNG (vd: 162)..." readonly>
-            <button class="kv-toolbar-btn primary-btn">Tìm</button>
+          <div class="kv-appbar">
+            <div class="kv-appbar-title">Đặt hàng</div>
+            <span style="font-size:13px;position:relative">🕐<span style="position:absolute;top:-4px;right:-6px;background:#e53e3e;color:#fff;border-radius:50%;width:14px;height:14px;font-size:9px;display:flex;align-items:center;justify-content:center;font-weight:700">1</span></span>
           </div>
-          <div class="kv-content-area">
-            <div class="kv-products">
-              <div class="kv-product-card selected"><div class="kv-product-icon">☕</div><div class="kv-product-name">Cà Phê Mộc 9:1</div><div class="kv-product-price">258.000đ/kg</div></div>
-              <div class="kv-product-card"><div class="kv-product-icon">🧋</div><div class="kv-product-name">Bột PT35</div><div class="kv-product-price">2.150.000đ</div></div>
-              <div class="kv-product-card"><div class="kv-product-icon">🍵</div><div class="kv-product-name">Trà Đen Phúc Tea</div><div class="kv-product-price">70.000đ/gói</div></div>
-              <div class="kv-product-card"><div class="kv-product-icon">🌿</div><div class="kv-product-name">Trà Xanh Lài</div><div class="kv-product-price">105.000đ/gói</div></div>
-              <div class="kv-product-card selected"><div class="kv-product-icon">🫧</div><div class="kv-product-name">Trân Châu Giòn</div><div class="kv-product-price">450.000đ/thùng</div></div>
-              <div class="kv-product-card"><div class="kv-product-icon">🍑</div><div class="kv-product-name">Trà Hoà Tan Đào</div><div class="kv-product-price">70.000đ/gói</div></div>
-              <div class="kv-product-card"><div class="kv-product-icon">🧊</div><div class="kv-product-name">Vải Tươi Ngâm</div><div class="kv-product-price">390.000đ/thùng</div></div>
-              <div class="kv-product-card"><div class="kv-product-icon">🥛</div><div class="kv-product-name">Bột Milk Foam</div><div class="kv-product-price">133.000đ/gói</div></div>
-            </div>
-            <!-- Cart -->
-            <div class="kv-cart">
-              <div class="kv-cart-header">🛒 ĐƠN HÀNG</div>
-              <div class="kv-cart-customer">Cửa hàng: <span>Phúc Tea CN 162</span></div>
-              <div class="kv-cart-items">
-                <div class="kv-cart-item">
-                  <div class="kv-cart-item-name">Cà Phê Mộc 9:1</div>
-                  <div class="kv-cart-item-detail"><span>x 2 kg</span><span>516.000đ</span></div>
-                </div>
-                <div class="kv-cart-item">
-                  <div class="kv-cart-item-name">Trân Châu Giòn</div>
-                  <div class="kv-cart-item-detail"><span>x 1 thùng</span><span>450.000đ</span></div>
-                </div>
+          <div class="kv-search"><input type="text" placeholder="🔍  Tên, mã hàng, mã vạch, lô date, ..." readonly></div>
+          <div class="kv-filter-row">
+            <span class="kv-filter-chip active">👤 Khách lẻ</span>
+            <span class="kv-filter-chip normal">🏷️ Bảng giá chung</span>
+            <span style="margin-left:auto;font-size:16px;color:#555">≡</span>
+          </div>
+          <div class="kv-product-list">
+            <div class="kv-list-item">
+              <div class="kv-list-img">🍵</div>
+              <div class="kv-list-info">
+                <div class="kv-list-name">Trà Đen Phúc Tea <span class="kv-list-unit">(Bịch)</span></div>
+                <div class="kv-list-code">NVL010112 &nbsp;<span style="background:#e5e5ea;padding:2px 6px;border-radius:4px">KH đặt: 0</span></div>
+                <div class="kv-list-price">70,000</div>
               </div>
-              <div class="kv-cart-total">Tổng: 966.000đ</div>
-              <div class="kv-cart-actions">
-                <button class="kv-btn-order">📤 ĐẶT HÀNG</button>
-                <button class="kv-btn-save">💾 Lưu Tạm</button>
+            </div>
+            <div class="kv-list-item">
+              <div class="kv-list-img">🧋</div>
+              <div class="kv-list-info">
+                <div class="kv-list-name">Bột Pha Chế PT35 <span class="kv-list-unit">(Thùng)</span></div>
+                <div class="kv-list-code">NVL010120 &nbsp;<span style="background:#e5e5ea;padding:2px 6px;border-radius:4px">KH đặt: 0</span></div>
+                <div class="kv-list-price">2,150,000</div>
+              </div>
+            </div>
+            <div class="kv-list-item">
+              <div class="kv-list-img">☕</div>
+              <div class="kv-list-info">
+                <div class="kv-list-name">Cà Phê Mộc 9:1 <span class="kv-list-unit">(Kg)</span></div>
+                <div class="kv-list-code">NVL010166 &nbsp;<span style="background:#e5e5ea;padding:2px 6px;border-radius:4px">KH đặt: 0</span></div>
+                <div class="kv-list-price">258,000</div>
+              </div>
+            </div>
+            <div class="kv-list-item">
+              <div class="kv-list-img">🫧</div>
+              <div class="kv-list-info">
+                <div class="kv-list-name">Trân Châu Giòn <span class="kv-list-unit">(Thùng)</span></div>
+                <div class="kv-list-code">NVL010105 &nbsp;<span style="background:#e5e5ea;padding:2px 6px;border-radius:4px">KH đặt: 0</span></div>
+                <div class="kv-list-price">450,000</div>
               </div>
             </div>
           </div>
+          <div class="kv-bottomnav">
+            <div class="kv-nav-item active"><span class="kv-nav-icon">🛍️</span>Bán hàng</div>
+            <div class="kv-nav-item"><span class="kv-nav-icon">📄</span>Hoá đơn</div>
+            <div class="kv-nav-item"><span class="kv-nav-icon">🔔</span>Thông báo</div>
+            <div class="kv-nav-item"><span class="kv-nav-icon">☰</span>Nhiều hơn</div>
+          </div>
         </div>
+        <div style="text-align:center;color:#aaa;font-size:10px;margin-top:8px">① Chọn sản phẩm cần đặt</div>
       </div>
-    </div>
+
+      <!-- ── PHONE 2: Đã chọn cửa hàng TÂY NINH ── -->
+      <div class="kv-phone">
+        <div class="kv-screen">
+          <div class="kv-statusbar">
+            <span>09:38</span>
+            <div class="kv-statusbar-icons"><span>▌▌▌</span><span>📶</span><span style="background:#4caf50;color:#fff;padding:1px 5px;border-radius:3px;font-size:9px">72</span></div>
+          </div>
+          <div class="kv-appbar">
+            <div class="kv-appbar-title">Đặt hàng</div>
+            <span style="font-size:13px;position:relative">🕐<span style="position:absolute;top:-4px;right:-6px;background:#e53e3e;color:#fff;border-radius:50%;width:14px;height:14px;font-size:9px;display:flex;align-items:center;justify-content:center;font-weight:700">1</span></span>
+          </div>
+          <div class="kv-search"><input type="text" placeholder="🔍  Tên, mã hàng, mã vạch, lô date, ..." readonly></div>
+          <div class="kv-filter-row">
+            <span style="font-size:12px;color:#555">👤 <strong>TÂY NINH</strong></span>
+            <span style="font-size:11px;color:#888;margin-left:8px">🏷️ Bảng giá chung</span>
+            <span style="margin-left:auto;font-size:16px;color:#555">≡</span>
+          </div>
+          <div class="kv-product-list">
+            <div class="kv-list-item">
+              <div class="kv-list-img">🍵</div>
+              <div class="kv-list-info">
+                <div class="kv-list-name">Trà Hòa Tan Vị Vải PT <span class="kv-list-unit">(Bịch)</span></div>
+                <div class="kv-list-code">NVL010114 &nbsp;<span style="background:#e5e5ea;padding:2px 6px;border-radius:4px">KH đặt: 0</span></div>
+                <div class="kv-list-price">70,000</div>
+              </div>
+            </div>
+            <div class="kv-list-item">
+              <div class="kv-list-img">🍑</div>
+              <div class="kv-list-info">
+                <div class="kv-list-name">Trà Hòa Tan Vị Đào PT <span class="kv-list-unit">(Bịch)</span></div>
+                <div class="kv-list-code">NVL010113 &nbsp;<span style="background:#e5e5ea;padding:2px 6px;border-radius:4px">KH đặt: 0</span></div>
+                <div class="kv-list-price">70,000</div>
+              </div>
+            </div>
+            <div class="kv-list-item">
+              <div class="kv-list-img">🍫</div>
+              <div class="kv-list-info">
+                <div class="kv-list-name">Bột Socola Phúc Tea 02 <span class="kv-list-unit">(Bịch)</span></div>
+                <div class="kv-list-code">NVL010110 &nbsp;<span style="background:#e5e5ea;padding:2px 6px;border-radius:4px">KH đặt: 0</span></div>
+                <div class="kv-list-price">180,000</div>
+              </div>
+            </div>
+            <div class="kv-list-item">
+              <div class="kv-list-img">☕</div>
+              <div class="kv-list-info">
+                <div class="kv-list-name">Cà Phê Mộc 9:1 <span class="kv-list-unit">(Kg)</span></div>
+                <div class="kv-list-code">NVL010166 &nbsp;<span style="background:#e5e5ea;padding:2px 6px;border-radius:4px">KH đặt: 0</span></div>
+                <div class="kv-list-price">258,000</div>
+              </div>
+            </div>
+          </div>
+          <div class="kv-bottomnav">
+            <div class="kv-nav-item active"><span class="kv-nav-icon">🛍️</span>Bán hàng</div>
+            <div class="kv-nav-item"><span class="kv-nav-icon">📄</span>Hoá đơn</div>
+            <div class="kv-nav-item"><span class="kv-nav-icon">🔔</span>Thông báo</div>
+            <div class="kv-nav-item"><span class="kv-nav-icon">☰</span>Nhiều hơn</div>
+          </div>
+        </div>
+        <div style="text-align:center;color:#aaa;font-size:10px;margin-top:8px">② Chọn đúng tên cửa hàng</div>
+      </div>
+
+      <!-- ── PHONE 3: Giỏ hàng & Đặt hàng ── -->
+      <div class="kv-phone">
+        <div class="kv-screen">
+          <div class="kv-statusbar">
+            <span>09:36</span>
+            <div class="kv-statusbar-icons"><span>▌▌▌</span><span>📶</span><span style="background:#4caf50;color:#fff;padding:1px 5px;border-radius:3px;font-size:9px">73</span></div>
+          </div>
+          <div class="kv-appbar">
+            <span class="kv-appbar-back">✕</span>
+            <div class="kv-appbar-title">Đặt hàng</div>
+            <span class="kv-appbar-icon">📋</span>
+          </div>
+          <div class="kv-search"><input type="text" placeholder="🔍  Tên, mã hàng, mã vạch, lô date, ..." readonly></div>
+          <div class="kv-selector-row">
+            <span class="kv-selector-label">👤 TÂY NINH</span>
+            <span class="kv-selector-arrow">›</span>
+          </div>
+          <div class="kv-selector-row">
+            <span class="kv-selector-label">🏷️ Bảng giá chung</span>
+            <span class="kv-selector-arrow">›</span>
+          </div>
+          <div class="kv-product-list">
+            <div class="kv-list-item">
+              <div class="kv-list-img">🍵</div>
+              <div class="kv-list-info">
+                <div class="kv-list-name">Trà Đen Phúc Tea <span class="kv-list-unit">(Bịch)</span></div>
+                <div class="kv-list-price">70,000</div>
+              </div>
+              <div class="kv-list-qty">
+                <div class="kv-qty-btn">−</div>
+                <span class="kv-qty-val">1</span>
+                <div class="kv-qty-btn">+</div>
+              </div>
+            </div>
+            <div class="kv-list-item">
+              <div class="kv-list-img">🧋</div>
+              <div class="kv-list-info">
+                <div class="kv-list-name">Bột Pha Chế PT35 <span class="kv-list-unit">(Thùng)</span></div>
+                <div class="kv-list-price">2,150,000</div>
+              </div>
+              <div class="kv-list-qty">
+                <div class="kv-qty-btn">−</div>
+                <span class="kv-qty-val">1</span>
+                <div class="kv-qty-btn">+</div>
+              </div>
+            </div>
+          </div>
+          <div style="flex:1;background:#f2f2f7;min-height:40px"></div>
+          <div class="kv-footer-bar">
+            <div class="kv-footer-total">
+              <span class="kv-footer-label">Tổng tiền hàng <span class="kv-footer-badge">2</span></span>
+              <span class="kv-footer-amount">2,220,000</span>
+            </div>
+            <div class="kv-footer-btns">
+              <button class="kv-btn-luu">Lưu tạm</button>
+              <button class="kv-btn-dat">Đặt hàng</button>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center;color:#aaa;font-size:10px;margin-top:8px">③ Kiểm tra & bấm Đặt hàng</div>
+      </div>
+
+    </div><!-- end kv-phones -->
 
     <!-- Annotations -->
-    <div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+    <div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
       <div class="highlight-box" style="margin:0">
-        <strong>🛍️ Bán Hàng (menu trái)</strong><br>
-        Trang chính để đặt hàng. Tất cả sản phẩm hệ thống cung cấp hiển thị tại đây.
+        <strong>① Tìm sản phẩm</strong><br>
+        Vào <em>Nhiều hơn → Đặt Hàng</em>. Danh sách toàn bộ NVL hiển thị theo bảng giá chung.
       </div>
       <div class="highlight-box" style="margin:0">
-        <strong>🧾 Hóa Đơn (menu trái)</strong><br>
-        Xem tổng hợp <em>tất cả đơn đã được hệ thống nhận</em>. Lọc được theo thời gian.
-      </div>
-      <div class="highlight-box" style="margin:0">
-        <strong>📦 Đặt Hàng (menu trái)</strong><br>
-        Các đơn đã tạo nhưng <em>chưa được hệ thống xác nhận</em>.
+        <strong>② Chọn cửa hàng</strong><br>
+        Bấm <em>"Khách lẻ"</em> → tìm tên hoặc mã cửa hàng (vd: TÂY NINH, 162). Chọn đúng để giá và thông tin khớp.
       </div>
       <div class="highlight-box warn" style="margin:0">
-        <strong>💾 Lưu Tạm</strong><br>
-        Khi cần dừng lại xem thêm – bấm "Lưu tạm". Đơn lưu xuất hiện ở <em>góc phải màn hình Bán Hàng</em>.
+        <strong>③ Đặt hàng / Lưu tạm</strong><br>
+        Điều chỉnh số lượng → <em>Đặt hàng</em>. Nếu chưa xong bấm <em>Lưu tạm</em> để quay lại sau.
       </div>
     </div>
   </div>
