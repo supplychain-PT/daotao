@@ -52,7 +52,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--te
 /* HEADER */
 header{background:var(--green-deeper);color:#fff;padding:0 24px;display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.2);height:64px;}
 .logo-wrap{display:flex;align-items:center;gap:10px;flex-shrink:0;}
-.logo-img{height:46px;width:auto;object-fit:contain;}
+.logo-img{height:46px;width:auto;object-fit:contain;background:#0f5c2b;border-radius:50%;padding:2px;}
 .logo-fallback{font-size:20px;font-weight:900;letter-spacing:1px;color:#fff;}
 .logo-fallback span{color:var(--green);}
 header h1{font-size:15px;font-weight:700;opacity:.95;flex:1;line-height:1.3;}
@@ -84,7 +84,7 @@ header h1{font-size:15px;font-weight:700;opacity:.95;flex:1;line-height:1.3;}
 
 /* WELCOME */
 .welcome{background:#fff;border-radius:16px;padding:48px;text-align:center;box-shadow:0 2px 16px rgba(0,0,0,.06);max-width:700px;margin:0 auto;}
-.welcome-logo-big{height:90px;width:auto;margin-bottom:12px;}
+.welcome-logo-big{height:90px;width:auto;margin-bottom:12px;background:#0f5c2b;border-radius:50%;padding:4px;}
 .welcome h2{font-size:26px;color:var(--green-deeper);margin-bottom:6px;}
 .welcome h3{font-size:17px;color:var(--green-dark);margin-bottom:16px;font-weight:600;}
 .welcome p{color:var(--gray);line-height:1.8;margin-bottom:20px;font-size:14px;}
@@ -901,9 +901,9 @@ const LESSONS = [
     {q:'Thời hạn báo lỗi sau khi nhận hàng là bao nhiêu ngày?',
      opts:['1 ngày','3 ngày','7 ngày','14 ngày'],
      c:1,exp:'Thời hạn báo lỗi là 3 ngày kể từ khi nhận hàng. Quá hạn hệ thống có thể không xử lý được.'},
-    {q:'Số điện thoại liên hệ bộ phận Chuỗi Cung Ứng Phúc Tea là?',
-     opts:['0344 858 727','0344 858 728','0344 285 727','0344 858 277'],
-     c:0,exp:'Số điện thoại đúng là 0344 858 727 – phụ trách Trần Thị Hạnh Nhân.'}
+    {q:'Sau khi hệ thống đưa ra hướng xử lý sự cố (đổi hàng/bồi thường), bước cuối cùng của quy trình xử lý là gì?',
+     opts:['Kho tự đóng hồ sơ sự cố','Cửa Hàng xác nhận phương án xử lý','Gửi lại hình ảnh bằng chứng lần hai','Lập biên bản thiệt hại bằng văn bản'],
+     c:1,exp:'Bước 5 – Cửa Hàng xác nhận phương án xử lý do hệ thống đề xuất. Đây là bước đóng hồ sơ sự cố chính thức.'}
   ]
 }
 ];
@@ -1438,134 +1438,161 @@ function _certGeomDeco_UNUSED(ctx, cx, cy, gold, goldL) {
 
 function _finishCert(ctx, W, H, logoImg) {
   const st = S._certStats;
-  // ── COLOUR PALETTE ── ivory + gold + charcoal (no heavy green)
-  const ivory  = '#fffdf5';
-  const cream  = '#fdf6e3';
-  const charcoal = '#1c1c2e';
-  const darkGray = '#4a4a5a';
-  const midGray  = '#888899';
-  const gold   = '#b8860b';   // darker gold – reads better
-  const goldL  = '#d4a017';
-  const goldLL = '#f0c040';
-  const white  = '#ffffff';
+  const navy='#1a3161', navyD='#0d1b3e', gold='#c8951c', goldL='#e8b84b', goldB='#f5d060', white='#fff', mint='#e8f5ee', mintB='#a8dbb9';
   ctx.textAlign = 'center';
 
   // ── BACKGROUND ──
-  ctx.fillStyle = ivory; ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = white; ctx.fillRect(0, 0, W, H);
 
-  // ── OUTER GOLD BORDER ──
-  ctx.strokeStyle = gold; ctx.lineWidth = 7;
-  ctx.strokeRect(12, 12, W-24, H-24);
-  ctx.strokeStyle = goldLL; ctx.lineWidth = 1.5;
-  ctx.strokeRect(22, 22, W-44, H-44);
-
-  // ── CORNER ORNAMENTS (gold diamonds) ──
-  [[34,34],[W-34,34],[34,H-34],[W-34,H-34]].forEach(([cx,cy]) => {
-    ctx.fillStyle = gold;
-    ctx.beginPath(); ctx.moveTo(cx,cy-9); ctx.lineTo(cx+9,cy); ctx.lineTo(cx,cy+9); ctx.lineTo(cx-9,cy); ctx.closePath(); ctx.fill();
-  });
-
-  // ── LOGO (no band – sits on ivory) ──
-  const lsz = 82;
-  const logoY = 38;
-  if (logoImg) {
-    ctx.drawImage(logoImg, W/2-lsz/2, logoY, lsz, lsz);
+  // ── CORNER DECORATIONS ──
+  // Helper: draw a layered corner
+  function corner(flip_x, flip_y) {
+    ctx.save();
+    ctx.translate(flip_x ? W : 0, flip_y ? H : 0);
+    ctx.scale(flip_x ? -1 : 1, flip_y ? -1 : 1);
+    // Navy base triangle
+    ctx.fillStyle = navy;
+    ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(200,0); ctx.lineTo(0,175); ctx.closePath(); ctx.fill();
+    // Bright gold inner triangle
+    ctx.fillStyle = goldB; ctx.globalAlpha = 0.9;
+    ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(95,0); ctx.lineTo(0,85); ctx.closePath(); ctx.fill();
+    ctx.globalAlpha = 1;
+    // Gold diagonal band 1
+    ctx.fillStyle = goldL; ctx.globalAlpha = 0.7;
+    ctx.beginPath(); ctx.moveTo(185,0); ctx.lineTo(230,0); ctx.lineTo(0,195); ctx.lineTo(0,155); ctx.closePath(); ctx.fill();
+    ctx.globalAlpha = 1;
+    // Gold diagonal band 2 (thin outer)
+    ctx.strokeStyle = goldB; ctx.lineWidth = 3; ctx.globalAlpha = 0.6;
+    ctx.beginPath(); ctx.moveTo(245,0); ctx.lineTo(0,210); ctx.stroke();
+    ctx.globalAlpha = 1;
+    ctx.restore();
   }
-  // Thin gold line under logo area
-  ctx.strokeStyle = goldL; ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(W/2-60, logoY+lsz+8); ctx.lineTo(W/2+60, logoY+lsz+8); ctx.stroke();
+  corner(false,false); corner(true,false); corner(false,true); corner(true,true);
 
-  // ── TITLE ──
-  ctx.fillStyle = charcoal; ctx.font = 'bold 50px Georgia,serif';
-  ctx.fillText('GIẤY CHỨNG NHẬN', W/2, 168);
+  // ── LOGO + BRAND NAME ──
+  const lsz = 56, logoX = W/2 - 75, logoY = 22;
+  // Green disc behind logo
+  ctx.fillStyle = '#0f5c2b';
+  ctx.beginPath(); ctx.arc(logoX+lsz/2, logoY+lsz/2, lsz/2+2, 0, Math.PI*2); ctx.fill();
+  if (logoImg) ctx.drawImage(logoImg, logoX, logoY, lsz, lsz);
+  // Brand text to right of logo
+  ctx.textAlign = 'left';
+  ctx.fillStyle = navy; ctx.font = 'bold 22px Arial';
+  ctx.fillText('PHUC', logoX+lsz+10, logoY+26);
+  ctx.fillStyle = gold; ctx.font = 'bold 22px Arial';
+  ctx.fillText('TEA', logoX+lsz+58, logoY+26);
+  ctx.fillStyle = '#888'; ctx.font = '10px Arial';
+  ctx.fillText('®', logoX+lsz+104, logoY+18);
+  ctx.textAlign = 'center';
 
-  // Gold rule under title
-  ctx.strokeStyle = gold; ctx.lineWidth = 2;
-  ctx.beginPath(); ctx.moveTo(180, 180); ctx.lineTo(W-180, 180); ctx.stroke();
-  ctx.strokeStyle = goldLL; ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(220, 185); ctx.lineTo(W-220, 185); ctx.stroke();
+  // ── GIẤY CHỨNG NHẬN ──
+  ctx.fillStyle = navy; ctx.font = 'bold 52px Arial';
+  ctx.fillText('GIẤY CHỨNG NHẬN', W/2, 125);
 
-  // ── SUBTITLE ──
-  ctx.fillStyle = midGray; ctx.font = 'italic 14px Georgia,serif';
-  ctx.fillText('Trân trọng ghi nhận thành tích hoàn thành khóa học', W/2, 215);
+  // ── HOÀN THÀNH ──
+  const htY = 148;
+  ctx.fillStyle = '#555'; ctx.font = '700 14px Arial';
+  const htW = ctx.measureText('HOÀN THÀNH').width;
+  // Diamond + lines
+  function dmd(x,y,s){ ctx.fillStyle=gold; ctx.beginPath(); ctx.moveTo(x,y-s); ctx.lineTo(x+s,y); ctx.lineTo(x,y+s); ctx.lineTo(x-s,y); ctx.closePath(); ctx.fill(); }
+  dmd(W/2-htW/2-22, htY, 5); dmd(W/2+htW/2+22, htY, 5);
+  ctx.strokeStyle=gold; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(W/2-htW/2-14,htY); ctx.lineTo(W/2-htW/2-2,htY); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(W/2+htW/2+2,htY); ctx.lineTo(W/2+htW/2+14,htY); ctx.stroke();
+  ctx.fillStyle='#555'; ctx.fillText('HOÀN THÀNH', W/2, htY+5);
 
-  ctx.fillStyle = charcoal; ctx.font = 'bold 15px Arial';
-  ctx.fillText('"' + COURSE_TITLE + '"', W/2, 240);
-
-  ctx.fillStyle = midGray; ctx.font = '12px Arial';
-  ctx.fillText('Hệ Thống Đào Tạo Phúc Tea – Chuỗi Cung Ứng 2026', W/2, 260);
-
-  // ── DIVIDER ──
-  ctx.strokeStyle = goldL; ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(200, 278); ctx.lineTo(W-200, 278); ctx.stroke();
-
-  // ── PRESENTED TO ──
-  ctx.fillStyle = midGray; ctx.font = 'italic 13px Georgia,serif';
-  ctx.fillText('Chứng nhận trao cho', W/2, 308);
+  // ── COURSE PILL ──
+  const pW=460, pH=34, pY=162;
+  ctx.fillStyle=navy; ctx.beginPath(); ctx.roundRect(W/2-pW/2,pY,pW,pH,17); ctx.fill();
+  ctx.fillStyle=white; ctx.font='bold 12px Arial';
+  ctx.fillText('KHÓA HỌC: '+COURSE_TITLE.toUpperCase(), W/2, pY+22);
 
   // ── STUDENT NAME ──
-  ctx.fillStyle = charcoal; ctx.font = 'bold 46px Georgia,serif';
-  ctx.fillText(S.userName.toUpperCase(), W/2, 366);
-  const nw = ctx.measureText(S.userName.toUpperCase()).width;
-  // Decorative underline: gold with flanking ornaments
-  ctx.strokeStyle = gold; ctx.lineWidth = 2;
-  ctx.beginPath(); ctx.moveTo(W/2-nw/2-10, 378); ctx.lineTo(W/2+nw/2+10, 378); ctx.stroke();
+  ctx.fillStyle=gold; ctx.font='bold 44px Arial';
+  ctx.fillText(S.userName.toUpperCase(), W/2, 258);
+  const nw=ctx.measureText(S.userName.toUpperCase()).width;
+  ctx.strokeStyle=gold; ctx.lineWidth=2;
+  ctx.beginPath(); ctx.moveTo(W/2-nw/2,268); ctx.lineTo(W/2+nw/2,268); ctx.stroke();
 
-  // Store name
-  ctx.fillStyle = darkGray; ctx.font = '13px Arial';
-  ctx.fillText('Cửa hàng: ' + (S.userStore || ''), W/2, 400);
+  // ── STAR ROW ──
+  function star(cx,cy,r,pts,c){ ctx.fillStyle=c; ctx.beginPath(); for(let i=0;i<pts*2;i++){ const a=i*Math.PI/pts-Math.PI/2, ri=i%2===0?r:r*0.45; ctx.lineTo(cx+ri*Math.cos(a),cy+ri*Math.sin(a)); } ctx.closePath(); ctx.fill(); }
+  [-36,0,36].forEach(dx=>star(W/2+dx,286,5,5,gold));
 
-  // ── DIVIDER ──
-  ctx.strokeStyle = '#ddd'; ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(200, 418); ctx.lineTo(W-200, 418); ctx.stroke();
+  // ── DESCRIPTION ──
+  ctx.fillStyle='#333'; ctx.font='13px Arial';
+  ctx.fillText(`Đã hoàn thành xuất sắc khóa học "${COURSE_TITLE}"`, W/2, 310);
+  ctx.fillStyle='#666'; ctx.font='12px Arial';
+  ctx.fillText('thuộc Hệ Thống Đào Tạo Phúc Tea - Chuỗi Cung Ứng 2026', W/2, 328);
 
   // ── STATS BOXES ──
-  const sY=428, sW=156, sH=50, sG=14;
-  const sStart = W/2-(4*sW+3*sG)/2;
-  const stats = [
-    [st.totalCorrect+'/'+st.totalQ,'Câu đúng'],
-    [st.avgPct+'%','Điểm TB'],
-    [st.duration||'—','Thời gian học'],
-    ['5/5','Bài học']
-  ];
-  stats.forEach(([val,lbl],i) => {
-    const bx = sStart + i*(sW+sG);
-    ctx.fillStyle = cream;
-    ctx.beginPath(); ctx.roundRect(bx, sY, sW, sH, 5); ctx.fill();
-    ctx.strokeStyle = goldL; ctx.lineWidth = 1; ctx.stroke();
-    ctx.fillStyle = charcoal; ctx.font = 'bold 20px Arial';
-    ctx.fillText(val, bx+sW/2, sY+27);
-    ctx.fillStyle = midGray; ctx.font = '10px Arial';
-    ctx.fillText(lbl, bx+sW/2, sY+42);
+  const sY=344, sW=162, sH=48, sG=14;
+  const sStart=W/2-(4*sW+3*sG)/2;
+  [[st.totalCorrect+'/'+st.totalQ,'Câu trả lời đúng'],[st.avgPct+'%','Điểm trung bình'],[st.duration||'—','Thời gian hoàn thành'],['5/5','Bài học']].forEach(([v,l],i)=>{
+    const bx=sStart+i*(sW+sG);
+    ctx.fillStyle=mint; ctx.beginPath(); ctx.roundRect(bx,sY,sW,sH,8); ctx.fill();
+    ctx.strokeStyle=mintB; ctx.lineWidth=1; ctx.stroke();
+    ctx.fillStyle='#1a6b42'; ctx.font='bold 20px Arial'; ctx.fillText(v,bx+sW/2,sY+26);
+    ctx.fillStyle='#555'; ctx.font='10px Arial'; ctx.fillText(l,bx+sW/2,sY+41);
   });
 
   // ── DATE ──
-  const completedDate = st.completedAt || new Date().toLocaleDateString('vi-VN');
-  ctx.fillStyle = midGray; ctx.font = 'italic 13px Georgia,serif';
-  ctx.fillText('Ngày hoàn thành: ' + completedDate, W/2, 502);
+  const cDate=st.completedAt||new Date().toLocaleDateString('vi-VN');
+  ctx.fillStyle='#888'; ctx.font='italic 12px Georgia,serif';
+  ctx.fillText('Ngày hoàn thành: '+cDate, W/2, 412);
 
-  // ── GOLD RULE ──
-  ctx.strokeStyle = gold; ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(180, 516); ctx.lineTo(W-180, 516); ctx.stroke();
+  // ── DIVIDER ──
+  ctx.strokeStyle=gold; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(160,424); ctx.lineTo(W-160,424); ctx.stroke();
+  dmd(W/2,424,4);
 
   // ── SIGNATURES ──
-  const sigY=538, lx=210, rx=W-210;
-  [lx, rx].forEach((x, i) => {
-    ctx.fillStyle = darkGray; ctx.font = 'italic 17px Georgia,serif';
-    ctx.fillText('Đã ký', x, sigY);
-    ctx.strokeStyle = '#ddd'; ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(x-70, sigY+14); ctx.lineTo(x+70, sigY+14); ctx.stroke();
-    ctx.fillStyle = charcoal; ctx.font = 'bold 13px Arial';
-    ctx.fillText(i===0?'Lý Tấn Tài':'Trần Thị Hạnh Nhân', x, sigY+30);
-    ctx.fillStyle = midGray; ctx.font = '11px Arial';
-    ctx.fillText(i===0?'Giám đốc Điều Hành':'Quản lý Chuỗi Cung Ứng', x, sigY+44);
+  const sigY=446, lx=215, rx=W-215;
+  [lx,rx].forEach((x,i)=>{
+    ctx.fillStyle=navy; ctx.font='italic 18px Georgia,serif'; ctx.fillText('Đã ký',x,sigY);
+    ctx.strokeStyle='#ccc'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(x-65,sigY+16); ctx.lineTo(x+65,sigY+16); ctx.stroke();
+    ctx.fillStyle=navy; ctx.font='bold 13px Arial'; ctx.fillText(i===0?'Lý Tấn Tài':'Trần Thị Hạnh Nhân',x,sigY+32);
+    ctx.fillStyle='#666'; ctx.font='11px Arial'; ctx.fillText(i===0?'Giám đốc Điều Hành':'Quản lý Chuỗi Cung Ứng',x,sigY+46);
   });
 
-  // ── BOTTOM FOOTER BAND ──
-  ctx.fillStyle = gold; ctx.fillRect(12, H-40, W-24, 2);
-  ctx.fillStyle = charcoal; ctx.fillRect(12, H-38, W-24, 26);
-  ctx.fillStyle = goldLL; ctx.font = '9px Arial';
-  ctx.fillText('PHÚC TEA® – HỆ THỐNG ĐÀO TẠO CHUỖI CUNG ỨNG 2026', W/2, H-21);
+  // ── GOLD SEAL ──
+  const scx=W/2, scy=sigY+20;
+  const sg=ctx.createRadialGradient(scx,scy,0,scx,scy,36);
+  sg.addColorStop(0,goldB); sg.addColorStop(0.5,gold); sg.addColorStop(1,'#9a6b0a');
+  ctx.beginPath(); ctx.arc(scx,scy,36,0,Math.PI*2); ctx.fillStyle=sg; ctx.fill();
+  ctx.strokeStyle=goldB; ctx.lineWidth=3; ctx.beginPath(); ctx.arc(scx,scy,36,0,Math.PI*2); ctx.stroke();
+  ctx.strokeStyle=goldB; ctx.lineWidth=1; ctx.beginPath(); ctx.arc(scx,scy,30,0,Math.PI*2); ctx.stroke();
+  ctx.fillStyle=white; ctx.font='bold 8px Arial';
+  ctx.fillText('PHÚC TEA',scx,scy-6); ctx.fillText('CHỨNG NHẬN',scx,scy+5); ctx.fillText('HOÀN THÀNH',scx,scy+15);
+
+  // ── TROPHY (left) ──
+  function trophy(cx,cy){
+    const g=gold, gl=goldL, gb=goldB;
+    ctx.fillStyle=g; ctx.beginPath(); ctx.moveTo(cx-22,cy-44); ctx.lineTo(cx+22,cy-44);
+    ctx.bezierCurveTo(cx+30,cy-20,cx+20,cy+8,cx,cy+8);
+    ctx.bezierCurveTo(cx-20,cy+8,cx-30,cy-20,cx-22,cy-44); ctx.fill();
+    ctx.strokeStyle=gl; ctx.lineWidth=4; ctx.lineCap='round';
+    ctx.beginPath(); ctx.arc(cx-26,cy-18,9,0.6*Math.PI,1.4*Math.PI); ctx.stroke();
+    ctx.beginPath(); ctx.arc(cx+26,cy-18,9,-0.4*Math.PI,0.4*Math.PI); ctx.stroke();
+    ctx.fillStyle=gl; ctx.fillRect(cx-5,cy+8,10,18);
+    ctx.fillStyle=g; ctx.beginPath(); ctx.roundRect(cx-18,cy+26,36,10,4); ctx.fill();
+    star(cx,cy-52,8,5,gb);
+  }
+  trophy(72, 410);
+
+  // ── GEOMETRIC DECO (right) ──
+  [[44,28,0,0],[34,20,10,-10],[24,13,20,-22]].forEach(([w,h,ox,oy],i)=>{
+    ctx.save(); ctx.translate(W-60+ox,410+oy); ctx.rotate(0.18-i*0.06);
+    ctx.fillStyle=i%2===0?gold:goldL; ctx.globalAlpha=0.85;
+    ctx.beginPath(); ctx.roundRect(-w/2,-h/2,w,h,3); ctx.fill(); ctx.restore();
+  }); ctx.globalAlpha=1;
+
+  // ── BOTTOM BAND ──
+  ctx.fillStyle=gold; ctx.fillRect(0,H-52,W,3);
+  ctx.fillStyle=navy; ctx.fillRect(0,H-49,W,49);
+  ctx.fillStyle=gold;
+  ctx.beginPath(); ctx.moveTo(0,H); ctx.lineTo(120,H); ctx.lineTo(0,H-75); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(W,H); ctx.lineTo(W-120,H); ctx.lineTo(W,H-75); ctx.fill();
 }
 
 function dlCert() {
