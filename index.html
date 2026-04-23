@@ -1197,7 +1197,8 @@ function makeCert() {
     if (mins < 60) duration = `${mins} phút`;
     else duration = `${Math.floor(mins/60)} giờ ${mins%60} phút`;
   }
-  S._certStats = { totalCorrect, totalQ, avgPct, duration };
+  const completedAt = new Date().toLocaleDateString('vi-VN', {day:'2-digit',month:'2-digit',year:'numeric'});
+  S._certStats = { totalCorrect, totalQ, avgPct, duration, completedAt };
 
   // Ghi nhận hoàn thành
   trackEvent('complete', { score: avgPct, duration });
@@ -1221,158 +1222,227 @@ function makeCert() {
 
 function drawCert() {
   const cv = document.getElementById('certCanvas');
+  const W = 960, H = 672;
+  cv.width = W; cv.height = H;
   const ctx = cv.getContext('2d');
-  const W=1200, H=860;
-
-  // Background
-  const bg = ctx.createLinearGradient(0,0,W,H);
-  bg.addColorStop(0,'#f5fdf8'); bg.addColorStop(.5,'#ffffff'); bg.addColorStop(1,'#edf9f2');
-  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
-
-  // Decorative border
-  ctx.strokeStyle='#1a8a42'; ctx.lineWidth=10; ctx.strokeRect(18,18,W-36,H-36);
-  ctx.strokeStyle='#c8973a'; ctx.lineWidth=2.5; ctx.strokeRect(30,30,W-60,H-60);
-
-  // Corner ornaments
-  [[54,54],[W-54,54],[54,H-54],[W-54,H-54]].forEach(([x,y])=>{
-    ctx.fillStyle='#1a8a42'; ctx.beginPath(); ctx.arc(x,y,8,0,Math.PI*2); ctx.fill();
-    ctx.strokeStyle='#c8973a'; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(x,y,15,0,Math.PI*2); ctx.stroke();
-  });
-
-  // Header band
-  const hg = ctx.createLinearGradient(0,58,W,58);
-  hg.addColorStop(0,'#0f5c2b'); hg.addColorStop(.45,'#1a8a42'); hg.addColorStop(1,'#0f5c2b');
-  ctx.fillStyle=hg; ctx.fillRect(42,58,W-84,108);
-
-  // Load logo then continue
   const img = new Image();
-  img.onload = ()=>{ ctx.drawImage(img,52,64,95,95); _finishCert(ctx,W,H); };
-  img.onerror = ()=>{ _finishCert(ctx,W,H); };
+  img.onload  = () => _finishCert(ctx, W, H, img);
+  img.onerror = () => _finishCert(ctx, W, H, null);
   img.src = 'logo-phuc-tea.png';
 }
 
-function _finishCert(ctx, W, H) {
-  const st = S._certStats;
+function _certDiamond(ctx, x, y, s, color) {
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.moveTo(x, y-s); ctx.lineTo(x+s, y); ctx.lineTo(x, y+s); ctx.lineTo(x-s, y);
+  ctx.closePath(); ctx.fill();
+}
 
-  // Brand name in header
+function _certTrophy(ctx, cx, cy, gold, goldL) {
+  // Cup body
+  ctx.fillStyle = gold;
+  ctx.beginPath();
+  ctx.moveTo(cx-22, cy-44); ctx.lineTo(cx+22, cy-44);
+  ctx.bezierCurveTo(cx+30, cy-20, cx+20, cy+8, cx, cy+8);
+  ctx.bezierCurveTo(cx-20, cy+8, cx-30, cy-20, cx-22, cy-44);
+  ctx.fill();
+  // Handles
+  ctx.strokeStyle = goldL; ctx.lineWidth = 4; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.arc(cx-26, cy-18, 9, 0.6*Math.PI, 1.4*Math.PI); ctx.stroke();
+  ctx.beginPath(); ctx.arc(cx+26, cy-18, 9, -0.4*Math.PI, 0.4*Math.PI); ctx.stroke();
+  // Stem
+  ctx.fillStyle = goldL;
+  ctx.fillRect(cx-5, cy+8, 10, 18);
+  // Base
+  ctx.fillStyle = gold;
+  ctx.beginPath(); ctx.roundRect(cx-18, cy+26, 36, 10, 4); ctx.fill();
+  // Stars
+  [0].forEach(() => {
+    const sr = 8;
+    ctx.fillStyle = goldL;
+    ctx.beginPath();
+    for (let i=0;i<5;i++) {
+      const a = (i*4*Math.PI/5) - Math.PI/2;
+      const [px,py] = [cx+sr*Math.cos(a), cy-52+sr*Math.sin(a)];
+      i===0?ctx.moveTo(px,py):ctx.lineTo(px,py);
+    }
+    ctx.closePath(); ctx.fill();
+  });
+}
+
+function _certGeomDeco(ctx, cx, cy, gold, goldL) {
+  [[44,30,0,0],[34,22,10,-10],[24,14,20,-22]].forEach(([w,h,ox,oy],i) => {
+    ctx.save();
+    ctx.translate(cx+ox, cy+oy);
+    ctx.rotate(0.18 - i*0.06);
+    ctx.fillStyle = i%2===0 ? gold : goldL;
+    ctx.globalAlpha = 0.85;
+    ctx.beginPath(); ctx.roundRect(-w/2,-h/2,w,h,3); ctx.fill();
+    ctx.restore();
+  });
+  ctx.globalAlpha = 1;
+}
+
+function _finishCert(ctx, W, H, logoImg) {
+  const st = S._certStats;
+  const navy='#0d1e3c', gold='#c8951c', goldL='#e8b84b', goldB='#f5d060', white='#fff';
+
+  // ── BACKGROUND ──
+  ctx.fillStyle = white; ctx.fillRect(0, 0, W, H);
+
+  // ── TOP BAND ──
+  ctx.fillStyle = navy; ctx.fillRect(0, 0, W, 128);
+  ctx.fillStyle = gold; ctx.fillRect(0, 128, W, 4);
+
+  // Top-left triangle decorations
+  ctx.fillStyle = gold;
+  ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(170,0); ctx.lineTo(0,128); ctx.fill();
+  ctx.fillStyle = goldB; ctx.globalAlpha=0.35;
+  ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(95,0); ctx.lineTo(0,75); ctx.fill();
+  ctx.globalAlpha=1;
+  ctx.fillStyle = goldL; ctx.globalAlpha=0.5;
+  ctx.beginPath(); ctx.moveTo(175,0); ctx.lineTo(220,0); ctx.lineTo(0,128); ctx.lineTo(0,128); ctx.fill();
+  ctx.globalAlpha=1;
+
+  // Top-right triangle decorations
+  ctx.fillStyle = gold;
+  ctx.beginPath(); ctx.moveTo(W,0); ctx.lineTo(W-170,0); ctx.lineTo(W,128); ctx.fill();
+  ctx.fillStyle = goldB; ctx.globalAlpha=0.35;
+  ctx.beginPath(); ctx.moveTo(W,0); ctx.lineTo(W-95,0); ctx.lineTo(W,75); ctx.fill();
+  ctx.globalAlpha=1;
+  ctx.fillStyle = goldL; ctx.globalAlpha=0.5;
+  ctx.beginPath(); ctx.moveTo(W-175,0); ctx.lineTo(W-220,0); ctx.lineTo(W,128); ctx.fill();
+  ctx.globalAlpha=1;
+
+  // ── LOGO centered in band ──
+  const lsz = 84;
+  if (logoImg) {
+    ctx.save();
+    ctx.beginPath(); ctx.arc(W/2, 62, lsz/2, 0, Math.PI*2); ctx.clip();
+    ctx.drawImage(logoImg, W/2-lsz/2, 62-lsz/2, lsz, lsz);
+    ctx.restore();
+    // White ring
+    ctx.strokeStyle = white; ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.arc(W/2, 62, lsz/2+1, 0, Math.PI*2); ctx.stroke();
+  }
+  // "PHUC TEA"
   ctx.textAlign='center';
-  ctx.fillStyle='#f0c060'; ctx.font='bold 46px Georgia,serif';
-  ctx.fillText('PHÚC TEA', W/2+20, 122);
-  ctx.fillStyle='rgba(255,255,255,.72)'; ctx.font='15px Arial';
-  ctx.fillText('HỆ THỐNG NHƯỢNG QUYỀN TRÀ & CÀ PHÊ', W/2+20, 152);
+  ctx.fillStyle = goldB; ctx.font='bold 15px Arial';
+  ctx.fillText('PHÚC TEA®', W/2, 112);
 
   // ── GIẤY CHỨNG NHẬN ──
-  ctx.fillStyle='#0f5c2b'; ctx.font='bold 40px Georgia,serif';
-  ctx.fillText('GIẤY CHỨNG NHẬN', W/2, 222);
+  ctx.fillStyle = navy; ctx.font='bold 50px Arial';
+  ctx.fillText('GIẤY CHỨNG NHẬN', W/2, 182);
 
-  // Gold divider
-  ctx.strokeStyle='#c8973a'; ctx.lineWidth=2;
-  ctx.beginPath(); ctx.moveTo(200,238); ctx.lineTo(W-200,238); ctx.stroke();
+  // ── HOÀN THÀNH + diamond decorators ──
+  const htY = 205;
+  ctx.fillStyle='#444'; ctx.font='14px Arial';
+  const htW2 = ctx.measureText('HOÀN THÀNH').width/2;
+  _certDiamond(ctx, W/2-htW2-24, htY, 5, gold);
+  ctx.strokeStyle=gold; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(W/2-htW2-16,htY); ctx.lineTo(W/2-htW2-2,htY); ctx.stroke();
+  ctx.fillText('HOÀN THÀNH', W/2, htY+5);
+  ctx.beginPath(); ctx.moveTo(W/2+htW2+2,htY); ctx.lineTo(W/2+htW2+16,htY); ctx.stroke();
+  _certDiamond(ctx, W/2+htW2+24, htY, 5, gold);
 
-  // Sub-title
-  ctx.fillStyle='#1a8a42'; ctx.font='bold 20px Arial';
-  ctx.fillText(`Khóa Học: ${COURSE_TITLE}`, W/2, 272);
+  // ── COURSE NAME BOX ──
+  const bxW=460, bxH=36, bxY=222;
+  ctx.fillStyle=navy;
+  ctx.beginPath(); ctx.roundRect(W/2-bxW/2, bxY, bxW, bxH, 18); ctx.fill();
+  ctx.fillStyle=white; ctx.font='bold 13px Arial';
+  ctx.fillText('KHÓA HỌC: '+COURSE_TITLE.toUpperCase(), W/2, bxY+24);
 
-  // "Chứng nhận rằng"
-  ctx.fillStyle='#6b7280'; ctx.font='italic 18px Georgia,serif';
-  ctx.fillText('Chứng nhận Học viên', W/2, 316);
+  // ── TÊN HỌC VIÊN ──
+  ctx.fillStyle=gold; ctx.font='bold 40px Arial';
+  ctx.fillText(S.userName.toUpperCase(), W/2, 305);
+  const nw=ctx.measureText(S.userName.toUpperCase()).width;
+  ctx.strokeStyle=gold; ctx.lineWidth=2;
+  ctx.beginPath(); ctx.moveTo(W/2-nw/2,315); ctx.lineTo(W/2+nw/2,315); ctx.stroke();
 
-  // ── HỌ VÀ TÊN ──
-  ctx.fillStyle='#0f5c2b'; ctx.font='bold 54px Georgia,serif';
-  ctx.fillText(S.userName, W/2, 390);
-  // underline
-  const nw = ctx.measureText(S.userName).width;
-  ctx.strokeStyle='#c8973a'; ctx.lineWidth=2.5;
-  ctx.beginPath(); ctx.moveTo(W/2-nw/2,403); ctx.lineTo(W/2+nw/2,403); ctx.stroke();
+  // ── DIAMOND ROW ──
+  [-36,0,36].forEach(dx => _certDiamond(ctx, W/2+dx, 334, 5, gold));
 
-  // Store / unit
-  let bodyY = 446;
-  if (S.userStore) {
-    ctx.fillStyle='#374151'; ctx.font='italic 18px Georgia,serif';
-    ctx.fillText(`(${S.userStore})`, W/2, bodyY); bodyY+=36;
-  }
-
-  // Completion sentence
-  ctx.fillStyle='#374151'; ctx.font='18px Arial';
-  ctx.fillText('đã hoàn thành xuất sắc khóa học', W/2, bodyY);
-  ctx.fillStyle='#1a8a42'; ctx.font='bold 22px Arial';
-  ctx.fillText(`"${COURSE_TITLE}"`, W/2, bodyY+34);
-  ctx.fillStyle='#6b7280'; ctx.font='15px Arial';
-  ctx.fillText('thuộc Hệ Thống Đào Tạo Phúc Tea – Chuỗi Cung Ứng 2026', W/2, bodyY+62);
+  // ── DESCRIPTION ──
+  ctx.fillStyle='#222'; ctx.font='14px Arial';
+  ctx.fillText(`Đã hoàn thành xuất sắc khóa học "${COURSE_TITLE}"`, W/2, 358);
+  ctx.fillStyle='#555'; ctx.font='13px Arial';
+  ctx.fillText('thuộc Hệ Thống Đào Tạo Phúc Tea - Chuỗi Cung Ứng 2026', W/2, 376);
 
   // ── STATS BOXES ──
-  const sy = bodyY + 108;
-  const stats = [
-    [st.totalCorrect+'/'+st.totalQ, 'Câu trả lời đúng'],
-    [st.avgPct+'%', 'Điểm trung bình'],
-    [st.duration || '—', 'Thời gian hoàn thành'],
-    ['6/6', 'Bài học']
+  const sY=398, sW=166, sH=52, sG=16;
+  const sTotal=4*sW+3*sG, sStart=W/2-sTotal/2;
+  const stats=[
+    [st.totalCorrect+'/'+st.totalQ,'Câu trả lời đúng'],
+    [st.avgPct+'%','Điểm trung bình'],
+    [st.duration||'—','Thời gian hoàn thành'],
+    ['6/6','Bài học']
   ];
-  stats.forEach(([val, lbl], i)=>{
-    const x = 180 + i*220;
-    ctx.fillStyle='#f0fbf4';
-    ctx.beginPath(); ctx.roundRect(x-80,sy-36,160,70,10); ctx.fill();
+  stats.forEach(([val,lbl],i)=>{
+    const bx=sStart+i*(sW+sG);
+    ctx.fillStyle='#e8f5ee';
+    ctx.beginPath(); ctx.roundRect(bx,sY,sW,sH,8); ctx.fill();
     ctx.strokeStyle='#a8dbb9'; ctx.lineWidth=1; ctx.stroke();
-    ctx.fillStyle='#1a8a42'; ctx.font='bold 26px Arial'; ctx.fillText(val, x, sy);
-    ctx.fillStyle='#6b7280'; ctx.font='12px Arial'; ctx.fillText(lbl, x, sy+20);
+    ctx.fillStyle='#1a6b42'; ctx.font='bold 22px Arial';
+    ctx.fillText(val, bx+sW/2, sY+28);
+    ctx.fillStyle='#555'; ctx.font='10px Arial';
+    ctx.fillText(lbl, bx+sW/2, sY+44);
   });
 
-  // ── DATE ──
-  const now = new Date();
-  const dateStr = `TP. Hồ Chí Minh, ngày ${now.getDate()} tháng ${now.getMonth()+1} năm ${now.getFullYear()}`;
-  ctx.fillStyle='#6b7280'; ctx.font='italic 14px Georgia,serif';
-  ctx.fillText(dateStr, W/2, H-178);
+  // ── DATE (no location) ──
+  const completedDate = st.completedAt || new Date().toLocaleDateString('vi-VN');
+  ctx.fillStyle='#888'; ctx.font='italic 13px Georgia,serif';
+  ctx.fillText('Ngày hoàn thành: ' + completedDate, W/2, 472);
+
+  // ── GOLD DIVIDER ──
+  ctx.strokeStyle=gold; ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.moveTo(150,488); ctx.lineTo(W-150,488); ctx.stroke();
+  _certDiamond(ctx, W/2, 488, 5, gold);
 
   // ── SIGNATURES ──
-  // Left: Lý Tấn Tài
-  const lx=240, rx=W-240;
+  const sigY=510, lx=220, rx=W-220;
+  [lx,rx].forEach((x,i)=>{
+    // "Đã ký" italic
+    ctx.fillStyle=navy; ctx.font='italic 20px Georgia,serif';
+    ctx.fillText('Đã ký', x, sigY);
+    // Underline
+    ctx.strokeStyle='#bbb'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(x-65,sigY+20); ctx.lineTo(x+65,sigY+20); ctx.stroke();
+    ctx.fillStyle=navy; ctx.font='bold 14px Arial';
+    ctx.fillText(i===0?'Lý Tấn Tài':'Trần Thị Hạnh Nhân', x, sigY+38);
+    ctx.fillStyle='#666'; ctx.font='12px Arial';
+    ctx.fillText(i===0?'Giám đốc Điều Hành':'Quản lý Chuỗi Cung Ứng', x, sigY+54);
+  });
 
-  ctx.fillStyle='#374151'; ctx.font='bold 13px Arial';
-  ctx.fillText('NGƯỜI KÝ XÁC NHẬN', lx, H-158);
-  // Stylised signature for Lý Tấn Tài
-  ctx.save();
-  ctx.strokeStyle='#0f5c2b'; ctx.lineWidth=2.5; ctx.lineJoin='round'; ctx.lineCap='round';
-  const sx0=lx-55, sy0=H-142;
-  ctx.beginPath();
-  ctx.moveTo(sx0,sy0+10); ctx.bezierCurveTo(sx0+15,sy0-18,sx0+28,sy0-18,sx0+36,sy0+5);
-  ctx.bezierCurveTo(sx0+44,sy0+20,sx0+52,sy0+5,sx0+65,sy0);
-  ctx.bezierCurveTo(sx0+80,sy0-14,sx0+90,sy0+8,sx0+110,sy0+4);
-  ctx.stroke();
-  ctx.restore();
-  ctx.strokeStyle='#9ca3af'; ctx.lineWidth=1;
-  ctx.beginPath(); ctx.moveTo(lx-70,H-110); ctx.lineTo(lx+70,H-110); ctx.stroke();
-  ctx.fillStyle='#1a2e1a'; ctx.font='bold 14px Arial';
-  ctx.fillText('Lý Tấn Tài', lx, H-94);
-  ctx.fillStyle='#6b7280'; ctx.font='12px Arial';
-  ctx.fillText('Giám Đốc Điều Hành – Phúc Tea', lx, H-76);
-
-  // Right: Chuỗi Cung Ứng
-  ctx.fillStyle='#374151'; ctx.font='bold 13px Arial';
-  ctx.fillText('XÁC NHẬN HOÀN THÀNH', rx, H-158);
-  ctx.strokeStyle='#9ca3af'; ctx.lineWidth=1;
-  ctx.beginPath(); ctx.moveTo(rx-70,H-110); ctx.lineTo(rx+70,H-110); ctx.stroke();
-  ctx.fillStyle='#1a2e1a'; ctx.font='bold 14px Arial';
-  ctx.fillText('Trần Thị Hạnh Nhân', rx, H-94);
-  ctx.fillStyle='#6b7280'; ctx.font='12px Arial';
-  ctx.fillText('Trưởng Bộ Phận Chuỗi Cung Ứng', rx, H-76);
-
-  // ── SEAL ──
-  const scx=W/2, scy=H-100;
-  const sg=ctx.createRadialGradient(scx,scy,0,scx,scy,46);
-  sg.addColorStop(0,'#1a8a42'); sg.addColorStop(1,'#0f5c2b');
-  ctx.beginPath(); ctx.arc(scx,scy,46,0,Math.PI*2);
+  // ── GOLD SEAL ──
+  const scx=W/2, scy=sigY+28;
+  const sg=ctx.createRadialGradient(scx,scy,0,scx,scy,38);
+  sg.addColorStop(0,goldB); sg.addColorStop(.5,gold); sg.addColorStop(1,'#9a6b0a');
+  ctx.beginPath(); ctx.arc(scx,scy,38,0,Math.PI*2);
   ctx.fillStyle=sg; ctx.fill();
-  ctx.strokeStyle='#f0c060'; ctx.lineWidth=3; ctx.stroke();
-  ctx.fillStyle='#f0c060'; ctx.font='bold 10px Arial'; ctx.textAlign='center';
-  ctx.fillText('PHÚC TEA',scx,scy-10);
-  ctx.font='9px Arial';
+  ctx.strokeStyle=goldB; ctx.lineWidth=3;
+  ctx.beginPath(); ctx.arc(scx,scy,38,0,Math.PI*2); ctx.stroke();
+  ctx.strokeStyle=goldB; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.arc(scx,scy,32,0,Math.PI*2); ctx.stroke();
+  ctx.fillStyle=white; ctx.font='bold 9px Arial';
+  ctx.fillText('PHÚC TEA',scx,scy-8);
+  ctx.font='8px Arial';
   ctx.fillText('CHỨNG NHẬN',scx,scy+4);
-  ctx.fillText('2026',scx,scy+16);
+  ctx.fillText('HOÀN THÀNH',scx,scy+15);
 
-  // Bottom bar
-  const fg=ctx.createLinearGradient(0,H-44,W,H-44);
-  fg.addColorStop(0,'#0f5c2b'); fg.addColorStop(.5,'#1a8a42'); fg.addColorStop(1,'#0f5c2b');
-  ctx.fillStyle=fg; ctx.fillRect(42,H-48,W-84,12);
+  // ── BOTTOM BAND ──
+  ctx.fillStyle=gold; ctx.fillRect(0,H-52,W,4);
+  ctx.fillStyle=navy; ctx.fillRect(0,H-48,W,48);
+
+  // Bottom corner triangles
+  ctx.fillStyle=gold;
+  ctx.beginPath(); ctx.moveTo(0,H); ctx.lineTo(110,H); ctx.lineTo(0,H-80); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(W,H); ctx.lineTo(W-110,H); ctx.lineTo(W,H-80); ctx.fill();
+
+  // ── LEFT TROPHY ──
+  _certTrophy(ctx, 68, 400, gold, goldL);
+
+  // ── RIGHT GEOMETRIC DECO ──
+  _certGeomDeco(ctx, W-58, 420, gold, goldL);
 }
 
 function dlCert() {
