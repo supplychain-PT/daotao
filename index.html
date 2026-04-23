@@ -943,7 +943,8 @@ const S = {
   userEmail: '',
   userStore: '',
   courseStart: null,
-  completedAt: null
+  completedAt: null,
+  isAdmin: false
 };
 
 // ─── TIMER ──────────────────────────────────────────────────────
@@ -952,11 +953,16 @@ let readTimer = null;
 // ─── SIDEBAR ──────────────────────────────────────────────────
 function renderSidebar() {
   const el = document.getElementById('sidebar');
-  el.innerHTML = '<div class="sidebar-title">Nội dung khóa học</div>' +
+  el.innerHTML = (S.isAdmin
+    ? `<div style="padding:10px 14px 6px">
+        <button onclick="showAdmin()" style="width:100%;background:#1b3461;color:#fff;border:none;border-radius:8px;padding:7px 10px;font-size:12px;font-weight:600;cursor:pointer">← Về Admin</button>
+       </div>`
+    : '') +
+  '<div class="sidebar-title">Nội dung khóa học</div>' +
     LESSONS.map((l, i) => {
       const isDone = S.done.includes(i);
       const isActive = S.lesson === i && S.view !== 'welcome' && S.view !== 'nameform' && S.view !== 'cert';
-      const isLocked = i > 0 && !S.done.includes(i - 1);
+      const isLocked = !S.isAdmin && i > 0 && !S.done.includes(i - 1);
       let cls = 'lesson-item';
       if (isActive) cls += ' active';
       if (isDone && !isActive) cls += ' done';
@@ -1029,7 +1035,12 @@ function showLesson(idx) {
       <hr class="divider">
       <div class="lesson-actions">
         ${prevBtn}
-        <button id="quizBtn" class="btn btn-primary" onclick="startQuiz(${idx})">📝 Làm Bài Kiểm Tra →</button>
+        ${S.isAdmin
+          ? (idx < LESSONS.length - 1
+              ? `<button class="btn btn-primary" onclick="showLesson(${idx+1})">Bài tiếp theo →</button>`
+              : `<button class="btn btn-secondary" onclick="showAdmin()">← Về Admin</button>`)
+          : `<button id="quizBtn" class="btn btn-primary" onclick="startQuiz(${idx})">📝 Làm Bài Kiểm Tra →</button>`
+        }
       </div>
     </div>
   </div>`;
@@ -1518,9 +1529,21 @@ function submitRegister() {
 }
 
 // ─── ADMIN PANEL ──────────────────────────────────────────────
+function adminPreview() {
+  S.isAdmin = true;
+  S.userName = S.userName || 'Admin';
+  showLesson(0);
+}
+
+function exitAdmin() {
+  S.isAdmin = false;
+  showRegister();
+}
+
 function showAdmin() {
   const pwd = prompt('Nhập mật khẩu admin:');
   if (pwd !== ADMIN_PASSWORD) { alert('Sai mật khẩu!'); showRegister(); return; }
+  S.isAdmin = true;
 
   const all = JSON.parse(localStorage.getItem('phuctea_learners') || '[]');
   const total = all.length;
@@ -1586,8 +1609,9 @@ function showAdmin() {
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
           <button class="btn btn-primary" onclick="exportCSV()">⬇️ Xuất CSV</button>
+          <button class="btn btn-primary" style="background:#1b3461" onclick="adminPreview()">👁️ Xem Khóa Học</button>
           <button class="btn btn-secondary" onclick="clearAll()">🗑️ Xoá Tất Cả</button>
-          <button class="btn btn-secondary" onclick="showRegister()">← Thoát Admin</button>
+          <button class="btn btn-secondary" onclick="exitAdmin()">← Thoát Admin</button>
         </div>
       </div>
       <!-- Stat cards -->
