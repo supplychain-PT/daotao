@@ -289,7 +289,6 @@ function trackEvent(event, extra = {}) {
     event,
     time: new Date().toLocaleString('vi-VN'),
     name: S.userName,
-    email: S.userEmail,
     store: S.userStore,
     ...extra
   };
@@ -300,7 +299,7 @@ function trackEvent(event, extra = {}) {
   if (event === 'register') {
     all.push({ ...payload, status: 'Đang học', score: '', duration: '', completedAt: '' });
   } else if (event === 'complete') {
-    const idx = all.findIndex(r => r.email === S.userEmail);
+    const idx = all.findIndex(r => r.name === S.userName && r.store === S.userStore);
     if (idx >= 0) {
       all[idx].status = 'Đã hoàn thành ✓';
       all[idx].score = extra.score;
@@ -1306,10 +1305,6 @@ function showRegister() {
           <input type="text" id="regName" placeholder="Nguyễn Văn A" oninput="checkReg()">
         </div>
         <div class="form-group">
-          <label>Địa chỉ Email <span style="color:#e53e3e">*</span></label>
-          <input type="email" id="regEmail" placeholder="example@email.com" oninput="checkReg()">
-        </div>
-        <div class="form-group">
           <label>Tên cửa hàng đầy đủ <span style="color:#e53e3e">*</span></label>
           <input type="text" id="regStore" placeholder="PHUCTEA163 - TÂN NINH TÂY NINH" oninput="checkReg()">
           <div style="font-size:11px;color:#9ca3af;margin-top:4px">Ví dụ: PHUCTEA163 - TÂN NINH TÂY NINH</div>
@@ -1328,16 +1323,14 @@ function showRegister() {
 
 function checkReg() {
   const name  = document.getElementById('regName').value.trim();
-  const email = document.getElementById('regEmail').value.trim();
   const store = document.getElementById('regStore').value.trim();
-  const valid = name && email && store && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const valid = name && store;
   document.getElementById('regBtn').disabled = !valid;
   document.getElementById('regBtn').className = valid ? 'btn btn-primary' : 'btn btn-disabled';
 }
 
 function submitRegister() {
   S.userName  = document.getElementById('regName').value.trim();
-  S.userEmail = document.getElementById('regEmail').value.trim();
   S.userStore = document.getElementById('regStore').value.trim();
   trackEvent('register');
   showWelcome();
@@ -1356,7 +1349,6 @@ function showAdmin() {
     <tr>
       <td style="text-align:center">${i+1}</td>
       <td><strong>${r.name}</strong></td>
-      <td>${r.email}</td>
       <td>${r.store}</td>
       <td>${r.time}</td>
       <td><span style="padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;
@@ -1366,11 +1358,11 @@ function showAdmin() {
       <td>${r.duration||'—'}</td>
       <td>${r.completedAt||'—'}</td>
       <td style="text-align:center">
-        <button onclick="deleteEntry('${r.email}')"
+        <button onclick="deleteEntry(${i})"
           style="background:#fee2e2;border:none;color:#dc2626;border-radius:6px;padding:3px 8px;cursor:pointer;font-size:12px">Xoá</button>
       </td>
     </tr>`).join('') :
-    `<tr><td colspan="10" style="text-align:center;padding:32px;color:#9ca3af">Chưa có học viên nào đăng ký</td></tr>`;
+    `<tr><td colspan="9" style="text-align:center;padding:32px;color:#9ca3af">Chưa có học viên nào đăng ký</td></tr>`;
 
   document.getElementById('sidebar').innerHTML = '';
   document.getElementById('progressText').textContent = `${done}/${total} hoàn thành`;
@@ -1409,7 +1401,6 @@ function showAdmin() {
           <tr style="background:#0f5c2b;color:#fff">
             <th style="padding:10px 8px">#</th>
             <th style="padding:10px 12px;text-align:left">Họ tên</th>
-            <th style="padding:10px 12px;text-align:left">Email</th>
             <th style="padding:10px 12px;text-align:left">Cửa hàng</th>
             <th style="padding:10px 12px;text-align:left">Đăng ký lúc</th>
             <th style="padding:10px 12px;text-align:left">Trạng thái</th>
@@ -1425,10 +1416,11 @@ function showAdmin() {
   </div>`;
 }
 
-function deleteEntry(email) {
+function deleteEntry(idx) {
   if (!confirm('Xoá học viên này?')) return;
   const all = JSON.parse(localStorage.getItem('phuctea_learners') || '[]');
-  localStorage.setItem('phuctea_learners', JSON.stringify(all.filter(r => r.email !== email)));
+  all.splice(idx, 1);
+  localStorage.setItem('phuctea_learners', JSON.stringify(all));
   showAdmin();
 }
 
@@ -1441,8 +1433,8 @@ function clearAll() {
 function exportCSV() {
   const all = JSON.parse(localStorage.getItem('phuctea_learners') || '[]');
   if (!all.length) { alert('Chưa có dữ liệu!'); return; }
-  const header = ['Họ tên','Email','Cửa hàng','Đăng ký lúc','Trạng thái','Điểm TB','Thời gian học','Hoàn thành lúc'];
-  const rows = all.map(r => [r.name,r.email,r.store,r.time,r.status,r.score,r.duration,r.completedAt]
+  const header = ['Họ tên','Cửa hàng','Đăng ký lúc','Trạng thái','Điểm TB','Thời gian học','Hoàn thành lúc'];
+  const rows = all.map(r => [r.name,r.store,r.time,r.status,r.score,r.duration,r.completedAt]
     .map(v => `"${(v||'').replace(/"/g,'""')}"`).join(','));
   const csv = '\uFEFF' + [header.join(','), ...rows].join('\n');
   const a = document.createElement('a');
