@@ -263,7 +263,7 @@ tr:hover td{background:#f9fafb;}
   </div>
   <h1 id="headerTitle">Vận Hành Kho Tại Cửa Hàng – Phúc Tea 2026</h1>
   <div class="progress-header">
-    <span id="progressText">0/6 bài</span>
+    <span id="progressText">0/5 bài</span>
     <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
   </div>
 </header>
@@ -910,36 +910,36 @@ const LESSONS = [
 
 // ─── FINAL QUIZ (10 câu tổng kết) ─────────────────────────────
 const FINAL_QUIZ = [
-  {q:'SOP Chuỗi Cung Ứng Phúc Tea áp dụng cho những đối tượng nào?',
-   opts:['Chỉ bộ phận kho','Chỉ đối tác nhượng quyền','Cửa hàng, ĐTNQ, Chuỗi Cung Ứng và các phòng ban liên quan','Chỉ quản lý cấp cao'],
-   c:2,exp:'SOP áp dụng toàn hệ thống: cửa hàng, ĐTNQ, bộ phận Chuỗi Cung Ứng và các phòng ban liên quan.'},
-  {q:'Trách nhiệm của Cửa Hàng/ĐTNQ trong hệ thống Phúc Tea là?',
-   opts:['Chỉ nhận hàng, không cần kiểm tra','Tự sản xuất nguyên liệu','Chủ động lập kế hoạch đặt hàng, thanh toán đúng quy định, kiểm tra hàng khi nhận','Phân phối hàng cho cửa hàng khác'],
-   c:2,exp:'Cửa Hàng/ĐTNQ phải chủ động lập kế hoạch đặt hàng, thanh toán đúng hạn và kiểm tra hàng khi nhận.'},
-  {q:'Sản phẩm nào sau đây là NVL Độc Quyền của Phúc Tea?',
-   opts:['Gelatine Đức/Pháp','Bột Matcha Đài Loan','Cà Phê Mộc 9:1','Mứt Hibiscus'],
-   c:2,exp:'Cà Phê Mộc 9:1 là NVL Độc Quyền – bắt buộc nhập từ hệ thống. Gelatine, Matcha, Mứt Hibiscus là NL Không Độc Quyền.'},
-  {q:'Khi NVL Độc Quyền điều chỉnh giá, hệ thống thông báo trước bao nhiêu ngày?',
-   opts:['7 ngày','10 ngày','15 ngày','30 ngày'],
-   c:2,exp:'Hệ thống cam kết thông báo trước 15 ngày để cửa hàng chủ động về tài chính.'},
-  {q:'Bước ĐẦU TIÊN trong quy trình đặt hàng 8 bước là gì?',
-   opts:['Tạo đơn ngay trên KiotViet','Thanh toán theo đơn','Kiểm tra tồn kho tại Cửa Hàng','Gửi biên nhận cho kho'],
-   c:2,exp:'Bước 1 luôn là kiểm tra tồn kho để xác định mặt hàng cần nhập trước khi tạo đơn.'},
-  {q:'Sau khi thanh toán đơn hàng trên KiotViet, cần làm gì ngay tiếp theo?',
-   opts:['Gọi điện cho nhân viên kho','Chụp màn hình thanh toán và gửi vào nhóm Zalo kho','In đơn gửi qua bưu điện','Chờ kho liên hệ trong 24 giờ'],
-   c:1,exp:'Phải chụp màn hình thanh toán và gửi Zalo kho ngay. Thiếu bước này kho không xử lý đơn.'},
-  {q:'MOQ (số lượng đặt hàng tối thiểu) của Cà Phê Mộc 9:1 là bao nhiêu?',
-   opts:['1 kg','2 kg','5 kg','1 thùng'],
-   c:1,exp:'MOQ Cà Phê Mộc 9:1 = 2 kg mỗi lần đặt.'},
-  {q:'Trong KiotViet, để xem danh sách sản phẩm hệ thống cung cấp khi đặt hàng, bấm vào mục nào?',
-   opts:['Hóa đơn','Thông báo','Bán hàng','Nhiều hơn'],
-   c:2,exp:'Bấm "Bán hàng" → Đặt hàng để thấy toàn bộ danh sách sản phẩm hệ thống cung cấp.'},
-  {q:'Bước ĐẦU TIÊN khi phát hiện sản phẩm lỗi sau khi nhận hàng là?',
-   opts:['Liên hệ điện thoại ngay','Trả lại toàn bộ hàng','Chụp hình / quay video sản phẩm lỗi','Yêu cầu bồi thường bằng văn bản'],
-   c:2,exp:'Bước 1 là chụp hình/video sản phẩm lỗi để có bằng chứng trước khi báo cáo.'},
-  {q:'Thời hạn báo lỗi sau khi nhận hàng là bao nhiêu ngày?',
-   opts:['1 ngày','3 ngày','7 ngày','14 ngày'],
-   c:1,exp:'Thời hạn báo lỗi là 3 ngày kể từ khi nhận hàng. Quá hạn hệ thống có thể không xử lý được.'}
+  {q:'Cửa hàng nhận hàng và phát hiện thiếu 2 gói Trà Oolong so với biên nhận. Theo SOP, bước xử lý ĐÚNG là gì?',
+   opts:['Chấp nhận và đặt bù đơn tiếp theo','Từ chối toàn bộ lô hàng ngay tại chỗ','Chụp hình lô hàng và báo ngay vào nhóm Zalo kho trong 3 ngày','Liên hệ đơn vị vận chuyển đòi bồi thường'],
+   c:2,exp:'Khi nhận hàng thiếu/lỗi, phải chụp hình và báo nhóm Zalo kho trong 3 ngày. Không tự xử lý hay liên hệ vận chuyển.'},
+  {q:'Trách nhiệm nào sau đây KHÔNG thuộc về Cửa Hàng/ĐTNQ theo SOP Chuỗi Cung Ứng?',
+   opts:['Chủ động lập kế hoạch đặt hàng định kỳ','Kiểm tra hàng hóa khi nhận theo biên nhận','Chuẩn bị hàng, xuất kho và gửi biên nhận cho cửa hàng','Thanh toán đúng hạn theo quy định'],
+   c:2,exp:'Chuẩn bị hàng, xuất kho và gửi biên nhận là trách nhiệm của bộ phận Chuỗi Cung Ứng – không phải Cửa Hàng.'},
+  {q:'Cửa hàng muốn mua thêm Bột Matcha Đài Loan. Theo SOP, cần làm điều gì đặc biệt?',
+   opts:['Mua từ nhà cung cấp bên ngoài vì đây là NL Không Độc Quyền','Xin phép hệ thống trước khi mua bất kỳ đâu','Đặt qua hệ thống KiotViet, kiểm tra giá linh hoạt theo thị trường','Chỉ được đặt khi tồn kho = 0'],
+   c:2,exp:'Bột Matcha Đài Loan là NL Không Độc Quyền – đặt qua KiotViet, giá cập nhật theo thị trường. Không cần xin phép nhưng phải đặt qua hệ thống.'},
+  {q:'Cuối tháng, hệ thống thông báo giá Cà Phê Mộc 9:1 sẽ tăng. Cửa hàng nhận thông báo vào ngày nào sớm nhất trước khi giá áp dụng?',
+   opts:['7 ngày trước','10 ngày trước','15 ngày trước','Không có quy định cụ thể'],
+   c:2,exp:'NVL Độc Quyền điều chỉnh giá sẽ được thông báo trước tối thiểu 15 ngày để cửa hàng chủ động tài chính.'},
+  {q:'Nhân viên mới tạo đơn hàng KiotViet xong bấm "Đặt Hàng" nhưng QUÊN gửi Zalo kho. Điều gì sẽ xảy ra?',
+   opts:['Hệ thống tự động thông báo cho kho','Kho không nhận được thông tin, đơn hàng có thể không được xử lý','Kho vẫn nhận được vì dữ liệu đồng bộ tự động','Đơn bị hủy sau 24 giờ'],
+   c:1,exp:'Kho KHÔNG tự nhận được thông báo. Phải chụp màn hình thanh toán và gửi Zalo kho ngay – đây là bước bắt buộc trong quy trình.'},
+  {q:'Cửa hàng đang lập đơn hàng KiotViet nhưng cần kiểm tra lại số lượng tồn kho thực tế trước khi hoàn tất. Nên dùng tính năng nào?',
+   opts:['Xóa đơn và tạo lại từ đầu','Bấm "Lưu Tạm" để lưu đơn tạm thời và bổ sung sau','Gửi đơn ngay rồi liên hệ kho xin chỉnh sửa','Tạo thêm đơn hàng mới song song'],
+   c:1,exp:'"Lưu Tạm" giúp lưu đơn đang làm để xem xét và bổ sung thêm sau. Đơn lưu tạm nằm ở góc phải màn hình Bán Hàng.'},
+  {q:'Cửa hàng cần đặt Trà Đen Phúc Tea (MOQ 5 gói) và Trân Châu Giòn (MOQ 1 thùng = 6 gói). Đơn hàng TỐI THIỂU là bao nhiêu đơn vị?',
+   opts:['5 gói Trà Đen + 1 gói Trân Châu','5 gói Trà Đen + 1 thùng Trân Châu (6 gói)','1 gói Trà Đen + 1 thùng Trân Châu','10 gói Trà Đen + 2 thùng Trân Châu'],
+   c:1,exp:'MOQ Trà Đen = 5 gói (tối thiểu), MOQ Trân Châu Giòn = 1 thùng (= 6 gói). Đây là số lượng tối thiểu bắt buộc mỗi lần đặt.'},
+  {q:'Cửa hàng ở Miền Nam đặt hàng vào Thứ Sáu, hệ thống xác nhận ngay trong ngày. Ngày nhận hàng SỚM NHẤT có thể là?',
+   opts:['Thứ Tư tuần sau (5 ngày làm việc)','Thứ Năm tuần sau (5 ngày làm việc không tính T7-CN)','Thứ Sáu tuần sau (7 ngày làm việc)','Thứ Hai tuần sau vì cần đủ 5 ngày'],
+   c:1,exp:'Miền Nam: 5–7 ngày làm việc. Tính từ Thứ Sáu: T2+T3+T4+T5+T6 = 5 ngày làm việc → sớm nhất là Thứ Năm tuần sau (không tính T7-CN).'},
+  {q:'Nhân viên phát hiện 3 gói Trà Xanh Lài bị ẩm sau khi nhận hàng 4 ngày. Kết quả xử lý theo SOP sẽ như thế nào?',
+   opts:['Được đổi hàng vì còn trong tuần','Hệ thống có thể từ chối vì đã quá thời hạn báo lỗi 3 ngày','Được bồi thường vì lỗi vận chuyển','Phải gửi sản phẩm về kho để kiểm tra'],
+   c:1,exp:'Thời hạn báo lỗi là 3 ngày kể từ khi nhận hàng. Quá 3 ngày, hệ thống có thể không xử lý được yêu cầu đổi trả.'},
+  {q:'Khi gửi báo cáo sự cố lên group nguyên liệu, thông tin nào là ĐẦY ĐỦ và ĐÚNG theo SOP?',
+   opts:['Chỉ cần ghi tên sản phẩm bị lỗi','Gọi điện trực tiếp cho phụ trách kho','Hình ảnh/video + tên sản phẩm + số lượng lỗi + mô tả chi tiết lỗi','Gửi email kèm hóa đơn nhập hàng'],
+   c:2,exp:'Theo SOP, khi báo lỗi phải gửi đầy đủ: hình ảnh/video + tên sản phẩm + số lượng lỗi + mô tả lỗi vào group nguyên liệu.'}
 ];
 
 // ─── STATE ─────────────────────────────────────────────────────
@@ -1240,28 +1240,58 @@ function showFinalQuiz() {
 function renderFinalQ() {
   const qi = S.fqIndex;
   const q = FINAL_QUIZ[qi];
-  const answered = S.fqAnswers[qi];
+  const L = ['A','B','C','D'];
+  const pills = FINAL_QUIZ.map((_,i) => {
+    let c = 'qpill';
+    if (i === qi) c += ' qcurrent';
+    else if (S.fqAnswers[i] !== null) c += ' qanswered';
+    return `<div class="${c}" onclick="S.fqIndex=${i};renderFinalQ()" style="cursor:pointer">${i+1}</div>`;
+  }).join('');
+  const opts = q.opts.map((o,i) => {
+    const sel = S.fqAnswers[qi];
+    let cls = 'option';
+    if (sel !== null) {
+      if (i === sel && sel === q.c) cls += ' opt-correct';
+      else if (i === sel && sel !== q.c) cls += ' opt-wrong';
+      else if (i === q.c && sel !== null) cls += ' opt-correct';
+    }
+    return `<div class="${cls}" onclick="answerFinalQ(${i})">
+      <div class="opt-letter">${L[i]}</div><div>${o}</div></div>`;
+  }).join('');
+  const isLast = qi === FINAL_QUIZ.length - 1;
+  const answeredCount = S.fqAnswers.filter(a => a !== null).length;
+  const navRight = S.fqAnswers[qi] !== null
+    ? (isLast
+        ? `<button class="btn btn-gold" onclick="submitFinalQ()">Nộp Bài Tổng Kết ✓</button>`
+        : `<button class="btn btn-primary" onclick="S.fqIndex++;renderFinalQ()">Câu Tiếp →</button>`)
+    : `<button class="btn btn-disabled">Chọn đáp án</button>`;
+  const fbHtml = S.fqAnswers[qi] !== null ? (() => {
+    const ok = S.fqAnswers[qi] === q.c;
+    return `<div class="feedback-box ${ok?'fb-correct':'fb-wrong'}" style="display:block">
+      ${ok ? `✅ <strong>Chính xác!</strong> ${q.exp}` : `❌ <strong>Chưa đúng.</strong> Đáp án đúng: <strong>${q.opts[q.c]}</strong>. ${q.exp}`}
+    </div>`;
+  })() : '<div class="feedback-box" id="fb"></div>';
+
   document.getElementById('mainContent').innerHTML = `
-  <div class="quiz-wrap">
-    <div class="quiz-header">
-      <div style="font-size:12px;opacity:.7;margin-bottom:4px">BÀI KIỂM TRA TỔNG KẾT – Câu ${qi+1}/${FINAL_QUIZ.length}</div>
-      <div class="q-progress-wrap"><div class="q-progress-fill" style="width:${(qi/FINAL_QUIZ.length)*100}%"></div></div>
-    </div>
-    <div class="question-text">${q.q}</div>
-    <div class="options-grid">
-      ${q.opts.map((o,i)=>`<button class="opt-btn${answered===i?' selected':''}" onclick="answerFinalQ(${i})">${String.fromCharCode(65+i)}. ${o}</button>`).join('')}
-    </div>
-    <div style="display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap">
-      ${qi>0?`<button class="btn btn-secondary" onclick="S.fqIndex--;renderFinalQ()">← Câu trước</button>`:''}
-      ${answered!==null ? (qi < FINAL_QUIZ.length-1
-        ? `<button class="btn btn-primary" onclick="S.fqIndex++;renderFinalQ()">Câu tiếp →</button>`
-        : `<button class="btn btn-gold" onclick="submitFinalQ()">✅ Nộp Bài Tổng Kết</button>`)
-        : ''}
+  <div class="quiz-header-bar">
+    <div class="quiz-title-h">🏆 Kiểm Tra Tổng Kết</div>
+    <div class="quiz-subtitle-s">Cần đúng ≥ 7/10 câu (≥70%) để nhận Giấy Chứng Nhận · Đã trả lời: ${answeredCount}/${FINAL_QUIZ.length}</div>
+    <div class="quiz-pills" style="flex-wrap:wrap">${pills}</div>
+  </div>
+  <div class="question-card">
+    <div class="q-num">Câu ${qi+1} / ${FINAL_QUIZ.length}</div>
+    <div class="q-text">${q.q}</div>
+    <div class="options">${opts}</div>
+    ${fbHtml}
+    <div class="quiz-nav">
+      ${qi > 0 ? `<button class="btn btn-secondary" onclick="S.fqIndex--;renderFinalQ()">← Câu trước</button>` : '<div></div>'}
+      ${navRight}
     </div>
   </div>`;
 }
 
 function answerFinalQ(idx) {
+  if (S.fqAnswers[S.fqIndex] !== null) return;
   S.fqAnswers[S.fqIndex] = idx;
   renderFinalQ();
 }
@@ -1408,117 +1438,134 @@ function _certGeomDeco_UNUSED(ctx, cx, cy, gold, goldL) {
 
 function _finishCert(ctx, W, H, logoImg) {
   const st = S._certStats;
-  const green='#1a6b42', greenD='#0f5c2b', greenL='#2ecc71', gold='#c8951c', goldL='#e8b84b', white='#fff', lightMint='#f0fbf4';
+  // ── COLOUR PALETTE ── ivory + gold + charcoal (no heavy green)
+  const ivory  = '#fffdf5';
+  const cream  = '#fdf6e3';
+  const charcoal = '#1c1c2e';
+  const darkGray = '#4a4a5a';
+  const midGray  = '#888899';
+  const gold   = '#b8860b';   // darker gold – reads better
+  const goldL  = '#d4a017';
+  const goldLL = '#f0c040';
+  const white  = '#ffffff';
   ctx.textAlign = 'center';
 
   // ── BACKGROUND ──
-  ctx.fillStyle = white; ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = ivory; ctx.fillRect(0, 0, W, H);
 
-  // ── OUTER BORDER (double line) ──
-  ctx.strokeStyle = green; ctx.lineWidth = 8;
-  ctx.strokeRect(14, 14, W-28, H-28);
-  ctx.strokeStyle = gold; ctx.lineWidth = 2;
-  ctx.strokeRect(24, 24, W-48, H-48);
+  // ── OUTER GOLD BORDER ──
+  ctx.strokeStyle = gold; ctx.lineWidth = 7;
+  ctx.strokeRect(12, 12, W-24, H-24);
+  ctx.strokeStyle = goldLL; ctx.lineWidth = 1.5;
+  ctx.strokeRect(22, 22, W-44, H-44);
 
-  // ── TOP BAND ──
-  ctx.fillStyle = greenD; ctx.fillRect(14, 14, W-28, 114);
-  ctx.fillStyle = gold; ctx.fillRect(14, 128, W-28, 3);
+  // ── CORNER ORNAMENTS (gold diamonds) ──
+  [[34,34],[W-34,34],[34,H-34],[W-34,H-34]].forEach(([cx,cy]) => {
+    ctx.fillStyle = gold;
+    ctx.beginPath(); ctx.moveTo(cx,cy-9); ctx.lineTo(cx+9,cy); ctx.lineTo(cx,cy+9); ctx.lineTo(cx-9,cy); ctx.closePath(); ctx.fill();
+  });
 
-  // ── LOGO in band ──
-  const lsz = 90;
+  // ── LOGO (no band – sits on ivory) ──
+  const lsz = 82;
+  const logoY = 38;
   if (logoImg) {
-    ctx.drawImage(logoImg, W/2-lsz/2, 14+(114-lsz)/2, lsz, lsz);
-  } else {
-    ctx.fillStyle = gold; ctx.font = 'bold 22px Arial';
-    ctx.fillText('PHÚC TEA', W/2, 80);
+    ctx.drawImage(logoImg, W/2-lsz/2, logoY, lsz, lsz);
   }
+  // Thin gold line under logo area
+  ctx.strokeStyle = goldL; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(W/2-60, logoY+lsz+8); ctx.lineTo(W/2+60, logoY+lsz+8); ctx.stroke();
 
-  // ── GIẤY CHỨNG NHẬN ──
-  ctx.fillStyle = greenD; ctx.font = 'bold 48px Arial';
-  ctx.fillText('GIẤY CHỨNG NHẬN', W/2, 194);
+  // ── TITLE ──
+  ctx.fillStyle = charcoal; ctx.font = 'bold 50px Georgia,serif';
+  ctx.fillText('GIẤY CHỨNG NHẬN', W/2, 168);
 
-  // Gold decorative lines
-  ctx.strokeStyle = gold; ctx.lineWidth = 1.5;
-  ctx.beginPath(); ctx.moveTo(160, 208); ctx.lineTo(W-160, 208); ctx.stroke();
-  ctx.strokeStyle = '#ccc'; ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(200, 214); ctx.lineTo(W-200, 214); ctx.stroke();
+  // Gold rule under title
+  ctx.strokeStyle = gold; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(180, 180); ctx.lineTo(W-180, 180); ctx.stroke();
+  ctx.strokeStyle = goldLL; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(220, 185); ctx.lineTo(W-220, 185); ctx.stroke();
 
   // ── SUBTITLE ──
-  ctx.fillStyle = '#666'; ctx.font = '14px Georgia,serif';
-  ctx.fillText('Trân trọng ghi nhận thành tích hoàn thành khóa học', W/2, 240);
+  ctx.fillStyle = midGray; ctx.font = 'italic 14px Georgia,serif';
+  ctx.fillText('Trân trọng ghi nhận thành tích hoàn thành khóa học', W/2, 215);
 
-  // ── COURSE NAME ──
-  ctx.fillStyle = greenD; ctx.font = 'bold 16px Arial';
-  ctx.fillText('"' + COURSE_TITLE + '"', W/2, 268);
-  ctx.fillStyle = '#999'; ctx.font = '12px Arial';
-  ctx.fillText('Hệ Thống Đào Tạo Phúc Tea – Chuỗi Cung Ứng 2026', W/2, 288);
+  ctx.fillStyle = charcoal; ctx.font = 'bold 15px Arial';
+  ctx.fillText('"' + COURSE_TITLE + '"', W/2, 240);
+
+  ctx.fillStyle = midGray; ctx.font = '12px Arial';
+  ctx.fillText('Hệ Thống Đào Tạo Phúc Tea – Chuỗi Cung Ứng 2026', W/2, 260);
 
   // ── DIVIDER ──
-  ctx.strokeStyle = gold; ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(160, 308); ctx.lineTo(W-160, 308); ctx.stroke();
+  ctx.strokeStyle = goldL; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(200, 278); ctx.lineTo(W-200, 278); ctx.stroke();
 
   // ── PRESENTED TO ──
-  ctx.fillStyle = '#999'; ctx.font = 'italic 13px Georgia,serif';
-  ctx.fillText('Chứng nhận trao cho', W/2, 338);
+  ctx.fillStyle = midGray; ctx.font = 'italic 13px Georgia,serif';
+  ctx.fillText('Chứng nhận trao cho', W/2, 308);
 
   // ── STUDENT NAME ──
-  ctx.fillStyle = gold; ctx.font = 'bold 44px Georgia,serif';
-  ctx.fillText(S.userName.toUpperCase(), W/2, 392);
+  ctx.fillStyle = charcoal; ctx.font = 'bold 46px Georgia,serif';
+  ctx.fillText(S.userName.toUpperCase(), W/2, 366);
   const nw = ctx.measureText(S.userName.toUpperCase()).width;
+  // Decorative underline: gold with flanking ornaments
   ctx.strokeStyle = gold; ctx.lineWidth = 2;
-  ctx.beginPath(); ctx.moveTo(W/2-nw/2, 403); ctx.lineTo(W/2+nw/2, 403); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(W/2-nw/2-10, 378); ctx.lineTo(W/2+nw/2+10, 378); ctx.stroke();
 
-  // Store
-  ctx.fillStyle = '#888'; ctx.font = '13px Arial';
-  ctx.fillText('Cửa hàng: ' + (S.userStore || ''), W/2, 425);
+  // Store name
+  ctx.fillStyle = darkGray; ctx.font = '13px Arial';
+  ctx.fillText('Cửa hàng: ' + (S.userStore || ''), W/2, 400);
 
   // ── DIVIDER ──
-  ctx.strokeStyle = '#ccc'; ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(160, 444); ctx.lineTo(W-160, 444); ctx.stroke();
+  ctx.strokeStyle = '#ddd'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(200, 418); ctx.lineTo(W-200, 418); ctx.stroke();
 
-  // ── STATS ROW ──
-  const sY=454, sW=158, sH=48, sG=14;
-  const sStart = W/2 - (4*sW+3*sG)/2;
+  // ── STATS BOXES ──
+  const sY=428, sW=156, sH=50, sG=14;
+  const sStart = W/2-(4*sW+3*sG)/2;
   const stats = [
-    [st.totalCorrect+'/'+st.totalQ,'Câu đúng tổng cộng'],
-    [st.avgPct+'%','Điểm trung bình'],
+    [st.totalCorrect+'/'+st.totalQ,'Câu đúng'],
+    [st.avgPct+'%','Điểm TB'],
     [st.duration||'—','Thời gian học'],
-    ['5/5','Bài hoàn thành']
+    ['5/5','Bài học']
   ];
   stats.forEach(([val,lbl],i) => {
     const bx = sStart + i*(sW+sG);
-    ctx.fillStyle = lightMint;
-    ctx.beginPath(); ctx.roundRect(bx, sY, sW, sH, 6); ctx.fill();
-    ctx.strokeStyle = '#b2dfcb'; ctx.lineWidth = 1; ctx.stroke();
-    ctx.fillStyle = green; ctx.font = 'bold 20px Arial';
-    ctx.fillText(val, bx+sW/2, sY+26);
-    ctx.fillStyle = '#999'; ctx.font = '10px Arial';
-    ctx.fillText(lbl, bx+sW/2, sY+41);
+    ctx.fillStyle = cream;
+    ctx.beginPath(); ctx.roundRect(bx, sY, sW, sH, 5); ctx.fill();
+    ctx.strokeStyle = goldL; ctx.lineWidth = 1; ctx.stroke();
+    ctx.fillStyle = charcoal; ctx.font = 'bold 20px Arial';
+    ctx.fillText(val, bx+sW/2, sY+27);
+    ctx.fillStyle = midGray; ctx.font = '10px Arial';
+    ctx.fillText(lbl, bx+sW/2, sY+42);
   });
 
   // ── DATE ──
   const completedDate = st.completedAt || new Date().toLocaleDateString('vi-VN');
-  ctx.fillStyle = '#aaa'; ctx.font = 'italic 13px Georgia,serif';
-  ctx.fillText('Ngày hoàn thành: ' + completedDate, W/2, 524);
+  ctx.fillStyle = midGray; ctx.font = 'italic 13px Georgia,serif';
+  ctx.fillText('Ngày hoàn thành: ' + completedDate, W/2, 502);
+
+  // ── GOLD RULE ──
+  ctx.strokeStyle = gold; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(180, 516); ctx.lineTo(W-180, 516); ctx.stroke();
 
   // ── SIGNATURES ──
-  const sigY=556, lx=210, rx=W-210;
+  const sigY=538, lx=210, rx=W-210;
   [lx, rx].forEach((x, i) => {
-    ctx.fillStyle = greenD; ctx.font = 'italic 18px Georgia,serif';
+    ctx.fillStyle = darkGray; ctx.font = 'italic 17px Georgia,serif';
     ctx.fillText('Đã ký', x, sigY);
     ctx.strokeStyle = '#ddd'; ctx.lineWidth = 1;
     ctx.beginPath(); ctx.moveTo(x-70, sigY+14); ctx.lineTo(x+70, sigY+14); ctx.stroke();
-    ctx.fillStyle = greenD; ctx.font = 'bold 13px Arial';
+    ctx.fillStyle = charcoal; ctx.font = 'bold 13px Arial';
     ctx.fillText(i===0?'Lý Tấn Tài':'Trần Thị Hạnh Nhân', x, sigY+30);
-    ctx.fillStyle = '#aaa'; ctx.font = '11px Arial';
+    ctx.fillStyle = midGray; ctx.font = '11px Arial';
     ctx.fillText(i===0?'Giám đốc Điều Hành':'Quản lý Chuỗi Cung Ứng', x, sigY+44);
   });
 
-  // ── BOTTOM BAND ──
-  ctx.fillStyle = gold; ctx.fillRect(14, H-46, W-28, 3);
-  ctx.fillStyle = greenD; ctx.fillRect(14, H-43, W-28, 29);
-  ctx.fillStyle = white; ctx.font = '10px Arial';
-  ctx.fillText('PHÚC TEA® – HỆ THỐNG ĐÀO TẠO CHUỖI CUNG ỨNG 2026', W/2, H-24);
+  // ── BOTTOM FOOTER BAND ──
+  ctx.fillStyle = gold; ctx.fillRect(12, H-40, W-24, 2);
+  ctx.fillStyle = charcoal; ctx.fillRect(12, H-38, W-24, 26);
+  ctx.fillStyle = goldLL; ctx.font = '9px Arial';
+  ctx.fillText('PHÚC TEA® – HỆ THỐNG ĐÀO TẠO CHUỖI CUNG ỨNG 2026', W/2, H-21);
 }
 
 function dlCert() {
