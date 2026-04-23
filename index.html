@@ -251,6 +251,7 @@ tr:hover td{background:#f9fafb;}
 
 @media(max-width:768px){.sidebar{display:none;}.main{padding:14px;}header h1{display:none;}}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
 <body>
 
@@ -282,7 +283,7 @@ const MIN_READ_SECONDS = 60;
 const WEBHOOK_URL = '';
 
 // Mật khẩu xem trang Admin (mở bằng URL: file.html#admin)
-const ADMIN_PASSWORD = 'phuctea2026';
+const ADMIN_PASSWORD = 'phuctea123';
 
 // ─── TRACKING ─────────────────────────────────────────────────
 function trackEvent(event, extra = {}) {
@@ -1454,76 +1455,180 @@ function showAdmin() {
   const all = JSON.parse(localStorage.getItem('phuctea_learners') || '[]');
   const total = all.length;
   const done  = all.filter(r => r.status.includes('hoàn thành')).length;
+  const studying = total - done;
+  const avgScore = done ? Math.round(all.filter(r=>r.status.includes('hoàn thành')).reduce((s,r)=>s+parseFloat(r.score||0),0)/done) : 0;
+
+  // Dữ liệu biểu đồ điểm theo cửa hàng
+  const doneList = all.filter(r => r.status.includes('hoàn thành') && r.score);
+  const storeScores = {};
+  doneList.forEach(r => {
+    const key = (r.store||'?').split(' - ')[0].trim().substring(0,12);
+    if (!storeScores[key]) storeScores[key] = [];
+    storeScores[key].push(parseFloat(r.score)||0);
+  });
+  const storeLabels = Object.keys(storeScores);
+  const storeAvgs   = storeLabels.map(k => Math.round(storeScores[k].reduce((a,b)=>a+b,0)/storeScores[k].length));
+
+  // Dữ liệu đăng ký theo ngày
+  const dayCounts = {};
+  all.forEach(r => {
+    const d = (r.time||'').split(',')[0].trim() || 'Khác';
+    dayCounts[d] = (dayCounts[d]||0) + 1;
+  });
+  const dayLabels = Object.keys(dayCounts).slice(-10);
+  const dayVals   = dayLabels.map(k => dayCounts[k]);
 
   const rows = all.length ? all.map((r,i) => `
-    <tr>
-      <td style="text-align:center">${i+1}</td>
-      <td><strong>${r.name}</strong></td>
-      <td>${r.store}</td>
-      <td>${r.time}</td>
-      <td><span style="padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;
+    <tr style="border-bottom:1px solid #f0f0f0">
+      <td style="text-align:center;padding:10px 8px;color:#9ca3af">${i+1}</td>
+      <td style="padding:10px 12px"><strong>${r.name}</strong></td>
+      <td style="padding:10px 12px;font-size:12px;color:#555">${r.store}</td>
+      <td style="padding:10px 12px;font-size:12px;color:#9ca3af">${r.time}</td>
+      <td style="padding:10px 12px"><span style="padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;
         background:${r.status.includes('hoàn thành')?'#d1fae5':'#fef9c3'};
         color:${r.status.includes('hoàn thành')?'#065f46':'#92400e'}">${r.status}</span></td>
-      <td style="text-align:center">${r.score||'—'}</td>
-      <td>${r.duration||'—'}</td>
-      <td>${r.completedAt||'—'}</td>
-      <td style="text-align:center">
+      <td style="padding:10px 8px;text-align:center;font-weight:700;color:${r.score?'#1a8a42':'#9ca3af'}">${r.score||'—'}</td>
+      <td style="padding:10px 12px;font-size:12px">${r.duration||'—'}</td>
+      <td style="padding:10px 12px;font-size:12px;color:#9ca3af">${r.completedAt||'—'}</td>
+      <td style="padding:10px 8px;text-align:center">
         <button onclick="deleteEntry(${i})"
           style="background:#fee2e2;border:none;color:#dc2626;border-radius:6px;padding:3px 8px;cursor:pointer;font-size:12px">Xoá</button>
       </td>
     </tr>`).join('') :
-    `<tr><td colspan="9" style="text-align:center;padding:32px;color:#9ca3af">Chưa có học viên nào đăng ký</td></tr>`;
+    `<tr><td colspan="9" style="text-align:center;padding:48px;color:#9ca3af">
+      <div style="font-size:32px;margin-bottom:8px">📭</div>
+      Chưa có học viên nào đăng ký
+    </td></tr>`;
 
   document.getElementById('sidebar').innerHTML = '';
   document.getElementById('progressText').textContent = `${done}/${total} hoàn thành`;
   document.getElementById('progressFill').style.width = total ? (done/total*100)+'%' : '0%';
 
   document.getElementById('mainContent').innerHTML = `
-  <div style="background:#fff;border-radius:16px;padding:28px;box-shadow:0 2px 16px rgba(0,0,0,.06)">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px">
-      <div>
-        <h2 style="font-size:20px;color:#0f5c2b">📊 Quản Lý Học Viên</h2>
-        <p style="color:#6b7280;font-size:13px;margin-top:2px">Khóa học: ${COURSE_TITLE}</p>
+  <div style="display:flex;flex-direction:column;gap:16px">
+
+    <!-- HEADER -->
+    <div style="background:#fff;border-radius:16px;padding:24px 28px;box-shadow:0 2px 16px rgba(0,0,0,.06)">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:18px">
+        <div>
+          <h2 style="font-size:20px;color:#0f5c2b;margin:0">📊 Quản Lý Học Viên</h2>
+          <p style="color:#6b7280;font-size:13px;margin:4px 0 0">Khóa học: <strong>${COURSE_TITLE}</strong></p>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn btn-primary" onclick="exportCSV()">⬇️ Xuất CSV</button>
+          <button class="btn btn-secondary" onclick="clearAll()">🗑️ Xoá Tất Cả</button>
+          <button class="btn btn-secondary" onclick="showRegister()">← Thoát Admin</button>
+        </div>
       </div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <div style="background:#f0fbf4;border:1px solid #a8dbb9;border-radius:10px;padding:10px 20px;text-align:center">
-          <div style="font-size:24px;font-weight:800;color:#1a8a42">${total}</div>
-          <div style="font-size:11px;color:#6b7280">Đã đăng ký</div>
+      <!-- Stat cards -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px">
+        <div style="background:linear-gradient(135deg,#0f5c2b,#1a8a42);border-radius:12px;padding:16px;text-align:center;color:#fff">
+          <div style="font-size:32px;font-weight:800">${total}</div>
+          <div style="font-size:12px;opacity:.85;margin-top:2px">Đã đăng ký</div>
         </div>
-        <div style="background:#f0fbf4;border:1px solid #a8dbb9;border-radius:10px;padding:10px 20px;text-align:center">
-          <div style="font-size:24px;font-weight:800;color:#1a8a42">${done}</div>
-          <div style="font-size:11px;color:#6b7280">Hoàn thành</div>
+        <div style="background:linear-gradient(135deg,#065f46,#059669);border-radius:12px;padding:16px;text-align:center;color:#fff">
+          <div style="font-size:32px;font-weight:800">${done}</div>
+          <div style="font-size:12px;opacity:.85;margin-top:2px">Hoàn thành</div>
         </div>
-        <div style="background:#fffbeb;border:1px solid #fcd34d;border-radius:10px;padding:10px 20px;text-align:center">
-          <div style="font-size:24px;font-weight:800;color:#92400e">${total-done}</div>
-          <div style="font-size:11px;color:#6b7280">Đang học</div>
+        <div style="background:linear-gradient(135deg,#92400e,#d97706);border-radius:12px;padding:16px;text-align:center;color:#fff">
+          <div style="font-size:32px;font-weight:800">${studying}</div>
+          <div style="font-size:12px;opacity:.85;margin-top:2px">Đang học</div>
+        </div>
+        <div style="background:linear-gradient(135deg,#1e40af,#3b82f6);border-radius:12px;padding:16px;text-align:center;color:#fff">
+          <div style="font-size:32px;font-weight:800">${total?Math.round(done/total*100):0}%</div>
+          <div style="font-size:12px;opacity:.85;margin-top:2px">Tỉ lệ hoàn thành</div>
+        </div>
+        <div style="background:linear-gradient(135deg,#5b21b6,#8b5cf6);border-radius:12px;padding:16px;text-align:center;color:#fff">
+          <div style="font-size:32px;font-weight:800">${avgScore}%</div>
+          <div style="font-size:12px;opacity:.85;margin-top:2px">Điểm TB</div>
         </div>
       </div>
     </div>
-    <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
-      <button class="btn btn-primary" onclick="exportCSV()">⬇️ Xuất CSV</button>
-      <button class="btn btn-secondary" onclick="clearAll()">🗑️ Xoá Tất Cả</button>
-      <button class="btn btn-secondary" onclick="showRegister()">← Thoát Admin</button>
+
+    <!-- BIỂU ĐỒ -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <!-- Donut -->
+      <div style="background:#fff;border-radius:16px;padding:20px 24px;box-shadow:0 2px 16px rgba(0,0,0,.06)">
+        <h3 style="font-size:14px;font-weight:700;color:#374151;margin:0 0 14px">🍩 Tỉ lệ tiến độ học</h3>
+        <canvas id="chartDonut" style="max-height:220px"></canvas>
+      </div>
+      <!-- Bar đăng ký theo ngày -->
+      <div style="background:#fff;border-radius:16px;padding:20px 24px;box-shadow:0 2px 16px rgba(0,0,0,.06)">
+        <h3 style="font-size:14px;font-weight:700;color:#374151;margin:0 0 14px">📅 Đăng ký theo ngày</h3>
+        <canvas id="chartDay" style="max-height:220px"></canvas>
+      </div>
     </div>
-    <div style="overflow-x:auto">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;min-width:900px">
-        <thead>
-          <tr style="background:#0f5c2b;color:#fff">
-            <th style="padding:10px 8px">#</th>
-            <th style="padding:10px 12px;text-align:left">Họ tên</th>
-            <th style="padding:10px 12px;text-align:left">Cửa hàng</th>
-            <th style="padding:10px 12px;text-align:left">Đăng ký lúc</th>
-            <th style="padding:10px 12px;text-align:left">Trạng thái</th>
-            <th style="padding:10px 8px">Điểm TB</th>
-            <th style="padding:10px 12px;text-align:left">TG học</th>
-            <th style="padding:10px 12px;text-align:left">Hoàn thành lúc</th>
-            <th style="padding:10px 8px"></th>
-          </tr>
-        </thead>
-        <tbody>${rows}</tbody>
-      </table>
+    ${storeLabels.length > 0 ? `
+    <!-- Bar điểm theo cửa hàng -->
+    <div style="background:#fff;border-radius:16px;padding:20px 24px;box-shadow:0 2px 16px rgba(0,0,0,.06)">
+      <h3 style="font-size:14px;font-weight:700;color:#374151;margin:0 0 14px">🏪 Điểm trung bình theo cửa hàng</h3>
+      <canvas id="chartStore" style="max-height:200px"></canvas>
+    </div>` : ''}
+
+    <!-- BẢNG -->
+    <div style="background:#fff;border-radius:16px;padding:20px 24px;box-shadow:0 2px 16px rgba(0,0,0,.06)">
+      <h3 style="font-size:14px;font-weight:700;color:#374151;margin:0 0 14px">📋 Danh sách học viên</h3>
+      <div style="overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;font-size:13px;min-width:800px">
+          <thead>
+            <tr style="background:#f9fafb;border-bottom:2px solid #e5e7eb">
+              <th style="padding:10px 8px;color:#6b7280;font-weight:600">#</th>
+              <th style="padding:10px 12px;text-align:left;color:#6b7280;font-weight:600">Họ tên</th>
+              <th style="padding:10px 12px;text-align:left;color:#6b7280;font-weight:600">Cửa hàng</th>
+              <th style="padding:10px 12px;text-align:left;color:#6b7280;font-weight:600">Đăng ký lúc</th>
+              <th style="padding:10px 12px;text-align:left;color:#6b7280;font-weight:600">Trạng thái</th>
+              <th style="padding:10px 8px;color:#6b7280;font-weight:600">Điểm TB</th>
+              <th style="padding:10px 12px;text-align:left;color:#6b7280;font-weight:600">TG học</th>
+              <th style="padding:10px 12px;text-align:left;color:#6b7280;font-weight:600">Hoàn thành lúc</th>
+              <th style="padding:10px 8px"></th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
     </div>
   </div>`;
+
+  // Vẽ biểu đồ sau khi DOM render
+  requestAnimationFrame(() => {
+    // Donut
+    new Chart(document.getElementById('chartDonut'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Hoàn thành', 'Đang học'],
+        datasets: [{ data: [done, studying],
+          backgroundColor: ['#1a8a42','#fbbf24'],
+          borderWidth: 0, hoverOffset: 6 }]
+      },
+      options: { plugins: { legend: { position: 'bottom', labels: { font: { size: 12 } } } }, cutout: '65%' }
+    });
+    // Bar theo ngày
+    new Chart(document.getElementById('chartDay'), {
+      type: 'bar',
+      data: {
+        labels: dayLabels.length ? dayLabels : ['Chưa có dữ liệu'],
+        datasets: [{ label: 'Đăng ký', data: dayLabels.length ? dayVals : [0],
+          backgroundColor: '#1a8a42', borderRadius: 6 }]
+      },
+      options: { plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } }, x: { ticks: { font: { size: 10 } } } } }
+    });
+    // Bar theo cửa hàng
+    if (storeLabels.length && document.getElementById('chartStore')) {
+      new Chart(document.getElementById('chartStore'), {
+        type: 'bar',
+        data: {
+          labels: storeLabels,
+          datasets: [{ label: 'Điểm TB (%)', data: storeAvgs,
+            backgroundColor: storeAvgs.map(v => v>=80?'#1a8a42':v>=60?'#fbbf24':'#ef4444'),
+            borderRadius: 6 }]
+        },
+        options: { plugins: { legend: { display: false } },
+          scales: { y: { beginAtZero: true, max: 100, ticks: { callback: v=>v+'%' } },
+            x: { ticks: { font: { size: 10 } } } } }
+      });
+    }
+  });
 }
 
 function deleteEntry(idx) {
