@@ -947,49 +947,6 @@ const S = {
 
 // ─── TIMER ──────────────────────────────────────────────────────
 let readTimer = null;
-let readLeft = MIN_READ_SECONDS;
-
-function startReadTimer(lessonId) {
-  if (S.readDone[lessonId]) { enableQuizBtn(); return; }
-  readLeft = MIN_READ_SECONDS;
-  if (readTimer) clearInterval(readTimer);
-  renderTimerBar();
-  readTimer = setInterval(() => {
-    readLeft--;
-    renderTimerBar();
-    if (readLeft <= 0) {
-      clearInterval(readTimer);
-      S.readDone[lessonId] = true;
-      enableQuizBtn();
-    }
-  }, 1000);
-}
-
-function renderTimerBar() {
-  const el = document.getElementById('timerBar');
-  if (!el) return;
-  const pct = Math.min(100, ((MIN_READ_SECONDS - readLeft) / MIN_READ_SECONDS) * 100);
-  if (readLeft > 0) {
-    const m = Math.floor(readLeft / 60), s = readLeft % 60;
-    el.className = 'timer-bar';
-    el.innerHTML = `<span style="font-size:18px">⏱</span>
-      <div class="timer-progress-wrap"><div class="timer-progress-fill" style="width:${pct}%"></div></div>
-      <span class="timer-text">Thời gian học tối thiểu: ${m}:${s.toString().padStart(2,'0')} còn lại</span>`;
-  } else {
-    el.className = 'timer-bar done-read';
-    el.innerHTML = `<span style="font-size:18px">✅</span>
-      <div class="timer-progress-wrap"><div class="timer-progress-fill" style="width:100%"></div></div>
-      <span class="timer-text" style="color:var(--green-dark)">Đã đọc đủ! Bạn có thể làm bài kiểm tra.</span>`;
-  }
-}
-
-function enableQuizBtn() {
-  const btn = document.getElementById('quizBtn');
-  if (!btn) return;
-  btn.className = 'btn btn-primary';
-  btn.onclick = () => startQuiz(S.lesson);
-  btn.innerHTML = '📝 Làm Bài Kiểm Tra →';
-}
 
 // ─── SIDEBAR ──────────────────────────────────────────────────
 function renderSidebar() {
@@ -1025,7 +982,6 @@ function navTo(i) {
 
 // ─── VIEWS ────────────────────────────────────────────────────
 function showWelcome() {
-  if (readTimer) clearInterval(readTimer);
   S.view = 'welcome'; S.lesson = 0;
   renderSidebar();
   document.getElementById('mainContent').innerHTML = `
@@ -1054,11 +1010,9 @@ function showWelcome() {
 
 function showLesson(idx) {
   if (!S.courseStart) S.courseStart = new Date();
-  if (readTimer) clearInterval(readTimer);
   S.view = 'lesson'; S.lesson = idx;
   const l = LESSONS[idx];
   renderSidebar();
-  const alreadyRead = S.readDone[idx];
   const prevBtn = idx > 0
     ? `<button class="btn btn-secondary" onclick="showLesson(${idx-1})">← Bài trước</button>`
     : `<button class="btn btn-secondary" onclick="showWelcome()">← Trang chủ</button>`;
@@ -1070,20 +1024,17 @@ function showLesson(idx) {
       <div class="lesson-title">${l.icon} ${l.title}</div>
     </div>
     <div class="lesson-body">
-      <div class="timer-bar" id="timerBar"></div>
       ${l.content}
       <hr class="divider">
       <div class="lesson-actions">
         ${prevBtn}
-        <button id="quizBtn" class="btn btn-disabled" onclick="">📝 Làm Bài Kiểm Tra →</button>
+        <button id="quizBtn" class="btn btn-primary" onclick="startQuiz(${idx})">📝 Làm Bài Kiểm Tra →</button>
       </div>
     </div>
   </div>`;
-  startReadTimer(idx);
 }
 
 function startQuiz(idx) {
-  if (readTimer) clearInterval(readTimer);
   S.view = 'quiz'; S.lesson = idx;
   S.qIndex = 0;
   S.qAnswers = new Array(5).fill(null);
@@ -1447,10 +1398,10 @@ function showRegister() {
   <div style="max-width:520px;margin:24px auto">
     <div style="background:#fff;border-radius:20px;box-shadow:0 4px 24px rgba(0,0,0,.09);overflow:hidden">
       <!-- Header -->
-      <div style="background:#000;padding:28px 40px 20px;text-align:center">
+      <div style="background:linear-gradient(135deg,#0f5c2b,#1a8a42);padding:28px 40px 20px;text-align:center">
         <img src="logo-phuc-tea.png" style="height:110px;display:block;margin:0 auto 4px"
           onerror="this.style.display='none'">
-        <div style="color:rgba(255,255,255,.65);font-size:12px;letter-spacing:1px;margin-top:4px">Hệ Thống Đào Tạo Nhượng Quyền</div>
+        <div style="color:rgba(255,255,255,.8);font-size:12px;letter-spacing:1px;margin-top:4px">Hệ Thống Đào Tạo Nhượng Quyền</div>
       </div>
       <!-- Form body -->
       <div style="padding:36px 40px">
