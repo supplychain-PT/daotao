@@ -520,7 +520,8 @@ const LESSONS = [
   </div>
   <div class="section">
     <h3>Hướng Dẫn Thao Tác KiotViet – Giao Diện Mẫu</h3>
-    <p style="margin-bottom:12px;font-size:13px;color:#6b7280">Dưới đây là <strong>mô phỏng giao diện KiotViet</strong> và các khu vực chức năng bạn sẽ dùng khi đặt hàng:</p>
+    <p style="margin-bottom:8px;font-size:13px;color:#6b7280">Dưới đây là <strong>mô phỏng giao diện KiotViet</strong> và các khu vực chức năng bạn sẽ dùng khi đặt hàng:</p>
+    <div class="highlight-box warn" style="margin-bottom:12px">⚠️ <strong>Lưu ý quan trọng:</strong> Khi đặt hàng, bạn phải bấm vào mục <strong>"Khách lẻ"</strong> để chọn đúng <strong>tên Cửa Hàng của bạn</strong>. Nếu không chọn đúng, đơn hàng sẽ không được xử lý chính xác.</div>
 
     <!-- KiotViet Mobile Mockup – 3 màn hình -->
     <div class="kv-phones">
@@ -644,7 +645,7 @@ const LESSONS = [
             <div class="kv-nav-item"><span class="kv-nav-icon">☰</span>Nhiều hơn</div>
           </div>
         </div>
-        <div style="text-align:center;color:#aaa;font-size:10px;margin-top:8px">② Chọn đúng tên cửa hàng</div>
+        <div style="text-align:center;font-size:10px;margin-top:8px;color:#e67e22;font-weight:600">⚠️ Bấm vào "Khách lẻ" → chọn đúng tên Cửa hàng</div>
       </div>
 
       <!-- ── PHONE 3: Giỏ hàng & Đặt hàng ── -->
@@ -828,9 +829,9 @@ const LESSONS = [
   ]
 },
 {
-  id:4, icon:'🚚',
-  title:'Nhận Hàng & Thời Gian Giao',
-  subtitle:'Kiểm tra khi nhận & quy định thời gian',
+  id:4, icon:'🚚🛠️',
+  title:'Nhận Hàng & Xử Lý Sự Cố',
+  subtitle:'Kiểm tra khi nhận, báo lỗi & liên hệ hỗ trợ',
   content:`
   <div class="section">
     <h3>1. Thời Gian Giao Hàng</h3>
@@ -852,32 +853,9 @@ const LESSONS = [
       <li class="step-item"><div class="step-num">5</div><div class="step-content"><strong>Kiểm tra chất lượng sản phẩm</strong> – Xem xét bên trong nếu cần.</div></li>
     </ol>
     <div class="highlight-box">✅ Phát hiện vấn đề → <strong>báo ngay vào nhóm Zalo kho</strong>. Không tự ý xử lý.</div>
-  </div>`,
-  questions:[
-    {q:'Thời gian giao hàng khu vực miền Nam là bao lâu?',
-     opts:['3–5 ngày làm việc','5–7 ngày làm việc','7–10 ngày làm việc','2–3 ngày làm việc'],
-     c:1,exp:'Miền Nam: 5–7 ngày làm việc kể từ ngày hệ thống xác nhận đơn.'},
-    {q:'Thời gian giao hàng miền Trung và miền Bắc là bao lâu?',
-     opts:['5–7 ngày làm việc','7–10 ngày làm việc','10–14 ngày làm việc','3–5 ngày làm việc'],
-     c:1,exp:'Miền Trung & Bắc: 7–10 ngày làm việc.'},
-    {q:'Thời gian giao hàng bắt đầu tính từ khi nào?',
-     opts:['Ngày cửa hàng tạo đơn','Ngày cửa hàng thanh toán','Ngày hệ thống xác nhận đơn hàng','Ngày kho bắt đầu đóng gói'],
-     c:2,exp:'Thời gian tính từ ngày HỆ THỐNG xác nhận đơn, không phải ngày tạo hay thanh toán.'},
-    {q:'Thứ 7 và Chủ nhật có tính vào thời gian giao hàng không?',
-     opts:['Có, tính bình thường','Có, tính nửa ngày','Không, không tính vào ngày làm việc','Tùy khu vực'],
-     c:2,exp:'Thứ 7 và Chủ nhật không tính vào ngày làm việc, nên không được cộng vào thời gian giao.'},
-    {q:'Khi phát hiện vấn đề lúc nhận hàng, cần làm gì?',
-     opts:['Từ chối toàn bộ đơn ngay','Báo ngay cho bộ phận hệ thống qua nhóm Zalo kho','Tự xử lý không cần báo','Liên hệ đơn vị vận chuyển'],
-     c:1,exp:'Khi phát hiện vấn đề, báo ngay vào nhóm Zalo kho để được hỗ trợ đúng quy trình.'}
-  ]
-},
-{
-  id:5, icon:'🛠️',
-  title:'Xử Lý Sự Cố & Hỗ Trợ',
-  subtitle:'Báo lỗi, thời hạn & liên hệ',
-  content:`
+  </div>
   <div class="section">
-    <h3>1. Quy Trình Xử Lý Sự Cố – 5 Bước</h3>
+    <h3>3. Quy Trình Xử Lý Sự Cố – 5 Bước</h3>
     <ol class="step-list">
       <li class="step-item"><div class="step-num">1</div><div class="step-content"><strong>Chụp hình / quay video sản phẩm lỗi</strong> – Ghi lại bằng chứng ngay lập tức.</div></li>
       <li class="step-item"><div class="step-num">2</div><div class="step-content"><strong>Gửi lên group nguyên liệu</strong> – Kèm: hình ảnh + tên SP + số lượng lỗi + mô tả lỗi.</div></li>
@@ -887,7 +865,7 @@ const LESSONS = [
     </ol>
   </div>
   <div class="section">
-    <h3>2. Thời Hạn Quan Trọng</h3>
+    <h3>4. Thời Hạn Quan Trọng</h3>
     <div class="table-wrap"><table>
       <tr><th>Mốc thời gian</th><th>Quy định</th></tr>
       <tr><td>Phản hồi ban đầu</td><td><strong>30–60 phút</strong></td></tr>
@@ -898,7 +876,7 @@ const LESSONS = [
     <div class="highlight-box warn">⚠️ Quá <strong>3 ngày</strong> kể từ khi nhận hàng mà chưa báo lỗi → hệ thống có thể không xử lý được yêu cầu đổi trả.</div>
   </div>
   <div class="section">
-    <h3>3. Giờ Làm Việc & Liên Hệ</h3>
+    <h3>5. Giờ Làm Việc & Liên Hệ</h3>
     <div class="table-wrap"><table>
       <tr><th>Thời gian</th><th>Hoạt động hỗ trợ</th></tr>
       <tr><td><strong>Thứ 2–6: 09:00–17:00</strong></td><td>Làm việc đầy đủ, phản hồi 30–60 phút</td></tr>
@@ -911,23 +889,57 @@ const LESSONS = [
     </div>
   </div>`,
   questions:[
+    {q:'Thời gian giao hàng khu vực miền Nam là bao lâu (tính từ ngày xác nhận đơn)?',
+     opts:['3–5 ngày làm việc','5–7 ngày làm việc','7–10 ngày làm việc','2–3 ngày làm việc'],
+     c:1,exp:'Miền Nam: 5–7 ngày làm việc kể từ ngày hệ thống xác nhận đơn.'},
+    {q:'Khi phát hiện vấn đề lúc nhận hàng, cần làm gì?',
+     opts:['Từ chối toàn bộ đơn ngay','Báo ngay vào nhóm Zalo kho','Tự xử lý không cần báo','Liên hệ đơn vị vận chuyển'],
+     c:1,exp:'Khi phát hiện vấn đề, báo ngay vào nhóm Zalo kho để được hỗ trợ đúng quy trình.'},
     {q:'Bước ĐẦU TIÊN khi xử lý sự cố nguyên liệu là gì?',
      opts:['Liên hệ điện thoại ngay','Chụp hình/quay video sản phẩm lỗi','Trả lại toàn bộ hàng','Yêu cầu bồi thường bằng văn bản'],
      c:1,exp:'Bước 1 là chụp hình/video sản phẩm lỗi để có bằng chứng trước khi báo cáo.'},
     {q:'Thời hạn báo lỗi sau khi nhận hàng là bao nhiêu ngày?',
      opts:['1 ngày','3 ngày','7 ngày','14 ngày'],
      c:1,exp:'Thời hạn báo lỗi là 3 ngày kể từ khi nhận hàng. Quá hạn hệ thống có thể không xử lý được.'},
-    {q:'Thời gian phản hồi ban đầu của bộ phận hỗ trợ là bao lâu?',
-     opts:['5–10 phút','30–60 phút','2–4 giờ','24 giờ'],
-     c:1,exp:'Thời gian phản hồi ban đầu là 30–60 phút trong giờ làm việc (T2–T6, 09:00–17:00).'},
-    {q:'Thứ 7 và Chủ nhật, bộ phận hỗ trợ làm gì?',
-     opts:['Làm việc bình thường 24/7','Không tiếp nhận','Tiếp nhận thông tin, xử lý vào ngày làm việc tiếp theo','Chỉ xử lý khẩn cấp'],
-     c:2,exp:'Thứ 7–CN vẫn tiếp nhận thông tin nhưng xử lý vào ngày làm việc tiếp theo (Thứ 2).'},
     {q:'Số điện thoại liên hệ bộ phận Chuỗi Cung Ứng Phúc Tea là?',
      opts:['0344 858 727','0344 858 728','0344 285 727','0344 858 277'],
      c:0,exp:'Số điện thoại đúng là 0344 858 727 – phụ trách Trần Thị Hạnh Nhân.'}
   ]
 }
+];
+
+// ─── FINAL QUIZ (10 câu tổng kết) ─────────────────────────────
+const FINAL_QUIZ = [
+  {q:'SOP Chuỗi Cung Ứng Phúc Tea áp dụng cho những đối tượng nào?',
+   opts:['Chỉ bộ phận kho','Chỉ đối tác nhượng quyền','Cửa hàng, ĐTNQ, Chuỗi Cung Ứng và các phòng ban liên quan','Chỉ quản lý cấp cao'],
+   c:2,exp:'SOP áp dụng toàn hệ thống: cửa hàng, ĐTNQ, bộ phận Chuỗi Cung Ứng và các phòng ban liên quan.'},
+  {q:'Trách nhiệm của Cửa Hàng/ĐTNQ trong hệ thống Phúc Tea là?',
+   opts:['Chỉ nhận hàng, không cần kiểm tra','Tự sản xuất nguyên liệu','Chủ động lập kế hoạch đặt hàng, thanh toán đúng quy định, kiểm tra hàng khi nhận','Phân phối hàng cho cửa hàng khác'],
+   c:2,exp:'Cửa Hàng/ĐTNQ phải chủ động lập kế hoạch đặt hàng, thanh toán đúng hạn và kiểm tra hàng khi nhận.'},
+  {q:'Sản phẩm nào sau đây là NVL Độc Quyền của Phúc Tea?',
+   opts:['Gelatine Đức/Pháp','Bột Matcha Đài Loan','Cà Phê Mộc 9:1','Mứt Hibiscus'],
+   c:2,exp:'Cà Phê Mộc 9:1 là NVL Độc Quyền – bắt buộc nhập từ hệ thống. Gelatine, Matcha, Mứt Hibiscus là NL Không Độc Quyền.'},
+  {q:'Khi NVL Độc Quyền điều chỉnh giá, hệ thống thông báo trước bao nhiêu ngày?',
+   opts:['7 ngày','10 ngày','15 ngày','30 ngày'],
+   c:2,exp:'Hệ thống cam kết thông báo trước 15 ngày để cửa hàng chủ động về tài chính.'},
+  {q:'Bước ĐẦU TIÊN trong quy trình đặt hàng 8 bước là gì?',
+   opts:['Tạo đơn ngay trên KiotViet','Thanh toán theo đơn','Kiểm tra tồn kho tại Cửa Hàng','Gửi biên nhận cho kho'],
+   c:2,exp:'Bước 1 luôn là kiểm tra tồn kho để xác định mặt hàng cần nhập trước khi tạo đơn.'},
+  {q:'Sau khi thanh toán đơn hàng trên KiotViet, cần làm gì ngay tiếp theo?',
+   opts:['Gọi điện cho nhân viên kho','Chụp màn hình thanh toán và gửi vào nhóm Zalo kho','In đơn gửi qua bưu điện','Chờ kho liên hệ trong 24 giờ'],
+   c:1,exp:'Phải chụp màn hình thanh toán và gửi Zalo kho ngay. Thiếu bước này kho không xử lý đơn.'},
+  {q:'MOQ (số lượng đặt hàng tối thiểu) của Cà Phê Mộc 9:1 là bao nhiêu?',
+   opts:['1 kg','2 kg','5 kg','1 thùng'],
+   c:1,exp:'MOQ Cà Phê Mộc 9:1 = 2 kg mỗi lần đặt.'},
+  {q:'Trong KiotViet, để xem danh sách sản phẩm hệ thống cung cấp khi đặt hàng, bấm vào mục nào?',
+   opts:['Hóa đơn','Thông báo','Bán hàng','Nhiều hơn'],
+   c:2,exp:'Bấm "Bán hàng" → Đặt hàng để thấy toàn bộ danh sách sản phẩm hệ thống cung cấp.'},
+  {q:'Bước ĐẦU TIÊN khi phát hiện sản phẩm lỗi sau khi nhận hàng là?',
+   opts:['Liên hệ điện thoại ngay','Trả lại toàn bộ hàng','Chụp hình / quay video sản phẩm lỗi','Yêu cầu bồi thường bằng văn bản'],
+   c:2,exp:'Bước 1 là chụp hình/video sản phẩm lỗi để có bằng chứng trước khi báo cáo.'},
+  {q:'Thời hạn báo lỗi sau khi nhận hàng là bao nhiêu ngày?',
+   opts:['1 ngày','3 ngày','7 ngày','14 ngày'],
+   c:1,exp:'Thời hạn báo lỗi là 3 ngày kể từ khi nhận hàng. Quá hạn hệ thống có thể không xử lý được.'}
 ];
 
 // ─── STATE ─────────────────────────────────────────────────────
@@ -944,7 +956,11 @@ const S = {
   userStore: '',
   courseStart: null,
   completedAt: null,
-  isAdmin: false
+  isAdmin: false,
+  fqIndex: 0,
+  fqAnswers: [],
+  finalDone: false,
+  finalScore: null
 };
 
 // ─── TIMER ──────────────────────────────────────────────────────
@@ -961,7 +977,7 @@ function renderSidebar() {
   '<div class="sidebar-title">Nội dung khóa học</div>' +
     LESSONS.map((l, i) => {
       const isDone = S.done.includes(i);
-      const isActive = S.lesson === i && S.view !== 'welcome' && S.view !== 'nameform' && S.view !== 'cert';
+      const isActive = S.lesson === i && S.view !== 'welcome' && S.view !== 'nameform' && S.view !== 'cert' && S.view !== 'finalquiz';
       const isLocked = !S.isAdmin && i > 0 && !S.done.includes(i - 1);
       let cls = 'lesson-item';
       if (isActive) cls += ' active';
@@ -975,9 +991,27 @@ function renderSidebar() {
           <div class="li-status">${status}</div>
         </div>
       </div>`;
-    }).join('');
+    }).join('') +
+    (() => {
+      const allLessonsDone = S.done.length === LESSONS.length;
+      const isActiveFQ = S.view === 'finalquiz';
+      const isLockedFQ = !S.isAdmin && !allLessonsDone;
+      let cls = 'lesson-item';
+      if (isActiveFQ) cls += ' active';
+      if (S.finalDone && !isActiveFQ) cls += ' done';
+      if (isLockedFQ) cls += ' locked';
+      const fqStatus = S.finalDone ? '✓ Hoàn thành' : (isLockedFQ ? '🔒 Hoàn thành 5 bài' : 'Sẵn sàng');
+      return `<div class="${cls}" onclick="${isLockedFQ ? '' : 'showFinalQuiz()'}">
+        <div class="li-icon" style="font-size:10px">${S.finalDone ? '✓' : '🏆'}</div>
+        <div class="li-info">
+          <div class="li-name">🏆 Kiểm Tra Tổng Kết</div>
+          <div class="li-status">${fqStatus}</div>
+        </div>
+      </div>`;
+    })();
+  const totalDone = S.done.length + (S.finalDone ? 1 : 0);
   const pct = (S.done.length / LESSONS.length) * 100;
-  document.getElementById('progressText').textContent = `${S.done.length}/6 bài`;
+  document.getElementById('progressText').textContent = `${S.done.length}/5 bài`;
   document.getElementById('progressFill').style.width = pct + '%';
 }
 
@@ -997,19 +1031,19 @@ function showWelcome() {
       onerror="this.style.display='none'">
     <h2>Chào Mừng Đến Khóa Học</h2>
     <h3>${COURSE_TITLE}</h3>
-    <p>Dành riêng cho <strong>Đối Tác Nhượng Quyền</strong> và <strong>Quản Lý Cửa Hàng</strong> Phúc Tea.<br>Hoàn thành toàn bộ 6 bài học để nhận <strong>Giấy Chứng Nhận</strong>.</p>
+    <p>Dành riêng cho <strong>Đối Tác Nhượng Quyền</strong> và <strong>Quản Lý Cửa Hàng</strong> Phúc Tea.<br>Hoàn thành toàn bộ 5 bài học và bài kiểm tra tổng kết để nhận <strong>Giấy Chứng Nhận</strong>.</p>
     <div class="welcome-stats">
-      <div class="stat"><div class="stat-num">6</div><div class="stat-label">Bài học</div></div>
-      <div class="stat"><div class="stat-num">30</div><div class="stat-label">Câu hỏi</div></div>
-      <div class="stat"><div class="stat-num">70%</div><div class="stat-label">Điểm đạt/bài</div></div>
-      <div class="stat"><div class="stat-num">1'</div><div class="stat-label">Học tối thiểu/bài</div></div>
+      <div class="stat"><div class="stat-num">5</div><div class="stat-label">Bài học</div></div>
+      <div class="stat"><div class="stat-num">25</div><div class="stat-label">Câu hỏi/bài</div></div>
+      <div class="stat"><div class="stat-num">10</div><div class="stat-label">Câu tổng kết</div></div>
+      <div class="stat"><div class="stat-num">70%</div><div class="stat-label">Điểm đạt</div></div>
     </div>
     <div class="info-box">
       <strong>📌 Quy tắc:</strong><br>
-      • Mỗi bài học yêu cầu <strong>đọc tối thiểu 1 phút</strong> trước khi làm bài kiểm tra<br>
       • Mỗi bài có <strong>5 câu hỏi</strong> – cần đúng ≥ 4 câu (≥70%) để qua<br>
       • Chưa qua bài hiện tại → <strong>không thể học bài tiếp theo</strong><br>
-      • Hoàn thành 6/6 bài → nhận <strong>Giấy Chứng Nhận</strong>
+      • Hoàn thành 5/5 bài → mở <strong>Bài Kiểm Tra Tổng Kết (10 câu)</strong><br>
+      • Đạt tổng kết ≥70% → nhận <strong>Giấy Chứng Nhận</strong>
     </div>
     <button class="btn btn-primary" onclick="showLesson(0)" style="font-size:15px;padding:13px 36px">🚀 Bắt Đầu Học</button>
   </div>`;
@@ -1169,7 +1203,7 @@ function showResult(correct, pct, passed) {
 
   let nextBtn = '';
   if (passed) {
-    if (allDone) nextBtn = `<button class="btn btn-gold" onclick="makeCert()">🏆 Nhận Giấy Chứng Nhận</button>`;
+    if (allDone) nextBtn = `<button class="btn btn-gold" onclick="showFinalQuiz()">🏆 Làm Bài Kiểm Tra Tổng Kết →</button>`;
     else if (mi < LESSONS.length-1) nextBtn = `<button class="btn btn-primary" onclick="showLesson(${mi+1})">Học Bài Tiếp →</button>`;
   } else {
     nextBtn = `<button class="btn btn-primary" onclick="showLesson(${mi})">📖 Ôn Lại & Làm Lại</button>`;
@@ -1188,6 +1222,84 @@ function showResult(correct, pct, passed) {
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
       <button class="btn btn-secondary" onclick="showLesson(${mi})">📖 Xem Lại Bài</button>
       ${nextBtn}
+    </div>
+  </div>`;
+  renderSidebar();
+}
+
+// ─── FINAL QUIZ FUNCTIONS ──────────────────────────────────────
+function showFinalQuiz() {
+  if (!S.isAdmin && S.done.length < LESSONS.length) return;
+  S.view = 'finalquiz';
+  S.fqIndex = 0;
+  S.fqAnswers = new Array(FINAL_QUIZ.length).fill(null);
+  renderSidebar();
+  renderFinalQ();
+}
+
+function renderFinalQ() {
+  const qi = S.fqIndex;
+  const q = FINAL_QUIZ[qi];
+  const answered = S.fqAnswers[qi];
+  document.getElementById('mainContent').innerHTML = `
+  <div class="quiz-wrap">
+    <div class="quiz-header">
+      <div style="font-size:12px;opacity:.7;margin-bottom:4px">BÀI KIỂM TRA TỔNG KẾT – Câu ${qi+1}/${FINAL_QUIZ.length}</div>
+      <div class="q-progress-wrap"><div class="q-progress-fill" style="width:${(qi/FINAL_QUIZ.length)*100}%"></div></div>
+    </div>
+    <div class="question-text">${q.q}</div>
+    <div class="options-grid">
+      ${q.opts.map((o,i)=>`<button class="opt-btn${answered===i?' selected':''}" onclick="answerFinalQ(${i})">${String.fromCharCode(65+i)}. ${o}</button>`).join('')}
+    </div>
+    <div style="display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap">
+      ${qi>0?`<button class="btn btn-secondary" onclick="S.fqIndex--;renderFinalQ()">← Câu trước</button>`:''}
+      ${answered!==null ? (qi < FINAL_QUIZ.length-1
+        ? `<button class="btn btn-primary" onclick="S.fqIndex++;renderFinalQ()">Câu tiếp →</button>`
+        : `<button class="btn btn-gold" onclick="submitFinalQ()">✅ Nộp Bài Tổng Kết</button>`)
+        : ''}
+    </div>
+  </div>`;
+}
+
+function answerFinalQ(idx) {
+  S.fqAnswers[S.fqIndex] = idx;
+  renderFinalQ();
+}
+
+function submitFinalQ() {
+  const unanswered = S.fqAnswers.indexOf(null);
+  if (unanswered !== -1) { S.fqIndex = unanswered; renderFinalQ(); return; }
+  const correct = S.fqAnswers.filter((a,i) => a === FINAL_QUIZ[i].c).length;
+  const pct = Math.round(correct / FINAL_QUIZ.length * 100);
+  const passed = pct >= 70;
+  S.finalScore = { correct, pct, passed };
+  if (passed) { S.finalDone = true; if (!S.completedAt) S.completedAt = new Date(); }
+  renderSidebar();
+
+  const review = FINAL_QUIZ.map((q,i)=>{
+    const ok = S.fqAnswers[i] === q.c;
+    return `<div class="ans-row">
+      <div class="ans-icon">${ok?'✅':'❌'}</div>
+      <div><strong>Câu ${i+1}:</strong> ${q.q}<br>
+      <span style="font-size:12px;color:${ok?'#059669':'#dc2626'}">${ok?'Đúng: ':'Đáp án đúng: '}${q.opts[q.c]}</span>
+      ${!ok?`<br><span style="font-size:11px;color:#888">${q.exp}</span>`:''}
+      </div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('mainContent').innerHTML = `
+  <div class="result-card">
+    <div class="result-icon">${passed?'🏆':'😅'}</div>
+    <div class="result-score ${passed?'score-pass':'score-fail'}">${correct}/${FINAL_QUIZ.length}</div>
+    <div class="result-msg">${passed?'Xuất sắc! Bạn đã hoàn thành khóa học!':'Chưa đạt – hãy ôn lại và làm lại'}</div>
+    <div class="result-sub">
+      Bạn trả lời đúng <strong>${correct}/${FINAL_QUIZ.length} câu (${pct}%)</strong>.<br>
+      ${passed?'✅ Chúc mừng! Bạn đủ điều kiện nhận Giấy Chứng Nhận.':'❌ Cần ít nhất 7/10 câu đúng (≥70%). Hãy ôn lại kiến thức và làm lại.'}
+    </div>
+    <div class="ans-review"><h3 style="margin-bottom:10px;color:var(--green-deeper)">Chi tiết kết quả:</h3>${review}</div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-secondary" onclick="showFinalQuiz()">📖 Làm Lại Tổng Kết</button>
+      ${passed?`<button class="btn btn-gold" onclick="makeCert()">🏆 Nhận Giấy Chứng Nhận</button>`:''}
     </div>
   </div>`;
   renderSidebar();
@@ -1249,7 +1361,7 @@ function _certDiamond(ctx, x, y, s, color) {
   ctx.closePath(); ctx.fill();
 }
 
-function _certTrophy(ctx, cx, cy, gold, goldL) {
+function _certTrophy_UNUSED(ctx, cx, cy, gold, goldL) {
   // Cup body
   ctx.fillStyle = gold;
   ctx.beginPath();
@@ -1281,7 +1393,7 @@ function _certTrophy(ctx, cx, cy, gold, goldL) {
   });
 }
 
-function _certGeomDeco(ctx, cx, cy, gold, goldL) {
+function _certGeomDeco_UNUSED(ctx, cx, cy, gold, goldL) {
   [[44,30,0,0],[34,22,10,-10],[24,14,20,-22]].forEach(([w,h,ox,oy],i) => {
     ctx.save();
     ctx.translate(cx+ox, cy+oy);
@@ -1296,164 +1408,117 @@ function _certGeomDeco(ctx, cx, cy, gold, goldL) {
 
 function _finishCert(ctx, W, H, logoImg) {
   const st = S._certStats;
-  const navy='#0d1e3c', gold='#c8951c', goldL='#e8b84b', goldB='#f5d060', white='#fff';
+  const green='#1a6b42', greenD='#0f5c2b', greenL='#2ecc71', gold='#c8951c', goldL='#e8b84b', white='#fff', lightMint='#f0fbf4';
+  ctx.textAlign = 'center';
 
   // ── BACKGROUND ──
   ctx.fillStyle = white; ctx.fillRect(0, 0, W, H);
 
+  // ── OUTER BORDER (double line) ──
+  ctx.strokeStyle = green; ctx.lineWidth = 8;
+  ctx.strokeRect(14, 14, W-28, H-28);
+  ctx.strokeStyle = gold; ctx.lineWidth = 2;
+  ctx.strokeRect(24, 24, W-48, H-48);
+
   // ── TOP BAND ──
-  ctx.fillStyle = navy; ctx.fillRect(0, 0, W, 128);
-  ctx.fillStyle = gold; ctx.fillRect(0, 128, W, 4);
+  ctx.fillStyle = greenD; ctx.fillRect(14, 14, W-28, 114);
+  ctx.fillStyle = gold; ctx.fillRect(14, 128, W-28, 3);
 
-  // Top-left triangle decorations
-  ctx.fillStyle = gold;
-  ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(170,0); ctx.lineTo(0,128); ctx.fill();
-  ctx.fillStyle = goldB; ctx.globalAlpha=0.35;
-  ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(95,0); ctx.lineTo(0,75); ctx.fill();
-  ctx.globalAlpha=1;
-  ctx.fillStyle = goldL; ctx.globalAlpha=0.5;
-  ctx.beginPath(); ctx.moveTo(175,0); ctx.lineTo(220,0); ctx.lineTo(0,128); ctx.lineTo(0,128); ctx.fill();
-  ctx.globalAlpha=1;
-
-  // Top-right triangle decorations
-  ctx.fillStyle = gold;
-  ctx.beginPath(); ctx.moveTo(W,0); ctx.lineTo(W-170,0); ctx.lineTo(W,128); ctx.fill();
-  ctx.fillStyle = goldB; ctx.globalAlpha=0.35;
-  ctx.beginPath(); ctx.moveTo(W,0); ctx.lineTo(W-95,0); ctx.lineTo(W,75); ctx.fill();
-  ctx.globalAlpha=1;
-  ctx.fillStyle = goldL; ctx.globalAlpha=0.5;
-  ctx.beginPath(); ctx.moveTo(W-175,0); ctx.lineTo(W-220,0); ctx.lineTo(W,128); ctx.fill();
-  ctx.globalAlpha=1;
-
-  // ── LOGO centered in band ──
-  const lsz = 84;
+  // ── LOGO in band ──
+  const lsz = 90;
   if (logoImg) {
-    ctx.save();
-    ctx.beginPath(); ctx.arc(W/2, 62, lsz/2, 0, Math.PI*2); ctx.clip();
-    ctx.drawImage(logoImg, W/2-lsz/2, 62-lsz/2, lsz, lsz);
-    ctx.restore();
-    // White ring
-    ctx.strokeStyle = white; ctx.lineWidth = 2.5;
-    ctx.beginPath(); ctx.arc(W/2, 62, lsz/2+1, 0, Math.PI*2); ctx.stroke();
+    ctx.drawImage(logoImg, W/2-lsz/2, 14+(114-lsz)/2, lsz, lsz);
+  } else {
+    ctx.fillStyle = gold; ctx.font = 'bold 22px Arial';
+    ctx.fillText('PHÚC TEA', W/2, 80);
   }
-  // "PHUC TEA"
-  ctx.textAlign='center';
-  ctx.fillStyle = goldB; ctx.font='bold 15px Arial';
-  ctx.fillText('PHÚC TEA®', W/2, 112);
 
   // ── GIẤY CHỨNG NHẬN ──
-  ctx.fillStyle = navy; ctx.font='bold 50px Arial';
-  ctx.fillText('GIẤY CHỨNG NHẬN', W/2, 182);
+  ctx.fillStyle = greenD; ctx.font = 'bold 48px Arial';
+  ctx.fillText('GIẤY CHỨNG NHẬN', W/2, 194);
 
-  // ── HOÀN THÀNH + diamond decorators ──
-  const htY = 205;
-  ctx.fillStyle='#444'; ctx.font='14px Arial';
-  const htW2 = ctx.measureText('HOÀN THÀNH').width/2;
-  _certDiamond(ctx, W/2-htW2-24, htY, 5, gold);
-  ctx.strokeStyle=gold; ctx.lineWidth=1;
-  ctx.beginPath(); ctx.moveTo(W/2-htW2-16,htY); ctx.lineTo(W/2-htW2-2,htY); ctx.stroke();
-  ctx.fillText('HOÀN THÀNH', W/2, htY+5);
-  ctx.beginPath(); ctx.moveTo(W/2+htW2+2,htY); ctx.lineTo(W/2+htW2+16,htY); ctx.stroke();
-  _certDiamond(ctx, W/2+htW2+24, htY, 5, gold);
+  // Gold decorative lines
+  ctx.strokeStyle = gold; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(160, 208); ctx.lineTo(W-160, 208); ctx.stroke();
+  ctx.strokeStyle = '#ccc'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(200, 214); ctx.lineTo(W-200, 214); ctx.stroke();
 
-  // ── COURSE NAME BOX ──
-  const bxW=460, bxH=36, bxY=222;
-  ctx.fillStyle=navy;
-  ctx.beginPath(); ctx.roundRect(W/2-bxW/2, bxY, bxW, bxH, 18); ctx.fill();
-  ctx.fillStyle=white; ctx.font='bold 13px Arial';
-  ctx.fillText('KHÓA HỌC: '+COURSE_TITLE.toUpperCase(), W/2, bxY+24);
+  // ── SUBTITLE ──
+  ctx.fillStyle = '#666'; ctx.font = '14px Georgia,serif';
+  ctx.fillText('Trân trọng ghi nhận thành tích hoàn thành khóa học', W/2, 240);
 
-  // ── TÊN HỌC VIÊN ──
-  ctx.fillStyle=gold; ctx.font='bold 40px Arial';
-  ctx.fillText(S.userName.toUpperCase(), W/2, 305);
-  const nw=ctx.measureText(S.userName.toUpperCase()).width;
-  ctx.strokeStyle=gold; ctx.lineWidth=2;
-  ctx.beginPath(); ctx.moveTo(W/2-nw/2,315); ctx.lineTo(W/2+nw/2,315); ctx.stroke();
+  // ── COURSE NAME ──
+  ctx.fillStyle = greenD; ctx.font = 'bold 16px Arial';
+  ctx.fillText('"' + COURSE_TITLE + '"', W/2, 268);
+  ctx.fillStyle = '#999'; ctx.font = '12px Arial';
+  ctx.fillText('Hệ Thống Đào Tạo Phúc Tea – Chuỗi Cung Ứng 2026', W/2, 288);
 
-  // ── DIAMOND ROW ──
-  [-36,0,36].forEach(dx => _certDiamond(ctx, W/2+dx, 334, 5, gold));
+  // ── DIVIDER ──
+  ctx.strokeStyle = gold; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(160, 308); ctx.lineTo(W-160, 308); ctx.stroke();
 
-  // ── DESCRIPTION ──
-  ctx.fillStyle='#222'; ctx.font='14px Arial';
-  ctx.fillText(`Đã hoàn thành xuất sắc khóa học "${COURSE_TITLE}"`, W/2, 358);
-  ctx.fillStyle='#555'; ctx.font='13px Arial';
-  ctx.fillText('thuộc Hệ Thống Đào Tạo Phúc Tea - Chuỗi Cung Ứng 2026', W/2, 376);
+  // ── PRESENTED TO ──
+  ctx.fillStyle = '#999'; ctx.font = 'italic 13px Georgia,serif';
+  ctx.fillText('Chứng nhận trao cho', W/2, 338);
 
-  // ── STATS BOXES ──
-  const sY=398, sW=166, sH=52, sG=16;
-  const sTotal=4*sW+3*sG, sStart=W/2-sTotal/2;
-  const stats=[
-    [st.totalCorrect+'/'+st.totalQ,'Câu trả lời đúng'],
+  // ── STUDENT NAME ──
+  ctx.fillStyle = gold; ctx.font = 'bold 44px Georgia,serif';
+  ctx.fillText(S.userName.toUpperCase(), W/2, 392);
+  const nw = ctx.measureText(S.userName.toUpperCase()).width;
+  ctx.strokeStyle = gold; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(W/2-nw/2, 403); ctx.lineTo(W/2+nw/2, 403); ctx.stroke();
+
+  // Store
+  ctx.fillStyle = '#888'; ctx.font = '13px Arial';
+  ctx.fillText('Cửa hàng: ' + (S.userStore || ''), W/2, 425);
+
+  // ── DIVIDER ──
+  ctx.strokeStyle = '#ccc'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(160, 444); ctx.lineTo(W-160, 444); ctx.stroke();
+
+  // ── STATS ROW ──
+  const sY=454, sW=158, sH=48, sG=14;
+  const sStart = W/2 - (4*sW+3*sG)/2;
+  const stats = [
+    [st.totalCorrect+'/'+st.totalQ,'Câu đúng tổng cộng'],
     [st.avgPct+'%','Điểm trung bình'],
-    [st.duration||'—','Thời gian hoàn thành'],
-    ['6/6','Bài học']
+    [st.duration||'—','Thời gian học'],
+    ['5/5','Bài hoàn thành']
   ];
-  stats.forEach(([val,lbl],i)=>{
-    const bx=sStart+i*(sW+sG);
-    ctx.fillStyle='#e8f5ee';
-    ctx.beginPath(); ctx.roundRect(bx,sY,sW,sH,8); ctx.fill();
-    ctx.strokeStyle='#a8dbb9'; ctx.lineWidth=1; ctx.stroke();
-    ctx.fillStyle='#1a6b42'; ctx.font='bold 22px Arial';
-    ctx.fillText(val, bx+sW/2, sY+28);
-    ctx.fillStyle='#555'; ctx.font='10px Arial';
-    ctx.fillText(lbl, bx+sW/2, sY+44);
+  stats.forEach(([val,lbl],i) => {
+    const bx = sStart + i*(sW+sG);
+    ctx.fillStyle = lightMint;
+    ctx.beginPath(); ctx.roundRect(bx, sY, sW, sH, 6); ctx.fill();
+    ctx.strokeStyle = '#b2dfcb'; ctx.lineWidth = 1; ctx.stroke();
+    ctx.fillStyle = green; ctx.font = 'bold 20px Arial';
+    ctx.fillText(val, bx+sW/2, sY+26);
+    ctx.fillStyle = '#999'; ctx.font = '10px Arial';
+    ctx.fillText(lbl, bx+sW/2, sY+41);
   });
 
-  // ── DATE (no location) ──
+  // ── DATE ──
   const completedDate = st.completedAt || new Date().toLocaleDateString('vi-VN');
-  ctx.fillStyle='#888'; ctx.font='italic 13px Georgia,serif';
-  ctx.fillText('Ngày hoàn thành: ' + completedDate, W/2, 472);
-
-  // ── GOLD DIVIDER ──
-  ctx.strokeStyle=gold; ctx.lineWidth=1.5;
-  ctx.beginPath(); ctx.moveTo(150,488); ctx.lineTo(W-150,488); ctx.stroke();
-  _certDiamond(ctx, W/2, 488, 5, gold);
+  ctx.fillStyle = '#aaa'; ctx.font = 'italic 13px Georgia,serif';
+  ctx.fillText('Ngày hoàn thành: ' + completedDate, W/2, 524);
 
   // ── SIGNATURES ──
-  const sigY=510, lx=220, rx=W-220;
-  [lx,rx].forEach((x,i)=>{
-    // "Đã ký" italic
-    ctx.fillStyle=navy; ctx.font='italic 20px Georgia,serif';
+  const sigY=556, lx=210, rx=W-210;
+  [lx, rx].forEach((x, i) => {
+    ctx.fillStyle = greenD; ctx.font = 'italic 18px Georgia,serif';
     ctx.fillText('Đã ký', x, sigY);
-    // Underline
-    ctx.strokeStyle='#bbb'; ctx.lineWidth=1;
-    ctx.beginPath(); ctx.moveTo(x-65,sigY+20); ctx.lineTo(x+65,sigY+20); ctx.stroke();
-    ctx.fillStyle=navy; ctx.font='bold 14px Arial';
-    ctx.fillText(i===0?'Lý Tấn Tài':'Trần Thị Hạnh Nhân', x, sigY+38);
-    ctx.fillStyle='#666'; ctx.font='12px Arial';
-    ctx.fillText(i===0?'Giám đốc Điều Hành':'Quản lý Chuỗi Cung Ứng', x, sigY+54);
+    ctx.strokeStyle = '#ddd'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(x-70, sigY+14); ctx.lineTo(x+70, sigY+14); ctx.stroke();
+    ctx.fillStyle = greenD; ctx.font = 'bold 13px Arial';
+    ctx.fillText(i===0?'Lý Tấn Tài':'Trần Thị Hạnh Nhân', x, sigY+30);
+    ctx.fillStyle = '#aaa'; ctx.font = '11px Arial';
+    ctx.fillText(i===0?'Giám đốc Điều Hành':'Quản lý Chuỗi Cung Ứng', x, sigY+44);
   });
 
-  // ── GOLD SEAL ──
-  const scx=W/2, scy=sigY+28;
-  const sg=ctx.createRadialGradient(scx,scy,0,scx,scy,38);
-  sg.addColorStop(0,goldB); sg.addColorStop(.5,gold); sg.addColorStop(1,'#9a6b0a');
-  ctx.beginPath(); ctx.arc(scx,scy,38,0,Math.PI*2);
-  ctx.fillStyle=sg; ctx.fill();
-  ctx.strokeStyle=goldB; ctx.lineWidth=3;
-  ctx.beginPath(); ctx.arc(scx,scy,38,0,Math.PI*2); ctx.stroke();
-  ctx.strokeStyle=goldB; ctx.lineWidth=1;
-  ctx.beginPath(); ctx.arc(scx,scy,32,0,Math.PI*2); ctx.stroke();
-  ctx.fillStyle=white; ctx.font='bold 9px Arial';
-  ctx.fillText('PHÚC TEA',scx,scy-8);
-  ctx.font='8px Arial';
-  ctx.fillText('CHỨNG NHẬN',scx,scy+4);
-  ctx.fillText('HOÀN THÀNH',scx,scy+15);
-
   // ── BOTTOM BAND ──
-  ctx.fillStyle=gold; ctx.fillRect(0,H-52,W,4);
-  ctx.fillStyle=navy; ctx.fillRect(0,H-48,W,48);
-
-  // Bottom corner triangles
-  ctx.fillStyle=gold;
-  ctx.beginPath(); ctx.moveTo(0,H); ctx.lineTo(110,H); ctx.lineTo(0,H-80); ctx.fill();
-  ctx.beginPath(); ctx.moveTo(W,H); ctx.lineTo(W-110,H); ctx.lineTo(W,H-80); ctx.fill();
-
-  // ── LEFT TROPHY ──
-  _certTrophy(ctx, 68, 400, gold, goldL);
-
-  // ── RIGHT GEOMETRIC DECO ──
-  _certGeomDeco(ctx, W-58, 420, gold, goldL);
+  ctx.fillStyle = gold; ctx.fillRect(14, H-46, W-28, 3);
+  ctx.fillStyle = greenD; ctx.fillRect(14, H-43, W-28, 29);
+  ctx.fillStyle = white; ctx.font = '10px Arial';
+  ctx.fillText('PHÚC TEA® – HỆ THỐNG ĐÀO TẠO CHUỖI CUNG ỨNG 2026', W/2, H-24);
 }
 
 function dlCert() {
@@ -1474,7 +1539,7 @@ function printCert() {
 function showRegister() {
   S.view = 'register';
   document.getElementById('sidebar').innerHTML = '';
-  document.getElementById('progressText').textContent = '0/6 bài';
+  document.getElementById('progressText').textContent = '0/5 bài';
   document.getElementById('progressFill').style.width = '0%';
   document.getElementById('mainContent').innerHTML = `
   <div style="max-width:520px;margin:24px auto">
