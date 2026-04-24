@@ -52,7 +52,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--te
 /* HEADER */
 header{background:var(--green-deeper);color:#fff;padding:0 24px;display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.2);height:64px;}
 .logo-wrap{display:flex;align-items:center;gap:10px;flex-shrink:0;}
-.logo-img{height:46px;width:auto;object-fit:contain;background:#0f5c2b;border-radius:50%;padding:2px;}
+.logo-img{height:46px;width:auto;object-fit:contain;}
 .logo-fallback{font-size:20px;font-weight:900;letter-spacing:1px;color:#fff;}
 .logo-fallback span{color:var(--green);}
 header h1{font-size:15px;font-weight:700;opacity:.95;flex:1;line-height:1.3;}
@@ -84,7 +84,7 @@ header h1{font-size:15px;font-weight:700;opacity:.95;flex:1;line-height:1.3;}
 
 /* WELCOME */
 .welcome{background:#fff;border-radius:16px;padding:48px;text-align:center;box-shadow:0 2px 16px rgba(0,0,0,.06);max-width:700px;margin:0 auto;}
-.welcome-logo-big{height:90px;width:auto;margin-bottom:12px;background:#0f5c2b;border-radius:50%;padding:4px;}
+.welcome-logo-big{height:90px;width:auto;margin-bottom:12px;}
 .welcome h2{font-size:26px;color:var(--green-deeper);margin-bottom:6px;}
 .welcome h3{font-size:17px;color:var(--green-dark);margin-bottom:16px;font-weight:600;}
 .welcome p{color:var(--gray);line-height:1.8;margin-bottom:20px;font-size:14px;}
@@ -257,9 +257,7 @@ tr:hover td{background:#f9fafb;}
 
 <header>
   <div class="logo-wrap">
-    <img src="logo-phuc-tea.png" class="logo-img" alt="Phúc Tea"
-      onerror="this.style.display='none';document.getElementById('logoFallback').style.display='flex'">
-    <div class="logo-fallback" id="logoFallback" style="display:none">PHUC <span>TEA</span></div>
+    <img src="logo-phuc-tea.png" class="logo-img" alt="Phúc Tea">
   </div>
   <h1 id="headerTitle">Vận Hành Kho Tại Cửa Hàng – Phúc Tea 2026</h1>
   <div class="progress-header">
@@ -501,7 +499,76 @@ const LESSONS = [
   ]
 },
 {
-  id:2, icon:'📋',
+  id:2, icon:'📦',
+  title:'Số Lượng Đặt Hàng Tối Thiểu (MOQ)',
+  subtitle:'Quy cách nhập hàng từng sản phẩm',
+  content:`
+  <div class="section">
+    <h3>MOQ – Nguyên Liệu Độc Quyền</h3>
+    <div class="table-wrap"><table>
+      <tr><th>#</th><th>Tên hàng hóa</th><th>ĐVT</th><th>MOQ tối thiểu</th></tr>
+      <tr><td>1</td><td>Cà Phê Mộc 9:1</td><td>Kg</td><td><strong>2 kg</strong></td></tr>
+      <tr><td>2</td><td>Bột Pha Chế PT35</td><td>Thùng</td><td><strong>1 thùng</strong></td></tr>
+      <tr><td>3</td><td>Trà Đen Phúc Tea</td><td>Gói</td><td><strong>5 gói</strong></td></tr>
+      <tr><td>4</td><td>Trà Xanh Lài Phúc Tea</td><td>Gói</td><td><strong>1 gói</strong></td></tr>
+      <tr><td>5</td><td>Trà Oolong Phúc Tea 02</td><td>Gói</td><td><strong>1 gói</strong></td></tr>
+      <tr><td>6</td><td>Bột Socola Phúc Tea 02</td><td>Gói</td><td><strong>1 gói</strong></td></tr>
+      <tr><td>7</td><td>Trà Hòa Tan Vị Đào</td><td>Gói</td><td><strong>5 gói</strong></td></tr>
+      <tr><td>8</td><td>Trà Hòa Tan Vị Vải</td><td>Gói</td><td><strong>5 gói</strong></td></tr>
+      <tr><td>9</td><td>Trân Châu Giòn Phúc Tea</td><td>Thùng</td><td><strong>1 thùng (6 gói)</strong></td></tr>
+      <tr><td>10</td><td>Vải Tươi Ngâm Đường Phúc Tea</td><td>Thùng</td><td><strong>1 thùng (12 lon)</strong></td></tr>
+    </table></div>
+  </div>
+  <div class="section">
+    <h3>MOQ – Nguyên Liệu Không Độc Quyền</h3>
+    <div class="table-wrap"><table>
+      <tr><th>#</th><th>Tên hàng hóa</th><th>MOQ tối thiểu</th></tr>
+      <tr><td>12</td><td>Bột Milk Foam Phúc Tea</td><td><strong>1 gói</strong></td></tr>
+      <tr><td>13</td><td>Gelatine Đức/Pháp</td><td><strong>1 gói</strong></td></tr>
+      <tr><td>14</td><td>Syrup Đường Đen Luave</td><td><strong>1 can (6 can/thùng)</strong></td></tr>
+      <tr><td>15</td><td>Bột Matcha Đài Loan</td><td><strong>1 gói</strong></td></tr>
+      <tr><td>18</td><td>Hạt Chia Úc/Peru</td><td><strong>1 gói (1kg)</strong></td></tr>
+      <tr><td>19</td><td>Đào Ngâm Fresko 820gr</td><td><strong>1 thùng (12 lon)</strong></td></tr>
+      <tr><td>20</td><td>Sinh Tố Xoài Berrino</td><td><strong>1 chai (12 chai/thùng)</strong></td></tr>
+      <tr><td>23</td><td>Thạch Dừa Vải Casa 3,5kg</td><td><strong>1 thùng (4 hủ)</strong></td></tr>
+      <tr><td>24</td><td>Thạch Nha Đam</td><td><strong>5 gói (10 gói/thùng)</strong></td></tr>
+    </table></div>
+  </div>
+  <div class="section">
+    <h3>MOQ – Vật Liệu Bao Bì</h3>
+    <div class="table-wrap"><table>
+      <tr><th>#</th><th>Tên hàng hóa</th><th>MOQ tối thiểu</th></tr>
+      <tr><td>27</td><td>Combo Ly Giấy 600ml</td><td><strong>1 thùng (1.000 cái)</strong></td></tr>
+      <tr><td>28</td><td>Ly Nhựa 500ml In 2 Màu</td><td><strong>1 thùng (1.000 cái)</strong></td></tr>
+      <tr><td>29</td><td>Ly Nhựa 400ml In 5 Màu</td><td><strong>1 thùng (1.000 cái)</strong></td></tr>
+      <tr><td>33</td><td>Ly Nhựa 600ml In 1 Màu</td><td><strong>1 thùng (1.000 cái)</strong></td></tr>
+      <tr><td>37</td><td>Ống Hút Bọc Kiếng Phúc Tea</td><td><strong>5 kg/kiện</strong></td></tr>
+      <tr><td>38–39</td><td>Bịch 1 Ly / Bịch 2 Ly Phúc Tea</td><td><strong>5 kg/kiện</strong></td></tr>
+      <tr><td>40</td><td>Combo Xô 1 Lít</td><td><strong>1 thùng (300 cái)</strong></td></tr>
+      <tr><td>35</td><td>Cuộn Ép Màng Ly Phúc Tea</td><td><strong>1 cuộn</strong></td></tr>
+    </table></div>
+    <div class="highlight-box">💡 File theo dõi tồn kho Min/Max sẽ được bộ phận Operation tạo riêng cho từng cửa hàng.</div>
+  </div>`,
+  questions:[
+    {q:'MOQ của Cà Phê Mộc 9:1 là bao nhiêu?',
+     opts:['1 kg','2 kg','5 kg','1 thùng'],
+     c:1,exp:'MOQ Cà Phê Mộc 9:1 = 2 kg mỗi lần đặt.'},
+    {q:'Trân Châu Giòn Phúc Tea có MOQ là bao nhiêu?',
+     opts:['1 gói','3 gói','1 thùng (6 gói)','2 thùng'],
+     c:2,exp:'MOQ Trân Châu Giòn = 1 thùng = 6 gói.'},
+    {q:'Khi đặt Vải Tươi Ngâm Đường Phúc Tea, số lượng tối thiểu là?',
+     opts:['1 lon','6 lon','1 thùng (12 lon)','2 thùng (24 lon)'],
+     c:2,exp:'MOQ Vải Tươi Ngâm Đường = 1 thùng = 12 lon.'},
+    {q:'MOQ của các loại Ly Nhựa có in thương hiệu là?',
+     opts:['500 cái/thùng','1 thùng (1.000 cái)','200 cái','2.000 cái'],
+     c:1,exp:'Tất cả các loại Ly Nhựa in thương hiệu đều có MOQ = 1 thùng (1.000 cái).'},
+    {q:'Trà Đen, Trà Hòa Tan Vị Đào và Trà Hòa Tan Vị Vải có MOQ là bao nhiêu gói?',
+     opts:['1 gói','3 gói','5 gói','10 gói'],
+     c:2,exp:'Trà Đen, Trà Hòa Tan Vị Đào và Vải đều có MOQ = 5 gói/lần đặt.'}
+  ]
+},
+{
+  id:3, icon:'📋',
   title:'Quy Trình Đặt Hàng & KiotViet',
   subtitle:'8 bước + hướng dẫn thao tác chi tiết',
   content:`
@@ -767,75 +834,6 @@ const LESSONS = [
     {q:'Sau khi thanh toán, cửa hàng phải làm thêm bước nào?',
      opts:['Không cần làm gì thêm, kho tự biết','Chụp màn hình thanh toán và gửi vào nhóm Zalo kho','Gọi điện xác nhận với bộ phận kế toán','Đợi kho liên hệ trong vòng 3 ngày'],
      c:1,exp:'Phải chụp màn hình thanh toán và gửi vào nhóm Zalo kho. Thiếu bước này kho không xử lý đơn.'}
-  ]
-},
-{
-  id:3, icon:'📦',
-  title:'Số Lượng Đặt Hàng Tối Thiểu (MOQ)',
-  subtitle:'Quy cách nhập hàng từng sản phẩm',
-  content:`
-  <div class="section">
-    <h3>MOQ – Nguyên Liệu Độc Quyền</h3>
-    <div class="table-wrap"><table>
-      <tr><th>#</th><th>Tên hàng hóa</th><th>ĐVT</th><th>MOQ tối thiểu</th></tr>
-      <tr><td>1</td><td>Cà Phê Mộc 9:1</td><td>Kg</td><td><strong>2 kg</strong></td></tr>
-      <tr><td>2</td><td>Bột Pha Chế PT35</td><td>Thùng</td><td><strong>1 thùng</strong></td></tr>
-      <tr><td>3</td><td>Trà Đen Phúc Tea</td><td>Gói</td><td><strong>5 gói</strong></td></tr>
-      <tr><td>4</td><td>Trà Xanh Lài Phúc Tea</td><td>Gói</td><td><strong>1 gói</strong></td></tr>
-      <tr><td>5</td><td>Trà Oolong Phúc Tea 02</td><td>Gói</td><td><strong>1 gói</strong></td></tr>
-      <tr><td>6</td><td>Bột Socola Phúc Tea 02</td><td>Gói</td><td><strong>1 gói</strong></td></tr>
-      <tr><td>7</td><td>Trà Hòa Tan Vị Đào</td><td>Gói</td><td><strong>5 gói</strong></td></tr>
-      <tr><td>8</td><td>Trà Hòa Tan Vị Vải</td><td>Gói</td><td><strong>5 gói</strong></td></tr>
-      <tr><td>9</td><td>Trân Châu Giòn Phúc Tea</td><td>Thùng</td><td><strong>1 thùng (6 gói)</strong></td></tr>
-      <tr><td>10</td><td>Vải Tươi Ngâm Đường Phúc Tea</td><td>Thùng</td><td><strong>1 thùng (12 lon)</strong></td></tr>
-    </table></div>
-  </div>
-  <div class="section">
-    <h3>MOQ – Nguyên Liệu Không Độc Quyền</h3>
-    <div class="table-wrap"><table>
-      <tr><th>#</th><th>Tên hàng hóa</th><th>MOQ tối thiểu</th></tr>
-      <tr><td>12</td><td>Bột Milk Foam Phúc Tea</td><td><strong>1 gói</strong></td></tr>
-      <tr><td>13</td><td>Gelatine Đức/Pháp</td><td><strong>1 gói</strong></td></tr>
-      <tr><td>14</td><td>Syrup Đường Đen Luave</td><td><strong>1 can (6 can/thùng)</strong></td></tr>
-      <tr><td>15</td><td>Bột Matcha Đài Loan</td><td><strong>1 gói</strong></td></tr>
-      <tr><td>18</td><td>Hạt Chia Úc/Peru</td><td><strong>1 gói (1kg)</strong></td></tr>
-      <tr><td>19</td><td>Đào Ngâm Fresko 820gr</td><td><strong>1 thùng (12 lon)</strong></td></tr>
-      <tr><td>20</td><td>Sinh Tố Xoài Berrino</td><td><strong>1 chai (12 chai/thùng)</strong></td></tr>
-      <tr><td>23</td><td>Thạch Dừa Vải Casa 3,5kg</td><td><strong>1 thùng (4 hủ)</strong></td></tr>
-      <tr><td>24</td><td>Thạch Nha Đam</td><td><strong>5 gói (10 gói/thùng)</strong></td></tr>
-    </table></div>
-  </div>
-  <div class="section">
-    <h3>MOQ – Vật Liệu Bao Bì</h3>
-    <div class="table-wrap"><table>
-      <tr><th>#</th><th>Tên hàng hóa</th><th>MOQ tối thiểu</th></tr>
-      <tr><td>27</td><td>Combo Ly Giấy 600ml</td><td><strong>1 thùng (1.000 cái)</strong></td></tr>
-      <tr><td>28</td><td>Ly Nhựa 500ml In 2 Màu</td><td><strong>1 thùng (1.000 cái)</strong></td></tr>
-      <tr><td>29</td><td>Ly Nhựa 400ml In 5 Màu</td><td><strong>1 thùng (1.000 cái)</strong></td></tr>
-      <tr><td>33</td><td>Ly Nhựa 600ml In 1 Màu</td><td><strong>1 thùng (1.000 cái)</strong></td></tr>
-      <tr><td>37</td><td>Ống Hút Bọc Kiếng Phúc Tea</td><td><strong>5 kg/kiện</strong></td></tr>
-      <tr><td>38–39</td><td>Bịch 1 Ly / Bịch 2 Ly Phúc Tea</td><td><strong>5 kg/kiện</strong></td></tr>
-      <tr><td>40</td><td>Combo Xô 1 Lít</td><td><strong>1 thùng (300 cái)</strong></td></tr>
-      <tr><td>35</td><td>Cuộn Ép Màng Ly Phúc Tea</td><td><strong>1 cuộn</strong></td></tr>
-    </table></div>
-    <div class="highlight-box">💡 File theo dõi tồn kho Min/Max sẽ được bộ phận Operation tạo riêng cho từng cửa hàng.</div>
-  </div>`,
-  questions:[
-    {q:'MOQ của Cà Phê Mộc 9:1 là bao nhiêu?',
-     opts:['1 kg','2 kg','5 kg','1 thùng'],
-     c:1,exp:'MOQ Cà Phê Mộc 9:1 = 2 kg mỗi lần đặt.'},
-    {q:'Trân Châu Giòn Phúc Tea có MOQ là bao nhiêu?',
-     opts:['1 gói','3 gói','1 thùng (6 gói)','2 thùng'],
-     c:2,exp:'MOQ Trân Châu Giòn = 1 thùng = 6 gói.'},
-    {q:'Khi đặt Vải Tươi Ngâm Đường Phúc Tea, số lượng tối thiểu là?',
-     opts:['1 lon','6 lon','1 thùng (12 lon)','2 thùng (24 lon)'],
-     c:2,exp:'MOQ Vải Tươi Ngâm Đường = 1 thùng = 12 lon.'},
-    {q:'MOQ của các loại Ly Nhựa có in thương hiệu là?',
-     opts:['500 cái/thùng','1 thùng (1.000 cái)','200 cái','2.000 cái'],
-     c:1,exp:'Tất cả các loại Ly Nhựa in thương hiệu đều có MOQ = 1 thùng (1.000 cái).'},
-    {q:'Trà Đen, Trà Hòa Tan Vị Đào và Trà Hòa Tan Vị Vải có MOQ là bao nhiêu gói?',
-     opts:['1 gói','3 gói','5 gói','10 gói'],
-     c:2,exp:'Trà Đen, Trà Hòa Tan Vị Đào và Vải đều có MOQ = 5 gói/lần đặt.'}
   ]
 },
 {
