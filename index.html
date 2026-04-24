@@ -1490,21 +1490,13 @@ function _finishCert(ctx, W, H, logoImg) {
   }
   corner(false,false); corner(true,false); corner(false,true); corner(true,true);
 
+  // ── SHIFT CONTENT DOWN TO CENTER VERTICALLY ──
+  ctx.save();
+  ctx.translate(0, 50);
+
   // ── LOGO + BRAND NAME ──
-  const lsz = 56, logoX = W/2 - 75, logoY = 22;
-  // Green disc behind logo
-  ctx.fillStyle = '#0f5c2b';
-  ctx.beginPath(); ctx.arc(logoX+lsz/2, logoY+lsz/2, lsz/2+2, 0, Math.PI*2); ctx.fill();
+  const lsz = 56, logoX = W/2 - lsz/2, logoY = 22;
   if (logoImg) ctx.drawImage(logoImg, logoX, logoY, lsz, lsz);
-  // Brand text to right of logo
-  ctx.textAlign = 'left';
-  ctx.fillStyle = navy; ctx.font = 'bold 22px Arial';
-  ctx.fillText('PHUC', logoX+lsz+10, logoY+26);
-  ctx.fillStyle = gold; ctx.font = 'bold 22px Arial';
-  ctx.fillText('TEA', logoX+lsz+58, logoY+26);
-  ctx.fillStyle = '#888'; ctx.font = '10px Arial';
-  ctx.fillText('®', logoX+lsz+104, logoY+18);
-  ctx.textAlign = 'center';
 
   // ── GIẤY CHỨNG NHẬN ──
   ctx.fillStyle = navy; ctx.font = 'bold 52px Arial';
@@ -1607,6 +1599,8 @@ function _finishCert(ctx, W, H, logoImg) {
     ctx.fillStyle=i%2===0?gold:goldL; ctx.globalAlpha=0.85;
     ctx.beginPath(); ctx.roundRect(-w/2,-h/2,w,h,3); ctx.fill(); ctx.restore();
   }); ctx.globalAlpha=1;
+
+  ctx.restore(); // end vertical shift
 
   // ── BOTTOM BAND ──
   ctx.fillStyle=gold; ctx.fillRect(0,H-52,W,3);
