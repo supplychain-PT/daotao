@@ -1008,7 +1008,18 @@ function renderSidebar() {
           <div class="li-status">${fqStatus}</div>
         </div>
       </div>`;
-    })();
+    })() +
+    ((S.isAdmin || S.finalDone) ? (() => {
+      const isActiveCert = S.view === 'cert';
+      let cls = 'lesson-item' + (isActiveCert ? ' active' : ' done');
+      return `<div class="${cls}" onclick="makeCert()" style="border-top:1px solid #e2f0e8;margin-top:4px;padding-top:14px">
+        <div class="li-icon" style="font-size:14px;background:#fff3cd;color:#856404">🎓</div>
+        <div class="li-info">
+          <div class="li-name">🎓 Giấy Chứng Nhận</div>
+          <div class="li-status" style="color:#856404">${isActiveCert ? 'Đang xem' : 'Xem / Tải về'}</div>
+        </div>
+      </div>`;
+    })() : '');
   const totalDone = S.done.length + (S.finalDone ? 1 : 0);
   const pct = (S.done.length / LESSONS.length) * 100;
   document.getElementById('progressText').textContent = `${S.done.length}/5 bài`;
@@ -1016,7 +1027,7 @@ function renderSidebar() {
 }
 
 function navTo(i) {
-  if (i > 0 && !S.done.includes(i - 1)) return;
+  if (!S.isAdmin && i > 0 && !S.done.includes(i - 1)) return;
   S.lesson = i;
   showLesson(i);
 }
@@ -1670,7 +1681,18 @@ function submitRegister() {
 // ─── ADMIN PANEL ──────────────────────────────────────────────
 function adminPreview() {
   S.isAdmin = true;
-  S.userName = S.userName || 'Admin';
+  S.userName = S.userName || 'Quản Trị Viên';
+  S.userStore = S.userStore || 'Cửa hàng Demo';
+  // Pre-fill toàn bộ tiến độ để admin xem tự do
+  S.done = LESSONS.map((_,i) => i);
+  S.scores = {};
+  LESSONS.forEach((_,i) => { S.scores[i] = {correct:5, pct:100, passed:true}; });
+  S.finalDone = true;
+  S.finalScore = {correct:10, pct:100, passed:true};
+  S.fqAnswers = FINAL_QUIZ.map(q => q.c);
+  S.fqIndex = 0;
+  if (!S.courseStart) S.courseStart = new Date(Date.now() - 3600000);
+  if (!S.completedAt) S.completedAt = new Date();
   showLesson(0);
 }
 
