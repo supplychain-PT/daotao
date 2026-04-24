@@ -1490,13 +1490,13 @@ function _finishCert(ctx, W, H, logoImg) {
   }
   corner(false,false); corner(true,false); corner(false,true); corner(true,true);
 
-  // ── SHIFT CONTENT DOWN TO CENTER VERTICALLY ──
-  ctx.save();
-  ctx.translate(0, 50);
-
-  // ── LOGO + BRAND NAME ──
-  const lsz = 112, logoX = W/2 - lsz/2, logoY = 16;
+  // ── LOGO (absolute – không bị đè bởi text) ──
+  const lsz = 100, logoX = W/2 - lsz/2, logoY = 10;
   if (logoImg) ctx.drawImage(logoImg, logoX, logoY, lsz, lsz);
+
+  // ── SHIFT TEXT CONTENT DOWN ──
+  ctx.save();
+  ctx.translate(0, 70);
 
   // ── GIẤY CHỨNG NHẬN ──
   ctx.fillStyle = navy; ctx.font = 'bold 52px Arial';
