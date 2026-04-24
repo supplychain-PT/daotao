@@ -1491,7 +1491,7 @@ function _finishCert(ctx, W, H, logoImg) {
   corner(false,false); corner(true,false); corner(false,true); corner(true,true);
 
   // ── LOGO (absolute – không bị đè bởi text) ──
-  const lsz = 100, logoX = W/2 - lsz/2, logoY = 10;
+  const lsz = 100, logoX = W/2 - lsz/2, logoY = 48;
   if (logoImg) ctx.drawImage(logoImg, logoX, logoY, lsz, lsz);
 
   // ── SHIFT TEXT CONTENT DOWN ──
