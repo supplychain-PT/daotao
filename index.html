@@ -1702,10 +1702,15 @@ function exitAdmin() {
 }
 
 function showAdmin() {
-  const pwd = prompt('Nhập mật khẩu admin:');
-  if (pwd !== ADMIN_PASSWORD) { alert('Sai mật khẩu!'); showRegister(); return; }
-  S.isAdmin = true;
+  if (!S.isAdmin) {
+    const pwd = prompt('Nhập mật khẩu admin:');
+    if (pwd !== ADMIN_PASSWORD) { alert('Sai mật khẩu!'); showRegister(); return; }
+    S.isAdmin = true;
+  }
+  _renderAdmin();
+}
 
+function _renderAdmin() {
   const all = JSON.parse(localStorage.getItem('phuctea_learners') || '[]');
   const total = all.length;
   const done  = all.filter(r => r.status.includes('hoàn thành')).length;
@@ -1891,13 +1896,13 @@ function deleteEntry(idx) {
   const all = JSON.parse(localStorage.getItem('phuctea_learners') || '[]');
   all.splice(idx, 1);
   localStorage.setItem('phuctea_learners', JSON.stringify(all));
-  showAdmin();
+  _renderAdmin();
 }
 
 function clearAll() {
   if (!confirm('Xoá toàn bộ dữ liệu học viên? Không thể hoàn tác!')) return;
   localStorage.removeItem('phuctea_learners');
-  showAdmin();
+  _renderAdmin();
 }
 
 function exportCSV() {
