@@ -425,6 +425,7 @@ const LESSONS = [
       <tr><td>10</td><td>Vải Tươi Ngâm Đường Phúc Tea</td><td>Thùng</td><td>390.000đ</td></tr>
     </table></div>
     <div class="highlight-box warn">⚠️ Khi có điều chỉnh giá NVL Độc Quyền, hệ thống thông báo trước <strong>15 ngày</strong>.</div>
+    <div class="highlight-box" style="background:#fff8e1;border-color:#ffe082">🚚 Giá <strong>Nhóm Nguyên Liệu</strong> (NVL Độc Quyền & Không Độc Quyền) <strong>chưa bao gồm phí vận chuyển</strong>.</div>
   </div>
   <div class="section">
     <h3>2. Nguyên Liệu Không Độc Quyền</h3>
@@ -479,6 +480,7 @@ const LESSONS = [
         </td>
       </tr>
     </table></div>
+    <div class="highlight-box" style="background:#e8f5ee;border-color:#a8dbb9">🚚 Giá <strong>Nhóm Vật Liệu Bao Bì</strong> <strong>đã bao gồm phí vận chuyển</strong>.</div>
   </div>`,
   questions:[
     {q:'"NVL Độc Quyền" trong hệ thống Phúc Tea là gì?',
@@ -495,7 +497,10 @@ const LESSONS = [
      c:2,exp:'NL Không Độc Quyền có giá linh hoạt theo thị trường. Cần kiểm tra giá trực tiếp trên KiotViet trước khi đặt.'},
     {q:'Khi NVL Độc Quyền điều chỉnh giá, hệ thống thông báo trước bao nhiêu ngày?',
      opts:['7 ngày','10 ngày','15 ngày','30 ngày'],
-     c:2,exp:'Hệ thống cam kết thông báo trước 15 ngày để cửa hàng chủ động tài chính.'}
+     c:2,exp:'Hệ thống cam kết thông báo trước 15 ngày để cửa hàng chủ động tài chính.'},
+    {q:'Phí vận chuyển được tính như thế nào trong bảng giá?',
+     opts:['Cả nguyên liệu lẫn vật liệu đều đã bao gồm phí ship','Nguyên liệu đã bao gồm, vật liệu chưa bao gồm','Nguyên liệu chưa bao gồm phí ship; vật liệu bao bì đã bao gồm phí ship','Tất cả đều chưa bao gồm, tính riêng sau'],
+     c:2,exp:'Nhóm nguyên liệu (NVL Độc Quyền & Không Độc Quyền): giá chưa bao gồm phí vận chuyển. Nhóm vật liệu bao bì: giá đã bao gồm phí vận chuyển.'}
   ]
 },
 {
@@ -1104,7 +1109,7 @@ function showLesson(idx) {
 function startQuiz(idx) {
   S.view = 'quiz'; S.lesson = idx;
   S.qIndex = 0;
-  S.qAnswers = new Array(5).fill(null);
+  S.qAnswers = new Array(LESSONS[idx].questions.length).fill(null);
   renderSidebar();
   renderQ();
 }
@@ -1184,14 +1189,14 @@ function restoreQ(qi) {
   fb.innerHTML = ok
     ? `✅ <strong>Chính xác!</strong> ${q.exp}`
     : `❌ <strong>Chưa đúng.</strong> Đáp án đúng: <strong>${q.opts[q.c]}</strong>. ${q.exp}`;
-  const isLast = qi===4;
+  const isLast = qi === LESSONS[S.lesson].questions.length - 1;
   const prev = qi>0?`<button class="btn btn-secondary" style="margin-right:8px" onclick="prevQ()">← Câu trước</button>`:'';
   document.getElementById('navRight').innerHTML = prev+(isLast
     ?`<button class="btn btn-primary" onclick="submitQuiz()">Nộp Bài ✓</button>`
     :`<button class="btn btn-primary" onclick="nextQ()">Câu Tiếp →</button>`);
 }
 
-function nextQ() { if (S.qIndex < 4) { S.qIndex++; renderQ(); } }
+function nextQ() { if (S.qIndex < LESSONS[S.lesson].questions.length - 1) { S.qIndex++; renderQ(); } }
 function prevQ() { if (S.qIndex > 0) { S.qIndex--; renderQ(); } }
 
 function submitQuiz() {
@@ -1199,7 +1204,7 @@ function submitQuiz() {
   if (unanswered !== -1) { S.qIndex = unanswered; renderQ(); return; }
   const l = LESSONS[S.lesson];
   const correct = S.qAnswers.filter((a,i) => a === l.questions[i].c).length;
-  const pct = correct / 5 * 100;
+  const pct = correct / l.questions.length * 100;
   const passed = pct >= 70;
   S.scores[S.lesson] = { correct, pct, passed };
   if (passed && !S.done.includes(S.lesson)) S.done.push(S.lesson);
@@ -1233,11 +1238,11 @@ function showResult(correct, pct, passed) {
   document.getElementById('mainContent').innerHTML = `
   <div class="result-card">
     <div class="result-icon">${passed?'🎉':'😅'}</div>
-    <div class="result-score ${passed?'score-pass':'score-fail'}">${correct}/5</div>
+    <div class="result-score ${passed?'score-pass':'score-fail'}">${correct}/${l.questions.length}</div>
     <div class="result-msg">${passed?'Xuất sắc! Bạn đã qua bài này!':'Chưa đạt – cần ôn lại và làm lại'}</div>
     <div class="result-sub">
-      Bạn trả lời đúng <strong>${correct}/5 câu (${pct.toFixed(0)}%)</strong>.<br>
-      ${passed?'✅ Điểm đạt yêu cầu ≥70%.':'❌ Cần ít nhất 4/5 câu đúng. Hãy đọc kỹ lý thuyết trước khi làm lại.'}
+      Bạn trả lời đúng <strong>${correct}/${l.questions.length} câu (${pct.toFixed(0)}%)</strong>.<br>
+      ${passed?'✅ Điểm đạt yêu cầu ≥70%.':` ❌ Cần ít nhất ${Math.ceil(l.questions.length*0.7)}/${l.questions.length} câu đúng. Hãy đọc kỹ lý thuyết trước khi làm lại.`}
     </div>
     <div class="ans-review"><h3 style="margin-bottom:10px;color:var(--green-deeper)">Chi tiết kết quả:</h3>${review}</div>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
