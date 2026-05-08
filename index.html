@@ -1367,7 +1367,7 @@ function makeCert() {
 
   // Tính tổng điểm & thời gian
   const totalCorrect = Object.values(S.scores).reduce((a,b)=>a+(b.correct||0),0);
-  const totalQ = LESSONS.length * 5;
+  const totalQ = LESSONS.reduce((sum, l) => sum + l.questions.length, 0);
   const avgPct = Math.round(totalCorrect / totalQ * 100);
   let duration = '';
   if (S.courseStart && S.completedAt) {
