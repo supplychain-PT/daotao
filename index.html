@@ -1784,6 +1784,7 @@ function _renderAdmin() {
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
           <button class="btn btn-primary" onclick="exportCSV()">⬇️ Xuất CSV</button>
+          <button class="btn btn-primary" style="background:#0f5c2b" onclick="syncAllToSheets()">📤 Sync → Google Sheets</button>
           <button class="btn btn-primary" style="background:#1b3461" onclick="adminPreview()">👁️ Xem Khóa Học</button>
           <button class="btn btn-secondary" onclick="clearAll()">🗑️ Xoá Tất Cả</button>
           <button class="btn btn-secondary" onclick="exitAdmin()">← Thoát Admin</button>
@@ -1914,6 +1915,27 @@ function clearAll() {
   _renderAdmin();
 }
 
+function syncAllToSheets() {
+  if (!WEBHOOK_URL) { alert('Chưa cấu hình WEBHOOK_URL!'); return; }
+  const all = JSON.parse(localStorage.getItem('phuctea_learners') || '[]');
+  if (!all.length) { alert('Không có dữ liệu trong trình duyệt này.'); return; }
+  let sent = 0;
+  all.forEach(r => {
+    const event = r.status && r.status.includes('hoàn thành') ? 'complete' : 'register';
+    fetch(WEBHOOK_URL, {
+      method: 'POST',
+      body: JSON.stringify({
+        event, time: r.time, name: r.name, store: r.store,
+        score: r.score, duration: r.duration, completedAt: r.completedAt
+      })
+    }).catch(() => {});
+    r._synced = true;
+    sent++;
+  });
+  localStorage.setItem('phuctea_learners', JSON.stringify(all));
+  alert(`✅ Đã gửi ${sent} bản ghi lên Google Sheets!`);
+}
+
 function exportCSV() {
   const all = JSON.parse(localStorage.getItem('phuctea_learners') || '[]');
   if (!all.length) { alert('Chưa có dữ liệu!'); return; }
@@ -1926,6 +1948,27 @@ function exportCSV() {
   a.download = `phuctea-hocvien-${new Date().toISOString().slice(0,10)}.csv`;
   a.click();
 }
+
+// ─── SYNC DỮ LIỆU CŨ LÊN GOOGLE SHEETS ───────────────────────
+function syncOldData() {
+  if (!WEBHOOK_URL) return;
+  const all = JSON.parse(localStorage.getItem('phuctea_learners') || '[]');
+  const unsynced = all.filter(r => !r._synced);
+  if (!unsynced.length) return;
+  unsynced.forEach(r => {
+    const event = r.status && r.status.includes('hoàn thành') ? 'complete' : 'register';
+    fetch(WEBHOOK_URL, {
+      method: 'POST',
+      body: JSON.stringify({
+        event, time: r.time, name: r.name, store: r.store,
+        score: r.score, duration: r.duration, completedAt: r.completedAt
+      })
+    }).catch(() => {});
+    r._synced = true;
+  });
+  localStorage.setItem('phuctea_learners', JSON.stringify(all));
+}
+syncOldData();
 
 // ─── INIT ─────────────────────────────────────────────────────
 if (location.hash === '#admin') showAdmin();
