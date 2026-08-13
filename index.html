@@ -1861,7 +1861,7 @@ function drawCert() {
   const img = new Image();
   img.onload  = () => _finishCert(ctx, W, H, img);
   img.onerror = () => _finishCert(ctx, W, H, null);
-  img.src = 'logo-phuc-tea.png';
+  img.src = (BRANDS[S.brand] || BRANDS.phuctea).logo;
 }
 
 function _certDiamond(ctx, x, y, s, color) {
@@ -1918,7 +1918,17 @@ function _certGeomDeco_UNUSED(ctx, cx, cy, gold, goldL) {
 
 function _finishCert(ctx, W, H, logoImg) {
   const st = S._certStats;
-  const navy='#1a3161', navyD='#0d1b3e', gold='#c8951c', goldL='#e8b84b', goldB='#f5d060', white='#fff', mint='#e8f5ee', mintB='#a8dbb9';
+  const isTH = S.brand === 'thehoa';
+  const navy   = isTH ? '#9c3d47' : '#1a3161';
+  const navyD  = isTH ? '#7a2d37' : '#0d1b3e';
+  const gold='#c8951c', goldL='#e8b84b', goldB='#f5d060', white='#fff';
+  const mint   = isTH ? '#fff0f2' : '#e8f5ee';
+  const mintB  = isTH ? '#f5c0c8' : '#a8dbb9';
+  const mintTxt= isTH ? '#9c3d47' : '#1a6b42';
+  const sealLbl= isTH ? 'THE HOA' : 'PHÚC TEA';
+  const brandDesc = isTH
+    ? 'Hệ Thống Đào Tạo The Hoa - Chuỗi Cung Ứng 2026'
+    : 'Hệ Thống Đào Tạo Phúc Tea - Chuỗi Cung Ứng 2026';
   ctx.textAlign = 'center';
 
   // ── BACKGROUND ──
@@ -1994,7 +2004,7 @@ function _finishCert(ctx, W, H, logoImg) {
   ctx.fillStyle='#333'; ctx.font='13px Arial';
   ctx.fillText(`Đã hoàn thành xuất sắc khóa học "${COURSE_TITLE}"`, W/2, 310);
   ctx.fillStyle='#666'; ctx.font='12px Arial';
-  ctx.fillText('thuộc Hệ Thống Đào Tạo Phúc Tea - Chuỗi Cung Ứng 2026', W/2, 328);
+  ctx.fillText(brandDesc, W/2, 328);
 
   // ── STATS BOXES ──
   const sY=344, sW=162, sH=48, sG=14;
@@ -2003,7 +2013,7 @@ function _finishCert(ctx, W, H, logoImg) {
     const bx=sStart+i*(sW+sG);
     ctx.fillStyle=mint; ctx.beginPath(); ctx.roundRect(bx,sY,sW,sH,8); ctx.fill();
     ctx.strokeStyle=mintB; ctx.lineWidth=1; ctx.stroke();
-    ctx.fillStyle='#1a6b42'; ctx.font='bold 20px Arial'; ctx.fillText(v,bx+sW/2,sY+26);
+    ctx.fillStyle=mintTxt; ctx.font='bold 20px Arial'; ctx.fillText(v,bx+sW/2,sY+26);
     ctx.fillStyle='#555'; ctx.font='10px Arial'; ctx.fillText(l,bx+sW/2,sY+41);
   });
 
@@ -2035,7 +2045,7 @@ function _finishCert(ctx, W, H, logoImg) {
   ctx.strokeStyle=goldB; ctx.lineWidth=3; ctx.beginPath(); ctx.arc(scx,scy,36,0,Math.PI*2); ctx.stroke();
   ctx.strokeStyle=goldB; ctx.lineWidth=1; ctx.beginPath(); ctx.arc(scx,scy,30,0,Math.PI*2); ctx.stroke();
   ctx.fillStyle=white; ctx.font='bold 8px Arial';
-  ctx.fillText('PHÚC TEA',scx,scy-6); ctx.fillText('CHỨNG NHẬN',scx,scy+5); ctx.fillText('HOÀN THÀNH',scx,scy+15);
+  ctx.fillText(sealLbl,scx,scy-6); ctx.fillText('CHỨNG NHẬN',scx,scy+5); ctx.fillText('HOÀN THÀNH',scx,scy+15);
 
   // ── TROPHY (left) ──
   function trophy(cx,cy){
