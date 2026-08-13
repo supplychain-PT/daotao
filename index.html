@@ -956,11 +956,11 @@ const LESSONS = [
       <tr><td>Phản hồi ban đầu</td><td><strong>30–60 phút</strong></td></tr>
       <tr><td>Tiếp nhận & đánh giá</td><td><strong>Trong vòng 24 giờ</strong></td></tr>
       <tr><td>Khi phát hiện lỗi</td><td>⚡ <strong>Báo ngay</strong> vào nhóm Zalo kho – không chờ</td></tr>
-      <tr><td>Thời hạn tối đa báo lỗi</td><td><strong>3 ngày</strong> kể từ khi nhận hàng</td></tr>
+      <tr><td>Thời hạn tối đa báo lỗi</td><td><strong>2 ngày</strong> kể từ ngày nhận biên nhận, hoặc <strong>1 ngày</strong> kể từ ngày nhận hàng</td></tr>
       <tr><td>Phản hồi tình trạng sản phẩm</td><td><strong>Trong vòng 3 ngày</strong> làm việc</td></tr>
       <tr><td>Đổi trả sản phẩm lỗi</td><td><strong>Tối đa 3 ngày</strong> sau khi xác nhận</td></tr>
     </table></div>
-    <div class="highlight-box warn">⚠️ <strong>Phát hiện lỗi → báo ngay</strong>, không chờ đủ 3 ngày. Quá <strong>3 ngày</strong> kể từ khi nhận hàng mà chưa báo → hệ thống có thể không xử lý được yêu cầu đổi trả.</div>
+    <div class="highlight-box warn">⚠️ <strong>Phát hiện lỗi → báo ngay</strong>. Thời hạn tối đa: <strong>2 ngày</strong> kể từ ngày nhận biên nhận hoặc <strong>1 ngày</strong> kể từ ngày nhận hàng. Quá hạn → hệ thống có thể không xử lý được yêu cầu đổi trả.</div>
   </div>
   <div class="section">
     <h3>5. Giờ Làm Việc & Liên Hệ</h3>
@@ -985,9 +985,9 @@ const LESSONS = [
     {q:'Bước ĐẦU TIÊN khi xử lý sự cố nguyên liệu là gì?',
      opts:['Liên hệ điện thoại ngay','Chụp hình/quay video sản phẩm lỗi','Trả lại toàn bộ hàng','Yêu cầu bồi thường bằng văn bản'],
      c:1,exp:'Bước 1 là chụp hình/video sản phẩm lỗi để có bằng chứng trước khi báo cáo.'},
-    {q:'Thời hạn báo lỗi sau khi nhận hàng là bao nhiêu ngày?',
-     opts:['1 ngày','3 ngày','7 ngày','14 ngày'],
-     c:1,exp:'Thời hạn báo lỗi là 3 ngày kể từ khi nhận hàng. Quá hạn hệ thống có thể không xử lý được.'},
+    {q:'Thời hạn tối đa báo hàng lỗi kể từ ngày nhận hàng là bao nhiêu?',
+     opts:['1 ngày','2 ngày','3 ngày','7 ngày'],
+     c:0,exp:'Thời hạn tối đa báo hàng lỗi là 1 ngày kể từ ngày nhận hàng, hoặc 2 ngày kể từ ngày nhận được biên nhận.'},
     {q:'Sau khi hệ thống đưa ra hướng xử lý sự cố (đổi hàng/bồi thường), bước cuối cùng của quy trình xử lý là gì?',
      opts:['Kho tự đóng hồ sơ sự cố','Cửa Hàng xác nhận phương án xử lý','Gửi lại hình ảnh bằng chứng lần hai','Lập biên bản thiệt hại bằng văn bản'],
      c:1,exp:'Bước 5 – Cửa Hàng xác nhận phương án xử lý do hệ thống đề xuất. Đây là bước đóng hồ sơ sự cố chính thức.'}
@@ -998,8 +998,8 @@ const LESSONS = [
 // ─── FINAL QUIZ (10 câu tổng kết) ─────────────────────────────
 const FINAL_QUIZ = [
   {q:'Cửa hàng nhận hàng và phát hiện thiếu 2 gói Trà Oolong so với biên nhận. Theo SOP, bước xử lý ĐÚNG là gì?',
-   opts:['Chấp nhận và đặt bù đơn tiếp theo','Từ chối toàn bộ lô hàng ngay tại chỗ','Chụp hình lô hàng và báo ngay vào nhóm Zalo kho trong 3 ngày','Liên hệ đơn vị vận chuyển đòi bồi thường'],
-   c:2,exp:'Khi nhận hàng thiếu/lỗi, phải chụp hình và báo nhóm Zalo kho trong 3 ngày. Không tự xử lý hay liên hệ vận chuyển.'},
+   opts:['Chấp nhận và đặt bù đơn tiếp theo','Từ chối toàn bộ lô hàng ngay tại chỗ','Chụp hình lô hàng và báo ngay vào nhóm Zalo kho (trong 1 ngày kể từ nhận hàng)','Liên hệ đơn vị vận chuyển đòi bồi thường'],
+   c:2,exp:'Khi nhận hàng thiếu/lỗi, phải chụp hình và báo nhóm Zalo kho ngay – trong 1 ngày kể từ ngày nhận hàng. Không tự xử lý hay liên hệ vận chuyển.'},
   {q:'Trách nhiệm nào sau đây KHÔNG thuộc về Cửa Hàng/ĐTNQ theo SOP Chuỗi Cung Ứng?',
    opts:['Chủ động lập kế hoạch đặt hàng định kỳ','Kiểm tra hàng hóa khi nhận theo biên nhận','Chuẩn bị hàng, xuất kho và gửi biên nhận cho cửa hàng','Thanh toán đúng hạn theo quy định'],
    c:2,exp:'Chuẩn bị hàng, xuất kho và gửi biên nhận là trách nhiệm của bộ phận Chuỗi Cung Ứng – không phải Cửa Hàng.'},
@@ -1022,8 +1022,8 @@ const FINAL_QUIZ = [
    opts:['Thứ Tư tuần sau (5 ngày làm việc)','Thứ Năm tuần sau (5 ngày làm việc không tính T7-CN)','Thứ Sáu tuần sau (7 ngày làm việc)','Thứ Hai tuần sau vì cần đủ 5 ngày'],
    c:1,exp:'Miền Nam: 5–7 ngày làm việc. Tính từ Thứ Sáu: T2+T3+T4+T5+T6 = 5 ngày làm việc → sớm nhất là Thứ Năm tuần sau (không tính T7-CN).'},
   {q:'Nhân viên phát hiện 3 gói Trà Xanh Lài bị ẩm sau khi nhận hàng 4 ngày. Kết quả xử lý theo SOP sẽ như thế nào?',
-   opts:['Được đổi hàng vì còn trong tuần','Hệ thống có thể từ chối vì đã quá thời hạn báo lỗi 3 ngày','Được bồi thường vì lỗi vận chuyển','Phải gửi sản phẩm về kho để kiểm tra'],
-   c:1,exp:'Thời hạn báo lỗi là 3 ngày kể từ khi nhận hàng. Quá 3 ngày, hệ thống có thể không xử lý được yêu cầu đổi trả.'},
+   opts:['Được đổi hàng vì còn trong tuần','Hệ thống có thể từ chối vì đã quá thời hạn báo lỗi 1 ngày kể từ nhận hàng','Được bồi thường vì lỗi vận chuyển','Phải gửi sản phẩm về kho để kiểm tra'],
+   c:1,exp:'Thời hạn tối đa báo hàng lỗi là 1 ngày kể từ ngày nhận hàng. Nhận hàng 4 ngày chưa báo là đã quá hạn – hệ thống có thể không xử lý được yêu cầu đổi trả.'},
   {q:'Khi gửi báo cáo sự cố lên group nguyên liệu, thông tin nào là ĐẦY ĐỦ và ĐÚNG theo SOP?',
    opts:['Chỉ cần ghi tên sản phẩm bị lỗi','Gọi điện trực tiếp cho phụ trách kho','Hình ảnh/video + tên sản phẩm + số lượng lỗi + mô tả chi tiết lỗi','Gửi email kèm hóa đơn nhập hàng'],
    c:2,exp:'Theo SOP, khi báo lỗi phải gửi đầy đủ: hình ảnh/video + tên sản phẩm + số lượng lỗi + mô tả lỗi vào group nguyên liệu.'}
@@ -1338,10 +1338,10 @@ const LESSONS_TH = [
       <tr><th>Mốc thời gian</th><th>Quy định</th></tr>
       <tr><td>Phản hồi ban đầu</td><td><strong>30–60 phút</strong></td></tr>
       <tr><td>Khi phát hiện lỗi</td><td>⚡ <strong>Báo ngay</strong> – không chờ</td></tr>
-      <tr><td>Thời hạn tối đa báo lỗi</td><td><strong>3 ngày</strong> kể từ khi nhận hàng</td></tr>
+      <tr><td>Thời hạn tối đa báo lỗi</td><td><strong>2 ngày</strong> kể từ ngày nhận biên nhận, hoặc <strong>1 ngày</strong> kể từ ngày nhận hàng</td></tr>
       <tr><td>Phản hồi tình trạng sản phẩm</td><td><strong>Trong vòng 3 ngày</strong> làm việc</td></tr>
     </table></div>
-    <div class="highlight-box warn">⚠️ <strong>Phát hiện lỗi → báo ngay</strong>. Quá <strong>3 ngày</strong> kể từ khi nhận hàng mà chưa báo → hệ thống có thể không xử lý được yêu cầu đổi trả.</div>
+    <div class="highlight-box warn">⚠️ <strong>Phát hiện lỗi → báo ngay</strong>. Thời hạn tối đa: <strong>2 ngày</strong> kể từ ngày nhận biên nhận hoặc <strong>1 ngày</strong> kể từ ngày nhận hàng. Quá hạn → hệ thống có thể không xử lý được yêu cầu đổi trả.</div>
   </div>
   <div class="section">
     <h3>5. Giờ Làm Việc & Liên Hệ</h3>
@@ -1366,9 +1366,9 @@ const LESSONS_TH = [
     {q:'Bước đầu tiên khi xử lý sự cố nguyên liệu là gì?',
      opts:['Liên hệ điện thoại ngay','Chụp hình/quay video sản phẩm lỗi','Trả lại toàn bộ hàng','Yêu cầu bồi thường bằng văn bản'],
      c:1,exp:'Bước 1 là chụp hình/video sản phẩm lỗi để có bằng chứng trước khi báo cáo.'},
-    {q:'Thời hạn báo lỗi sau khi nhận hàng là bao nhiêu ngày?',
-     opts:['1 ngày','3 ngày','7 ngày','14 ngày'],
-     c:1,exp:'Thời hạn báo lỗi là 3 ngày kể từ khi nhận hàng. Quá hạn hệ thống có thể không xử lý được.'},
+    {q:'Thời hạn tối đa báo hàng lỗi kể từ ngày nhận hàng là bao nhiêu?',
+     opts:['1 ngày','2 ngày','3 ngày','7 ngày'],
+     c:0,exp:'Thời hạn tối đa báo hàng lỗi là 1 ngày kể từ ngày nhận hàng, hoặc 2 ngày kể từ ngày nhận được biên nhận.'},
     {q:'Sau khi hệ thống đưa ra hướng xử lý sự cố, bước cuối cùng là gì?',
      opts:['Kho tự đóng hồ sơ','Cửa Hàng xác nhận phương án xử lý','Gửi lại hình ảnh bằng chứng lần hai','Lập biên bản thiệt hại'],
      c:1,exp:'Bước 5 – Cửa Hàng xác nhận phương án xử lý do hệ thống đề xuất để đóng hồ sơ sự cố.'}
@@ -1379,8 +1379,8 @@ const LESSONS_TH = [
 // ─── THE HOA FINAL QUIZ ────────────────────────────────────────
 const FINAL_QUIZ_TH = [
   {q:'Cửa hàng The Hoa nhận hàng và phát hiện thiếu 2 gói Trà Oolong Sữa. Theo SOP, bước xử lý đúng là gì?',
-   opts:['Chấp nhận và đặt bù đơn tiếp theo','Từ chối toàn bộ lô hàng ngay tại chỗ','Chụp hình lô hàng và báo ngay vào nhóm Zalo kho trong 3 ngày','Liên hệ đơn vị vận chuyển đòi bồi thường'],
-   c:2,exp:'Khi nhận hàng thiếu/lỗi, phải chụp hình và báo nhóm Zalo kho trong 3 ngày. Không tự xử lý hay liên hệ vận chuyển.'},
+   opts:['Chấp nhận và đặt bù đơn tiếp theo','Từ chối toàn bộ lô hàng ngay tại chỗ','Chụp hình lô hàng và báo ngay vào nhóm Zalo kho (trong 1 ngày kể từ nhận hàng)','Liên hệ đơn vị vận chuyển đòi bồi thường'],
+   c:2,exp:'Khi nhận hàng thiếu/lỗi, phải chụp hình và báo nhóm Zalo kho ngay – trong 1 ngày kể từ ngày nhận hàng. Không tự xử lý hay liên hệ vận chuyển.'},
   {q:'Trách nhiệm nào sau đây KHÔNG thuộc về Cửa Hàng/ĐTNQ The Hoa?',
    opts:['Kiểm tra tồn kho trước khi đặt hàng','Kiểm tra hàng hóa khi nhận theo biên nhận','Chuẩn bị hàng, xuất kho và giao hàng cho cửa hàng','Thanh toán trước khi nhận hàng'],
    c:2,exp:'Chuẩn bị hàng, xuất kho và giao hàng là trách nhiệm của bộ phận Chuỗi Cung Ứng, không phải Cửa Hàng.'},
@@ -1403,7 +1403,7 @@ const FINAL_QUIZ_TH = [
    opts:['Thứ Ba tuần sau','Thứ Tư tuần sau','Thứ Năm tuần sau','Thứ Sáu tuần sau'],
    c:2,exp:'Miền Nam: 5–7 ngày làm việc. Từ Thứ Sáu: T2+T3+T4+T5+T6 = 5 ngày làm việc → sớm nhất Thứ Năm tuần sau.'},
   {q:'Nhân viên phát hiện gói Trà Oolong Camelia bị ẩm sau khi nhận hàng 4 ngày. Kết quả theo SOP?',
-   opts:['Được đổi hàng vì còn trong tuần','Hệ thống có thể từ chối vì đã quá thời hạn 3 ngày','Được bồi thường vì lỗi vận chuyển','Phải gửi sản phẩm về kho để kiểm tra'],
+   opts:['Được đổi hàng vì còn trong tuần','Hệ thống có thể từ chối vì đã quá thời hạn báo lỗi 1 ngày kể từ nhận hàng','Được bồi thường vì lỗi vận chuyển','Phải gửi sản phẩm về kho để kiểm tra'],
    c:1,exp:'Thời hạn báo lỗi là 3 ngày kể từ khi nhận hàng. Quá 3 ngày, hệ thống có thể không xử lý được.'},
   {q:'Khi gửi báo cáo sự cố lên group, thông tin nào là đầy đủ và đúng theo SOP?',
    opts:['Chỉ cần ghi tên sản phẩm bị lỗi','Gọi điện trực tiếp cho phụ trách','Hình ảnh/video + tên SP + số lượng lỗi + mô tả chi tiết lỗi','Gửi email kèm hóa đơn nhập hàng'],
