@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!--
   ╔══════════════════════════════════════════════════════════════╗
   ║  HƯỚNG DẪN CÀI ĐẶT THEO DÕI HỌC VIÊN (Google Sheets)       ║
@@ -250,7 +250,7 @@ tr:hover td{background:#f9fafb;}
 .divider{border:none;border-top:1px solid #e5e7eb;margin:22px 0;}
 
 @media(max-width:768px){.sidebar{display:none;}.main{padding:14px;}header h1{display:none;}}
-/* THE HOA TEAPRESSO THEME */
+/* The Hoa THEME */
 body.brand-thehoa{--green:#e8919e;--green-dark:#c4606a;--green-deeper:#9c3d47;--bg:#fff5f5;--text:#2a1010;}
 body.brand-thehoa header{background:var(--green-deeper);}
 body.brand-thehoa .sidebar{border-right-color:#f5d5d8;}
@@ -323,15 +323,15 @@ const BRANDS = {
     contact: 'Trần Thị Hạnh Nhân – Chuỗi Cung Ứng Phúc Tea<br>Điện thoại: <strong>0344 858 727</strong> | Email: <strong>hanhnhan@phuctea.com.vn</strong>'
   },
   thehoa: {
-    name: 'The Hoa Teapresso',
+    name: 'The Hoa',
     logo: 'logo-the-hoa.png',
     prefix: 'THEHOA',
-    headerTitle: 'Vận Hành Kho Tại Cửa Hàng – The Hoa Teapresso',
+    headerTitle: 'Vận Hành Kho Tại Cửa Hàng – The Hoa',
     regPlaceholder: 'THEHOA01 - TÊN CỬA HÀNG',
     regHint: 'Tên cửa hàng phải bắt đầu bằng THEHOA',
     headerBg: 'linear-gradient(135deg,#9c3d47,#c4606a)',
     titleColor: '#9c3d47',
-    contact: 'Bộ phận Chuỗi Cung Ứng – The Hoa Teapresso<br>Email: <strong>hanhnhan@phuctea.com.vn</strong>'
+    contact: 'Bộ phận Chuỗi Cung Ứng – The Hoa<br>Email: <strong>hanhnhan@phuctea.com.vn</strong>'
   }
 };
 
@@ -1038,13 +1038,13 @@ const LESSONS_TH = [
   content:`
   <div class="section">
     <h3>1. Mục Đích Của SOP</h3>
-    <p>Tài liệu SOP Chuỗi Cung Ứng được xây dựng nhằm <strong>chuẩn hóa toàn bộ quy trình đặt hàng, cung ứng, tiếp nhận hàng hóa và xử lý các vấn đề phát sinh</strong> trong hệ thống The Hoa Teapresso.</p>
+    <p>Tài liệu SOP Chuỗi Cung Ứng được xây dựng nhằm <strong>chuẩn hóa toàn bộ quy trình đặt hàng, cung ứng, tiếp nhận hàng hóa và xử lý các vấn đề phát sinh</strong> trong hệ thống The Hoa.</p>
     <div class="highlight-box">🎯 <strong>Mục tiêu:</strong> Đảm bảo cửa hàng luôn đủ hàng, đúng chất lượng, đúng thời hạn và vận hành trơn tru.</div>
   </div>
   <div class="section">
     <h3>2. Phạm Vi Áp Dụng</h3>
     <ul>
-      <li>Tất cả cửa hàng nhượng quyền <strong>The Hoa Teapresso</strong></li>
+      <li>Tất cả cửa hàng nhượng quyền <strong>The Hoa</strong></li>
       <li>Áp dụng cho <strong>toàn bộ nguyên vật liệu</strong> được cung ứng qua hệ thống</li>
       <li>Bao gồm: Nguyên Liệu Độc Quyền, Nguyên Liệu Hệ Thống, Vật Liệu Bao Bì</li>
     </ul>
@@ -1068,7 +1068,7 @@ const LESSONS_TH = [
     </ul>
   </div>`,
   questions:[
-    {q:'Hệ thống The Hoa Teapresso yêu cầu cửa hàng đặt hàng qua kênh nào?',
+    {q:'Hệ thống The Hoa yêu cầu cửa hàng đặt hàng qua kênh nào?',
      opts:['Zalo trực tiếp','Email cho kho','Hệ thống KiotViet','Điện thoại'],
      c:2,exp:'Tất cả đơn hàng phải được đặt qua hệ thống KiotViet theo quy định SOP.'},
     {q:'Trách nhiệm chuẩn bị hàng và xuất kho thuộc về bên nào?',
@@ -1080,9 +1080,9 @@ const LESSONS_TH = [
     {q:'Nhóm nào sau đây có giá ĐÃ BAO GỒM phí vận chuyển?',
      opts:['Nguyên Liệu Độc Quyền','Nguyên Liệu Hệ Thống','Vật Liệu Bao Bì','Tất cả các nhóm'],
      c:2,exp:'Giá Vật Liệu Bao Bì đã bao gồm phí vận chuyển. Nguyên Liệu các nhóm chưa bao gồm phí vận chuyển.'},
-    {q:'Cửa hàng nhượng quyền The Hoa Teapresso có thể tự mua nguyên liệu từ nhà cung cấp bên ngoài không?',
+    {q:'Cửa hàng nhượng quyền The Hoa có thể tự mua nguyên liệu từ nhà cung cấp bên ngoài không?',
      opts:['Có, miễn là giá rẻ hơn','Chỉ với NL Không Độc Quyền nếu có phép','Không, phải đặt qua hệ thống','Có, nếu thông báo cho kho trước'],
-     c:2,exp:'Theo SOP, toàn bộ nguyên vật liệu phải đặt qua hệ thống KiotViet của The Hoa Teapresso.'}
+     c:2,exp:'Theo SOP, toàn bộ nguyên vật liệu phải đặt qua hệ thống KiotViet của The Hoa.'}
   ]
 },
 {
@@ -1167,9 +1167,9 @@ const LESSONS_TH = [
     <div class="highlight-box" style="background:#fde8ea;border-color:#f5b8be">🚚 Giá <strong>Vật Liệu Bao Bì</strong> <strong>đã bao gồm phí vận chuyển</strong>.</div>
   </div>`,
   questions:[
-    {q:'"Nguyên Liệu Độc Quyền" của The Hoa Teapresso là gì?',
+    {q:'"Nguyên Liệu Độc Quyền" của The Hoa là gì?',
      opts:['NVL mua được ở bất kỳ đâu','NVL chỉ được cung ứng qua hệ thống The Hoa','NVL nhập khẩu trực tiếp từ nước ngoài','NVL do cửa hàng tự chọn nhà cung cấp'],
-     c:1,exp:'NVL Độc Quyền chỉ được cung ứng qua hệ thống The Hoa Teapresso, không được mua từ nguồn khác.'},
+     c:1,exp:'NVL Độc Quyền chỉ được cung ứng qua hệ thống The Hoa, không được mua từ nguồn khác.'},
     {q:'Giá nhóm Vật Liệu Bao Bì có đặc điểm gì?',
      opts:['Chưa bao gồm phí vận chuyển','Đã bao gồm phí vận chuyển','Giá linh hoạt theo thị trường','Cần thương lượng mỗi đơn'],
      c:1,exp:'Giá Vật Liệu Bao Bì đã bao gồm phí vận chuyển. Nguyên Liệu (ĐQ và HT) chưa bao gồm phí vận chuyển.'},
@@ -1178,7 +1178,7 @@ const LESSONS_TH = [
      c:1,exp:'Túi giấy Hồng The Hoa là Vật Liệu Độc Quyền, chỉ cung ứng qua hệ thống.'},
     {q:'Trà Thảo Dược Dưỡng Sinh có số lượng tối thiểu (MOQ) là bao nhiêu mỗi loại?',
      opts:['1 gói','5 gói','10 gói','20 gói'],
-     c:3,exp:'MOQ của Trà Thảo Dược Dưỡng Sinh là 20 gói/loại theo bảng giá The Hoa Teapresso.'},
+     c:3,exp:'MOQ của Trà Thảo Dược Dưỡng Sinh là 20 gói/loại theo bảng giá The Hoa.'},
     {q:'Sản phẩm nào thuộc nhóm Nguyên Liệu Hệ Thống?',
      opts:['Bột Pha Chế','Trân Châu Giòn','Bột Matcha Đài Loan','Vải Tươi Ngâm Đường'],
      c:2,exp:'Bột Matcha Đài Loan là Nguyên Liệu Hệ Thống – giá linh hoạt theo thị trường và không phải NL Độc Quyền.'},
@@ -1384,8 +1384,8 @@ const FINAL_QUIZ_TH = [
    opts:['Kiểm tra tồn kho trước khi đặt hàng','Kiểm tra hàng hóa khi nhận theo biên nhận','Chuẩn bị hàng, xuất kho và giao hàng cho cửa hàng','Thanh toán trước khi nhận hàng'],
    c:2,exp:'Chuẩn bị hàng, xuất kho và giao hàng là trách nhiệm của bộ phận Chuỗi Cung Ứng, không phải Cửa Hàng.'},
   {q:'Cửa hàng muốn mua thêm Bột Matcha Đài Loan. Cần làm gì?',
-   opts:['Mua từ nhà cung cấp bên ngoài vì đây là NL Hệ Thống','Xin phép hệ thống trước khi mua bất kỳ đâu','Đặt qua hệ thống KiotViet của The Hoa Teapresso','Chỉ được đặt khi tồn kho = 0'],
-   c:2,exp:'Bột Matcha Đài Loan là NL Hệ Thống – phải đặt qua KiotViet của hệ thống The Hoa Teapresso.'},
+   opts:['Mua từ nhà cung cấp bên ngoài vì đây là NL Hệ Thống','Xin phép hệ thống trước khi mua bất kỳ đâu','Đặt qua hệ thống KiotViet của The Hoa','Chỉ được đặt khi tồn kho = 0'],
+   c:2,exp:'Bột Matcha Đài Loan là NL Hệ Thống – phải đặt qua KiotViet của hệ thống The Hoa.'},
   {q:'Giá Nguyên Liệu Độc Quyền thay đổi sẽ được thông báo trước bao nhiêu ngày?',
    opts:['7 ngày','10 ngày','15 ngày','30 ngày'],
    c:2,exp:'NVL Độc Quyền điều chỉnh giá sẽ được thông báo trước tối thiểu 15 ngày để cửa hàng chủ động tài chính.'},
@@ -2112,7 +2112,7 @@ function showBrandSelect() {
         onmouseover="this.style.borderColor='#c4606a';this.style.boxShadow='0 8px 32px rgba(196,96,106,.2)'"
         onmouseout="this.style.borderColor='transparent';this.style.boxShadow='0 4px 20px rgba(0,0,0,.08)'">
         <img src="logo-the-hoa.png" style="height:90px;width:auto;margin-bottom:16px;display:block;margin-left:auto;margin-right:auto" onerror="this.style.display='none'">
-        <div style="font-size:18px;font-weight:700;color:#9c3d47;margin-bottom:6px">The Hoa Teapresso</div>
+        <div style="font-size:18px;font-weight:700;color:#9c3d47;margin-bottom:6px">The Hoa</div>
         <div style="font-size:12px;color:#6b7280">Mã cửa hàng: THEHOA...</div>
         <div style="margin-top:16px;background:#9c3d47;color:#fff;border-radius:10px;padding:10px;font-size:13px;font-weight:600">Chọn The Hoa →</div>
       </div>
