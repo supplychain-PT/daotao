@@ -349,11 +349,13 @@ function applyBrandTheme(brand) {
 
 // ─── TRACKING ─────────────────────────────────────────────────
 function trackEvent(event, extra = {}) {
+  const brandName = (BRANDS[S.brand]||BRANDS.phuctea).name;
   const payload = {
     event,
     time: new Date().toLocaleString('vi-VN'),
     name: S.userName,
     store: S.userStore,
+    brand: brandName,
     ...extra
   };
 
@@ -366,6 +368,7 @@ function trackEvent(event, extra = {}) {
     const idx = all.findIndex(r => r.name === S.userName && r.store === S.userStore);
     if (idx >= 0) {
       all[idx].status = 'Đã hoàn thành ✓';
+      all[idx].brand = brandName;
       all[idx].score = extra.score;
       all[idx].duration = extra.duration;
       all[idx].completedAt = payload.time;
@@ -2221,9 +2224,13 @@ function showAdmin() {
   _renderAdmin();
 }
 
-function _renderAdmin() {
-  const all = JSON.parse(localStorage.getItem('phuctea_learners') || '[]');
-  const total = all.length;
+function _renderAdmin(filterBrand='all') {
+  const allRaw = JSON.parse(localStorage.getItem('phuctea_learners') || '[]');
+  const all = filterBrand === 'all' ? allRaw : allRaw.filter(r => (r.brand||'').includes(filterBrand === 'phuctea' ? 'Phúc Tea' : 'The Hoa'));
+  const total = allRaw.length;
+  const ptCount = allRaw.filter(r => (r.brand||'').includes('Phúc Tea')).length;
+  const thCount = allRaw.filter(r => (r.brand||'').includes('The Hoa')).length;
+  const unknownCount = total - ptCount - thCount;
   const done  = all.filter(r => r.status.includes('hoàn thành')).length;
   const studying = total - done;
   const avgScore = done ? Math.round(all.filter(r=>r.status.includes('hoàn thành')).reduce((s,r)=>s+parseFloat(r.score||0),0)/done) : 0;
@@ -2248,10 +2255,18 @@ function _renderAdmin() {
   const dayLabels = Object.keys(dayCounts).slice(-10);
   const dayVals   = dayLabels.map(k => dayCounts[k]);
 
-  const rows = all.length ? all.map((r,i) => `
+  const rows = all.length ? all.map((r,i) => {
+    const isHoa = (r.brand||'').includes('The Hoa');
+    const brandBadge = r.brand
+      ? `<span style="padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;
+          background:${isHoa?'#fde8ea':'#d1fae5'};color:${isHoa?'#9c3d47':'#065f46'}">${r.brand}</span>`
+      : '<span style="color:#ccc;font-size:11px">—</span>';
+    const realIdx = allRaw.indexOf(r);
+    return `
     <tr style="border-bottom:1px solid #f0f0f0">
       <td style="text-align:center;padding:10px 8px;color:#9ca3af">${i+1}</td>
       <td style="padding:10px 12px"><strong>${r.name}</strong></td>
+      <td style="padding:10px 12px;font-size:12px">${brandBadge}</td>
       <td style="padding:10px 12px;font-size:12px;color:#555">${r.store}</td>
       <td style="padding:10px 12px;font-size:12px;color:#9ca3af">${r.time}</td>
       <td style="padding:10px 12px"><span style="padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;
@@ -2261,11 +2276,11 @@ function _renderAdmin() {
       <td style="padding:10px 12px;font-size:12px">${r.duration||'—'}</td>
       <td style="padding:10px 12px;font-size:12px;color:#9ca3af">${r.completedAt||'—'}</td>
       <td style="padding:10px 8px;text-align:center">
-        <button onclick="deleteEntry(${i})"
+        <button onclick="deleteEntry(${realIdx})"
           style="background:#fee2e2;border:none;color:#dc2626;border-radius:6px;padding:3px 8px;cursor:pointer;font-size:12px">Xoá</button>
       </td>
-    </tr>`).join('') :
-    `<tr><td colspan="9" style="text-align:center;padding:48px;color:#9ca3af">
+    </tr>`;}).join('') :
+    `<tr><td colspan="10" style="text-align:center;padding:48px;color:#9ca3af">
       <div style="font-size:32px;margin-bottom:8px">📭</div>
       Chưa có học viên nào đăng ký
     </td></tr>`;
@@ -2293,26 +2308,34 @@ function _renderAdmin() {
         </div>
       </div>
       <!-- Stat cards -->
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px">
         <div style="background:linear-gradient(135deg,#0f5c2b,#1a8a42);border-radius:12px;padding:16px;text-align:center;color:#fff">
-          <div style="font-size:32px;font-weight:800">${total}</div>
-          <div style="font-size:12px;opacity:.85;margin-top:2px">Đã đăng ký</div>
+          <div style="font-size:30px;font-weight:800">${total}</div>
+          <div style="font-size:11px;opacity:.85;margin-top:2px">Đã đăng ký</div>
         </div>
         <div style="background:linear-gradient(135deg,#065f46,#059669);border-radius:12px;padding:16px;text-align:center;color:#fff">
-          <div style="font-size:32px;font-weight:800">${done}</div>
-          <div style="font-size:12px;opacity:.85;margin-top:2px">Hoàn thành</div>
+          <div style="font-size:30px;font-weight:800">${done}</div>
+          <div style="font-size:11px;opacity:.85;margin-top:2px">Hoàn thành</div>
         </div>
         <div style="background:linear-gradient(135deg,#92400e,#d97706);border-radius:12px;padding:16px;text-align:center;color:#fff">
-          <div style="font-size:32px;font-weight:800">${studying}</div>
-          <div style="font-size:12px;opacity:.85;margin-top:2px">Đang học</div>
+          <div style="font-size:30px;font-weight:800">${studying}</div>
+          <div style="font-size:11px;opacity:.85;margin-top:2px">Đang học</div>
         </div>
         <div style="background:linear-gradient(135deg,#1e40af,#3b82f6);border-radius:12px;padding:16px;text-align:center;color:#fff">
-          <div style="font-size:32px;font-weight:800">${total?Math.round(done/total*100):0}%</div>
-          <div style="font-size:12px;opacity:.85;margin-top:2px">Tỉ lệ hoàn thành</div>
+          <div style="font-size:30px;font-weight:800">${total?Math.round(done/total*100):0}%</div>
+          <div style="font-size:11px;opacity:.85;margin-top:2px">Tỉ lệ HT</div>
         </div>
         <div style="background:linear-gradient(135deg,#5b21b6,#8b5cf6);border-radius:12px;padding:16px;text-align:center;color:#fff">
-          <div style="font-size:32px;font-weight:800">${avgScore}%</div>
-          <div style="font-size:12px;opacity:.85;margin-top:2px">Điểm TB</div>
+          <div style="font-size:30px;font-weight:800">${avgScore}%</div>
+          <div style="font-size:11px;opacity:.85;margin-top:2px">Điểm TB</div>
+        </div>
+        <div style="background:linear-gradient(135deg,#0f5c2b,#2ecc71);border-radius:12px;padding:16px;text-align:center;color:#fff">
+          <div style="font-size:30px;font-weight:800">${ptCount}</div>
+          <div style="font-size:11px;opacity:.85;margin-top:2px">🍵 Phúc Tea</div>
+        </div>
+        <div style="background:linear-gradient(135deg,#9c3d47,#e8919e);border-radius:12px;padding:16px;text-align:center;color:#fff">
+          <div style="font-size:30px;font-weight:800">${thCount}</div>
+          <div style="font-size:11px;opacity:.85;margin-top:2px">🌸 The Hoa</div>
         </div>
       </div>
     </div>
@@ -2339,13 +2362,21 @@ function _renderAdmin() {
 
     <!-- BẢNG -->
     <div style="background:#fff;border-radius:16px;padding:20px 24px;box-shadow:0 2px 16px rgba(0,0,0,.06)">
-      <h3 style="font-size:14px;font-weight:700;color:#374151;margin:0 0 14px">📋 Danh sách học viên</h3>
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px">
+        <h3 style="font-size:14px;font-weight:700;color:#374151;margin:0">📋 Danh sách học viên <span style="font-weight:400;color:#9ca3af">(${all.length}/${total})</span></h3>
+        <div style="display:flex;gap:7px;flex-wrap:wrap">
+          <button onclick="_renderAdmin('all')" style="padding:5px 14px;border-radius:20px;border:2px solid #e5e7eb;font-size:12px;font-weight:600;cursor:pointer;background:${filterBrand==='all'?'#374151':'#fff'};color:${filterBrand==='all'?'#fff':'#374151'}">Tất cả (${total})</button>
+          <button onclick="_renderAdmin('phuctea')" style="padding:5px 14px;border-radius:20px;border:2px solid #1a8a42;font-size:12px;font-weight:600;cursor:pointer;background:${filterBrand==='phuctea'?'#1a8a42':'#fff'};color:${filterBrand==='phuctea'?'#fff':'#1a8a42'}">🍵 Phúc Tea (${ptCount})</button>
+          <button onclick="_renderAdmin('thehoa')" style="padding:5px 14px;border-radius:20px;border:2px solid #c4606a;font-size:12px;font-weight:600;cursor:pointer;background:${filterBrand==='thehoa'?'#c4606a':'#fff'};color:${filterBrand==='thehoa'?'#fff':'#c4606a'}">🌸 The Hoa (${thCount})</button>
+        </div>
+      </div>
       <div style="overflow-x:auto">
-        <table style="width:100%;border-collapse:collapse;font-size:13px;min-width:800px">
+        <table style="width:100%;border-collapse:collapse;font-size:13px;min-width:860px">
           <thead>
             <tr style="background:#f9fafb;border-bottom:2px solid #e5e7eb">
               <th style="padding:10px 8px;color:#6b7280;font-weight:600">#</th>
               <th style="padding:10px 12px;text-align:left;color:#6b7280;font-weight:600">Họ tên</th>
+              <th style="padding:10px 12px;text-align:left;color:#6b7280;font-weight:600">Thương hiệu</th>
               <th style="padding:10px 12px;text-align:left;color:#6b7280;font-weight:600">Cửa hàng</th>
               <th style="padding:10px 12px;text-align:left;color:#6b7280;font-weight:600">Đăng ký lúc</th>
               <th style="padding:10px 12px;text-align:left;color:#6b7280;font-weight:600">Trạng thái</th>
@@ -2441,8 +2472,8 @@ function syncAllToSheets() {
 function exportCSV() {
   const all = JSON.parse(localStorage.getItem('phuctea_learners') || '[]');
   if (!all.length) { alert('Chưa có dữ liệu!'); return; }
-  const header = ['Họ tên','Cửa hàng','Đăng ký lúc','Trạng thái','Điểm TB','Thời gian học','Hoàn thành lúc'];
-  const rows = all.map(r => [r.name,r.store,r.time,r.status,r.score,r.duration,r.completedAt]
+  const header = ['Họ tên','Thương hiệu','Cửa hàng','Đăng ký lúc','Trạng thái','Điểm TB','Thời gian học','Hoàn thành lúc'];
+  const rows = all.map(r => [r.name,r.brand||'',r.store,r.time,r.status,r.score,r.duration,r.completedAt]
     .map(v => `"${(v||'').replace(/"/g,'""')}"`).join(','));
   const csv = '\uFEFF' + [header.join(','), ...rows].join('\n');
   const a = document.createElement('a');
