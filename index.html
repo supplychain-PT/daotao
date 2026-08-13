@@ -1411,6 +1411,8 @@ const FINAL_QUIZ_TH = [
 ];
 
 // ─── STATE ─────────────────────────────────────────────────────
+let _sheetsCache = []; // dữ liệu tải từ Google Sheets (cross-device)
+
 const S = {
   brand: '',
   view: 'register',
@@ -2235,8 +2237,23 @@ function showAdmin() {
   _renderAdmin();
 }
 
+function _mergeWithSheets(local) {
+  if (!_sheetsCache.length) return local;
+  const map = {};
+  local.forEach(r => { map[r.name + '||' + r.store] = r; });
+  _sheetsCache.forEach(r => {
+    const k = r.name + '||' + r.store;
+    if (!map[k]) map[k] = { ...r, _fromSheets: true };
+    else if ((r.status||'').includes('hoàn thành') && !map[k].status.includes('hoàn thành')) {
+      map[k] = { ...r, _fromSheets: true };
+    }
+  });
+  return Object.values(map);
+}
+
 function _renderAdmin(filterBrand='all') {
-  const allRaw = JSON.parse(localStorage.getItem('phuctea_learners') || '[]');
+  const localRaw = JSON.parse(localStorage.getItem('phuctea_learners') || '[]');
+  const allRaw = _mergeWithSheets(localRaw);
   const all = filterBrand === 'all' ? allRaw : allRaw.filter(r => (r.brand||'').includes(filterBrand === 'phuctea' ? 'Phúc Tea' : 'The Hoa'));
   const total = allRaw.length;
   const ptCount = allRaw.filter(r => (r.brand||'').includes('Phúc Tea')).length;
@@ -2313,6 +2330,7 @@ function _renderAdmin(filterBrand='all') {
         <div style="display:flex;gap:8px;flex-wrap:wrap">
           <button class="btn btn-primary" onclick="exportCSV()">⬇️ Xuất CSV</button>
           <button class="btn btn-primary" style="background:#0f5c2b" onclick="syncAllToSheets()">📤 Sync → Google Sheets</button>
+          <button class="btn btn-primary" style="background:#1565c0" onclick="fetchFromSheets()" id="btnFetchSheets">📥 Tải từ Sheets</button>
           <button class="btn btn-primary" style="background:#1b3461" onclick="adminPreview()">👁️ Xem Khóa Học</button>
           <button class="btn btn-secondary" onclick="clearAll()">🗑️ Xoá Tất Cả</button>
           <button class="btn btn-secondary" onclick="exitAdmin()">← Thoát Admin</button>
@@ -2479,6 +2497,33 @@ function syncAllToSheets() {
   });
   localStorage.setItem('phuctea_learners', JSON.stringify(all));
   alert(`✅ Đã gửi ${sent} bản ghi lên Google Sheets!`);
+}
+
+async function fetchFromSheets() {
+  if (!WEBHOOK_URL) { alert('Chưa cấu hình WEBHOOK_URL!'); return; }
+  const btn = document.getElementById('btnFetchSheets');
+  if (btn) { btn.disabled = true; btn.textContent = '⏳ Đang tải...'; }
+  try {
+    const res = await fetch(WEBHOOK_URL, { method: 'GET' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    _sheetsCache = data.map(row => ({
+      time:        row['Thời gian']    || '',
+      name:        row['Họ tên']       || '',
+      brand:       row['Thương hiệu']  || '',
+      store:       row['Cửa hàng']     || '',
+      status:      row['Trạng thái']   || '',
+      score:       row['Điểm TB']      || '',
+      duration:    row['Thời gian học']|| '',
+      completedAt: row['Hoàn thành lúc']|| '',
+      _fromSheets: true
+    }));
+    _renderAdmin();
+    if (btn) { btn.disabled = false; btn.textContent = `📥 Sheets (${_sheetsCache.length})`; }
+  } catch(err) {
+    if (btn) { btn.disabled = false; btn.textContent = '📥 Tải từ Sheets'; }
+    alert('Không tải được từ Sheets. Kiểm tra deployment Apps Script.\n\nLỗi: ' + err.message);
+  }
 }
 
 function exportCSV() {
