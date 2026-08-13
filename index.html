@@ -380,6 +380,7 @@ function trackEvent(event, extra = {}) {
   if (WEBHOOK_URL) {
     fetch(WEBHOOK_URL, {
       method: 'POST',
+      mode: 'no-cors',
       body: JSON.stringify(payload)
     }).catch(() => {});
   }
@@ -2457,8 +2458,9 @@ function syncAllToSheets() {
     const event = r.status && r.status.includes('hoàn thành') ? 'complete' : 'register';
     fetch(WEBHOOK_URL, {
       method: 'POST',
+      mode: 'no-cors',
       body: JSON.stringify({
-        event, time: r.time, name: r.name, store: r.store,
+        event, time: r.time, name: r.name, brand: r.brand||'', store: r.store,
         score: r.score, duration: r.duration, completedAt: r.completedAt
       })
     }).catch(() => {});
@@ -2492,8 +2494,9 @@ function syncOldData() {
     const event = r.status && r.status.includes('hoàn thành') ? 'complete' : 'register';
     fetch(WEBHOOK_URL, {
       method: 'POST',
+      mode: 'no-cors',
       body: JSON.stringify({
-        event, time: r.time, name: r.name, store: r.store,
+        event, time: r.time, name: r.name, brand: r.brand||'', store: r.store,
         score: r.score, duration: r.duration, completedAt: r.completedAt
       })
     }).catch(() => {});
