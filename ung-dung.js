@@ -1191,7 +1191,12 @@ function khoiDong() {
     applyBrandTheme(daLuu.brand);
     manHinhHocTiep(daLuu);
   } else {
-    showBrandSelect();
+    const urlBrand = new URLSearchParams(window.location.search).get('brand');
+    if (urlBrand && BRANDS[urlBrand]) {
+      selectBrand(urlBrand);
+    } else {
+      showBrandSelect();
+    }
   }
 }
 

@@ -322,7 +322,6 @@ const LESSONS = [
               <div class="kv-list-info">
                 <div class="kv-list-name">Trà Đen Phúc Tea <span class="kv-list-unit">(Bịch)</span></div>
                 <div class="kv-list-code">NVL010112 &nbsp;<span style="background:#e5e5ea;padding:2px 6px;border-radius:4px">KH đặt: 0</span></div>
-                <div class="kv-list-price">70,000</div>
               </div>
             </div>
             <div class="kv-list-item">
@@ -330,7 +329,6 @@ const LESSONS = [
               <div class="kv-list-info">
                 <div class="kv-list-name">Bột Pha Chế PT35 <span class="kv-list-unit">(Thùng)</span></div>
                 <div class="kv-list-code">NVL010120 &nbsp;<span style="background:#e5e5ea;padding:2px 6px;border-radius:4px">KH đặt: 0</span></div>
-                <div class="kv-list-price">2,150,000</div>
               </div>
             </div>
             <div class="kv-list-item">
@@ -338,7 +336,6 @@ const LESSONS = [
               <div class="kv-list-info">
                 <div class="kv-list-name">Cà Phê Mộc 9:1 <span class="kv-list-unit">(Kg)</span></div>
                 <div class="kv-list-code">NVL010166 &nbsp;<span style="background:#e5e5ea;padding:2px 6px;border-radius:4px">KH đặt: 0</span></div>
-                <div class="kv-list-price">258,000</div>
               </div>
             </div>
             <div class="kv-list-item">
@@ -346,7 +343,6 @@ const LESSONS = [
               <div class="kv-list-info">
                 <div class="kv-list-name">Trân Châu Giòn <span class="kv-list-unit">(Thùng)</span></div>
                 <div class="kv-list-code">NVL010105 &nbsp;<span style="background:#e5e5ea;padding:2px 6px;border-radius:4px">KH đặt: 0</span></div>
-                <div class="kv-list-price">450,000</div>
               </div>
             </div>
           </div>
@@ -383,7 +379,6 @@ const LESSONS = [
               <div class="kv-list-info">
                 <div class="kv-list-name">Trà Hòa Tan Vị Vải PT <span class="kv-list-unit">(Bịch)</span></div>
                 <div class="kv-list-code">NVL010114 &nbsp;<span style="background:#e5e5ea;padding:2px 6px;border-radius:4px">KH đặt: 0</span></div>
-                <div class="kv-list-price">70,000</div>
               </div>
             </div>
             <div class="kv-list-item">
@@ -391,7 +386,6 @@ const LESSONS = [
               <div class="kv-list-info">
                 <div class="kv-list-name">Trà Hòa Tan Vị Đào PT <span class="kv-list-unit">(Bịch)</span></div>
                 <div class="kv-list-code">NVL010113 &nbsp;<span style="background:#e5e5ea;padding:2px 6px;border-radius:4px">KH đặt: 0</span></div>
-                <div class="kv-list-price">70,000</div>
               </div>
             </div>
             <div class="kv-list-item">
@@ -399,7 +393,6 @@ const LESSONS = [
               <div class="kv-list-info">
                 <div class="kv-list-name">Bột Socola Phúc Tea 02 <span class="kv-list-unit">(Bịch)</span></div>
                 <div class="kv-list-code">NVL010110 &nbsp;<span style="background:#e5e5ea;padding:2px 6px;border-radius:4px">KH đặt: 0</span></div>
-                <div class="kv-list-price">180,000</div>
               </div>
             </div>
             <div class="kv-list-item">
@@ -407,7 +400,6 @@ const LESSONS = [
               <div class="kv-list-info">
                 <div class="kv-list-name">Cà Phê Mộc 9:1 <span class="kv-list-unit">(Kg)</span></div>
                 <div class="kv-list-code">NVL010166 &nbsp;<span style="background:#e5e5ea;padding:2px 6px;border-radius:4px">KH đặt: 0</span></div>
-                <div class="kv-list-price">258,000</div>
               </div>
             </div>
           </div>
@@ -447,7 +439,6 @@ const LESSONS = [
               <div class="kv-list-img">🍵</div>
               <div class="kv-list-info">
                 <div class="kv-list-name">Trà Đen Phúc Tea <span class="kv-list-unit">(Bịch)</span></div>
-                <div class="kv-list-price">70,000</div>
               </div>
               <div class="kv-list-qty">
                 <div class="kv-qty-btn">−</div>
@@ -459,7 +450,6 @@ const LESSONS = [
               <div class="kv-list-img">🧋</div>
               <div class="kv-list-info">
                 <div class="kv-list-name">Bột Pha Chế PT35 <span class="kv-list-unit">(Thùng)</span></div>
-                <div class="kv-list-price">2,150,000</div>
               </div>
               <div class="kv-list-qty">
                 <div class="kv-qty-btn">−</div>
