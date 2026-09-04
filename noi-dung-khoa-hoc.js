@@ -692,9 +692,9 @@ const LESSONS_TH = [
     {q:'Nhóm nào sau đây có giá ĐÃ BAO GỒM phí vận chuyển?',
      opts:['Nguyên Liệu Độc Quyền','Nguyên Liệu Hệ Thống','Vật Liệu Bao Bì','Tất cả các nhóm'],
      c:2,exp:'Giá Vật Liệu Bao Bì đã bao gồm phí vận chuyển. Nguyên Liệu các nhóm chưa bao gồm phí vận chuyển.'},
-    {q:'Cửa hàng nhượng quyền The Hoa có thể tự mua nguyên liệu từ nhà cung cấp bên ngoài không?',
-     opts:['Có, miễn là giá rẻ hơn','Chỉ với NL Không Độc Quyền nếu có phép','Không, phải đặt qua hệ thống','Có, nếu thông báo cho kho trước'],
-     c:2,exp:'Theo SOP, toàn bộ nguyên vật liệu phải đặt qua hệ thống KiotViet của The Hoa.'}
+    {q:'Cửa hàng nhượng quyền The Hoa có thể tự mua nguyên liệu không thuộc NHÓM ĐỘC QUYỀN từ nhà cung cấp bên ngoài không?',
+     opts:['Không, mọi nguyên liệu đều phải đặt qua hệ thống','Có, miễn là giá rẻ hơn','Có, nhưng phải đảm bảo đúng loại Hệ Thống đưa ra; nếu khác cần liên hệ bộ phận Kho trước khi sử dụng','Chỉ được mua ngoài khi tồn kho về 0'],
+     c:2,exp:'Nguyên liệu không thuộc Nhóm Độc Quyền có thể mua từ bên ngoài, nhưng phải đảm bảo đúng loại mà Hệ Thống đã quy định. Nếu loại khác, cần liên hệ bộ phận Kho trước khi đưa vào sử dụng.'}
   ]
 },
 {
@@ -730,6 +730,7 @@ const LESSONS_TH = [
   <div class="section">
     <h3>2. Nguyên Liệu Hệ Thống</h3>
     <p>Giá linh hoạt theo thị trường. <strong>Giá chưa bao gồm phí vận chuyển.</strong></p>
+    <div class="highlight-box info">💡 Nhóm này <strong>có thể mua từ nhà cung cấp bên ngoài</strong>, nhưng phải đảm bảo <strong>đúng loại</strong> mà Hệ Thống đã quy định. Nếu loại khác, cần <strong>liên hệ bộ phận Kho trước</strong> khi đưa vào sử dụng.</div>
     <div class="table-wrap"><table>
       <tr><th>Sản phẩm</th><th>ĐVT</th></tr>
       <tr><td>Bột Matcha Đài Loan</td><td>Gói</td></tr>
