@@ -12,7 +12,7 @@ const CAU_HINH = {
   TEN_KHOA_HOC: 'Vận Hành Kho Tại Cửa Hàng',
 
   // URL Google Apps Script. Để trống ('') thì app vẫn chạy, chỉ không ghi lên Sheets.
-  WEBHOOK_URL: 'https://script.google.com/macros/s/AKfycbx4elDlWWlxz8QTgaHKjPhwIpihvYM_FLk2S6Wx5rTjqyJrm-Bue9qKfP8d8qSKsBSI/exec',
+  WEBHOOK_URL: 'https://script.google.com/macros/s/AKfycbyuptSh7rNBtbA1ZxAjfDZnjCUsqfLU5CCLO5b5ZJsIbXLn704OcKR1F2lFfGlq7QSN/exec',
 
   // Mã ứng dụng gửi kèm mỗi lần ghi. Phải trùng với MA_UNG_DUNG trong apps-script.gs.
   // LƯU Ý: mã này nằm trong mã nguồn công khai nên KHÔNG phải mật khẩu thật.
