@@ -1,0 +1,322 @@
+:root{--green:#2ecc71;--green-dark:#1a8a42;--green-deeper:#0f5c2b;--bg:#f4fbf6;--white:#fff;--gray:#6b7280;--gray-light:#f3f4f6;--red:#e53e3e;--text:#1a2e1a;--gold:#c8973a;--gold-light:#f0c060;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* HEADER */
+header{background:var(--green-deeper);color:#fff;padding:0 24px;display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.2);height:64px;}
+.logo-wrap{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.logo-img{height:46px;width:auto;object-fit:contain;}
+.logo-fallback{font-size:20px;font-weight:900;letter-spacing:1px;color:#fff;}
+.logo-fallback span{color:var(--green);}
+header h1{font-size:15px;font-weight:700;opacity:.95;flex:1;line-height:1.3;}
+.progress-header{display:flex;align-items:center;gap:10px;font-size:13px;flex-shrink:0;}
+.progress-bar-wrap{background:rgba(255,255,255,.2);border-radius:20px;width:130px;height:7px;overflow:hidden;}
+.progress-bar-fill{height:100%;background:var(--green);border-radius:20px;transition:width .5s;}
+
+/* LAYOUT */
+.app{display:flex;min-height:calc(100vh - 64px);}
+
+/* SIDEBAR */
+.sidebar{width:270px;background:#fff;border-right:1px solid #d4edda;padding:16px 0;position:sticky;top:64px;height:calc(100vh - 64px);overflow-y:auto;flex-shrink:0;}
+.sidebar-title{font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px;padding:0 18px 10px;}
+.lesson-item{display:flex;align-items:center;gap:12px;padding:11px 18px;cursor:pointer;border-left:3px solid transparent;transition:all .2s;font-size:13px;}
+.lesson-item:hover{background:#f0fbf4;border-left-color:var(--green);}
+.lesson-item.active{background:#e6f9ee;border-left-color:var(--green-dark);font-weight:700;}
+.lesson-item.locked{opacity:.4;cursor:not-allowed;}
+.lesson-item.done{color:var(--green-dark);}
+.li-icon{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;background:var(--gray-light);color:var(--gray);}
+.lesson-item.done .li-icon{background:#d4edda;color:var(--green-dark);}
+.lesson-item.active .li-icon{background:var(--green-dark);color:#fff;}
+.li-info{flex:1;}
+.li-name{font-size:13px;line-height:1.35;}
+.li-status{font-size:11px;color:var(--gray);margin-top:2px;}
+.lesson-item.done .li-status{color:var(--green-dark);}
+
+/* MAIN */
+.main{flex:1;min-width:0;padding:28px 32px;max-width:900px;}
+
+/* WELCOME */
+.welcome{background:#fff;border-radius:16px;padding:48px;text-align:center;box-shadow:0 2px 16px rgba(0,0,0,.06);max-width:700px;margin:0 auto;}
+.welcome-logo-big{height:90px;width:auto;margin-bottom:12px;}
+.welcome h2{font-size:26px;color:var(--green-deeper);margin-bottom:6px;}
+.welcome h3{font-size:17px;color:var(--green-dark);margin-bottom:16px;font-weight:600;}
+.welcome p{color:var(--gray);line-height:1.8;margin-bottom:20px;font-size:14px;}
+.welcome-stats{display:flex;justify-content:center;gap:28px;margin:24px 0;flex-wrap:wrap;}
+.stat{text-align:center;}
+.stat-num{font-size:30px;font-weight:800;color:var(--green-dark);}
+.stat-label{font-size:11px;color:var(--gray);margin-top:3px;}
+.info-box{background:#f0fbf4;border:1px solid #a8dbb9;border-radius:12px;padding:16px 20px;text-align:left;margin:20px 0;font-size:14px;line-height:1.8;}
+.info-box strong{color:var(--green-deeper);}
+
+/* LESSON */
+.lesson-header{background:linear-gradient(135deg,var(--green-deeper),var(--green-dark));color:#fff;border-radius:14px 14px 0 0;padding:24px 28px;}
+.lesson-num{font-size:11px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:1px;}
+.lesson-title{font-size:21px;font-weight:700;margin-top:5px;}
+.lesson-body{background:#fff;border-radius:0 0 14px 14px;padding:28px 32px;box-shadow:0 2px 16px rgba(0,0,0,.06);}
+
+/* TIMER BAR */
+.timer-bar{background:#fffbeb;border:1px solid #fcd34d;border-radius:10px;padding:12px 18px;margin-bottom:20px;display:flex;align-items:center;gap:14px;}
+.timer-bar.done-read{background:#f0fbf4;border-color:#a8dbb9;}
+.timer-progress-wrap{flex:1;background:#e5e7eb;border-radius:20px;height:8px;overflow:hidden;}
+.timer-progress-fill{height:100%;background:var(--gold);border-radius:20px;transition:width 1s linear;}
+.timer-bar.done-read .timer-progress-fill{background:var(--green-dark);}
+.timer-text{font-size:13px;font-weight:600;white-space:nowrap;}
+
+/* CONTENT SECTIONS */
+.section{margin-bottom:26px;}
+.section h3{font-size:15px;color:var(--green-deeper);border-left:4px solid var(--green-dark);padding-left:12px;margin-bottom:12px;}
+.section p,.section li{font-size:14px;line-height:1.9;color:#374151;}
+.section ul,.section ol{padding-left:20px;}
+.section li{margin-bottom:5px;}
+.highlight-box{background:#f0fbf4;border:1px solid #a8dbb9;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:14px;line-height:1.8;}
+.highlight-box.warn{background:#fffbeb;border-color:#fcd34d;}
+.highlight-box.info{background:#eff6ff;border-color:#93c5fd;}
+.step-list{padding:0;list-style:none;}
+.step-item{display:flex;gap:14px;margin-bottom:14px;align-items:flex-start;}
+.step-num{background:var(--green-dark);color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;}
+.step-content{flex:1;font-size:14px;line-height:1.7;padding-top:3px;}
+.table-wrap{overflow-x:auto;margin:14px 0;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{background:var(--green-dark);color:#fff;padding:9px 13px;text-align:left;}
+td{padding:8px 13px;border-bottom:1px solid #e5e7eb;}
+tr:hover td{background:#f9fafb;}
+.badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600;}
+.bg-green{background:#d1fae5;color:#065f46;}
+.bg-blue{background:#dbeafe;color:#1e40af;}
+.bg-orange{background:#ffedd5;color:#9a3412;}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:11px 24px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .2s;}
+.btn-primary{background:var(--green-dark);color:#fff;}
+.btn-primary:hover{background:var(--green-deeper);transform:translateY(-1px);box-shadow:0 4px 12px rgba(26,138,66,.3);}
+.btn-secondary{background:#fff;color:var(--green-dark);border:2px solid var(--green-dark);}
+.btn-secondary:hover{background:#f0fbf4;}
+.btn-gold{background:var(--gold);color:#fff;}
+.btn-gold:hover{background:#a87a2e;}
+.btn-disabled{background:#e5e7eb;color:#9ca3af;cursor:not-allowed;pointer-events:none;}
+.lesson-actions{display:flex;justify-content:space-between;align-items:center;margin-top:28px;padding-top:20px;border-top:1px solid #e5e7eb;}
+
+/* KIOTVIET MOCKUP */
+/* ── KiotViet Mobile Mockup ── */
+.kv-phones{display:flex;gap:16px;justify-content:center;margin:16px 0;overflow-x:auto;padding-bottom:8px;}
+.kv-phone{width:220px;min-width:200px;border-radius:28px;background:#1a1a1a;padding:8px;box-shadow:0 8px 32px rgba(0,0,0,.35);flex-shrink:0;}
+.kv-screen{background:#f2f2f7;border-radius:24px;overflow:hidden;font-family:Arial,sans-serif;font-size:12px;}
+.kv-statusbar{background:#fff;display:flex;justify-content:space-between;align-items:center;padding:6px 14px 4px;font-size:11px;font-weight:600;}
+.kv-statusbar-icons{display:flex;gap:4px;align-items:center;font-size:10px;}
+.kv-appbar{background:#fff;padding:10px 14px 8px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #e5e5ea;}
+.kv-appbar-title{font-size:16px;font-weight:700;color:#000;flex:1;}
+.kv-appbar-back{font-size:16px;color:#000;}
+.kv-appbar-icon{font-size:15px;color:#555;}
+.kv-search{background:#fff;padding:6px 12px 8px;}
+.kv-search input{width:100%;box-sizing:border-box;background:#f2f2f7;border:none;border-radius:10px;padding:7px 10px;font-size:12px;color:#888;outline:none;}
+.kv-filter-row{background:#fff;border-top:1px solid #e5e5ea;border-bottom:1px solid #e5e5ea;padding:8px 12px;display:flex;gap:8px;align-items:center;}
+.kv-filter-chip{padding:4px 10px;border-radius:16px;font-size:11px;font-weight:600;border:1.5px solid #d1d1d6;color:#555;background:#fff;}
+.kv-filter-chip.active{border-color:#e53e3e;color:#e53e3e;}
+.kv-filter-chip.normal{border-color:#d1d1d6;color:#555;}
+.kv-product-list{background:#fff;margin-top:8px;}
+.kv-list-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid #f0f0f0;}
+.kv-list-img{width:44px;height:44px;border-radius:8px;background:#f2f2f7;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.kv-list-info{flex:1;}
+.kv-list-name{font-size:12px;font-weight:600;color:#111;line-height:1.4;}
+.kv-list-unit{color:#888;font-weight:400;}
+.kv-list-code{font-size:10px;color:#888;margin-top:2px;}
+.kv-list-price{font-size:13px;font-weight:700;color:#0066cc;margin-top:3px;}
+.kv-list-qty{display:flex;align-items:center;gap:6px;}
+.kv-qty-btn{width:26px;height:26px;border-radius:50%;border:1.5px solid #e53e3e;background:#fff;color:#e53e3e;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.kv-qty-val{font-size:13px;font-weight:700;color:#111;min-width:16px;text-align:center;}
+.kv-selector-row{background:#fff;padding:10px 14px;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;justify-content:space-between;}
+.kv-selector-label{font-size:13px;color:#111;display:flex;align-items:center;gap:6px;}
+.kv-selector-arrow{color:#c7c7cc;font-size:14px;}
+.kv-bottomnav{background:#fff;border-top:1px solid #e5e5ea;display:flex;padding:6px 0 4px;}
+.kv-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:9px;color:#8e8e93;}
+.kv-nav-item.active{color:#0066cc;}
+.kv-nav-icon{font-size:18px;}
+.kv-footer-bar{background:#fff;border-top:1px solid #e5e5ea;padding:10px 12px;}
+.kv-footer-total{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.kv-footer-label{font-size:12px;color:#555;}
+.kv-footer-amount{font-size:15px;font-weight:700;color:#111;}
+.kv-footer-badge{background:#e5e5ea;border-radius:50%;width:18px;height:18px;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;margin-left:4px;}
+.kv-footer-btns{display:flex;gap:8px;}
+.kv-btn-luu{flex:1;padding:10px;border-radius:10px;border:1.5px solid #0066cc;background:#fff;color:#0066cc;font-size:13px;font-weight:600;cursor:pointer;}
+.kv-btn-dat{flex:2;padding:10px;border-radius:10px;border:none;background:#0066cc;color:#fff;font-size:13px;font-weight:700;cursor:pointer;}
+
+/* Annotation markers */
+.kv-annotation{position:relative;}
+.ann-badge{display:inline-flex;align-items:center;justify-content:center;background:#e53e3e;color:#fff;font-size:10px;font-weight:700;width:18px;height:18px;border-radius:50%;margin-left:4px;vertical-align:middle;flex-shrink:0;}
+
+/* QUIZ */
+.quiz-header-bar{background:#fff;border-radius:14px;padding:20px 28px;box-shadow:0 2px 16px rgba(0,0,0,.06);margin-bottom:18px;}
+.quiz-title-h{font-size:17px;font-weight:700;color:var(--green-deeper);}
+.quiz-subtitle-s{font-size:12px;color:var(--gray);margin-top:3px;}
+.quiz-pills{display:flex;gap:7px;margin-top:14px;}
+.qpill{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;border:2px solid #e5e7eb;color:var(--gray);}
+.qpill.qcurrent{border-color:var(--green-dark);background:var(--green-dark);color:#fff;}
+.qpill.qanswered{border-color:var(--green);background:#e6f9ee;color:var(--green-dark);}
+.question-card{background:#fff;border-radius:14px;padding:28px 32px;box-shadow:0 2px 16px rgba(0,0,0,.06);}
+.q-num{font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:7px;}
+.q-text{font-size:16px;font-weight:700;color:var(--text);line-height:1.6;margin-bottom:22px;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option{display:flex;align-items:flex-start;gap:13px;padding:13px 16px;border-radius:10px;border:2px solid #e5e7eb;cursor:pointer;transition:all .2s;font-size:14px;line-height:1.5;}
+.option:hover{border-color:var(--green);background:#f0fbf4;}
+.option.selected{border-color:var(--green-dark);background:#e6f9ee;}
+.option.opt-correct{border-color:#10b981;background:#d1fae5;}
+.option.opt-wrong{border-color:var(--red);background:#fee2e2;}
+.opt-letter{width:27px;height:27px;border-radius:50%;background:#f3f4f6;color:var(--gray);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;}
+.option.selected .opt-letter{background:var(--green-dark);color:#fff;}
+.option.opt-correct .opt-letter{background:#10b981;color:#fff;}
+.option.opt-wrong .opt-letter{background:var(--red);color:#fff;}
+.quiz-nav{display:flex;justify-content:space-between;align-items:center;margin-top:22px;}
+.feedback-box{border-radius:10px;padding:12px 16px;margin-top:14px;font-size:13px;line-height:1.7;display:none;}
+.fb-correct{background:#d1fae5;border:1px solid #6ee7b7;color:#065f46;}
+.fb-wrong{background:#fee2e2;border:1px solid #fca5a5;color:#7f1d1d;}
+
+/* RESULT */
+.result-card{background:#fff;border-radius:16px;padding:44px;text-align:center;box-shadow:0 2px 16px rgba(0,0,0,.06);}
+.result-icon{font-size:68px;margin-bottom:14px;}
+.result-score{font-size:60px;font-weight:900;margin:14px 0;}
+.score-pass{color:var(--green-dark);}
+.score-fail{color:var(--red);}
+.result-msg{font-size:20px;font-weight:700;margin-bottom:6px;}
+.result-sub{font-size:14px;color:var(--gray);line-height:1.7;margin-bottom:28px;}
+.ans-review{text-align:left;margin:20px 0;}
+.ans-row{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f3f4f6;font-size:13px;}
+.ans-icon{font-size:17px;flex-shrink:0;margin-top:1px;}
+
+/* CERT */
+.cert-wrap{background:#fff;border-radius:16px;padding:28px;box-shadow:0 2px 16px rgba(0,0,0,.06);}
+.cert-title-bar{text-align:center;margin-bottom:20px;}
+.cert-title-bar h2{font-size:20px;color:var(--green-deeper);}
+.cert-title-bar p{color:var(--gray);font-size:13px;margin-top:3px;}
+#certCanvas{width:100%;border-radius:8px;box-shadow:0 4px 24px rgba(0,0,0,.12);}
+.cert-actions{display:flex;justify-content:center;gap:14px;margin-top:20px;flex-wrap:wrap;}
+
+/* NAME FORM */
+.name-form{background:#fff;border-radius:16px;padding:44px;text-align:center;box-shadow:0 2px 16px rgba(0,0,0,.06);max-width:500px;margin:0 auto;}
+.name-form h2{font-size:24px;color:var(--green-deeper);margin-bottom:6px;}
+.name-form p{color:var(--gray);font-size:14px;line-height:1.7;margin-bottom:24px;}
+.form-group{margin-bottom:18px;text-align:left;}
+.form-group label{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:5px;}
+.form-group input{width:100%;padding:11px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;transition:border-color .2s;}
+.form-group input:focus{border-color:var(--green-dark);}
+
+.hidden{display:none!important;}
+.divider{border:none;border-top:1px solid #e5e7eb;margin:22px 0;}
+
+
+/* The Hoa THEME */
+body.brand-thehoa{--green:#e8919e;--green-dark:#c4606a;--green-deeper:#9c3d47;--bg:#fff5f5;--text:#2a1010;}
+body.brand-thehoa header{background:var(--green-deeper);}
+body.brand-thehoa .sidebar{border-right-color:#f5d5d8;}
+body.brand-thehoa .lesson-item:hover{background:#fff0f1;border-left-color:var(--green);}
+body.brand-thehoa .lesson-item.active{background:#ffe6e8;border-left-color:var(--green-dark);}
+body.brand-thehoa .lesson-item.done .li-icon{background:#f5d5d8;color:var(--green-deeper);}
+body.brand-thehoa .lesson-item.active .li-icon{background:var(--green-deeper);color:#fff;}
+body.brand-thehoa .lesson-header{background:linear-gradient(135deg,#9c3d47,#c4606a);}
+body.brand-thehoa .section h3{color:var(--green-deeper);border-left-color:var(--green-dark);}
+body.brand-thehoa .highlight-box{background:#fff0f1;border-color:#f5b8be;}
+body.brand-thehoa th{background:var(--green-dark);}
+body.brand-thehoa .btn-primary{background:var(--green-dark);}
+body.brand-thehoa .btn-primary:hover{background:var(--green-deeper);}
+body.brand-thehoa .btn-secondary{color:var(--green-dark);border-color:var(--green-dark);}
+body.brand-thehoa .btn-secondary:hover{background:#fff0f1;}
+body.brand-thehoa .step-num{background:var(--green-dark);}
+body.brand-thehoa .info-box{background:#fff0f1;border-color:#f5b8be;}
+body.brand-thehoa .info-box strong{color:var(--green-deeper);}
+body.brand-thehoa .badge.bg-green{background:#fde8ea;color:#9c3d47;}
+body.brand-thehoa .welcome h2{color:var(--green-deeper);}
+body.brand-thehoa .welcome h3{color:var(--green-dark);}
+body.brand-thehoa .stat-num{color:var(--green-dark);}
+body.brand-thehoa .progress-bar-fill{background:var(--green);}
+body.brand-thehoa .form-group input:focus{border-color:var(--green-dark);}
+body.brand-thehoa .quiz-title-h{color:var(--green-deeper);}
+
+
+/* ══════════════════════════════════════════════════════════════
+   BO SUNG - ban sua loi 09/2026
+   ══════════════════════════════════════════════════════════════ */
+
+/* --- Nut bam that su (thay cho div onclick) --- */
+button{font-family:inherit;}
+.as-btn{display:block;width:100%;text-align:left;background:none;border:none;font-family:inherit;color:inherit;}
+.lesson-item{width:100%;text-align:left;font-family:inherit;background:none;border:none;border-left:3px solid transparent;}
+.lesson-item:disabled{opacity:.4;cursor:not-allowed;}
+.option{width:100%;text-align:left;font-family:inherit;background:#fff;}
+.option:disabled{cursor:default;}
+.qpill{background:none;font-family:inherit;cursor:pointer;padding:0;}
+.qpill:disabled{cursor:default;}
+
+/* --- Vien focus cho ban phim (dung duoc phim Tab) --- */
+:focus-visible{outline:3px solid #f0c060;outline-offset:2px;border-radius:6px;}
+
+/* --- Cong doc bai: dem nguoc truoc khi mo bai kiem tra --- */
+.doc-bai-bar{background:#fffbeb;border:1px solid #fcd34d;border-radius:10px;padding:12px 18px;
+  margin-bottom:20px;display:flex;align-items:center;gap:14px;font-size:13px;}
+.doc-bai-bar.xong{background:#f0fbf4;border-color:#a8dbb9;}
+.doc-bai-wrap{flex:1;background:#e5e7eb;border-radius:20px;height:8px;overflow:hidden;}
+.doc-bai-fill{height:100%;background:var(--gold);border-radius:20px;transition:width 1s linear;width:0;}
+.doc-bai-bar.xong .doc-bai-fill{background:var(--green-dark);}
+.doc-bai-text{font-weight:600;white-space:nowrap;}
+
+/* --- Nut menu tren dien thoai --- */
+.nut-menu{display:none;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:20px;
+  width:38px;height:38px;border-radius:9px;cursor:pointer;flex-shrink:0;align-items:center;justify-content:center;}
+.lop-phu{display:none;position:fixed;inset:64px 0 0;background:rgba(0,0,0,.45);z-index:90;}
+.lop-phu.hien{display:block;}
+
+/* --- Ma so chung nhan --- */
+.ma-cn{font-family:'Courier New',monospace;font-weight:700;letter-spacing:1px;}
+
+/* ══════════════════════════════════════════════════════════════
+   DIEN THOAI / MAY TINH BANG
+   ══════════════════════════════════════════════════════════════ */
+@media(max-width:768px){
+  .nut-menu{display:flex;}
+  header{padding:0 12px;gap:10px;}
+  header h1{font-size:12px;line-height:1.25;}
+  .logo-img{height:36px;}
+  .progress-header{font-size:11px;gap:6px;}
+  .progress-bar-wrap{width:64px;}
+
+  /* Sidebar thanh ngan keo tu trai, khong an mat nua */
+  .sidebar{position:fixed;top:64px;left:0;height:calc(100vh - 64px);z-index:95;width:82%;max-width:290px;
+    transform:translateX(-102%);transition:transform .25s ease;box-shadow:4px 0 24px rgba(0,0,0,.18);}
+  .sidebar.mo{transform:translateX(0);}
+
+  .main{padding:14px;}
+  .welcome{padding:26px 18px;}
+  .welcome h2{font-size:21px;}
+  .welcome-stats{gap:16px;}
+  .stat-num{font-size:24px;}
+  .lesson-header{padding:18px 18px;border-radius:12px 12px 0 0;}
+  .lesson-title{font-size:17px;}
+  .lesson-body{padding:18px 16px;}
+  .section h3{font-size:14px;}
+  .question-card,.quiz-header-bar{padding:18px 16px;}
+  .q-text{font-size:15px;}
+  .result-card{padding:26px 18px;}
+  .result-score{font-size:46px;}
+  .cert-wrap{padding:14px;}
+  .lesson-actions{flex-direction:column;gap:10px;align-items:stretch;}
+  .lesson-actions .btn{justify-content:center;}
+  .quiz-nav{gap:10px;}
+  .quiz-pills{flex-wrap:wrap;}
+
+  /* F7: khoi KiotViet tu cuon ngang TRONG khung cua no, khong keo gian trang */
+  .kv-phones{overflow-x:auto;-webkit-overflow-scrolling:touch;justify-content:flex-start;
+    margin-left:-16px;margin-right:-16px;padding-left:16px;padding-right:16px;}
+  .table-wrap{margin-left:-16px;margin-right:-16px;padding-left:16px;padding-right:16px;}
+}
+
+@media(max-width:420px){
+  .welcome-stats{gap:12px;}
+  .stat-num{font-size:21px;}
+  .btn{padding:11px 16px;font-size:13px;}
+}
+
+/* --- In giay chung nhan --- */
+@media print{
+  header,.sidebar,.cert-actions,.lop-phu,.nut-menu{display:none!important;}
+  .main{padding:0;max-width:none;}
+  .cert-wrap{box-shadow:none;padding:0;}
+  .cert-title-bar{display:none;}
+}
