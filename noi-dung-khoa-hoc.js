@@ -874,7 +874,7 @@ const LESSONS_TH = [
     <ol class="step-list">
       <li class="step-item"><div class="step-num">1</div><div class="step-content"><strong>Kiểm tra tồn kho thực tế</strong> tại cửa hàng - xác định mặt hàng cần nhập</div></li>
       <li class="step-item"><div class="step-num">2</div><div class="step-content"><strong>Lập danh sách đặt hàng</strong> - đảm bảo đủ MOQ từng sản phẩm</div></li>
-      <li class="step-item"><div class="step-num">3</div><div class="step-content"><strong>Chuẩn bị thanh toán</strong> - thanh toán trước khi nhận hàng</div></li>
+      <li class="step-item"><div class="step-num">3</div><div class="step-content"><strong>Thanh toán</strong> - ngay sau khi Hệ Thống xác nhận đơn hàng</div></li>
     </ol>
   </div>
   <div class="section">
@@ -906,8 +906,8 @@ const LESSONS_TH = [
      opts:['Chọn ngẫu nhiên theo ý muốn','Chọn theo giá tăng dần','Chọn theo nhóm: vật liệu trước rồi đến nguyên liệu','Chọn nguyên liệu trước rồi vật liệu'],
      c:2,exp:'Nên chọn theo nhóm (1 loạt vật liệu xong đến 1 loạt nguyên liệu) để dễ kiểm tra và tránh bỏ sót.'},
     {q:'Cửa hàng cần thanh toán vào thời điểm nào?',
-     opts:['Sau khi nhận hàng 3 ngày','Trước khi nhận hàng','Sau khi kiểm tra hàng xong','Trong vòng 7 ngày sau khi đặt'],
-     c:1,exp:'Theo quy định SOP, cửa hàng phải thanh toán trước khi nhận hàng.'}
+     opts:['Sau khi nhận hàng 3 ngày','Trước khi nhận hàng','Ngay sau khi Hệ Thống xác nhận đơn hàng','Trong vòng 7 ngày sau khi đặt'],
+     c:2,exp:'Cửa hàng cần thanh toán ngay sau khi Hệ Thống xác nhận đơn hàng.'}
   ]
 },
 {
