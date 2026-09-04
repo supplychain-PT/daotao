@@ -703,81 +703,90 @@ const LESSONS_TH = [
   subtitle:'Phân loại, quy cách & lưu ý',
   content:`
   <div class="section">
-    <h3>1. Nguyên Liệu Độc Quyền</h3>
-    <p>Chỉ mua qua hệ thống The Hoa. <strong>Giá chưa bao gồm phí vận chuyển.</strong></p>
+    <h3>1. Nguyên Liệu Địa Phương</h3>
+    <p>Tự mua tại địa phương, không cần đặt qua hệ thống.</p>
     <div class="table-wrap"><table>
       <tr><th>Sản phẩm</th><th>ĐVT</th></tr>
-      <tr><td>Bột Pha Chế</td><td>Thùng</td></tr>
-      <tr><td>Bột Socola</td><td>Gói</td></tr>
-      <tr><td>Trà Hòa Tan Vị Đào</td><td>Gói</td></tr>
-      <tr><td>Trà Hòa Tan Vị Vải</td><td>Gói</td></tr>
-      <tr><td>Trân Châu Giòn</td><td>Thùng</td></tr>
-      <tr><td>Trà Xanh Lài</td><td>Gói</td></tr>
-      <tr><td>Vải Tươi Ngâm Đường</td><td>Thùng</td></tr>
-      <tr><td>Trà Olong Hoa Cỏ Mùa Xuân</td><td>Gói</td></tr>
-      <tr><td>Trà Oolong Quế Hoa</td><td>Gói</td></tr>
-      <tr><td>Cà Phê Mộc 9:1</td><td>Kg</td></tr>
-      <tr><td>Trà Xanh Gạo Rang</td><td>Gói</td></tr>
-      <tr><td>Trà Oolong Camelia</td><td>Gói</td></tr>
-      <tr><td>Trà Oolong Sữa</td><td>Gói</td></tr>
-      <tr><td>Trà Xanh Shan Tuyết</td><td>Gói</td></tr>
+      <tr><td>Đường Phèn</td><td>Kg</td></tr>
+      <tr><td>Đường Cát</td><td>Kg</td></tr>
+      <tr><td>Chanh Trái</td><td>Kg</td></tr>
+      <tr><td>Sữa Đặc Phương Nam</td><td>Hộp</td></tr>
+      <tr><td>Bột Sương Sáo Đen Thuận Phát (50gr)</td><td>Gói</td></tr>
+      <tr><td>Bột Rau Câu Dẻo Con Cá</td><td>Gói</td></tr>
+      <tr><td>Sữa Rich</td><td>Hộp</td></tr>
+      <tr><td>Kem Lá Dứa</td><td>Hộp</td></tr>
+      <tr><td>Bột Hoa Anh Đào</td><td>Gói</td></tr>
     </table></div>
-    <div class="highlight-box info">💡 Đơn giá không nằm trong tài liệu đào tạo. Khi đặt hàng, xem <strong>đơn giá hiện hành trực tiếp trên KiotViet</strong> hoặc trong báo giá chính thức của bộ phận Chuỗi Cung Ứng.</div>
-    <div class="highlight-box" style="margin-top:10px"><strong>🌿 TRÀ DƯỠNG</strong> (ĐVT: Gói - MOQ 20 gói/loại):<br>
-    Bách Nhật Tinh Hoa (Dưỡng Gan) · Bổ Huyết Ngũ Thảo (Dưỡng Khí) · Dưỡng Nhan Thất Vị (Dưỡng Thần) · Đông Trùng Tứ Nguyên (Dưỡng Thận) · Đông Trùng Tứ Vị (Dưỡng Thận) · Hương Quế Hoàng Cam (Dưỡng Phế) · Mộc Hương Tĩnh (Dưỡng Thanh Hương) · Quý Phi Ngũ Thảo (Dưỡng Sắc) · Thất Nguyên Đông Trùng (Dưỡng Tâm) · Thực Khang Thảo (Dưỡng An Bụng) · Trà Ngũ Hắc (Dưỡng Tóc)</div>
-    <div class="highlight-box warn">🚚 Giá <strong>Nguyên Liệu</strong> <strong>chưa bao gồm phí vận chuyển</strong>.</div>
   </div>
   <div class="section">
-    <h3>2. Nguyên Liệu Hệ Thống</h3>
+    <h3>2. Nguyên Liệu Độc Quyền</h3>
+    <p>Chỉ đặt qua hệ thống The Hoa. <strong>Giá chưa bao gồm phí vận chuyển.</strong></p>
+    <div class="table-wrap"><table>
+      <tr><th>Sản phẩm</th><th>ĐVT</th><th>MOQ</th></tr>
+      <tr><td>Bột Pha Chế PT35</td><td>Thùng</td><td>1</td></tr>
+      <tr><td>Bột Socola 02</td><td>Gói</td><td>1</td></tr>
+      <tr><td>Trà Hòa Tan Vị Đào</td><td>Gói</td><td><strong>5</strong></td></tr>
+      <tr><td>Trà Hòa Tan Vị Vải</td><td>Gói</td><td><strong>5</strong></td></tr>
+      <tr><td>Vải Tươi Ngâm Đường</td><td>Thùng</td><td>1</td></tr>
+      <tr><td>Trà Xanh Lài</td><td>Gói</td><td>1</td></tr>
+      <tr><td>Trà Xanh Gạo Rang</td><td>Gói</td><td>1</td></tr>
+      <tr><td>Trà Oolong Quế Hoa</td><td>Gói</td><td>1</td></tr>
+      <tr><td>Trà Oolong Sữa</td><td>Gói</td><td>1</td></tr>
+      <tr><td>Trà Xanh Shan Tuyết</td><td>Gói</td><td>1</td></tr>
+      <tr><td>Cà Phê Hạt</td><td>Gói</td><td><strong>2</strong></td></tr>
+    </table></div>
+    <div class="highlight-box" style="margin-top:10px"><strong>🌿 TRÀ DƯỠNG</strong> (ĐVT: Gói - MOQ <strong>20 gói/loại</strong>):<br>
+    Bách Nhật Tinh Hoa (Dưỡng Gan) · Bổ Huyết Ngũ Thảo (Dưỡng Khí) · Dưỡng Nhan Thất Vị (Dưỡng Thần) · Đông Trùng Tứ Vị (Dưỡng Thận) · Hương Quế Hoàng Cam (Dưỡng Phế) · Mộc Hương Tĩnh (Dưỡng Thanh Hương) · Quý Phi Ngũ Thảo (Dưỡng Sắc) · Thất Nguyên Đông Trùng (Dưỡng Tâm) · Thực Khang Thảo (Dưỡng An Bụng) · Trà Ngũ Hắc (Dưỡng Tóc)</div>
+    <div class="highlight-box warn">🚚 Giá <strong>Nguyên Liệu Độc Quyền</strong> <strong>chưa bao gồm phí vận chuyển</strong>.</div>
+  </div>
+  <div class="section">
+    <h3>3. Nguyên Liệu Không Độc Quyền</h3>
     <p>Giá linh hoạt theo thị trường. <strong>Giá chưa bao gồm phí vận chuyển.</strong></p>
     <div class="highlight-box info">💡 Nhóm này <strong>có thể mua từ nhà cung cấp bên ngoài</strong>, nhưng phải đảm bảo <strong>đúng loại</strong> mà Hệ Thống đã quy định. Nếu loại khác, cần <strong>liên hệ bộ phận Kho trước</strong> khi đưa vào sử dụng.</div>
     <div class="table-wrap"><table>
-      <tr><th>Sản phẩm</th><th>ĐVT</th></tr>
-      <tr><td>Bột Matcha Đài Loan</td><td>Gói</td></tr>
-      <tr><td>Bột Thạch Jelly</td><td>Gói</td></tr>
-      <tr><td>Hạt Chia Úc / Peru</td><td>Gói</td></tr>
-      <tr><td>Đào Ngâm Fresko 820gr</td><td>Thùng</td></tr>
-      <tr><td>Sinh Tố Xoài Berrino</td><td>Chai</td></tr>
-      <tr><td>Sinh Tố Dâu Tây Berrino</td><td>Chai</td></tr>
-      <tr><td>Mứt Hoa Hồng</td><td>Hủ</td></tr>
-      <tr><td>Mứt Hoa Mộc Quế</td><td>Hủ</td></tr>
-      <tr><td>Thạch Nha Đam</td><td>Gói</td></tr>
-      <tr><td>Trà Oolong Sen</td><td>Gói</td></tr>
-      <tr><td>Trà Đen Sài Gòn</td><td>Gói</td></tr>
+      <tr><th>Sản phẩm</th><th>ĐVT</th><th>MOQ</th></tr>
+      <tr><td>Bột Matcha Đài Loan</td><td>Gói</td><td>1</td></tr>
+      <tr><td>Bột Jelly Ciel</td><td>Gói</td><td>1</td></tr>
+      <tr><td>Đào Ngâm Fresko 820gr</td><td>Thùng</td><td>1</td></tr>
+      <tr><td>Lê Ngâm Đường</td><td>Lon</td><td><strong>6</strong></td></tr>
+      <tr><td>Sinh Tố Xoài Berrino</td><td>Chai</td><td>1</td></tr>
+      <tr><td>Sinh Tố Dâu Tây Berrino</td><td>Chai</td><td>1</td></tr>
+      <tr><td>Mứt Hoa Mộc Quế</td><td>Hủ</td><td>1</td></tr>
+      <tr><td>Syrup Lựu Lermao</td><td>Gói</td><td>1</td></tr>
+      <tr><td>Thạch Nha Đam</td><td>Gói</td><td><strong>5</strong></td></tr>
+      <tr><td>Hạt Sen Lon NIF</td><td>Lon</td><td><strong>12</strong></td></tr>
+      <tr><td>Sữa Nước Ice Blanc</td><td>Hộp</td><td><strong>24</strong></td></tr>
+      <tr><td>Nước Dừa Xiêm Vico</td><td>Chai</td><td><strong>6</strong></td></tr>
+      <tr><td>Trà Oolong Sen</td><td>Gói</td><td>1</td></tr>
+      <tr><td>Trà Đen Sài Gòn</td><td>Gói</td><td>1</td></tr>
+      <tr><td>Trân Châu Trà Oolong Nhài</td><td>Gói</td><td><strong>20</strong></td></tr>
+      <tr><td>Trân Châu 3Q Trà</td><td>Gói</td><td><strong>6</strong></td></tr>
     </table></div>
-    <div class="highlight-box info">💡 Đơn giá không nằm trong tài liệu đào tạo. Khi đặt hàng, xem <strong>đơn giá hiện hành trực tiếp trên KiotViet</strong> hoặc trong báo giá chính thức của bộ phận Chuỗi Cung Ứng.</div>
+    <div class="highlight-box info">💡 Đơn giá không nằm trong tài liệu đào tạo. Khi đặt hàng, xem <strong>đơn giá hiện hành trực tiếp trên KiotViet</strong>.</div>
   </div>
   <div class="section">
-    <h3>3. Vật Liệu Bao Bì</h3>
+    <h3>4. Vật Liệu Bao Bì</h3>
     <div class="table-wrap"><table>
-      <tr><th>Phân loại</th><th>Sản phẩm tiêu biểu</th></tr>
-      <tr>
-        <td><span class="badge bg-green">VL Độc Quyền</span></td>
-        <td>
-          <ul style="margin:0;padding-left:18px;line-height:2">
-            <li>Ly nhựa PET 550ml lùn - phi 98</li>
-            <li>Nắp ly PET Cheese - phi 98</li>
-            <li>Ly giấy 2 lớp màu 500ml - phi 90</li>
-            <li>Nắp Ly Giấy Premium trắng phi 90</li>
-            <li>Túi giấy Hồng The Hoa <em>(MOQ 200 cái)</em></li>
-            <li>Khay đế ly carton 4 ngăn <em>(MOQ 100 cái)</em></li>
-          </ul>
-        </td>
-      </tr>
-      <tr>
-        <td><span class="badge bg-blue">VL Không ĐQ</span></td>
-        <td>
-          <ul style="margin:0;padding-left:18px;line-height:2">
-            <li>Giấy chống tràn 12cm</li>
-            <li>Ống hút nóng - đen</li>
-            <li>Ống hút bọc kiếng phi 12 & phi 6</li>
-            <li>Muỗng nhựa trắng bọc kiếng 15cm</li>
-            <li>Hũ đựng topping 4Oz</li>
-            <li>Bịch 2 ly / 1 ly trơn</li>
-            <li>Băng keo trong & băng keo trắng</li>
-          </ul>
-        </td>
-      </tr>
+      <tr><th>Phân loại</th><th>Sản phẩm</th><th>ĐVT</th><th>MOQ</th></tr>
+      <tr><td rowspan="9"><span class="badge bg-green">VL Độc Quyền</span></td>
+          <td>Ly nhựa PET 550ml lùn - phi 98</td><td>Thùng</td><td>1</td></tr>
+      <tr><td>Nắp ly PET Cheese - phi 98</td><td>Thùng</td><td>1</td></tr>
+      <tr><td>Ly Giấy 2 Lớp In Màu 500ml - Phi 90</td><td>Thùng</td><td>1</td></tr>
+      <tr><td>Nắp Ly Giấy Premium trắng phi 90</td><td>Thùng</td><td>1</td></tr>
+      <tr><td>Túi giấy Hồng The Hoa</td><td>Cái</td><td><strong>200</strong></td></tr>
+      <tr><td>Khay đế ly carton 4 ngăn</td><td>Cái</td><td><strong>200</strong></td></tr>
+      <tr><td>Combo Thùng Và Túi 12 Ly The Hoa</td><td>Combo</td><td><strong>10</strong></td></tr>
+      <tr><td>Bịch 1 Ly The Hoa</td><td>Kg</td><td><strong>5</strong></td></tr>
+      <tr><td>Bịch 2 Ly The Hoa</td><td>Kg</td><td><strong>5</strong></td></tr>
+      <tr><td rowspan="8"><span class="badge bg-blue">VL Không ĐQ</span></td>
+          <td>Giấy chống tràn 13cm (Ly giấy 500ml)</td><td>Xấp</td><td><strong>2</strong></td></tr>
+      <tr><td>Ống hút bọc kiếng phi 12</td><td>Kg</td><td><strong>5</strong></td></tr>
+      <tr><td>Ống hút bọc kiếng phi 6</td><td>Kg</td><td><strong>5</strong></td></tr>
+      <tr><td>Ống Hút Bùng Hương</td><td>Gói</td><td><strong>10</strong></td></tr>
+      <tr><td>Muỗng nhựa trắng bọc kiếng 15cm</td><td>Thùng</td><td>1</td></tr>
+      <tr><td>Hũ đựng topping 4Oz</td><td>Thùng</td><td>1</td></tr>
+      <tr><td>Băng Keo Trong 1,2cm</td><td>Cuộn</td><td><strong>5</strong></td></tr>
+      <tr><td>Băng keo trắng 1,5cm</td><td>Cuộn</td><td><strong>5</strong></td></tr>
     </table></div>
     <div class="highlight-box" style="background:#fde8ea;border-color:#f5b8be">🚚 Giá <strong>Vật Liệu Bao Bì</strong> <strong>đã bao gồm phí vận chuyển</strong>.</div>
   </div>`,
@@ -787,19 +796,19 @@ const LESSONS_TH = [
      c:1,exp:'NVL Độc Quyền chỉ được cung ứng qua hệ thống The Hoa, không được mua từ nguồn khác.'},
     {q:'Giá nhóm Vật Liệu Bao Bì có đặc điểm gì?',
      opts:['Chưa bao gồm phí vận chuyển','Đã bao gồm phí vận chuyển','Giá linh hoạt theo thị trường','Cần thương lượng mỗi đơn'],
-     c:1,exp:'Giá Vật Liệu Bao Bì đã bao gồm phí vận chuyển. Nguyên Liệu (ĐQ và HT) chưa bao gồm phí vận chuyển.'},
+     c:1,exp:'Giá Vật Liệu Bao Bì đã bao gồm phí vận chuyển. Nguyên Liệu (Độc Quyền và Không Độc Quyền) chưa bao gồm phí vận chuyển.'},
     {q:'Sản phẩm nào sau đây thuộc nhóm Vật Liệu Độc Quyền The Hoa?',
      opts:['Bột Matcha Đài Loan','Túi giấy Hồng The Hoa','Ống hút bọc kiếng','Thạch Nha Đam'],
      c:1,exp:'Túi giấy Hồng The Hoa là Vật Liệu Độc Quyền, chỉ cung ứng qua hệ thống.'},
     {q:'TRÀ DƯỠNG có số lượng tối thiểu (MOQ) là bao nhiêu mỗi loại?',
      opts:['1 gói','5 gói','10 gói','20 gói'],
      c:3,exp:'MOQ của TRÀ DƯỠNG là 20 gói/loại theo danh mục nguyên liệu The Hoa.'},
-    {q:'Sản phẩm nào thuộc nhóm Nguyên Liệu Hệ Thống?',
-     opts:['Bột Pha Chế','Trân Châu Giòn','Bột Matcha Đài Loan','Vải Tươi Ngâm Đường'],
-     c:2,exp:'Bột Matcha Đài Loan là Nguyên Liệu Hệ Thống - giá linh hoạt theo thị trường và không phải NL Độc Quyền.'},
-    {q:'Giá Nguyên Liệu Độc Quyền có bao gồm phí vận chuyển không?',
-     opts:['Có, đã bao gồm','Không, chưa bao gồm','Chỉ bao gồm nếu đặt đủ MOQ','Tùy theo khu vực'],
-     c:1,exp:'Giá Nguyên Liệu (cả Độc Quyền và Hệ Thống) chưa bao gồm phí vận chuyển. Chỉ Vật Liệu Bao Bì mới bao gồm phí vận chuyển.'}
+    {q:'Sản phẩm nào thuộc nhóm Nguyên Liệu Không Độc Quyền?',
+     opts:['Bột Pha Chế PT35','Vải Tươi Ngâm Đường','Bột Matcha Đài Loan','Trà Xanh Lài'],
+     c:2,exp:'Bột Matcha Đài Loan là Nguyên Liệu Không Độc Quyền - giá linh hoạt theo thị trường và có thể mua từ bên ngoài (đúng loại Hệ Thống quy định).'},
+    {q:'Nhóm nào sau đây KHÔNG cần đặt qua hệ thống KiotViet của The Hoa?',
+     opts:['Nguyên Liệu Độc Quyền','Vật Liệu Bao Bì Độc Quyền','Nguyên Liệu Địa Phương','Nguyên Liệu Không Độc Quyền'],
+     c:2,exp:'Nguyên Liệu Địa Phương (đường, chanh, sữa đặc...) được mua trực tiếp tại địa phương, không cần đặt qua hệ thống.'}
   ]
 },
 {
@@ -811,38 +820,67 @@ const LESSONS_TH = [
     <h3>1. MOQ Nguyên Liệu Độc Quyền</h3>
     <div class="table-wrap"><table>
       <tr><th>Sản phẩm</th><th>ĐVT</th><th>MOQ</th></tr>
-      <tr><td>Bột Pha Chế</td><td>Thùng</td><td>1</td></tr>
-      <tr><td>Bột Socola</td><td>Gói</td><td>1</td></tr>
+      <tr><td>Bột Pha Chế PT35</td><td>Thùng</td><td>1</td></tr>
+      <tr><td>Bột Socola 02</td><td>Gói</td><td>1</td></tr>
       <tr><td>Trà Hòa Tan Vị Đào</td><td>Gói</td><td><strong>5</strong></td></tr>
       <tr><td>Trà Hòa Tan Vị Vải</td><td>Gói</td><td><strong>5</strong></td></tr>
-      <tr><td>Trân Châu Giòn</td><td>Thùng</td><td>1</td></tr>
-      <tr><td>Trà Xanh Lài</td><td>Gói</td><td>1</td></tr>
       <tr><td>Vải Tươi Ngâm Đường</td><td>Thùng</td><td>1</td></tr>
-      <tr><td>Trà Olong Hoa Cỏ Mùa Xuân</td><td>Gói</td><td>1</td></tr>
-      <tr><td>Trà Oolong Quế Hoa / Camelia / Sữa</td><td>Gói</td><td>1</td></tr>
-      <tr><td>Cà Phê Mộc 9:1</td><td>Kg</td><td>1</td></tr>
-      <tr><td>Trà Xanh Gạo Rang / Shan Tuyết</td><td>Gói</td><td>1</td></tr>
+      <tr><td>Trà Xanh Lài</td><td>Gói</td><td>1</td></tr>
+      <tr><td>Trà Xanh Gạo Rang</td><td>Gói</td><td>1</td></tr>
+      <tr><td>Trà Oolong Quế Hoa</td><td>Gói</td><td>1</td></tr>
+      <tr><td>Trà Oolong Sữa</td><td>Gói</td><td>1</td></tr>
+      <tr><td>Trà Xanh Shan Tuyết</td><td>Gói</td><td>1</td></tr>
+      <tr><td>Cà Phê Hạt</td><td>Gói</td><td><strong>2</strong></td></tr>
       <tr><td>TRÀ DƯỠNG (mỗi loại)</td><td>Gói</td><td><strong>20</strong></td></tr>
     </table></div>
   </div>
   <div class="section">
-    <h3>2. MOQ Vật Liệu Bao Bì</h3>
+    <h3>2. MOQ Nguyên Liệu Không Độc Quyền</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Sản phẩm</th><th>ĐVT</th><th>MOQ</th></tr>
+      <tr><td>Bột Matcha Đài Loan</td><td>Gói</td><td>1</td></tr>
+      <tr><td>Bột Jelly Ciel</td><td>Gói</td><td>1</td></tr>
+      <tr><td>Đào Ngâm Fresko 820gr</td><td>Thùng</td><td>1</td></tr>
+      <tr><td>Lê Ngâm Đường</td><td>Lon</td><td><strong>6</strong></td></tr>
+      <tr><td>Sinh Tố Xoài Berrino</td><td>Chai</td><td>1</td></tr>
+      <tr><td>Sinh Tố Dâu Tây Berrino</td><td>Chai</td><td>1</td></tr>
+      <tr><td>Mứt Hoa Mộc Quế</td><td>Hủ</td><td>1</td></tr>
+      <tr><td>Syrup Lựu Lermao</td><td>Gói</td><td>1</td></tr>
+      <tr><td>Thạch Nha Đam</td><td>Gói</td><td><strong>5</strong></td></tr>
+      <tr><td>Hạt Sen Lon NIF</td><td>Lon</td><td><strong>12</strong></td></tr>
+      <tr><td>Sữa Nước Ice Blanc</td><td>Hộp</td><td><strong>24</strong></td></tr>
+      <tr><td>Nước Dừa Xiêm Vico</td><td>Chai</td><td><strong>6</strong></td></tr>
+      <tr><td>Trà Oolong Sen</td><td>Gói</td><td>1</td></tr>
+      <tr><td>Trà Đen Sài Gòn</td><td>Gói</td><td>1</td></tr>
+      <tr><td>Trân Châu Trà Oolong Nhài</td><td>Gói</td><td><strong>20</strong></td></tr>
+      <tr><td>Trân Châu 3Q Trà</td><td>Gói</td><td><strong>6</strong></td></tr>
+    </table></div>
+  </div>
+  <div class="section">
+    <h3>3. MOQ Vật Liệu Bao Bì</h3>
     <div class="table-wrap"><table>
       <tr><th>Sản phẩm</th><th>ĐVT</th><th>MOQ</th></tr>
       <tr><td>Ly nhựa PET 550ml lùn - phi 98</td><td>Thùng</td><td>1</td></tr>
       <tr><td>Nắp ly PET Cheese - phi 98</td><td>Thùng</td><td>1</td></tr>
-      <tr><td>Ly giấy 2 lớp màu 500ml - phi 90</td><td>Thùng</td><td>1</td></tr>
+      <tr><td>Ly Giấy 2 Lớp In Màu 500ml - Phi 90</td><td>Thùng</td><td>1</td></tr>
       <tr><td>Nắp Ly Giấy Premium trắng phi 90</td><td>Thùng</td><td>1</td></tr>
       <tr><td>Túi giấy Hồng The Hoa</td><td>Cái</td><td><strong>200</strong></td></tr>
-      <tr><td>Khay đế ly carton 4 ngăn</td><td>Cái</td><td><strong>100</strong></td></tr>
-      <tr><td>Ống hút bọc kiếng (phi 12 & phi 6)</td><td>Kg</td><td>5</td></tr>
-      <tr><td>Bịch 2 ly / 1 ly trơn</td><td>Kg</td><td>5</td></tr>
-      <tr><td>Băng keo nhỏ trong suốt</td><td>Cuộn</td><td>5</td></tr>
-      <tr><td>Băng keo trắng 1.5cm</td><td>Cuộn</td><td>2</td></tr>
+      <tr><td>Khay đế ly carton 4 ngăn</td><td>Cái</td><td><strong>200</strong></td></tr>
+      <tr><td>Combo Thùng Và Túi 12 Ly The Hoa</td><td>Combo</td><td><strong>10</strong></td></tr>
+      <tr><td>Bịch 1 Ly The Hoa</td><td>Kg</td><td><strong>5</strong></td></tr>
+      <tr><td>Bịch 2 Ly The Hoa</td><td>Kg</td><td><strong>5</strong></td></tr>
+      <tr><td>Giấy chống tràn 13cm</td><td>Xấp</td><td><strong>2</strong></td></tr>
+      <tr><td>Ống hút bọc kiếng phi 12</td><td>Kg</td><td><strong>5</strong></td></tr>
+      <tr><td>Ống hút bọc kiếng phi 6</td><td>Kg</td><td><strong>5</strong></td></tr>
+      <tr><td>Ống Hút Bùng Hương</td><td>Gói</td><td><strong>10</strong></td></tr>
+      <tr><td>Muỗng nhựa trắng bọc kiếng 15cm</td><td>Thùng</td><td>1</td></tr>
+      <tr><td>Hũ đựng topping 4Oz</td><td>Thùng</td><td>1</td></tr>
+      <tr><td>Băng Keo Trong 1,2cm</td><td>Cuộn</td><td><strong>5</strong></td></tr>
+      <tr><td>Băng keo trắng 1,5cm</td><td>Cuộn</td><td><strong>5</strong></td></tr>
     </table></div>
   </div>
   <div class="section">
-    <h3>3. Lưu Ý Quan Trọng</h3>
+    <h3>4. Lưu Ý Quan Trọng</h3>
     <div class="highlight-box warn">⚠️ Đặt hàng <strong>dưới MOQ</strong> → hệ thống sẽ <strong>không xử lý đơn</strong>. Luôn kiểm tra MOQ trước khi tạo đơn.</div>
     <div class="highlight-box">💡 Nên lập kế hoạch đặt hàng <strong>định kỳ</strong> để tối ưu số lượng và tránh thiếu hàng.</div>
   </div>`,
@@ -861,7 +899,7 @@ const LESSONS_TH = [
      c:2,exp:'MOQ của từng loại TRÀ DƯỠNG là 20 gói/loại.'},
     {q:'MOQ Khay đế ly carton 4 ngăn là bao nhiêu?',
      opts:['50 cái','100 cái','200 cái','500 cái'],
-     c:1,exp:'MOQ Khay đế ly carton 4 ngăn là 100 cái mỗi lần đặt.'}
+     c:2,exp:'MOQ Khay đế ly carton 4 ngăn là 200 cái mỗi lần đặt.'}
   ]
 },
 {
