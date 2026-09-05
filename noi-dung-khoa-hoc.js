@@ -694,7 +694,7 @@ const LESSONS_TH = [
      c:2,exp:'Giá Vật Liệu Bao Bì đã bao gồm phí vận chuyển. Nguyên Liệu các nhóm chưa bao gồm phí vận chuyển.'},
     {q:'Cửa hàng nhượng quyền The Hoa có thể tự mua nguyên liệu không thuộc NHÓM ĐỘC QUYỀN từ nhà cung cấp bên ngoài không?',
      opts:['Không, mọi nguyên liệu đều phải đặt qua hệ thống','Có, miễn là giá rẻ hơn','Có, nhưng phải đảm bảo đúng loại Hệ Thống đưa ra; nếu khác cần liên hệ bộ phận Kho trước khi sử dụng','Chỉ được mua ngoài khi tồn kho về 0'],
-     c:2,exp:'Nguyên liệu không thuộc Nhóm Độc Quyền có thể mua từ bên ngoài, nhưng phải đảm bảo đúng loại mà Hệ Thống đã quy định. Nếu loại khác, cần liên hệ bộ phận Kho trước khi đưa vào sử dụng.'}
+     c:0,exp:'Tất cả nguyên liệu (kể cả Không Độc Quyền) đều phải đặt qua hệ thống KiotViet. Chỉ Nguyên Liệu Địa Phương mới tự mua tại chỗ.'}
   ]
 },
 {
@@ -742,7 +742,7 @@ const LESSONS_TH = [
   <div class="section">
     <h3>3. Nguyên Liệu Không Độc Quyền</h3>
     <p>Giá linh hoạt theo thị trường. <strong>Giá chưa bao gồm phí vận chuyển.</strong></p>
-    <div class="highlight-box info">💡 Nhóm này <strong>có thể mua từ nhà cung cấp bên ngoài</strong>, nhưng phải đảm bảo <strong>đúng loại</strong> mà Hệ Thống đã quy định. Nếu loại khác, cần <strong>liên hệ bộ phận Kho trước</strong> khi đưa vào sử dụng.</div>
+    <div class="highlight-box info">💡 Nhóm này vẫn phải <strong>đặt qua hệ thống KiotViet</strong>. Giá linh hoạt theo thị trường — kiểm tra đơn giá trực tiếp trên KiotViet khi đặt hàng.</div>
     <div class="table-wrap"><table>
       <tr><th>Sản phẩm</th><th>ĐVT</th><th>MOQ</th></tr>
       <tr><td>Bột Matcha Đài Loan</td><td>Gói</td><td>1</td></tr>
@@ -805,7 +805,7 @@ const LESSONS_TH = [
      c:3,exp:'MOQ của TRÀ DƯỠNG là 20 gói/loại theo danh mục nguyên liệu The Hoa.'},
     {q:'Sản phẩm nào thuộc nhóm Nguyên Liệu Không Độc Quyền?',
      opts:['Bột Pha Chế PT35','Vải Tươi Ngâm Đường','Bột Matcha Đài Loan','Trà Xanh Lài'],
-     c:2,exp:'Bột Matcha Đài Loan là Nguyên Liệu Không Độc Quyền - giá linh hoạt theo thị trường và có thể mua từ bên ngoài (đúng loại Hệ Thống quy định).'},
+     c:2,exp:'Bột Matcha Đài Loan là Nguyên Liệu Không Độc Quyền - vẫn đặt qua KiotViet, giá linh hoạt theo thị trường.'},
     {q:'Nhóm nào sau đây KHÔNG cần đặt qua hệ thống KiotViet của The Hoa?',
      opts:['Nguyên Liệu Độc Quyền','Vật Liệu Bao Bì Độc Quyền','Nguyên Liệu Địa Phương','Nguyên Liệu Không Độc Quyền'],
      c:2,exp:'Nguyên Liệu Địa Phương (đường, chanh, sữa đặc...) được mua trực tiếp tại địa phương, không cần đặt qua hệ thống.'}
