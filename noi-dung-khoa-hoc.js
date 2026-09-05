@@ -462,7 +462,7 @@ const LESSONS = [
           <div class="kv-footer-bar">
             <div class="kv-footer-total">
               <span class="kv-footer-label">Tổng tiền hàng <span class="kv-footer-badge">2</span></span>
-              <span class="kv-footer-amount">2,220,000</span>
+              <span class="kv-footer-amount">- - -</span>
             </div>
             <div class="kv-footer-btns">
               <button class="kv-btn-luu">Lưu tạm</button>
@@ -682,7 +682,7 @@ const LESSONS_TH = [
   questions:[
     {q:'Hệ thống The Hoa yêu cầu cửa hàng đặt hàng qua kênh nào?',
      opts:['Zalo trực tiếp','Email cho kho','Hệ thống KiotViet','Điện thoại'],
-     c:2,exp:'Tất cả đơn hàng phải được đặt qua hệ thống KiotViet theo quy định SOP.'},
+     c:2,exp:'Đơn hàng thuộc Nhóm Độc Quyền và Không Độc Quyền phải đặt qua hệ thống KiotViet. Riêng Nguyên Liệu Địa Phương (đường, chanh, sữa đặc...) thì cửa hàng tự mua tại địa phương.'},
     {q:'Trách nhiệm chuẩn bị hàng và xuất kho thuộc về bên nào?',
      opts:['Cửa hàng nhượng quyền','Đơn vị vận chuyển','Bộ phận Chuỗi Cung Ứng','Kế toán hệ thống'],
      c:2,exp:'Bộ phận Chuỗi Cung Ứng chịu trách nhiệm chuẩn bị hàng, xuất kho và giao hàng cho cửa hàng.'},
