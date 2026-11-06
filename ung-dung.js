@@ -21,7 +21,7 @@ const CAU_HINH = {
 
   // Số giây phải ở lại trang bài học trước khi mở được bài kiểm tra (lần đọc đầu tiên).
   // Đặt 0 để tắt hẳn cổng chặn này.
-  GIAY_DOC_TOI_THIEU: 60,
+  GIAY_DOC_TOI_THIEU: 0,
 
   DIEM_DAT: 70,          // % tối thiểu để qua bài
   TRON_CAU_HOI: true,    // đảo thứ tự câu hỏi mỗi lần làm
@@ -386,13 +386,8 @@ function showLesson(idx) {
     : `<button class="btn btn-secondary" onclick="showWelcome()">← Trang chủ</button>`;
 
   // Cổng thời gian đọc bài: chỉ áp dụng lần đọc đầu tiên của mỗi bài
-  const canChoDoc = CAU_HINH.GIAY_DOC_TOI_THIEU > 0 && !S.daDocXong[idx];
-  const thanhDoc = canChoDoc ? `
-    <div class="doc-bai-bar" id="docBaiBar">
-      <span>📖</span>
-      <div class="doc-bai-wrap"><div class="doc-bai-fill" id="docBaiFill"></div></div>
-      <span class="doc-bai-text" id="docBaiText">Còn ${CAU_HINH.GIAY_DOC_TOI_THIEU} giây</span>
-    </div>` : '';
+  const isLast = idx === getLessons().length - 1;
+  const nextLabel = isLast ? '🏆 Vào Kiểm Tra Tổng Kết →' : 'Bài Tiếp Theo →';
 
   document.getElementById('mainContent').innerHTML = `
   <div>
@@ -401,18 +396,15 @@ function showLesson(idx) {
       <div class="lesson-title">${l.icon} ${chongHTML(l.title)}</div>
     </div>
     <div class="lesson-body">
-      ${thanhDoc}
       ${l.content}
       <hr class="divider">
       <div class="lesson-actions">
         ${prevBtn}
-        <button id="quizBtn" class="btn ${canChoDoc ? 'btn-disabled' : 'btn-primary'}"
-          ${canChoDoc ? 'disabled' : ''} onclick="startQuiz(${idx})">📝 Làm Bài Kiểm Tra →</button>
+        <button class="btn btn-primary" onclick="doneLesson(${idx})">${nextLabel}</button>
       </div>
     </div>
   </div>`;
   window.scrollTo(0, 0);
-  if (canChoDoc) batDauDongHoDoc(idx);
   luuTienDo();
 }
 
@@ -445,7 +437,21 @@ function huyDongHoDoc() {
   if (dongHoDoc) { clearInterval(dongHoDoc); dongHoDoc = null; }
 }
 
-// ─── BÀI KIỂM TRA TỪNG BÀI ────────────────────────────────────
+// ─── HOÀN THÀNH BÀI HỌC (KHÔNG CÓ QUIZ RIÊNG) ────────────────
+function doneLesson(idx) {
+  huyDongHoDoc();
+  if (!S.done.includes(idx)) S.done.push(idx);
+  luuTienDo();
+  renderSidebar();
+  const baiHoc = getLessons();
+  if (idx < baiHoc.length - 1) {
+    showLesson(idx + 1);
+  } else {
+    showFinalQuiz();
+  }
+}
+
+// ─── BÀI KIỂM TRA TỪNG BÀI (giữ lại để không lỗi nếu còn tham chiếu) ─
 function startQuiz(idx) {
   huyDongHoDoc();
   S.view = 'quiz'; S.lesson = idx; S.qIndex = 0;
