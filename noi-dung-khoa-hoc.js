@@ -1,8 +1,6 @@
 /* ============================================================
    NOI DUNG KHOA HOC - Chuoi Cung Ung Phuc Tea
-   File nay CHI chua noi dung bai hoc va cau hoi kiem tra.
-   - LESSONS / LESSONS_TH   : noi dung bai hoc (khong co quiz rieng)
-   - FINAL_QUIZ / FINAL_QUIZ_TH : 30 cau kiem tra tong ket
+   Dua tren SOP SC-SOP-01 Phien ban 2.0, hieu luc 06/11/2026
    ============================================================ */
 
 
@@ -19,68 +17,58 @@ const LESSONS = [
   content: `
   <div class="section">
     <h3>1. Mục Đích Của SOP</h3>
-    <p>SOP Chuỗi Cung Ứng được xây dựng nhằm <strong>chuẩn hóa toàn bộ quy trình đặt hàng, cung ứng, tiếp nhận hàng hóa và xử lý các vấn đề phát sinh</strong> về NVL &amp; VL Độc Quyền trong hệ thống Phúc Tea.</p>
+    <p>SOP Chuỗi Cung Ứng (Phiên bản 2.0, hiệu lực 06/11/2026) được xây dựng theo tinh thần: <strong>Chuẩn hóa cách làm việc – Rõ ràng trách nhiệm – Tối ưu hiệu quả.</strong></p>
     <div class="highlight-box info">
-      <strong>4 mục tiêu cốt lõi:</strong>
+      <strong>5 mục tiêu cốt lõi:</strong>
       <ul style="margin-top:8px">
-        <li>Đảm bảo cửa hàng luôn được cung cấp <strong>đầy đủ nguyên vật liệu</strong></li>
-        <li><strong>Kiểm soát chất lượng</strong> sản phẩm đồng nhất toàn hệ thống</li>
+        <li>Đảm bảo Cửa Hàng luôn được cung cấp <strong>đầy đủ 100% NL và VL</strong>, không đứt hàng</li>
+        <li><strong>Kiểm soát chất lượng</strong> sản phẩm đồng nhất trên toàn hệ thống</li>
         <li><strong>Giảm sai sót</strong> trong quá trình đặt hàng và nhận hàng</li>
-        <li><strong>Tăng tốc xử lý</strong> các vấn đề phát sinh</li>
+        <li><strong>Tăng tốc xử lý</strong> sự cố đúng cam kết SLA</li>
+        <li>Chuẩn hóa <strong>cách phối hợp</strong> giữa Cửa Hàng, ĐTNQ và Hệ thống</li>
       </ul>
     </div>
   </div>
 
   <div class="section">
-    <h3>2. Phạm Vi Áp Dụng</h3>
-    <p>SOP áp dụng cho <strong>toàn bộ hệ thống Phúc Tea</strong>, bao gồm:</p>
-    <ul>
-      <li>Các Cửa Hàng đang hoạt động</li>
-      <li>Các Đối Tác Nhượng Quyền (ĐTNQ)</li>
-      <li>Bộ phận Chuỗi Cung Ứng (CCU)</li>
-      <li>Các phòng ban liên quan</li>
-    </ul>
-    <div class="highlight-box info" style="margin-top:12px">
-      Dùng cho: <strong>Đào tạo nhân sự mới · Hướng dẫn vận hành · Tài liệu tham khảo ĐTNQ</strong>
-    </div>
-  </div>
-
-  <div class="section">
-    <h3>3. Thuật Ngữ Quan Trọng</h3>
+    <h3>2. Thuật Ngữ Quan Trọng</h3>
     <div class="table-wrap"><table>
       <tr><th>Thuật ngữ</th><th>Giải thích</th></tr>
-      <tr><td><strong>NVL Độc Quyền</strong></td><td>Nguyên vật liệu Phúc Tea nghiên cứu, phát triển hoặc đặt sản xuất riêng – chỉ mua qua hệ thống</td></tr>
-      <tr><td><strong>VL Độc Quyền</strong></td><td>Vật liệu bao bì mang nhận diện thương hiệu Phúc Tea, thiết kế riêng – chỉ mua qua hệ thống</td></tr>
-      <tr><td><strong>NVL Không ĐQ</strong></td><td>Nguyên liệu phổ thông, cần đặt qua hệ thống KiotViet để kiểm soát nguồn gốc</td></tr>
-      <tr><td><strong>VL Không ĐQ</strong></td><td>Vật liệu bao bì phổ thông, cần đặt qua hệ thống KiotViet</td></tr>
-      <tr><td><strong>ĐTNQ</strong></td><td>Đối Tác Nhượng Quyền</td></tr>
-      <tr><td><strong>CCU</strong></td><td>Bộ phận Chuỗi Cung Ứng (Hệ thống)</td></tr>
-      <tr><td><strong>MOQ</strong></td><td>Minimum Order Quantity – Số lượng đặt hàng tối thiểu mỗi lần</td></tr>
-      <tr><td><strong>KiotViet</strong></td><td>Phần mềm quản lý bán hàng &amp; đặt hàng của hệ thống Phúc Tea</td></tr>
-      <tr><td><strong>SLA</strong></td><td>Service Level Agreement – Cam kết thời gian xử lý của hệ thống</td></tr>
+      <tr><td><strong>NL Độc Quyền</strong></td><td>Nguyên liệu Phúc Tea nghiên cứu / đặt SX riêng – bắt buộc nhập từ Hệ thống</td></tr>
+      <tr><td><strong>VL Độc Quyền</strong></td><td>Vật liệu nhận diện thương hiệu thiết kế riêng (ly, màng ép, bịch, ống hút, xô)</td></tr>
+      <tr><td><strong>Nguyên liệu</strong></td><td>NL thương mại Hệ thống cung cấp; giá biến động theo thị trường</td></tr>
+      <tr><td><strong>Vật liệu</strong></td><td>Vật tư thông dụng Hệ thống cung cấp, không in nhận diện riêng</td></tr>
+      <tr><td><strong>ĐTNQ</strong></td><td>Đối Tác Nhượng Quyền – chủ 1 hoặc nhiều cửa hàng</td></tr>
+      <tr><td><strong>MOQ</strong></td><td>Số lượng đặt tối thiểu bắt buộc mỗi lần</td></tr>
+      <tr><td><strong>SLA</strong></td><td>Cam kết thời gian phản hồi và xử lý</td></tr>
+      <tr><td><strong>KiotViet</strong></td><td>Phần mềm lên đơn; tên gian hàng: <strong>taivuphuc</strong></td></tr>
+      <tr><td><strong>Đơn Lưu tạm</strong></td><td>Đơn đang soạn – Hệ thống CHƯA nhận</td></tr>
+      <tr><td><strong>Hóa đơn</strong></td><td>Đơn đã được Hệ thống nhận và xác nhận hoàn thành (tab Hóa đơn)</td></tr>
+      <tr><td><strong>Group Zalo Kho</strong></td><td>Kênh làm việc DUY NHẤT giữa Cửa Hàng và Kho</td></tr>
+      <tr><td><strong>Ngày làm việc</strong></td><td>Thứ 2 – Thứ 6, 09:00–16:30; không tính T7, CN, Lễ Tết</td></tr>
     </table></div>
   </div>
 
   <div class="section">
-    <h3>4. Vai Trò &amp; Trách Nhiệm</h3>
+    <h3>3. Vai Trò &amp; Trách Nhiệm</h3>
     <div class="table-wrap"><table>
       <tr><th>Bộ Phận</th><th>Trách Nhiệm Chính</th></tr>
-      <tr><td><strong>Bộ Phận Chuỗi Cung Ứng<br/>(Trạm Hệ Thống)</strong></td><td>
+      <tr><td><strong>Hệ Thống<br/>(CCU & Kho)</strong></td><td>
         <ul style="margin:4px 0;padding-left:18px;line-height:2">
-          <li>Tiếp nhận &amp; xác nhận đơn hàng</li>
-          <li>Cung cấp hồ sơ, thông tin sản phẩm</li>
-          <li>Chuẩn bị, xuất hàng &amp; gửi biên nhận</li>
+          <li>Tiếp nhận, kiểm soát &amp; xác nhận đơn hàng</li>
+          <li>Chuẩn bị, đóng gói, xuất hàng &amp; gửi Biên nhận</li>
+          <li>Thông báo giá NL Độc Quyền trước <strong>15 ngày</strong></li>
+          <li>Hỗ trợ sự cố đúng SLA</li>
           <li>Quản lý công nợ &amp; đối chiếu cho ĐTNQ</li>
-          <li>Hỗ trợ xử lý vấn đề phát sinh</li>
         </ul>
       </td></tr>
-      <tr><td><strong>Cửa Hàng / ĐTNQ<br/>(Trạm Tiền Tuyến)</strong></td><td>
+      <tr><td><strong>Cửa Hàng / ĐTNQ</strong></td><td>
         <ul style="margin:4px 0;padding-left:18px;line-height:2">
-          <li>Chủ động lập kế hoạch &amp; kiểm tra tồn kho</li>
-          <li>Đặt hàng qua KiotViet đúng quy trình</li>
-          <li>Thanh toán đúng quy định</li>
-          <li>Kiểm tra kỹ hàng khi nhận</li>
-          <li>Báo cáo sự cố đúng thời gian quy định</li>
+          <li>Chủ động lập kế hoạch tồn kho (theo File Min/Max)</li>
+          <li>Lên đơn đúng MOQ trên KiotViet</li>
+          <li>Thanh toán &amp; gửi bill vào Group Zalo Kho</li>
+          <li>Kiểm tra 5 điểm khi nhận hàng</li>
+          <li>Báo sự cố đủ thông tin <strong>trong 1 ngày làm việc</strong> từ ngày nhận hàng</li>
         </ul>
       </td></tr>
     </table></div>
@@ -90,10 +78,10 @@ const LESSONS = [
     <div class="highlight-box warn">
       <strong>⭐ ĐIỂM QUAN TRỌNG CẦN NHỚ – BÀI 1</strong>
       <ul style="margin-top:10px;line-height:2.2">
-        <li><strong>SOP = chuẩn hóa</strong> toàn bộ quy trình đặt hàng → nhận hàng → xử lý sự cố</li>
-        <li>Mọi nguyên vật liệu và vật liệu bao bì (kể cả Không Độc Quyền) đều phải <strong>đặt qua hệ thống KiotViet</strong>, không tự mua ngoài</li>
-        <li><strong>ĐTNQ</strong> = Đối Tác Nhượng Quyền &nbsp;|&nbsp; <strong>CCU</strong> = Bộ Phận Chuỗi Cung Ứng &nbsp;|&nbsp; <strong>MOQ</strong> = Số lượng tối thiểu</li>
-        <li>Cửa hàng chủ động <strong>lập kế hoạch, đặt hàng, kiểm tra</strong> và <strong>báo lỗi đúng hạn</strong></li>
+        <li>SOP V2.0 chia hàng thành <strong>4 nhóm</strong>: NL Độc Quyền · Nguyên liệu · VL Độc Quyền · Vật liệu</li>
+        <li><strong>Group Zalo Kho</strong> = kênh làm việc DUY NHẤT cho mọi giao dịch với Kho</li>
+        <li>Ngày làm việc: Thứ 2–Thứ 6, <strong>09:00–16:30</strong> (giờ chốt đơn: 16:30)</li>
+        <li>Hạn báo lỗi hàng: <strong>1 ngày làm việc</strong> kể từ ngày nhận hàng (rất quan trọng!)</li>
       </ul>
     </div>
   </div>`
@@ -104,59 +92,63 @@ const LESSONS = [
   id: 1,
   icon: '🧋',
   title: 'Danh Mục Nguyên Liệu Phúc Tea',
-  subtitle: 'NVL Độc Quyền · NVL Không Độc Quyền',
+  subtitle: 'NL Độc Quyền (13 loại) · Nguyên Liệu (15 loại)',
   content: `
   <div class="section">
-    <h3>Phân Biệt Các Nhóm Hàng</h3>
+    <h3>Phân Biệt 2 Nhóm Nguyên Liệu</h3>
     <div class="table-wrap"><table>
-      <tr><th>Nhóm</th><th>Đặc điểm</th><th>Cách đặt hàng</th></tr>
-      <tr><td><strong>NVL Độc Quyền</strong></td><td>Phúc Tea nghiên cứu / đặt sản xuất riêng. Chỉ hệ thống mới có.</td><td>Đặt qua KiotViet</td></tr>
-      <tr><td><strong>NVL Không ĐQ</strong></td><td>Nguyên liệu phổ thông trên thị trường nhưng phải dùng đúng nhà cung cấp hệ thống chỉ định.</td><td>Đặt qua KiotViet</td></tr>
+      <tr><th>Nhóm</th><th>Đặc điểm</th><th>Phí vận chuyển</th></tr>
+      <tr><td><strong>NL Độc Quyền</strong></td><td>Phúc Tea nghiên cứu / đặt SX riêng. Chỉ hệ thống mới có.</td><td>CHƯA bao gồm – Cửa Hàng trả trực tiếp cho đơn vị vận chuyển khi nhận</td></tr>
+      <tr><td><strong>Nguyên liệu</strong></td><td>NL thương mại phổ thông; giá theo thị trường.</td><td>CHƯA bao gồm – Cửa Hàng trả trực tiếp</td></tr>
     </table></div>
     <div class="highlight-box warn" style="margin-top:12px">
-      ⚠️ Dù là Độc Quyền hay Không Độc Quyền, <strong>tất cả đều phải đặt qua KiotViet</strong> – không được tự mua ngoài thị trường.
+      ⚠️ Cả 2 nhóm NL đều <strong>CHƯA bao gồm phí vận chuyển</strong>. Cửa Hàng trả trực tiếp cho đơn vị giao hàng khi nhận.<br/>
+      Nếu chưa rõ khoản thu → <strong>hỏi Kho trước khi trả</strong>.
     </div>
   </div>
 
   <div class="section">
-    <h3>Nhóm 1 – Nguyên Liệu Độc Quyền (10 mặt hàng)</h3>
-    <p>Kho xuất từ: <strong>Kho Nguyên Liệu HCM</strong> (riêng Cà Phê Mộc 9:1 từ Kho Cần Thơ)</p>
+    <h3>Nhóm 1 – NL Độc Quyền (13 mặt hàng)</h3>
     <div class="table-wrap"><table>
-      <tr><th>STT</th><th>Tên sản phẩm</th><th>Đơn vị tính</th><th>MOQ</th></tr>
+      <tr><th>STT</th><th>Tên sản phẩm</th><th>ĐVT</th><th>MOQ</th></tr>
       <tr><td>1</td><td>Cà Phê Mộc 9:1</td><td>Kg</td><td>2 kg</td></tr>
       <tr><td>2</td><td>Bột Pha Chế Phúc Tea PT35</td><td>Thùng</td><td>1 thùng</td></tr>
-      <tr><td>3</td><td>Trà Đen Phúc Tea</td><td>500gr/gói</td><td>5 gói</td></tr>
-      <tr><td>4</td><td>Trà Xanh Lài Phúc Tea</td><td>500gr/gói</td><td>1 gói</td></tr>
-      <tr><td>5</td><td>Trà Oolong Phúc Tea 02</td><td>1kg/gói</td><td>1 gói</td></tr>
-      <tr><td>6</td><td>Bột Socola Phúc Tea 02</td><td>500gr/gói</td><td>1 gói</td></tr>
-      <tr><td>7</td><td>Trà Hòa Tan Vị Đào Phúc Tea</td><td>500gr/gói</td><td>5 gói</td></tr>
-      <tr><td>8</td><td>Trà Hòa Tan Vị Vải Phúc Tea</td><td>500gr/gói</td><td>5 gói</td></tr>
-      <tr><td>9</td><td>Trân Châu Giòn Phúc Tea</td><td>Thùng</td><td>1 thùng (6 gói)</td></tr>
-      <tr><td>10</td><td>Vải Tươi Ngâm Đường Phúc Tea</td><td>Thùng</td><td>1 thùng (12 lon)</td></tr>
+      <tr><td>3</td><td>Trà Đen Phúc Tea</td><td>Gói</td><td>5 gói</td></tr>
+      <tr><td>4</td><td>Trà Xanh Lài Phúc Tea</td><td>Gói</td><td>1 gói</td></tr>
+      <tr><td>5</td><td>Trà Oolong Phúc Tea 02</td><td>Gói</td><td>1 gói</td></tr>
+      <tr style="background:#fefce8"><td>6</td><td><strong>Trà Oolong Quế Hoa Phúc Tea 500gr</strong> ⭐ Mới</td><td>Gói</td><td>1 gói</td></tr>
+      <tr style="background:#fefce8"><td>7</td><td><strong>Trà Hoa Cỏ Mùa Xuân Phúc Tea 500gr</strong> ⭐ Mới</td><td>Gói</td><td>1 gói</td></tr>
+      <tr><td>8</td><td>Bột Socola Phúc Tea 02</td><td>Gói</td><td>1 gói</td></tr>
+      <tr><td>9</td><td>Trà Hòa Tan Vị Đào Phúc Tea</td><td>Gói</td><td>5 gói</td></tr>
+      <tr><td>10</td><td>Trà Hòa Tan Vị Vải Phúc Tea</td><td>Gói</td><td>5 gói</td></tr>
+      <tr><td>11</td><td>Trân Châu Giòn Phúc Tea</td><td>Thùng</td><td>1 thùng (6 gói)</td></tr>
+      <tr><td>12</td><td>Vải Tươi Ngâm Đường Phúc Tea 565gr</td><td>Thùng</td><td>1 thùng (12 lon)</td></tr>
+      <tr style="background:#fefce8"><td>13</td><td><strong>Bột Milk Foam Phúc Tea</strong> ⭐ Chuyển từ Nguyên liệu</td><td>Gói</td><td>1 gói</td></tr>
     </table></div>
+    <div class="highlight-box info" style="margin-top:8px">
+      📌 Trên KiotViet, một số mặt hàng hiển thị là <strong>"Bịch"</strong> thay vì "Gói" (Trà Đen, Bột Milk Foam, Trà hòa tan) — hai cách gọi là một, không nhầm lẫn.
+    </div>
   </div>
 
   <div class="section">
-    <h3>Nhóm 2 – Nguyên Liệu Không Độc Quyền (16 mặt hàng)</h3>
-    <p>Kho xuất từ: <strong>Kho Nguyên Liệu HCM</strong></p>
+    <h3>Nhóm 2 – Nguyên Liệu (15 mặt hàng)</h3>
     <div class="table-wrap"><table>
-      <tr><th>STT</th><th>Tên sản phẩm</th><th>Đơn vị tính</th><th>MOQ</th></tr>
-      <tr><td>11</td><td>Mứt Hibiscus</td><td>Hủ</td><td>1 hủ</td></tr>
-      <tr><td>12</td><td>Bột Milk Foam Phúc Tea</td><td>500gr/gói</td><td>1 gói</td></tr>
-      <tr><td>13</td><td>Gelatine Đức Hoặc Pháp</td><td>1kg/gói</td><td>1 gói</td></tr>
-      <tr><td>14</td><td>Syrup Đường Đen Luave</td><td>Can</td><td>1 can</td></tr>
-      <tr><td>15</td><td>Bột Matcha Đài Loan</td><td>500gr/gói</td><td>1 gói</td></tr>
-      <tr><td>16</td><td>Bột Khoai Môn Mole</td><td>1kg/gói</td><td>1 gói</td></tr>
-      <tr><td>17</td><td>Pudding Trứng Mole</td><td>1kg/gói</td><td>1 gói</td></tr>
-      <tr><td>18</td><td>Hạt Chia Úc Hoặc Peru</td><td>1kg/gói</td><td>1 gói</td></tr>
-      <tr><td>19</td><td>Đào Ngâm Fresko 820gr</td><td>Thùng</td><td>1 thùng (12 lon)</td></tr>
-      <tr><td>20</td><td>Sinh Tố Xoài Berrino</td><td>Chai</td><td>1 chai</td></tr>
-      <tr><td>21</td><td>Mứt Thơm Berrino</td><td>Hủ</td><td>1 hủ</td></tr>
-      <tr><td>22</td><td>Mứt Dâu Tằm Berrino</td><td>Hủ</td><td>1 hủ</td></tr>
-      <tr><td>23</td><td>Thạch Dừa Vải Casa 3,5kg</td><td>Hủ</td><td>1 thùng (4 hủ)</td></tr>
-      <tr><td>24</td><td>Thạch Nha Đam</td><td>Gói</td><td>5 gói</td></tr>
-      <tr><td>25</td><td>Xí Muội Thái</td><td>500gr/gói</td><td>1 gói</td></tr>
-      <tr><td>26</td><td>Syrup Đào Mama Rosa</td><td>Chai</td><td>1 chai</td></tr>
+      <tr><th>STT</th><th>Tên sản phẩm</th><th>ĐVT</th><th>MOQ</th></tr>
+      <tr><td>14</td><td>Mứt Hibiscus</td><td>Hủ</td><td>1 hủ</td></tr>
+      <tr><td>15</td><td>Gelatine Đức hoặc Pháp</td><td>Gói</td><td>1 gói</td></tr>
+      <tr><td>16</td><td>Syrup Đường Đen Luave</td><td>Can</td><td>1 can (6 can/thùng)</td></tr>
+      <tr><td>17</td><td>Bột Matcha Đài Loan</td><td>Gói</td><td>1 gói</td></tr>
+      <tr><td>18</td><td>Bột Khoai Môn Mole</td><td>Gói</td><td>1 gói</td></tr>
+      <tr><td>19</td><td>Pudding Trứng Mole</td><td>Gói</td><td>1 gói</td></tr>
+      <tr><td>20</td><td>Hạt Chia Úc hoặc Peru</td><td>Gói</td><td>1 gói (1 kg)</td></tr>
+      <tr><td>21</td><td>Đào Ngâm Fresko 820gr</td><td>Thùng</td><td>1 thùng (12 lon)</td></tr>
+      <tr><td>22</td><td>Sinh Tố Xoài Berrino</td><td>Chai</td><td>1 chai (12 chai/thùng)</td></tr>
+      <tr><td>23</td><td>Mứt Thơm Berrino</td><td>Hủ</td><td>1 hủ (15 hủ/thùng)</td></tr>
+      <tr><td>24</td><td>Mứt Dâu Tằm Berrino</td><td>Hủ</td><td>1 hủ (15 hủ/thùng)</td></tr>
+      <tr><td>25</td><td>Thạch Dừa Vải Casa 3,5kg</td><td>Thùng</td><td>1 thùng (4 hủ)</td></tr>
+      <tr><td>26</td><td>Thạch Nha Đam</td><td>Gói</td><td>5 gói (10 gói/thùng)</td></tr>
+      <tr><td>27</td><td>Xí Muội</td><td>Gói</td><td>1 gói</td></tr>
+      <tr><td>28</td><td>Syrup Đào Mama Rosa</td><td>Chai</td><td>1 chai (12 chai/thùng)</td></tr>
     </table></div>
   </div>
 
@@ -164,11 +156,10 @@ const LESSONS = [
     <div class="highlight-box warn">
       <strong>⭐ ĐIỂM QUAN TRỌNG CẦN NHỚ – BÀI 2</strong>
       <ul style="margin-top:10px;line-height:2.2">
-        <li>Có <strong>10 loại NVL Độc Quyền</strong> – do Phúc Tea sản xuất riêng, chỉ hệ thống mới có</li>
-        <li>Có <strong>16 loại NVL Không Độc Quyền</strong> – phổ thông nhưng vẫn <strong>đặt qua KiotViet</strong></li>
-        <li>Trà Đen, Trà Hòa Tan Vị Đào, Trà Hòa Tan Vị Vải: MOQ <strong>5 gói</strong></li>
-        <li>Thạch Nha Đam: MOQ <strong>5 gói</strong> (đặc biệt trong nhóm NVL Không ĐQ)</li>
-        <li>Mọi nguyên liệu đều có MOQ tối thiểu – không được đặt dưới mức quy định</li>
+        <li>V2.0 có <strong>13 NL Độc Quyền</strong> (tăng từ 10): thêm Trà Oolong Quế Hoa, Trà Hoa Cỏ Mùa Xuân, Bột Milk Foam</li>
+        <li>Phí vận chuyển NL: <strong>CHƯA bao gồm</strong> → Cửa Hàng trả trực tiếp khi nhận hàng</li>
+        <li>Trà Đen, Trà HT Đào, Trà HT Vải, Thạch Nha Đam: MOQ <strong>5 gói/đơn</strong></li>
+        <li>"Bịch" và "Gói" trên KiotViet là <strong>một ĐVT</strong> cho cùng sản phẩm</li>
       </ul>
     </div>
   </div>`
@@ -179,39 +170,49 @@ const LESSONS = [
   id: 2,
   icon: '📦',
   title: 'Danh Mục Vật Liệu Bao Bì & MOQ',
-  subtitle: 'VL Độc Quyền · VL Không Độc Quyền · Chính sách giá',
+  subtitle: 'VL Độc Quyền (9 loại) · Vật Liệu (8 loại) · Phí vận chuyển',
   content: `
   <div class="section">
-    <h3>Nhóm 3 – Vật Liệu Bao Bì Độc Quyền (10 mặt hàng)</h3>
-    <p>Kho xuất từ: <strong>Kho Vật Liệu HCM</strong></p>
+    <h3>Phân Biệt 2 Nhóm Vật Liệu</h3>
     <div class="table-wrap"><table>
-      <tr><th>STT</th><th>Tên sản phẩm</th><th>Đơn vị tính</th><th>MOQ</th></tr>
-      <tr><td>1</td><td>Ly Giấy 650ml Theo Mùa</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
-      <tr><td>2</td><td>Ly Nhựa 600ml In 1 Màu</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
-      <tr><td>3</td><td>Ly Nhựa 500ml In 2 Màu</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
-      <tr><td>4</td><td>Ly Nhựa 400ml In 5 Màu</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
-      <tr><td>5</td><td>Ống Hút Cà Phê</td><td>Kg</td><td>5 kg</td></tr>
-      <tr><td>6</td><td>Cuộn Ép Màng Ly Phúc Tea 25.01</td><td>Cuộn</td><td>1 cuộn</td></tr>
-      <tr><td>7</td><td>Ống Hút Bọc Kiếng Phúc Tea</td><td>Kg</td><td>5 kg/kiện</td></tr>
-      <tr><td>8</td><td>Bịch 1 Ly Phúc Tea 25.01</td><td>Kg</td><td>5 kg/kiện</td></tr>
-      <tr><td>9</td><td>Bịch 2 Ly Phúc Tea 25.01</td><td>Kg</td><td>5 kg/kiện</td></tr>
-      <tr><td>10</td><td>Combo Xô 1 Lít (Xô + nắp + bịch)</td><td>Thùng</td><td>1 thùng (300 cái)</td></tr>
+      <tr><th>Nhóm</th><th>Đặc điểm</th><th>Phí vận chuyển</th></tr>
+      <tr><td><strong>VL Độc Quyền</strong></td><td>Ly, màng ép, bịch, ống hút, xô mang nhận diện thương hiệu Phúc Tea</td><td>ĐÃ bao gồm – không trả thêm</td></tr>
+      <tr><td><strong>Vật liệu</strong></td><td>Nắp, hũ, muỗng, bịch chữ T, giấy chống tràn không in nhận diện riêng</td><td>ĐÃ bao gồm – không trả thêm</td></tr>
+    </table></div>
+    <div class="highlight-box info" style="margin-top:12px">
+      ✅ Nhóm VL (cả Độc Quyền lẫn Vật liệu) <strong>ĐÃ BAO GỒM phí vận chuyển</strong>.<br/>
+      Nếu đơn vị vận chuyển thu phát sinh → liên hệ Kho (Hạnh Nhân 0344 858 727) <strong>trước khi trả</strong>.
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Nhóm 3 – VL Độc Quyền (9 mặt hàng)</h3>
+    <div class="table-wrap"><table>
+      <tr><th>STT</th><th>Tên sản phẩm</th><th>ĐVT</th><th>MOQ</th></tr>
+      <tr style="background:#fefce8"><td>29</td><td><strong>Ly Giấy 600ml</strong> (V2: đổi từ 650ml)</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
+      <tr><td>30</td><td>Ly Nhựa 400ml In 5 Màu</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
+      <tr><td>31</td><td>Ly Nhựa 500ml In 2 Màu</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
+      <tr><td>32</td><td>Ly Nhựa 600ml In 1 Màu</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
+      <tr><td>33</td><td>Combo Xô 1 Lít (xô, nắp, bịch 1 xô)</td><td>Thùng</td><td>1 thùng (300 cái)</td></tr>
+      <tr><td>34</td><td>Bịch 1 Ly Phúc Tea 25.01</td><td>Kg</td><td>5 kg (kiện 5 kg)</td></tr>
+      <tr><td>35</td><td>Bịch 2 Ly Phúc Tea 25.01</td><td>Kg</td><td>5 kg (kiện 5 kg)</td></tr>
+      <tr><td>36</td><td>Ống Hút Bọc Kiếng Phúc Tea</td><td>Kg</td><td>5 kg (kiện 5 kg)</td></tr>
+      <tr><td>37</td><td>Cuộn Ép Màng Ly Phúc Tea 25.01</td><td>Cuộn</td><td>1 cuộn</td></tr>
     </table></div>
   </div>
 
   <div class="section">
-    <h3>Nhóm 4 – Vật Liệu Bao Bì Không Độc Quyền (8 mặt hàng)</h3>
-    <p>Kho xuất từ: <strong>Kho Vật Liệu HCM</strong></p>
+    <h3>Nhóm 4 – Vật Liệu (8 mặt hàng)</h3>
     <div class="table-wrap"><table>
-      <tr><th>STT</th><th>Tên sản phẩm</th><th>Đơn vị tính</th><th>MOQ</th></tr>
-      <tr><td>1</td><td>Nắp Cầu Ly 400ml Phi 93</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
-      <tr><td>2</td><td>Bịch Chữ T</td><td>Kg</td><td>5 kg/kiện</td></tr>
-      <tr><td>3</td><td>Hũ Nhựa Topping Nắp Liền 4oz (PET)</td><td>Thùng</td><td>1 thùng (2.000 cái)</td></tr>
-      <tr><td>4</td><td>Muỗng Vàng 20cm</td><td>Thùng</td><td>1 thùng (2.500 cái)</td></tr>
-      <tr><td>5</td><td>Nắp Bằng Cao Phi 95</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
-      <tr><td>6</td><td>Nắp Bằng Thấp Phi 90</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
-      <tr><td>7</td><td>500 Tờ Giấy Chống Tràn 13cm</td><td>Xấp</td><td>1 xấp (500 tờ)</td></tr>
-      <tr><td>8</td><td>500 Tờ Giấy Chống Tràn 16cm (Xô)</td><td>Xấp</td><td>1 xấp (500 tờ)</td></tr>
+      <tr><th>STT</th><th>Tên sản phẩm</th><th>ĐVT</th><th>MOQ</th></tr>
+      <tr><td>38</td><td>Nắp Cầu Ly 400ml Phi 93</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
+      <tr style="background:#fefce8"><td>39</td><td><strong>Nắp Bằng Cao Phi 95</strong> ⭐ Mới V2</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
+      <tr><td>40</td><td>Hũ Nhựa Topping Nắp Liền 4oz (PET)</td><td>Thùng</td><td>1 thùng (2.000 cái)</td></tr>
+      <tr><td>41</td><td>Muỗng Vàng 20cm</td><td>Thùng</td><td>1 thùng (2.500 cái)</td></tr>
+      <tr style="background:#fefce8"><td>42</td><td><strong>Bịch Chữ T Phúc Tea</strong></td><td>Kg</td><td>5 kg (kiện 5 kg)</td></tr>
+      <tr style="background:#fefce8"><td>43</td><td><strong>Ống Hút Cà Phê</strong> ⭐ Chuyển từ VL ĐQ</td><td>Kg</td><td>5 kg</td></tr>
+      <tr><td>44</td><td>Giấy Chống Tràn 13cm (500 tờ)</td><td>Xấp</td><td>1 xấp</td></tr>
+      <tr><td>45</td><td>Giấy Chống Tràn 16cm – Xô (500 tờ)</td><td>Xấp</td><td>1 xấp</td></tr>
     </table></div>
   </div>
 
@@ -219,8 +220,8 @@ const LESSONS = [
     <h3>Chính Sách Giá</h3>
     <div class="table-wrap"><table>
       <tr><th>Nhóm hàng</th><th>Chính sách thay đổi giá</th></tr>
-      <tr><td><strong>NVL &amp; VL Độc Quyền</strong></td><td>Điều chỉnh giá sẽ được <strong>thông báo trước 15 ngày</strong> qua các kênh chính thức của hệ thống</td></tr>
-      <tr><td><strong>NVL &amp; VL Không Độc Quyền</strong></td><td>Giá <strong>cập nhật theo thị trường</strong> – kiểm tra trực tiếp trên KiotViet khi lên đơn</td></tr>
+      <tr><td><strong>NL Độc Quyền &amp; VL Độc Quyền</strong></td><td>Điều chỉnh giá sẽ được <strong>thông báo trước 15 ngày</strong> qua các kênh chính thức</td></tr>
+      <tr><td><strong>Nguyên liệu &amp; Vật liệu</strong></td><td>Giá <strong>cập nhật linh hoạt theo thị trường</strong> – kiểm tra trực tiếp trên KiotViet khi lên đơn; giá trên đơn đã đặt là giá áp dụng</td></tr>
     </table></div>
   </div>
 
@@ -228,11 +229,11 @@ const LESSONS = [
     <div class="highlight-box warn">
       <strong>⭐ ĐIỂM QUAN TRỌNG CẦN NHỚ – BÀI 3</strong>
       <ul style="margin-top:10px;line-height:2.2">
-        <li>Có <strong>10 VL Độc Quyền</strong> và <strong>8 VL Không Độc Quyền</strong> – tất cả đặt qua KiotViet</li>
-        <li>Ly nhựa và ly giấy: MOQ <strong>1 thùng (1.000 cái)</strong></li>
-        <li>Bịch, ống hút, màng ép: MOQ <strong>5 kg</strong></li>
-        <li>Giá NVL/VL Độc Quyền thay đổi phải <strong>thông báo trước 15 ngày</strong></li>
-        <li>Giá NVL/VL Không Độc Quyền theo thị trường – <strong>kiểm tra trên KiotViet</strong> trước khi đặt</li>
+        <li>V2.0: <strong>9 VL Độc Quyền</strong> (giảm từ 10); Ly Giấy 650ml đổi thành <strong>600ml</strong></li>
+        <li>Ống Hút Cà Phê chuyển từ VL Độc Quyền → <strong>Vật liệu</strong></li>
+        <li>VL (cả 2 nhóm): phí vận chuyển <strong>ĐÃ BAO GỒM</strong> – không trả thêm</li>
+        <li>Nếu nhà xe thu phí phát sinh cho hàng VL → <strong>hỏi Kho trước khi trả</strong></li>
+        <li>Giá NL/VL Độc Quyền thay đổi phải <strong>thông báo trước 15 ngày</strong></li>
       </ul>
     </div>
   </div>`
@@ -242,43 +243,71 @@ const LESSONS = [
 {
   id: 3,
   icon: '📱',
-  title: 'Quy Trình Đặt Hàng Trên KiotViet',
-  subtitle: '10 bước đặt hàng · Lưu tạm vs Đặt hàng · Zalo Kho',
+  title: 'Quy Trình Đặt Hàng & Thanh Toán',
+  subtitle: '8 bước đặt hàng · Thông tin TK · Giờ chốt đơn 16:30',
   content: `
   <div class="section">
     <h3>Chuẩn Bị Trước Khi Đặt Hàng</h3>
     <div class="highlight-box info">
       <strong>2 việc bắt buộc trước khi vào KiotViet:</strong><br/>
-      <strong>Bước 1:</strong> Kiểm tra tồn kho hiện tại tại cửa hàng<br/>
-      <strong>Bước 2:</strong> Lập danh sách hàng cần nhập theo từng nhóm sản phẩm
+      <strong>Bước 1:</strong> Kiểm đếm tồn thực tế, so với mức Min trong File Min/Max<br/>
+      <strong>Bước 2:</strong> Lập danh sách theo nhóm: Trà · Bột & Cà phê · Topping & Syrup · Ly & phụ kiện · Bao bì mềm
     </div>
-    <p style="margin-top:12px">📌 File Min/Max tồn kho (mức tồn kho tối thiểu và tối đa) do <strong>Bộ Phận Operation</strong> hướng dẫn riêng.</p>
+    <p style="margin-top:12px">📌 Nên đặt khi tồn còn đủ dùng: Miền Nam ≈ <strong>2 tuần</strong> | Miền Trung/Bắc ≈ <strong>3 tuần</strong>.</p>
   </div>
 
   <div class="section">
     <h3>Thông Tin Đăng Nhập KiotViet</h3>
     <div class="table-wrap"><table>
       <tr><th>Thông tin</th><th>Chi tiết</th></tr>
-      <tr><td><strong>Gian hàng</strong></td><td>taivuphuc</td></tr>
-      <tr><td><strong>Tên đăng nhập</strong></td><td>Họ tên chủ cửa hàng (VD: tranthihanhnhan.ccn)</td></tr>
-      <tr><td><strong>Mật khẩu</strong></td><td>Theo hệ thống cấp – liên hệ CCU nếu quên</td></tr>
+      <tr><td><strong>Ứng dụng</strong></td><td>KiotViet – Phần mềm quản lý bán hàng (App Store / CH Play) <em>Không tải nhầm "KiotViet Nhân viên Nhà hàng"</em></td></tr>
+      <tr><td><strong>Tên gian hàng</strong></td><td>taivuphuc</td></tr>
+      <tr><td><strong>Tên đăng nhập</strong></td><td>Họ tên chủ cửa hàng viết liền không dấu (vd: tranthihanhnhan.ccn)</td></tr>
+      <tr><td><strong>Mật khẩu</strong></td><td>Xem tin nhắn ghim trong Group Zalo Kho – <strong>không chia sẻ ra ngoài Cửa Hàng</strong></td></tr>
     </table></div>
   </div>
 
   <div class="section">
-    <h3>Các Bước Đặt Hàng Trên KiotViet</h3>
+    <h3>8 Bước Đặt Hàng & Thanh Toán</h3>
     <div class="table-wrap"><table>
       <tr><th>Bước</th><th>Việc cần làm</th><th>Ghi chú</th></tr>
-      <tr><td><strong>B1</strong></td><td>Kiểm tra tồn kho tại cửa hàng</td><td></td></tr>
-      <tr><td><strong>B2</strong></td><td>Lập danh sách hàng cần nhập</td><td></td></tr>
-      <tr><td><strong>B3</strong></td><td>Vào KiotViet → Tab <strong>Bán Hàng</strong> → <strong>Đặt hàng</strong></td><td></td></tr>
-      <tr><td><strong>B4</strong></td><td>Bấm <strong>Khách lẻ</strong> → Tìm &amp; chọn đúng tên cửa hàng mình</td><td>VD: 162 = Phúc Tea Vĩnh Cửu</td></tr>
-      <tr><td><strong>B5</strong></td><td>Gõ tên sản phẩm → chọn → làm tương tự cho các SP còn lại</td><td>Bật "Chế độ chọn nhiều" để nhanh hơn</td></tr>
-      <tr><td><strong>B6</strong></td><td>Điều chỉnh số lượng bằng nút +/- hoặc nhập trực tiếp</td><td>Đảm bảo đúng MOQ</td></tr>
-      <tr><td><strong>B7</strong></td><td>Chọn <strong>Lưu tạm</strong> hoặc <strong>Đặt hàng</strong></td><td>Xem bảng bên dưới</td></tr>
-      <tr><td style="color:#dc2626"><strong>B8 ⚠️</strong></td><td><strong>Chụp màn hình đơn hàng → Gửi vào nhóm Zalo Kho</strong></td><td>BẮT BUỘC</td></tr>
-      <tr><td><strong>B9</strong></td><td>Thanh toán theo đơn hàng</td><td></td></tr>
-      <tr><td style="color:#dc2626"><strong>B10 ⚠️</strong></td><td><strong>Chụp màn hình xác nhận thanh toán → Gửi vào nhóm Zalo Kho</strong></td><td>BẮT BUỘC</td></tr>
+      <tr><td><strong>B1</strong></td><td>Kiểm tồn kho, so với mức Min</td><td>Dùng File Min/Max</td></tr>
+      <tr><td><strong>B2</strong></td><td>Lập danh sách hàng cần nhập theo nhóm</td><td>Đối chiếu MOQ</td></tr>
+      <tr><td><strong>B3</strong></td><td>Tab Bán Hàng → Đặt hàng → bấm "Khách lẻ" → tìm đúng tên Cửa Hàng (mã PHUCTEAxxx)</td><td>Không để "Khách lẻ"</td></tr>
+      <tr><td><strong>B4</strong></td><td>Thêm sản phẩm → điều chỉnh số lượng → kiểm tra Tổng tiền → bấm <strong>"Đặt hàng"</strong></td><td>Bật chế độ chọn nhiều để nhanh hơn</td></tr>
+      <tr><td><strong>B5</strong></td><td>Màn hình Thanh toán: chọn <strong>"Tiền mặt"</strong> → bấm <strong>"Thanh toán"</strong></td><td>Phương thức luôn chọn Tiền mặt</td></tr>
+      <tr style="background:#fef2f2"><td><strong>B6 ⚠️</strong></td><td><strong>Chụp màn hình đơn → Gửi Group Zalo Kho</strong></td><td>BẮT BUỘC</td></tr>
+      <tr><td><strong>B7</strong></td><td>Chuyển khoản theo thông tin tài khoản bên dưới</td><td>Trước 16:30 để chốt trong ngày</td></tr>
+      <tr style="background:#fef2f2"><td><strong>B8 ⚠️</strong></td><td><strong>Chụp bill chuyển khoản → Gửi Group Zalo Kho + kèm mã đơn</strong></td><td>BẮT BUỘC</td></tr>
+    </table></div>
+    <div class="highlight-box warn" style="margin-top:12px">
+      ⏰ <strong>Giờ chốt đơn: 16:30 các ngày Thứ 2 – Thứ 6.</strong><br/>
+      Đơn có đủ ảnh đơn + bill trước 16:30 → Kho xác nhận trong ngày làm việc.<br/>
+      Đơn sau 16:30 hoặc T7, CN → xác nhận vào ngày làm việc kế tiếp.
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Thông Tin Tài Khoản Thanh Toán</h3>
+    <div class="highlight-box info">
+      <strong>Đơn vị thụ hưởng:</strong> CÔNG TY CỔ PHẦN SẢN XUẤT THƯƠNG MẠI DỊCH VỤ TÀI VŨ PHÚC<br/>
+      <strong>Số tài khoản:</strong> <span style="font-size:1.1em;font-weight:bold">689767678888</span><br/>
+      <strong>Ngân hàng:</strong> PVcombank (Ngân hàng TMCP Đại chúng Việt Nam)<br/>
+      <strong>Nội dung chuyển khoản:</strong> chuyen tien<br/>
+      <strong>Số tiền:</strong> Tổng tiền đơn trên KiotViet, hoặc số tiền Kho báo trên Zalo nếu đơn có điều chỉnh
+    </div>
+    <div class="highlight-box warn" style="margin-top:8px">
+      ⚠️ <strong>Chỉ chuyển vào đúng tài khoản trên.</strong> Mọi thông báo thay đổi tài khoản phải được xác nhận qua Hotline <strong>0344 858 727</strong> trước khi chuyển tiền.
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Mẫu Tin Nhắn Zalo Kho</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Tình huống</th><th>Nội dung mẫu</th></tr>
+      <tr><td>Gửi đơn</td><td>[Mã CH – Tên CH] Đã lên đơn KiotViet mã DH…, tổng tiền … đ, gồm … mặt hàng. (Kèm ảnh đơn)</td></tr>
+      <tr><td>Gửi bill</td><td>[Mã CH – Tên CH] Đã chuyển khoản đơn DH… số tiền … đ lúc …h ngày …. (Kèm ảnh bill)</td></tr>
+      <tr><td>Muốn sửa/hủy đơn</td><td>Nhắn Group Zalo Kho – Kho sửa, Cửa Hàng không tự sửa đơn</td></tr>
     </table></div>
   </div>
 
@@ -286,31 +315,23 @@ const LESSONS = [
     <h3>Phân Biệt: Lưu Tạm vs Đặt Hàng</h3>
     <div class="table-wrap"><table>
       <tr><th></th><th>Lưu Tạm</th><th>Đặt Hàng</th></tr>
-      <tr><td><strong>Hệ thống nhận đơn?</strong></td><td>❌ Chưa nhận</td><td>✅ Nhận ngay</td></tr>
-      <tr><td><strong>Dùng khi nào?</strong></td><td>Cần xem lại, chỉnh sửa thêm</td><td>Đơn đã chắc chắn, sẵn sàng gửi</td></tr>
-      <tr><td><strong>Xem lại ở đâu?</strong></td><td>Tab Đặt hàng (ô vuông đỏ góc phải)</td><td>Tab Hóa đơn</td></tr>
-      <tr><td><strong>Phải làm thêm?</strong></td><td>Chỉnh sửa xong → bấm Đặt hàng</td><td>Tiến hành thanh toán ngay</td></tr>
+      <tr><td><strong>Hệ thống nhận?</strong></td><td>❌ Chưa nhận</td><td>✅ Nhận ngay</td></tr>
+      <tr><td><strong>Dùng khi nào?</strong></td><td>Cần xem lại, chỉnh sửa thêm</td><td>Đơn chắc chắn, sẵn sàng gửi</td></tr>
+      <tr><td><strong>Xem ở đâu?</strong></td><td>Biểu tượng số đỏ góc phải trên</td><td>Tab Hóa đơn sau khi xác nhận</td></tr>
+      <tr><td><strong>Thanh toán?</strong></td><td>⚠️ CHƯA thanh toán khi đơn Lưu tạm</td><td>Thanh toán ngay sau khi đặt</td></tr>
     </table></div>
-  </div>
-
-  <div class="section">
-    <h3>Kiểm Tra Trạng Thái Đơn Hàng</h3>
-    <ul>
-      <li><strong>Tab "Đặt hàng":</strong> đơn đã tạo nhưng hệ thống <em>chưa xác nhận</em> (còn ghi phiếu tạm)</li>
-      <li><strong>Tab "Hóa đơn":</strong> đơn đã được hệ thống <em>nhận và xác nhận hoàn thành</em></li>
-    </ul>
   </div>
 
   <div class="section">
     <div class="highlight-box warn">
       <strong>⭐ ĐIỂM QUAN TRỌNG CẦN NHỚ – BÀI 4</strong>
       <ul style="margin-top:10px;line-height:2.2">
-        <li>Luôn <strong>kiểm tra tồn kho trước</strong> rồi mới vào KiotViet đặt hàng</li>
-        <li>Đăng nhập: gian hàng <strong>taivuphuc</strong>, tên đăng nhập theo họ tên chủ cửa hàng</li>
-        <li><strong>Chụp màn hình đơn hàng → Gửi Zalo Kho</strong> ngay sau khi đặt – BẮT BUỘC</li>
-        <li><strong>Chụp màn hình thanh toán → Gửi Zalo Kho</strong> ngay sau khi thanh toán – BẮT BUỘC</li>
-        <li>"Lưu tạm" = chưa gửi hệ thống | "Đặt hàng" = hệ thống nhận ngay</li>
-        <li>Đơn được xác nhận sẽ hiện ở tab <strong>Hóa đơn</strong></li>
+        <li>Chọn đúng tên Cửa Hàng (mã PHUCTEAxxx) – <strong>không để "Khách lẻ"</strong></li>
+        <li>Chụp đơn + Gửi Zalo Kho → Chuyển khoản → Chụp bill + Gửi Zalo Kho — theo thứ tự này</li>
+        <li>Trên KiotViet luôn chọn phương thức <strong>"Tiền mặt"</strong></li>
+        <li>Giờ chốt đơn: <strong>16:30</strong> các ngày làm việc</li>
+        <li>STK: <strong>689767678888</strong> PVcombank – nội dung: <strong>chuyen tien</strong></li>
+        <li>Kho xác nhận xong → đơn hiện ở tab <strong>"Hóa đơn"</strong></li>
       </ul>
     </div>
   </div>`
@@ -320,90 +341,111 @@ const LESSONS = [
 {
   id: 4,
   icon: '🚚',
-  title: 'Nhận Hàng, Giao Hàng & Xử Lý Sự Cố',
-  subtitle: 'Thời gian giao · 5 điểm kiểm tra · SLA xử lý sự cố',
+  title: 'Nhận Hàng & Xử Lý Sự Cố',
+  subtitle: 'Thời gian giao · Checklist 5 điểm · SLA xử lý sự cố',
   content: `
   <div class="section">
     <h3>1. Thời Gian Giao Hàng</h3>
     <div class="highlight-box info">
-      <strong>⏱ Tính từ ngày hệ thống xác nhận đơn</strong> (không tính Thứ 7 &amp; Chủ Nhật)
+      <strong>⏱ Tính từ ngày Hệ thống xác nhận đơn</strong> (không tính Thứ 7, Chủ Nhật, Lễ Tết)
       <div class="table-wrap" style="margin-top:10px"><table>
-        <tr><th>Khu vực</th><th>Thời gian giao</th></tr>
-        <tr><td><strong>Miền Nam</strong></td><td>5 – 7 ngày làm việc</td></tr>
-        <tr><td><strong>Miền Trung &amp; Miền Bắc</strong></td><td>7 – 10 ngày làm việc</td></tr>
+        <tr><th>Vùng</th><th>Khu vực</th><th>Thời gian giao</th></tr>
+        <tr><td>🟢 Vùng Xanh</td><td><strong>Miền Nam</strong></td><td>5 – 7 ngày làm việc</td></tr>
+        <tr><td>🟡 Vùng Vàng</td><td><strong>Miền Trung &amp; Miền Bắc</strong></td><td>7 – 10 ngày làm việc</td></tr>
       </table></div>
+      <p style="margin-top:8px"><strong>Ví dụ:</strong> Đơn MN xác nhận Thứ 6 → ngày làm việc 1 là Thứ 2 tuần sau → hàng đến trong khoảng Thứ 6 đến Thứ 3 tuần kế.</p>
     </div>
     <div class="highlight-box warn" style="margin-top:12px">
-      ⚠️ Thời gian có thể <strong>thay đổi</strong> trong các trường hợp: dịp Lễ/Tết, sự cố vận chuyển, hoặc các sự cố khách quan khác.
+      ⚠️ Thời gian có thể <strong>kéo dài</strong> dịp Lễ/Tết hoặc sự cố vận chuyển – theo dõi thông báo trên Group Zalo Kho.
     </div>
   </div>
 
   <div class="section">
-    <h3>2. Kiểm Tra Hàng Khi Nhận – 5 Điểm Bắt Buộc</h3>
-    <p>Khi hàng đến, kiểm tra đầy đủ <strong>5 điểm</strong> trước khi ký nhận:</p>
+    <h3>2. Phí Vận Chuyển Khi Nhận Hàng</h3>
     <div class="table-wrap"><table>
-      <tr><th>#</th><th>Điểm kiểm tra</th><th>Nội dung</th></tr>
-      <tr><td>1</td><td><strong>Số lượng</strong></td><td>Đếm đủ số kiện/thùng/gói theo biên nhận</td></tr>
-      <tr><td>2</td><td><strong>Đối chiếu đơn</strong></td><td>Hàng nhận có đúng tên, chủng loại như đã đặt không</td></tr>
-      <tr><td>3</td><td><strong>Bao bì</strong></td><td>Thùng/túi có bị móp, rách, ướt, hỏng không</td></tr>
-      <tr><td>4</td><td><strong>Hạn sử dụng</strong></td><td>Kiểm tra ngày hết hạn trên từng sản phẩm</td></tr>
-      <tr><td>5</td><td><strong>Tình trạng SP</strong></td><td>Sản phẩm có nguyên vẹn, không bị vỡ/chảy/đổi màu không</td></tr>
+      <tr><th>Loại hàng</th><th>Phí vận chuyển</th><th>Cửa Hàng cần làm</th></tr>
+      <tr><td><strong>NL Độc Quyền &amp; Nguyên liệu</strong></td><td>CHƯA bao gồm</td><td>Trả trực tiếp cho đơn vị vận chuyển khi nhận</td></tr>
+      <tr><td><strong>VL Độc Quyền &amp; Vật liệu</strong></td><td>ĐÃ bao gồm</td><td>Không trả thêm. Nếu bị thu phí → gọi Kho (0344 858 727) trước khi trả</td></tr>
+    </table></div>
+    <p style="margin-top:8px">📌 Đơn có cả NL và VL: Cửa Hàng <strong>chỉ trả phí vận chuyển cho phần NL</strong>.</p>
+  </div>
+
+  <div class="section">
+    <h3>3. Chuẩn Bị Trước Khi Nhận Hàng</h3>
+    <ul>
+      <li>Mở sẵn <strong>Biên nhận</strong> Kho đã gửi và đơn trên tab <strong>Hóa đơn</strong> KiotViet</li>
+      <li>Bố trí người nhận có trách nhiệm, có điện thoại sẵn sàng chụp/quay</li>
+      <li>💡 <strong>Quay video liên tục</strong> khi mở thùng hàng có lon, hủ, chai – đây là bằng chứng mạnh nhất nếu có lỗi</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>4. Checklist 5 Điểm Nhận Hàng</h3>
+    <div class="table-wrap"><table>
+      <tr><th>#</th><th>Điểm kiểm tra</th><th>Cách kiểm</th><th>Đạt khi</th></tr>
+      <tr><td>1</td><td><strong>Số lượng</strong></td><td>Đếm số kiện với nhà vận chuyển, sau đó đếm từng mặt hàng</td><td>Đủ số kiện và đủ số lượng từng mặt hàng</td></tr>
+      <tr><td>2</td><td><strong>Đối chiếu</strong></td><td>So tên hàng, ĐVT, số lượng với Biên nhận và đơn đặt</td><td>Khớp 100%</td></tr>
+      <tr><td>3</td><td><strong>Bao bì</strong></td><td>Kiểm thùng, gói, lon, hủ: méo, rách, thủng, ướt, phồng, rò rỉ</td><td>Nguyên vẹn</td></tr>
+      <tr><td>4</td><td><strong>Hạn sử dụng</strong></td><td>Đọc NSX/HSD trên từng lô</td><td>Hạn còn lại <strong>≥ 1/3 hạn dùng</strong></td></tr>
+      <tr><td>5</td><td><strong>Tình trạng SP</strong></td><td>Màu, mùi, vón cục, ẩm mốc, dị vật; ly in đúng mẫu, không nứt</td><td>Đúng chất lượng chuẩn</td></tr>
     </table></div>
     <div class="highlight-box warn" style="margin-top:12px">
-      Nếu có bất thường ở bất kỳ điểm nào → <strong>Dừng lại, chụp hình ngay và báo nhóm Zalo Kho</strong>
+      Phát hiện bất thường → <strong>Giữ nguyên hiện trạng, không sử dụng</strong> → chuyển sang quy trình xử lý sự cố (mục 5)
     </div>
   </div>
 
   <div class="section">
-    <h3>3. Quy Trình Xử Lý Sự Cố (5 Bước)</h3>
+    <h3>5. Quy Trình Xử Lý Sự Cố (5 Bước)</h3>
     <div class="table-wrap"><table>
-      <tr><th>Bước</th><th>Việc cần làm</th></tr>
-      <tr><td><strong>B1</strong></td><td>Chụp hình / quay video sản phẩm bị lỗi rõ ràng</td></tr>
-      <tr><td><strong>B2</strong></td><td>Gửi vào <strong>nhóm Zalo Kho</strong> kèm: hình ảnh + <strong>tên sản phẩm</strong> + <strong>số lượng lỗi</strong> + <strong>mô tả lỗi cụ thể</strong></td></tr>
-      <tr><td><strong>B3</strong></td><td>Hệ thống tiếp nhận và đánh giá sự cố</td></tr>
-      <tr><td><strong>B4</strong></td><td>Hệ thống đưa ra hướng xử lý (đổi hàng / trả hàng / bù trừ công nợ)</td></tr>
-      <tr><td><strong>B5</strong></td><td>Cửa hàng xác nhận phương án xử lý</td></tr>
+      <tr><th>Bước</th><th>Việc cần làm</th><th>Thời hạn</th></tr>
+      <tr><td><strong>B1</strong></td><td>Quay video / chụp hình rõ nét sản phẩm lỗi (thấy tên hàng, lô, HSD, vị trí lỗi)</td><td>Ngay khi phát hiện</td></tr>
+      <tr style="background:#fef2f2"><td><strong>B2 ⚠️</strong></td><td>Gửi Group Zalo Kho đủ 4 yếu tố: <strong>Hình/Video + Tên SP + Số lượng lỗi + Mô tả lỗi</strong></td><td><strong>Trong 1 ngày làm việc từ ngày nhận hàng</strong></td></tr>
+      <tr><td><strong>B3</strong></td><td>Hệ thống tiếp nhận, thẩm định nguyên nhân</td><td>Phản hồi 30–60 phút; đánh giá trong 24 giờ</td></tr>
+      <tr><td><strong>B4</strong></td><td>Kho đề xuất phương án: đổi hàng / trả hàng / bù trừ công nợ / giao bổ sung</td><td>Cùng lúc kết quả đánh giá</td></tr>
+      <tr><td><strong>B5</strong></td><td>Cửa Hàng xác nhận phương án → Kho hoàn tất đổi/trả</td><td>Tối đa 3 ngày làm việc sau khi CH xác nhận</td></tr>
     </table></div>
   </div>
 
   <div class="section">
-    <h3>4. SLA – Cam Kết Thời Gian Xử Lý</h3>
+    <h3>6. Bảng SLA Cam Kết</h3>
     <div class="table-wrap"><table>
-      <tr><th>Cam kết</th><th>Thời hạn</th></tr>
-      <tr><td>Phản hồi ban đầu từ hệ thống</td><td><strong>30 – 60 phút</strong></td></tr>
-      <tr><td>Tiếp nhận &amp; đánh giá sự cố</td><td><strong>Trong 24 giờ</strong></td></tr>
-      <tr><td>Cửa hàng phải báo lỗi sau khi nhận hàng</td><td><strong>Tối đa 3 ngày</strong> (quá hạn không giải quyết)</td></tr>
-      <tr><td>Kho đổi/trả sản phẩm lỗi</td><td><strong>Tối đa 3 ngày</strong> sau khi xác nhận phương án</td></tr>
+      <tr><th>Cam kết</th><th>Thời hạn</th><th>Bên chịu trách nhiệm</th></tr>
+      <tr><td>Phản hồi ban đầu</td><td><strong>30–60 phút</strong></td><td>Hệ thống (từ lúc nhận tin trong giờ làm việc)</td></tr>
+      <tr><td>Tiếp nhận &amp; đánh giá toàn diện</td><td><strong>Tối đa 24 giờ</strong></td><td>Hệ thống (từ lúc nhận đủ 4 thông tin)</td></tr>
+      <tr style="background:#fef2f2"><td><strong>Hạn chót báo lỗi</strong></td><td><strong>1 ngày làm việc</strong></td><td>Cửa Hàng (từ ngày nhận hàng)</td></tr>
+      <tr><td>Hoàn tất đổi trả</td><td><strong>Tối đa 3 ngày làm việc</strong></td><td>Kho (sau khi CH xác nhận phương án)</td></tr>
     </table></div>
     <div class="highlight-box warn" style="margin-top:12px">
-      ⚠️ <strong>Báo lỗi quá 3 ngày kể từ khi nhận hàng → Hệ thống KHÔNG giải quyết</strong>
+      ⚠️ Tin báo vào T7, CN hoặc sau 16:30 → SLA tính từ 09:00 ngày làm việc kế tiếp.<br/>
+      ⚠️ <strong>Báo lỗi quá 1 ngày làm việc → Hệ thống KHÔNG giải quyết</strong>
     </div>
   </div>
 
   <div class="section">
-    <h3>5. Giờ Làm Việc &amp; Liên Hệ Hỗ Trợ</h3>
-    <div class="table-wrap"><table>
-      <tr><th>Thời gian</th><th>Trạng thái</th></tr>
-      <tr><td><strong>Thứ 2 – Thứ 6: 09:00 – 17:00</strong></td><td>Phản hồi trong 30 – 60 phút</td></tr>
-      <tr><td><strong>Thứ 7 &amp; Chủ Nhật</strong></td><td>Tiếp nhận thông tin, xử lý vào ngày làm việc tiếp theo</td></tr>
-    </table></div>
-    <div class="highlight-box info" style="margin-top:12px">
+    <h3>7. Giờ Làm Việc &amp; Liên Hệ</h3>
+    <div class="highlight-box info">
       <strong>Liên hệ CCU Phúc Tea:</strong><br/>
       👤 Trần Thị Hạnh Nhân – Bộ Phận Chuỗi Cung Ứng<br/>
       📞 Hotline: <strong>0344 858 727</strong><br/>
-      📧 Email: hanhnhan@phuctea.com.vn
+      📧 Email: hanhnhan@phuctea.com.vn<br/>
+      📱 Kênh chính: <strong>Group Zalo Kho</strong>
     </div>
+    <div class="table-wrap" style="margin-top:10px"><table>
+      <tr><th>Thời gian</th><th>Trạng thái</th></tr>
+      <tr><td><strong>Thứ 2–Thứ 6: 09:00 – 16:30</strong></td><td>Hỗ trợ chính; phản hồi 30–60 phút; giờ chốt đơn 16:30</td></tr>
+      <tr><td><strong>Thứ 7 &amp; Chủ Nhật</strong></td><td>Tiếp nhận thông tin, xử lý vào sáng Thứ Hai</td></tr>
+    </table></div>
   </div>
 
   <div class="section">
     <div class="highlight-box warn">
       <strong>⭐ ĐIỂM QUAN TRỌNG CẦN NHỚ – BÀI 5</strong>
       <ul style="margin-top:10px;line-height:2.2">
-        <li>Miền Nam: <strong>5–7 ngày làm việc</strong> | Miền Trung &amp; Bắc: <strong>7–10 ngày làm việc</strong></li>
-        <li>Kiểm tra <strong>5 điểm</strong> khi nhận hàng: Số lượng · Đối chiếu đơn · Bao bì · Hạn SD · Tình trạng SP</li>
-        <li>Phát hiện lỗi → <strong>chụp hình ngay + báo Zalo Kho</strong></li>
-        <li><strong>Hạn chót báo lỗi: 3 ngày kể từ khi nhận hàng</strong> – quá hạn không giải quyết</li>
-        <li>Hotline hỗ trợ: <strong>0344 858 727</strong> (Thứ 2–6, 09:00–17:00)</li>
+        <li>MN: <strong>5–7 ngày</strong> | MTC/MB: <strong>7–10 ngày</strong> (tính từ ngày xác nhận, không tính T7/CN)</li>
+        <li>Phí VC: NL = Cửa Hàng trả | VL = đã bao gồm (không trả thêm)</li>
+        <li>Kiểm tra <strong>5 điểm</strong> khi nhận; HSD phải còn <strong>≥ 1/3 hạn dùng</strong></li>
+        <li>Hạn chót báo lỗi: <strong>1 ngày làm việc</strong> từ ngày nhận hàng (không còn 3 ngày nữa!)</li>
+        <li>Hotline: <strong>0344 858 727</strong> (Thứ 2–Thứ 6, 09:00–16:30)</li>
       </ul>
     </div>
   </div>`
@@ -419,7 +461,7 @@ const LESSONS = [
   <div class="section">
     <div class="highlight-box info">
       <strong>📌 Hướng dẫn sử dụng bài này</strong><br/>
-      Bài này là <strong>cẩm nang tra cứu</strong> – không phải lý thuyết học. Khi gặp bất kỳ tình huống nào trong vận hành, hãy vào đây tìm câu trả lời nhanh theo từng nhóm vấn đề bên dưới.
+      Bài này là <strong>cẩm nang tra cứu</strong>. Khi gặp bất kỳ tình huống nào trong vận hành, hãy vào đây tìm câu trả lời nhanh theo từng nhóm vấn đề bên dưới.
     </div>
   </div>
 
@@ -427,9 +469,9 @@ const LESSONS = [
     <h3>🔑 Nhóm 1 – Đăng Nhập &amp; Tài Khoản KiotViet</h3>
     <div class="table-wrap"><table>
       <tr><th>Tình huống</th><th>Xử lý</th></tr>
-      <tr><td>Quên mật khẩu KiotViet</td><td>Liên hệ CCU: 0344 858 727 để được cấp lại mật khẩu</td></tr>
-      <tr><td>Không tìm thấy tên cửa hàng mình trong KiotViet</td><td>Thử gõ từng phần tên (VD: "163", "Vĩnh Cửu") hoặc liên hệ CCU kiểm tra</td></tr>
-      <tr><td>App KiotViet bị lỗi / không vào được</td><td>Thử xóa cache hoặc gỡ cài lại app. Vẫn không được → liên hệ CCU</td></tr>
+      <tr><td>Quên mật khẩu KiotViet</td><td>Nhắn Group Zalo Kho hoặc gọi 0344 858 727 để được cấp lại. Mật khẩu được ghim trong Group Zalo Kho.</td></tr>
+      <tr><td>Không tìm thấy tên Cửa Hàng mình</td><td>Thử gõ từng phần tên hoặc mã số (vd: "163", "Vĩnh Cửu") để tìm dòng mã PHUCTEAxxx</td></tr>
+      <tr><td>App KiotViet bị lỗi / không vào được</td><td>Thử xóa cache hoặc gỡ cài lại app. Vẫn không được → nhắn Group Zalo Kho</td></tr>
       <tr><td>Chưa có tài khoản KiotViet</td><td>Liên hệ CCU để được tạo tài khoản</td></tr>
     </table></div>
   </div>
@@ -438,12 +480,13 @@ const LESSONS = [
     <h3>🛒 Nhóm 2 – Đặt Hàng &amp; Đơn Hàng</h3>
     <div class="table-wrap"><table>
       <tr><th>Tình huống</th><th>Xử lý</th></tr>
-      <tr><td>Không tìm thấy sản phẩm trên KiotViet</td><td>Thử gõ tên khác/mã hàng. Nếu vẫn không có → liên hệ CCU kiểm tra</td></tr>
-      <tr><td>Đặt thiếu hàng, muốn bổ sung vào đơn cũ</td><td>Nếu đơn chưa được xác nhận (còn ở Tab Đặt hàng): liên hệ CCU để hủy và đặt lại. Nếu đã xác nhận (Tab Hóa đơn): tạo đơn mới</td></tr>
-      <tr><td>Muốn hủy đơn đã đặt</td><td>Liên hệ ngay CCU qua Zalo Kho – chỉ hủy được khi kho chưa chuẩn bị hàng</td></tr>
-      <tr><td>Không biết đơn mình có được nhận chưa</td><td>Kiểm tra tab <strong>Hóa đơn</strong> trên KiotViet. Đơn ở đây = đã được xác nhận</td></tr>
+      <tr><td>Không tìm thấy sản phẩm trên KiotViet</td><td>Thử gõ tên khác/từ khóa. Vẫn không có → nhắn Group Zalo Kho kiểm tra</td></tr>
+      <tr><td>Muốn sửa hoặc bổ sung đơn đã đặt</td><td>Nhắn ngay Group Zalo Kho – <strong>Cửa Hàng không tự sửa đơn trên KiotViet</strong>. Chỉ sửa được khi hàng chưa được gửi đi.</td></tr>
+      <tr><td>Muốn hủy đơn đã đặt</td><td>Nhắn ngay Group Zalo Kho. Chỉ hủy được khi Kho chưa chuẩn bị hàng.</td></tr>
+      <tr><td>Không biết đơn mình đã được xác nhận chưa</td><td>Kiểm tra tab <strong>Hóa đơn</strong> trên KiotViet. Đơn ở đây = đã xác nhận</td></tr>
       <tr><td>Quên chụp màn hình đơn gửi Zalo Kho</td><td>Vào Tab Hóa đơn → tìm đơn vừa đặt → chụp lại và gửi vào Zalo Kho ngay</td></tr>
-      <tr><td>Có thể mua NVL ở chợ hoặc siêu thị không?</td><td><strong>Không.</strong> Dù là NVL Độc Quyền hay Không Độc Quyền, tất cả đều phải đặt qua KiotViet</td></tr>
+      <tr><td>Có thể mua NL ở chợ hoặc siêu thị không?</td><td><strong>Không.</strong> Dù NL Độc Quyền hay Nguyên liệu, tất cả phải đặt qua KiotViet</td></tr>
+      <tr><td>Đặt hàng mấy giờ thì được chốt trong ngày?</td><td>Trước <strong>16:30 Thứ 2–Thứ 6</strong>, đã gửi đủ ảnh đơn + bill vào Zalo Kho</td></tr>
     </table></div>
   </div>
 
@@ -451,21 +494,26 @@ const LESSONS = [
     <h3>💰 Nhóm 3 – Thanh Toán</h3>
     <div class="table-wrap"><table>
       <tr><th>Tình huống</th><th>Xử lý</th></tr>
-      <tr><td>Chưa thanh toán, kho có xuất hàng không?</td><td>Kho sẽ chỉ chuẩn bị hàng sau khi nhận được xác nhận thanh toán từ Zalo Kho</td></tr>
-      <tr><td>Thanh toán rồi nhưng quên gửi Zalo Kho</td><td>Chụp lại xác nhận thanh toán (bank, ví điện tử…) và gửi vào nhóm Zalo Kho ngay</td></tr>
-      <tr><td>Thắc mắc về công nợ hoặc số tiền cần thanh toán</td><td>Liên hệ CCU: 0344 858 727 hoặc email hanhnhan@phuctea.com.vn để đối chiếu</td></tr>
+      <tr><td>Chuyển khoản vào đâu?</td><td><strong>689767678888</strong> – PVcombank – TÀI VŨ PHÚC – nội dung: chuyen tien</td></tr>
+      <tr><td>Trên KiotViet chọn phương thức gì?</td><td>Chọn <strong>"Tiền mặt"</strong> rồi bấm "Thanh toán"</td></tr>
+      <tr><td>Chuyển bao nhiêu tiền?</td><td>Tổng tiền đơn trên KiotViet, hoặc số tiền Kho báo trên Zalo nếu đơn có điều chỉnh</td></tr>
+      <tr><td>Chưa thanh toán, Kho có xuất hàng không?</td><td>Không. Kho chỉ xử lý khi đã nhận đủ: ảnh đơn + bill thanh toán trong Group Zalo Kho</td></tr>
+      <tr><td>Thanh toán rồi nhưng quên gửi bill Zalo Kho</td><td>Chụp lại xác nhận chuyển khoản và gửi vào Group Zalo Kho ngay, kèm mã đơn</td></tr>
+      <tr><td>Thắc mắc về công nợ</td><td>Đối chiếu từ ngày <strong>05 đến 08</strong> hằng tháng. Liên hệ CCU để đối chiếu: 0344 858 727</td></tr>
+      <tr><td>Nhận được thông báo thay đổi số TK</td><td>⚠️ Phải xác nhận qua Hotline <strong>0344 858 727</strong> trước khi chuyển tiền</td></tr>
     </table></div>
   </div>
 
   <div class="section">
-    <h3>🚚 Nhóm 4 – Giao Hàng &amp; Thời Gian</h3>
+    <h3>🚚 Nhóm 4 – Giao Hàng, Phí Vận Chuyển &amp; Thời Gian</h3>
     <div class="table-wrap"><table>
       <tr><th>Tình huống</th><th>Xử lý</th></tr>
-      <tr><td>Hàng chưa về, đã quá thời gian dự kiến</td><td>Kiểm tra lại ngày hệ thống xác nhận đơn (không tính T7/CN). Nếu đã qua → liên hệ CCU kiểm tra</td></tr>
-      <tr><td>Thời gian giao hàng Miền Nam là bao nhiêu?</td><td>5–7 ngày làm việc tính từ ngày hệ thống xác nhận đơn (không tính T7/CN)</td></tr>
-      <tr><td>Thời gian giao hàng Miền Trung/Bắc?</td><td>7–10 ngày làm việc tính từ ngày hệ thống xác nhận đơn (không tính T7/CN)</td></tr>
-      <tr><td>Dịp Lễ/Tết có bị trễ không?</td><td>Có, thời gian giao hàng có thể thay đổi. Hệ thống sẽ thông báo trước nếu có điều chỉnh</td></tr>
-      <tr><td>Đặt hàng ngày Thứ 7, kho xử lý khi nào?</td><td>Kho tiếp nhận thông tin T7/CN, xử lý vào sáng Thứ Hai</td></tr>
+      <tr><td>Thời gian giao hàng Miền Nam?</td><td>5–7 ngày làm việc từ ngày Kho xác nhận đơn (không tính T7/CN)</td></tr>
+      <tr><td>Thời gian giao Miền Trung/Bắc?</td><td>7–10 ngày làm việc từ ngày Kho xác nhận đơn</td></tr>
+      <tr><td>Hàng chưa về, đã quá thời gian dự kiến</td><td>Kiểm tra ngày xác nhận đơn (tab Hóa đơn). Nếu đã qua → nhắn Group Zalo Kho</td></tr>
+      <tr><td>Nhà xe thu phí khi giao hàng NL</td><td>NL (Độc Quyền + Nguyên liệu): phí VC <strong>CHƯA bao gồm</strong> → Trả bình thường</td></tr>
+      <tr><td>Nhà xe thu phí khi giao hàng VL</td><td>VL (Độc Quyền + Vật liệu): đã bao gồm phí → <strong>Gọi Kho (0344 858 727) trước khi trả</strong></td></tr>
+      <tr><td>Đơn có cả NL và VL, trả phí thế nào?</td><td>Chỉ trả phí cho <strong>phần NL</strong>. Phần VL đã bao gồm.</td></tr>
     </table></div>
   </div>
 
@@ -473,11 +521,12 @@ const LESSONS = [
     <h3>📦 Nhóm 5 – Nhận Hàng &amp; Kiểm Tra</h3>
     <div class="table-wrap"><table>
       <tr><th>Tình huống</th><th>Xử lý</th></tr>
-      <tr><td>Nhận hàng thiếu số lượng</td><td>Chụp hình biên nhận + hàng thực nhận → báo Zalo Kho ngay, trong vòng 3 ngày kể từ khi nhận</td></tr>
-      <tr><td>Hàng bị hỏng bao bì khi nhận</td><td>Chụp hình tình trạng bao bì → báo Zalo Kho ngay trước khi ký nhận nếu có thể</td></tr>
-      <tr><td>Sản phẩm sắp hết hạn hoặc hết hạn</td><td>Chụp hình hạn sử dụng → báo Zalo Kho trong vòng 3 ngày kể từ khi nhận hàng</td></tr>
-      <tr><td>Nhận nhầm sản phẩm (không đúng đơn đặt)</td><td>Chụp hình sản phẩm nhận được vs biên nhận → báo Zalo Kho trong vòng 3 ngày</td></tr>
-      <tr><td>Báo lỗi sau 3 ngày kể từ nhận hàng có được không?</td><td><strong>Không.</strong> Hệ thống chỉ giải quyết trong 3 ngày kể từ khi nhận hàng. Quá hạn → không được xử lý</td></tr>
+      <tr><td>Nhận hàng thiếu số lượng</td><td>Chụp hình biên nhận + hàng thực nhận → báo Group Zalo Kho trong <strong>1 ngày làm việc</strong></td></tr>
+      <tr><td>Hàng bị hỏng bao bì khi nhận</td><td>Chụp hình tình trạng bao bì → báo Group Zalo Kho trong <strong>1 ngày làm việc</strong></td></tr>
+      <tr><td>Sản phẩm còn dưới 1/3 hạn dùng</td><td>Thuộc diện "cận date" → chụp hình HSD → báo Group Zalo Kho trong <strong>1 ngày làm việc</strong></td></tr>
+      <tr><td>Nhận nhầm sản phẩm</td><td>Chụp hình SP nhận vs biên nhận → báo Group Zalo Kho trong <strong>1 ngày làm việc</strong></td></tr>
+      <tr><td>Báo lỗi sau 1 ngày làm việc được không?</td><td><strong>Không.</strong> Hệ thống chỉ giải quyết trong 1 ngày làm việc từ ngày nhận hàng. Quá hạn → không xử lý.</td></tr>
+      <tr><td>Sản phẩm lỗi có thể sử dụng không?</td><td><strong>Không.</strong> Giữ nguyên hiện trạng cho đến khi có hướng dẫn thu hồi/hủy từ Hệ thống.</td></tr>
     </table></div>
   </div>
 
@@ -485,10 +534,9 @@ const LESSONS = [
     <h3>📋 Nhóm 6 – Sản Phẩm &amp; Giá Cả</h3>
     <div class="table-wrap"><table>
       <tr><th>Tình huống</th><th>Xử lý</th></tr>
-      <tr><td>Giá sản phẩm thay đổi so với lần đặt trước</td><td>NVL/VL Không ĐQ: giá theo thị trường, cập nhật trên KiotViet. NVL/VL Độc Quyền: thay đổi phải báo trước 15 ngày</td></tr>
-      <tr><td>Muốn biết giá hiện tại của sản phẩm</td><td>Kiểm tra trực tiếp trên KiotViet khi lên đơn hoặc liên hệ CCU</td></tr>
-      <tr><td>Muốn đặt sản phẩm chưa thấy trong danh mục</td><td>Liên hệ CCU kiểm tra – có thể là sản phẩm mới chưa cập nhật hoặc không thuộc danh mục</td></tr>
-      <tr><td>MOQ của một sản phẩm là bao nhiêu?</td><td>Xem Bài 2 (NVL) và Bài 3 (VL) để tra cứu bảng MOQ đầy đủ</td></tr>
+      <tr><td>Giá sản phẩm thay đổi so với lần trước</td><td>NL ĐQ/VL ĐQ thay đổi: báo trước 15 ngày. Nguyên liệu/Vật liệu: theo thị trường, kiểm trên KiotViet</td></tr>
+      <tr><td>MOQ của một sản phẩm là bao nhiêu?</td><td>Xem Bài 2 (NL) và Bài 3 (VL) để tra bảng MOQ đầy đủ</td></tr>
+      <tr><td>Sản phẩm mới ra mắt</td><td>Theo thông báo riêng từ Hệ thống trên Group Zalo Kho – làm theo hướng dẫn trong thông báo</td></tr>
     </table></div>
   </div>
 
@@ -500,24 +548,25 @@ const LESSONS = [
       📞 Hotline: <strong>0344 858 727</strong><br/>
       📧 Email: <strong>hanhnhan@phuctea.com.vn</strong><br/><br/>
       🕐 <strong>Giờ làm việc:</strong><br/>
-      &nbsp;&nbsp;• Thứ 2 – Thứ 6: 09:00 – 17:00 (phản hồi 30–60 phút)<br/>
+      &nbsp;&nbsp;• Thứ 2 – Thứ 6: <strong>09:00 – 16:30</strong> (phản hồi 30–60 phút, chốt đơn trước 16:30)<br/>
       &nbsp;&nbsp;• Thứ 7 &amp; Chủ Nhật: tiếp nhận, xử lý vào sáng Thứ Hai
     </div>
     <div class="highlight-box warn" style="margin-top:12px">
-      <strong>Kênh ưu tiên:</strong> Zalo nhóm Kho – phản hồi nhanh nhất cho mọi vấn đề về đơn hàng và sự cố hàng hóa.
+      <strong>Kênh ưu tiên:</strong> <strong>Group Zalo Kho</strong> – kênh làm việc DUY NHẤT cho mọi giao dịch với Kho (đặt hàng, thanh toán, nhận hàng, báo sự cố).
     </div>
   </div>
 
   <div class="section">
     <div class="highlight-box warn">
-      <strong>⭐ TÓM TẮT CÁC QUY TẮC VÀNG</strong>
+      <strong>⭐ 7 QUY TẮC VÀNG (SOP V2.0)</strong>
       <ol style="margin-top:10px;line-height:2.5;padding-left:20px">
-        <li><strong>Mọi NVL/VL đều đặt qua KiotViet</strong> – không tự mua ngoài dù là Không Độc Quyền</li>
-        <li>Sau khi đặt hàng: <strong>chụp đơn → gửi Zalo Kho</strong></li>
-        <li>Sau khi thanh toán: <strong>chụp bill → gửi Zalo Kho</strong></li>
-        <li>Nhận hàng: kiểm tra <strong>5 điểm</strong> trước khi ký</li>
-        <li>Phát hiện lỗi hàng: <strong>báo trong 3 ngày</strong> kể từ khi nhận – quá hạn không giải quyết</li>
-        <li>Mọi thắc mắc: <strong>Zalo Kho</strong> hoặc <strong>0344 858 727</strong></li>
+        <li><strong>Mọi NL/VL đều đặt qua KiotViet</strong> – không tự mua ngoài dù là Nguyên liệu thông thường</li>
+        <li>Sau khi đặt hàng: <strong>chụp đơn → gửi Group Zalo Kho</strong></li>
+        <li>Sau khi chuyển khoản: <strong>chụp bill → gửi Group Zalo Kho</strong></li>
+        <li>Nhận hàng: kiểm tra <strong>5 điểm</strong>; HSD phải còn ≥ 1/3 hạn dùng</li>
+        <li>Phát hiện lỗi: <strong>báo trong 1 ngày làm việc</strong> từ ngày nhận – quá hạn không giải quyết</li>
+        <li>Phí VC: <strong>NL tự trả</strong> | <strong>VL đã bao gồm</strong> (bị thu thêm → hỏi Kho trước)</li>
+        <li>Mọi thắc mắc: <strong>Group Zalo Kho</strong> hoặc <strong>0344 858 727</strong></li>
       </ol>
     </div>
   </div>`
@@ -530,280 +579,199 @@ const LESSONS = [
 
 const FINAL_QUIZ = [
 
-  /* Nhóm 1 – Tổng Quan Hệ Thống */
+  /* Nhóm 1 – Tổng Quan */
   {
-    q: 'SOP Chuỗi Cung Ứng Phúc Tea được xây dựng để làm gì?',
-    opts: [
-      'Quảng bá thương hiệu Phúc Tea ra thị trường',
-      'Chuẩn hóa quy trình đặt hàng, cung ứng, tiếp nhận và xử lý vấn đề phát sinh',
-      'Đào tạo nhân viên pha chế và phục vụ',
-      'Quản lý tài chính và kế toán cửa hàng'
-    ],
+    q: 'SOP Chuỗi Cung Ứng Phúc Tea V2.0 chia hàng hóa thành mấy nhóm chính?',
+    opts: ['2 nhóm: Độc Quyền và Không Độc Quyền', '3 nhóm: NL ĐQ, VL ĐQ, Nguyên liệu', '4 nhóm: NL Độc Quyền, Nguyên liệu, VL Độc Quyền, Vật liệu', '5 nhóm theo từng loại sản phẩm'],
+    c: 2,
+    exp: 'SOP V2.0 chia thành 4 nhóm: (1) NL Độc Quyền, (2) Nguyên liệu, (3) VL Độc Quyền, (4) Vật liệu.'
+  },
+  {
+    q: 'Giờ làm việc chính thức của Bộ Phận Chuỗi Cung Ứng Phúc Tea (SOP V2.0) là khi nào?',
+    opts: ['Thứ 2–Thứ 6: 08:00–17:00', 'Thứ 2–Thứ 6: 09:00–17:00', 'Thứ 2–Thứ 6: 09:00–16:30', 'Thứ 2–Thứ 7: 09:00–16:30'],
+    c: 2,
+    exp: 'SOP V2.0: giờ làm việc Thứ 2–Thứ 6, 09:00–16:30. Giờ chốt đơn: 16:30 (V1 là 17:00).'
+  },
+  {
+    q: '"Ngày làm việc" theo định nghĩa trong SOP là những ngày nào?',
+    opts: ['Thứ 2–Thứ 7, không tính Chủ Nhật', 'Thứ 2–Thứ 6, không tính T7, CN, Lễ Tết', 'Thứ 2–Thứ 6 và Thứ 7 buổi sáng', 'Tất cả các ngày trừ Chủ Nhật'],
     c: 1,
-    exp: 'SOP chuẩn hóa toàn bộ quy trình vận hành chuỗi cung ứng: đặt hàng, cung ứng, tiếp nhận và xử lý vấn đề phát sinh.'
+    exp: 'Ngày làm việc = Thứ 2 đến Thứ 6, 09:00–16:30; không tính Thứ 7, Chủ Nhật và Lễ Tết.'
   },
   {
-    q: 'Từ viết tắt ĐTNQ trong hệ thống Phúc Tea có nghĩa là gì?',
-    opts: ['Điểm Thực Nghiệm Quy Trình', 'Đại Trung Nhượng Quyền', 'Đối Tác Nhượng Quyền', 'Đơn Thương Nhượng Quyền'],
+    q: 'Kênh làm việc DUY NHẤT giữa Cửa Hàng và Kho trong SOP V2.0 là gì?',
+    opts: ['Hotline 0344 858 727', 'Email hanhnhan@phuctea.com.vn', 'Group Zalo Kho', 'Tab Hóa đơn trên KiotViet'],
     c: 2,
-    exp: 'ĐTNQ = Đối Tác Nhượng Quyền – các đối tác mở cửa hàng Phúc Tea theo hình thức nhượng quyền thương mại.'
+    exp: 'Group Zalo Kho là kênh làm việc DUY NHẤT cho mọi giao dịch: đặt hàng, thanh toán, nhận hàng, báo sự cố.'
   },
   {
-    q: 'MOQ là gì và quan trọng như thế nào khi đặt hàng?',
-    opts: [
-      'Monthly Order Quantity – hạn mức đặt hàng mỗi tháng',
-      'Maximum Order Quota – số lượng đặt tối đa được phép',
-      'Minimum Order Quantity – số lượng tối thiểu bắt buộc mỗi lần đặt',
-      'Master Order Quality – tiêu chuẩn chất lượng sản phẩm'
-    ],
-    c: 2,
-    exp: 'MOQ = Minimum Order Quantity = số lượng đặt hàng tối thiểu. Đặt dưới mức này sẽ không được chấp nhận.'
-  },
-  {
-    q: 'Bộ Phận Chuỗi Cung Ứng (CCU) có trách nhiệm gì?',
-    opts: [
-      'Kiểm tra tồn kho và lên kế hoạch nhập hàng cho cửa hàng',
-      'Tiếp nhận, xác nhận đơn hàng, chuẩn bị, xuất hàng và gửi biên nhận',
-      'Kiểm tra 5 điểm chất lượng khi nhận hàng tại cửa hàng',
-      'Thanh toán và quản lý ngân sách mua hàng'
-    ],
+    q: 'Hạn chót Cửa Hàng phải báo lỗi hàng trong SOP V2.0 là bao lâu từ ngày nhận hàng?',
+    opts: ['Trong ngày nhận hàng', '1 ngày làm việc', '3 ngày', '5 ngày làm việc'],
     c: 1,
-    exp: 'CCU tiếp nhận, xác nhận đơn hàng, chuẩn bị, xuất hàng, gửi biên nhận và quản lý công nợ cho ĐTNQ.'
-  },
-  {
-    q: 'Cửa hàng / ĐTNQ cần chủ động làm gì trong chuỗi cung ứng?',
-    opts: [
-      'Liên hệ CCU để được lập kế hoạch đặt hàng hộ',
-      'Chờ CCU thông báo khi nào cần đặt hàng',
-      'Chủ động lập kế hoạch, đặt hàng qua KiotViet, thanh toán và báo sự cố đúng hạn',
-      'Chỉ kiểm tra hàng khi nhận, còn lại do CCU lo'
-    ],
-    c: 2,
-    exp: 'Cửa hàng / ĐTNQ phải chủ động: lập kế hoạch, kiểm tra tồn kho, đặt hàng, thanh toán và báo sự cố đúng hạn.'
+    exp: 'SOP V2.0 rút ngắn từ 3 ngày xuống còn 1 ngày làm việc từ ngày nhận hàng. Quá hạn → Hệ thống không giải quyết.'
   },
 
-  /* Nhóm 2 – Danh Mục Nguyên Liệu */
+  /* Nhóm 2 – Danh Mục NL */
   {
-    q: 'Hệ thống Phúc Tea có bao nhiêu loại Nguyên Liệu Độc Quyền?',
-    opts: ['6 loại', '8 loại', '10 loại', '13 loại'],
+    q: 'SOP V2.0 có bao nhiêu loại NL Độc Quyền?',
+    opts: ['10 loại', '11 loại', '13 loại', '15 loại'],
     c: 2,
-    exp: 'Phúc Tea có 10 loại NVL Độc Quyền: Cà Phê Mộc 9:1, Bột PT35, Trà Đen, Trà Xanh Lài, Trà Oolong 02, Bột Socola 02, Trà HT Đào, Trà HT Vải, Trân Châu Giòn, Vải Tươi Ngâm Đường.'
+    exp: 'SOP V2.0 có 13 NL Độc Quyền (tăng từ 10): thêm Trà Oolong Quế Hoa, Trà Hoa Cỏ Mùa Xuân và Bột Milk Foam.'
   },
   {
-    q: 'Trà Hòa Tan Vị Đào và Trà Hòa Tan Vị Vải thuộc nhóm nào?',
-    opts: ['NVL Không Độc Quyền', 'VL Độc Quyền', 'NVL Độc Quyền', 'VL Không Độc Quyền'],
+    q: 'Bột Milk Foam Phúc Tea trong SOP V2.0 thuộc nhóm nào?',
+    opts: ['Nguyên liệu (thương mại)', 'VL Độc Quyền', 'NL Độc Quyền', 'Vật liệu'],
     c: 2,
-    exp: 'Cả hai đều là NVL Độc Quyền của Phúc Tea – do hệ thống phát triển riêng và chỉ có trong hệ thống.'
+    exp: 'SOP V2.0 chuyển Bột Milk Foam từ nhóm Nguyên liệu (SOP V1) vào nhóm NL Độc Quyền.'
   },
   {
-    q: 'Bột Milk Foam, Gelatine, Bột Matcha, Hạt Chia thuộc nhóm nào?',
-    opts: ['NVL Độc Quyền', 'VL Độc Quyền', 'NVL Không Độc Quyền', 'VL Không Độc Quyền'],
-    c: 2,
-    exp: 'Bột Milk Foam, Gelatine, Bột Matcha Đài Loan, Hạt Chia đều là NVL Không Độc Quyền – phổ thông nhưng vẫn đặt qua KiotViet.'
+    q: 'Hai loại trà nào được thêm MỚI vào danh mục NL Độc Quyền trong SOP V2.0?',
+    opts: ['Trà Oolong Quế Hoa và Trà Hoa Cỏ Mùa Xuân', 'Trà Xanh Lài và Trà Đen Phúc Tea', 'Trà Hòa Tan Vị Đào và Trà Hòa Tan Vị Vải', 'Trà Oolong 02 và Trà Xanh Lài'],
+    c: 0,
+    exp: 'SOP V2.0 thêm mới: Trà Oolong Quế Hoa Phúc Tea 500gr và Trà Hoa Cỏ Mùa Xuân Phúc Tea 500gr vào nhóm NL Độc Quyền.'
   },
   {
-    q: 'Cửa hàng có thể tự mua Nguyên Liệu Không Độc Quyền ở chợ nếu khẩn cấp không?',
-    opts: [
-      'Được, vì đây là hàng phổ thông có bán khắp nơi',
-      'Được, nếu báo cáo lý do với CCU trước',
-      'Không, tất cả NVL dù Độc Quyền hay Không ĐQ đều phải đặt qua KiotViet',
-      'Được, nếu chụp hóa đơn gửi CCU sau'
-    ],
-    c: 2,
-    exp: 'Không. Dù là Độc Quyền hay Không Độc Quyền, tất cả NVL đều phải đặt qua hệ thống KiotViet.'
+    q: 'Phí vận chuyển nhóm NL Độc Quyền và Nguyên liệu được xử lý thế nào?',
+    opts: ['Đã bao gồm trong giá – không trả thêm', 'Chưa bao gồm – Cửa Hàng trả trực tiếp cho đơn vị vận chuyển khi nhận', 'Hệ thống thanh toán sau khi Cửa Hàng gửi hóa đơn', 'Trả trước khi đặt hàng'],
+    c: 1,
+    exp: 'NL (cả Độc Quyền lẫn Nguyên liệu): CHƯA bao gồm phí VC. Cửa Hàng trả trực tiếp cho đơn vị giao hàng khi nhận.'
   },
   {
     q: 'MOQ của Trà Đen Phúc Tea và Trà Hòa Tan Vị Đào là bao nhiêu?',
     opts: ['1 gói', '3 gói', '5 gói', '10 gói'],
     c: 2,
-    exp: 'Trà Đen, Trà Hòa Tan Vị Đào và Trà Hòa Tan Vị Vải đều có MOQ là 5 gói/lần đặt.'
+    exp: 'Trà Đen, Trà HT Vị Đào và Trà HT Vị Vải đều có MOQ 5 gói/lần đặt.'
   },
 
-  /* Nhóm 3 – Vật Liệu Bao Bì & MOQ */
+  /* Nhóm 3 – Danh Mục VL */
   {
-    q: 'Nhóm Vật Liệu Bao Bì Độc Quyền của Phúc Tea có bao nhiêu mặt hàng?',
-    opts: ['6 mặt hàng', '8 mặt hàng', '10 mặt hàng', '12 mặt hàng'],
-    c: 2,
-    exp: 'VL Độc Quyền có 10 mặt hàng: 4 loại ly, 2 loại ống hút, cuộn ép màng, 2 loại bịch và combo xô 1 lít.'
+    q: 'SOP V2.0 có bao nhiêu loại VL Độc Quyền?',
+    opts: ['8 loại', '9 loại', '10 loại', '12 loại'],
+    c: 1,
+    exp: 'SOP V2.0 có 9 VL Độc Quyền (giảm từ 10 ở SOP V1). Ống Hút Cà Phê chuyển sang nhóm Vật liệu.'
   },
   {
-    q: 'MOQ của Ly Nhựa 500ml In 2 Màu là bao nhiêu?',
-    opts: ['100 cái', '500 cái', '1 thùng (1.000 cái)', '1 thùng (2.000 cái)'],
-    c: 2,
-    exp: 'Tất cả các loại ly (Ly Giấy 650ml, Ly Nhựa 400/500/600ml) đều có MOQ là 1 thùng = 1.000 cái.'
+    q: 'Ly Giấy trong SOP V2.0 là dung tích bao nhiêu?',
+    opts: ['500ml', '600ml', '650ml', '700ml'],
+    c: 1,
+    exp: 'SOP V2.0: Ly Giấy 600ml (đổi từ 650ml ở SOP V1).'
   },
   {
-    q: 'Bịch 1 Ly, Bịch 2 Ly, Ống Hút Bọc Kiếng có MOQ là bao nhiêu?',
-    opts: ['1 thùng', '1 cuộn', '5 kg/kiện', '10 kg/kiện'],
-    c: 2,
-    exp: 'Bịch 1 Ly, Bịch 2 Ly và Ống Hút Bọc Kiếng đều có MOQ 5 kg/kiện.'
+    q: 'Phí vận chuyển nhóm VL Độc Quyền và Vật liệu được xử lý thế nào?',
+    opts: ['Chưa bao gồm – Cửa Hàng trả khi nhận', 'Đã bao gồm – không trả thêm; nếu bị thu phái sinh → gọi Kho trước khi trả', 'Thanh toán qua KiotViet', 'Hệ thống thu sau khi giao hàng'],
+    c: 1,
+    exp: 'VL (cả Độc Quyền lẫn Vật liệu): ĐÃ BAO GỒM phí VC. Nếu nhà xe thu thêm → gọi Kho (0344 858 727) trước khi trả.'
   },
   {
-    q: 'Khi hệ thống thay đổi giá NVL Độc Quyền, cửa hàng được thông báo trước bao nhiêu ngày?',
-    opts: ['5 ngày', '7 ngày', '15 ngày', '30 ngày'],
+    q: 'Đơn hàng có cả NL và VL, Cửa Hàng trả phí vận chuyển thế nào?',
+    opts: ['Trả phí cho cả NL lẫn VL', 'Không trả phí vì đã bao gồm', 'Chỉ trả phí cho phần NL; phần VL đã bao gồm', 'Trả nửa phí của toàn bộ đơn'],
     c: 2,
-    exp: 'Giá NVL & VL Độc Quyền thay đổi phải được thông báo trước 15 ngày qua kênh chính thức của hệ thống.'
+    exp: 'Đơn hỗn hợp: Chỉ trả phí VC cho phần NL (chưa bao gồm). Phần VL đã bao gồm phí, không trả thêm.'
   },
   {
-    q: 'Cách xác định giá NVL Không Độc Quyền khi đặt hàng là gì?',
-    opts: [
-      'Theo bảng giá trong tài liệu đào tạo này',
-      'Liên hệ CCU để hỏi giá trước khi đặt',
-      'Kiểm tra trực tiếp trên ứng dụng KiotViet khi lên đơn',
-      'Giá cố định theo hợp đồng nhượng quyền'
-    ],
+    q: 'Ống Hút Cà Phê trong SOP V2.0 thuộc nhóm nào?',
+    opts: ['NL Độc Quyền', 'VL Độc Quyền', 'Vật liệu', 'Nguyên liệu'],
     c: 2,
-    exp: 'Giá NVL Không Độc Quyền cập nhật theo thị trường – cần kiểm tra trực tiếp trên KiotViet khi lên đơn hàng.'
+    exp: 'SOP V2.0: Ống Hút Cà Phê chuyển từ VL Độc Quyền (SOP V1) sang nhóm Vật liệu.'
   },
 
   /* Nhóm 4 – Quy Trình Đặt Hàng */
   {
-    q: 'Điều đầu tiên cần làm trước khi mở app KiotViet đặt hàng là gì?',
-    opts: [
-      'Liên hệ nhóm Zalo Kho để xác nhận còn hàng không',
-      'Thanh toán công nợ trước kỳ hạn',
-      'Kiểm tra tồn kho tại cửa hàng và lập danh sách hàng cần nhập',
-      'Chụp ảnh khu vực kho cửa hàng gửi CCU'
-    ],
+    q: 'Hai bằng chứng BẮT BUỘC gửi vào Group Zalo Kho để Kho xử lý đơn là gì?',
+    opts: ['Ảnh chụp đơn KiotViet và ảnh tồn kho', 'Ảnh chụp đơn KiotViet và bill chuyển khoản', 'Bill chuyển khoản và ảnh hàng đã nhận', 'Ảnh đơn và xác nhận từ app ngân hàng'],
+    c: 1,
+    exp: 'Một đơn chỉ được Kho xử lý khi đã có đủ 2 bằng chứng: (1) Ảnh đơn KiotViet, (2) Bill chuyển khoản – cả hai gửi vào Group Zalo Kho.'
+  },
+  {
+    q: 'Thông tin tài khoản thanh toán của Phúc Tea là gì?',
+    opts: ['STK: 123456789 – Vietcombank – nội dung: phuctea', 'STK: 689767678888 – PVcombank – nội dung: chuyen tien', 'STK: 689767678888 – ACB – nội dung: dat hang', 'STK: 123456789 – PVcombank – nội dung: chuyen tien'],
+    c: 1,
+    exp: 'Đúng thông tin: STK 689767678888, PVcombank, TÀI VŨ PHÚC, nội dung: chuyen tien.'
+  },
+  {
+    q: 'Trên KiotViet, khi thanh toán đơn hàng phải chọn phương thức gì?',
+    opts: ['Chuyển khoản', 'Thẻ tín dụng', 'Tiền mặt', 'Ví điện tử'],
     c: 2,
-    exp: 'Trước khi đặt hàng: (1) Kiểm tra tồn kho, (2) Lập danh sách hàng cần nhập – rồi mới vào KiotViet đặt.'
+    exp: 'Luôn chọn "Tiền mặt" trên màn hình Thanh toán của KiotViet, dù thực tế chuyển khoản.'
   },
   {
-    q: 'Gian hàng KiotViet của hệ thống Phúc Tea tên là gì?',
-    opts: ['phuctea.vn', 'taivuphuc', 'phucteaorder', 'ccuphuctea'],
-    c: 1,
-    exp: 'Tên gian hàng KiotViet của hệ thống Phúc Tea là "taivuphuc".'
+    q: 'Giờ chốt đơn trong ngày là mấy giờ?',
+    opts: ['15:00', '16:00', '16:30', '17:00'],
+    c: 2,
+    exp: 'Giờ chốt đơn: 16:30 các ngày Thứ 2–Thứ 6. Đơn đủ ảnh đơn + bill trước 16:30 → Kho xác nhận trong ngày.'
   },
   {
-    q: 'Trên KiotViet, để đặt hàng cần đi theo đường nào?',
-    opts: [
-      'Hóa đơn → Tạo mới → Khách lẻ',
-      'Bán Hàng → Đặt hàng → Khách lẻ',
-      'Nhiều hơn → Quản lý đơn hàng',
-      'Cài đặt → Đặt hàng tự động'
-    ],
-    c: 1,
-    exp: 'Đường đặt hàng: Tab Bán Hàng → Đặt hàng → Bấm "Khách lẻ" để tìm và chọn tên cửa hàng mình.'
-  },
-  {
-    q: 'Hai việc BẮT BUỘC phải chụp màn hình gửi nhóm Zalo Kho trong quá trình đặt hàng là gì?',
-    opts: [
-      'Chụp màn hình đăng nhập và chụp danh sách sản phẩm',
-      'Chụp màn hình đơn hàng sau khi đặt và chụp xác nhận thanh toán',
-      'Chụp màn hình đơn hàng và chụp màn hình tab Hóa đơn',
-      'Chụp màn hình tồn kho và chụp đơn hàng'
-    ],
-    c: 1,
-    exp: 'Bắt buộc chụp 2 màn hình gửi Zalo Kho: (1) Màn hình đơn hàng sau khi bấm Đặt hàng; (2) Màn hình xác nhận sau khi thanh toán.'
-  },
-  {
-    q: 'Đơn hàng "Lưu tạm" và đơn "Đặt hàng" khác nhau thế nào?',
-    opts: [
-      'Lưu tạm chỉ lưu trên điện thoại; Đặt hàng lưu trên server',
-      'Lưu tạm chưa gửi hệ thống, có thể sửa; Đặt hàng hệ thống nhận ngay',
-      'Lưu tạm miễn phí; Đặt hàng tính phí xử lý',
-      'Lưu tạm cần thanh toán trước; Đặt hàng thanh toán sau'
-    ],
-    c: 1,
-    exp: '"Lưu tạm" = chưa gửi đến hệ thống, còn có thể vào chỉnh sửa. "Đặt hàng" = hệ thống nhận đơn ngay, tiến hành xử lý.'
-  },
-  {
-    q: 'Sau khi hệ thống xác nhận đơn, cửa hàng có thể kiểm tra đơn ở đâu trên KiotViet?',
-    opts: [
-      'Tab "Đặt hàng" – phiếu tạm',
-      'Tab "Hóa đơn" – đơn đã được xác nhận hoàn thành',
-      'Tab "Cài đặt" – lịch sử đơn hàng',
-      'Tab "Báo cáo" – thống kê nhập hàng'
-    ],
-    c: 1,
-    exp: 'Sau khi hệ thống xác nhận, đơn hàng sẽ hiện ở tab "Hóa đơn". Tab "Đặt hàng" chỉ hiển thị đơn chưa được xác nhận.'
+    q: 'Cửa Hàng có được tự sửa đơn trên KiotViet sau khi đã bấm "Đặt hàng" không?',
+    opts: ['Được, miễn là chưa thanh toán', 'Được, nếu báo Kho trước', 'Không, mọi thay đổi phải nhắn Group Zalo Kho để Kho thực hiện', 'Được trong 30 phút đầu sau khi đặt'],
+    c: 2,
+    exp: 'Cửa Hàng không tự sửa đơn trên KiotViet. Muốn sửa → nhắn Group Zalo Kho; Kho sẽ thực hiện thay đổi.'
   },
 
-  /* Nhóm 5 – Nhận Hàng & Xử Lý Sự Cố */
+  /* Nhóm 5 – Nhận Hàng & Sự Cố */
   {
-    q: 'Thời gian giao hàng cho cửa hàng ở Miền Trung và Miền Bắc là bao nhiêu ngày?',
-    opts: ['3 – 5 ngày làm việc', '5 – 7 ngày làm việc', '7 – 10 ngày làm việc', '10 – 15 ngày làm việc'],
+    q: 'Thời gian giao hàng Miền Nam tính từ ngày nào?',
+    opts: ['Từ ngày Cửa Hàng bấm "Đặt hàng"', 'Từ ngày Cửa Hàng chuyển khoản', 'Từ ngày Hệ thống xác nhận đơn (Bước 6)', 'Từ ngày Kho gửi biên nhận'],
     c: 2,
-    exp: 'Miền Trung & Miền Bắc: 7 – 10 ngày làm việc. Miền Nam: 5 – 7 ngày làm việc. Tính từ ngày hệ thống xác nhận đơn.'
+    exp: 'Thời gian giao tính từ ngày Hệ thống XÁC NHẬN đơn (đơn chuyển sang tab Hóa đơn), không phải ngày bấm Đặt hàng.'
   },
   {
-    q: 'Thứ 7 và Chủ Nhật có được tính vào thời gian giao hàng không?',
-    opts: [
-      'Có, tính đầy đủ 7 ngày/tuần',
-      'Có, nhưng chỉ tính nửa ngày',
-      'Không, chỉ tính ngày làm việc (Thứ 2 đến Thứ 6)',
-      'Tùy theo đơn vị vận chuyển'
-    ],
+    q: 'Tiêu chí hạn sử dụng đạt chuẩn khi nhận hàng là gì?',
+    opts: ['Còn hạn là được, không cần kiểm tra kỹ', 'Còn ít nhất 1/2 hạn dùng', 'Còn ít nhất 1/3 hạn dùng', 'Còn ít nhất 6 tháng'],
     c: 2,
-    exp: 'Thời gian giao hàng chỉ tính ngày làm việc (Thứ 2 đến Thứ 6). Thứ 7 và Chủ Nhật không tính vào thời gian giao.'
+    exp: 'SOP V2.0: hạn sử dụng đạt chuẩn khi còn lại ≥ 1/3 hạn dùng. Dưới mức này thuộc diện "cận date" = sự cố.'
   },
   {
-    q: 'Khi nhận hàng, 5 điểm cần kiểm tra là gì?',
-    opts: [
-      'Giá cả, số lượng, màu sắc, mùi vị, nhiệt độ',
-      'Số lượng, đối chiếu đơn đặt, bao bì, hạn sử dụng, tình trạng sản phẩm',
-      'Tên sản phẩm, trọng lượng, giá, hạn SD, nhà cung cấp',
-      'Màu sắc, mùi, vị, cấu trúc, nguồn gốc'
-    ],
+    q: 'Khi phát hiện sản phẩm lỗi, Cửa Hàng được phép sử dụng không?',
+    opts: ['Được, nếu chỉ lỗi nhẹ về bao bì', 'Được, nếu báo Kho trước', 'Không, giữ nguyên hiện trạng cho đến khi có hướng dẫn từ Hệ thống', 'Được nếu hàng sắp hết'],
+    c: 2,
+    exp: 'Không. Sản phẩm lỗi phải được giữ nguyên hiện trạng cho đến khi có hướng dẫn thu hồi/hủy từ Hệ thống.'
+  },
+  {
+    q: '4 yếu tố bắt buộc khi báo sự cố qua Group Zalo Kho là gì?',
+    opts: ['Mã đơn, tên sản phẩm, số lượng, ngày nhận', 'Hình ảnh/Video, tên sản phẩm, số lượng lỗi, mô tả lỗi', 'Hình ảnh, mã đơn, số tiền, đề xuất xử lý', 'Video, tên CH, mã SP, số lượng'],
     c: 1,
-    exp: '5 điểm kiểm tra bắt buộc: (1) Số lượng (2) Đối chiếu đơn (3) Bao bì (4) Hạn sử dụng (5) Tình trạng sản phẩm.'
-  },
-  {
-    q: 'Phát hiện hàng bị lỗi khi nhận, cửa hàng cần làm gì NGAY LẬP TỨC?',
-    opts: [
-      'Trả hàng lại cho tài xế giao hàng ngay',
-      'Chụp hình / quay video sản phẩm lỗi rồi gửi nhóm Zalo Kho kèm tên SP, số lượng, mô tả lỗi',
-      'Viết email gửi địa chỉ hanhnhan@phuctea.com.vn',
-      'Gọi điện hotline để khiếu nại'
-    ],
-    c: 1,
-    exp: 'Bước 1: chụp hình/quay video ngay → gửi nhóm Zalo Kho kèm tên SP, số lượng lỗi và mô tả chi tiết.'
-  },
-  {
-    q: 'Hạn chót để cửa hàng báo lỗi sản phẩm sau khi nhận hàng là bao nhiêu ngày?',
-    opts: ['1 ngày', '2 ngày', '3 ngày', '5 ngày'],
-    c: 2,
-    exp: 'Cửa hàng có tối đa 3 ngày kể từ khi nhận hàng để báo lỗi. Quá 3 ngày, hệ thống KHÔNG giải quyết khiếu nại.'
+    exp: '4 yếu tố bắt buộc: (1) Hình ảnh/Video rõ nét, (2) Tên sản phẩm đúng tên KiotViet, (3) Số lượng lỗi/ĐVT, (4) Mô tả lỗi cụ thể.'
   },
   {
     q: 'Hệ thống cam kết phản hồi ban đầu cho sự cố trong bao lâu?',
-    opts: ['10 – 20 phút', '30 – 60 phút', '2 – 4 giờ', 'Trong ngày làm việc'],
+    opts: ['10–20 phút', '30–60 phút', '2–4 giờ', 'Trong ngày làm việc'],
     c: 1,
-    exp: 'SLA của hệ thống: Phản hồi ban đầu trong 30 – 60 phút. Tiếp nhận & đánh giá trong 24 giờ.'
+    exp: 'SLA của Hệ thống: Phản hồi ban đầu trong 30–60 phút (tính từ lúc nhận tin trong giờ làm việc).'
   },
   {
-    q: 'Giờ làm việc chính thức của Bộ Phận Chuỗi Cung Ứng Phúc Tea là khi nào?',
+    q: 'Thời hạn Kho hoàn tất đổi/trả sản phẩm lỗi sau khi Cửa Hàng xác nhận phương án là bao nhiêu ngày?',
+    opts: ['1 ngày làm việc', '2 ngày làm việc', '3 ngày làm việc', '5 ngày làm việc'],
+    c: 2,
+    exp: 'Kho hoàn tất đổi/trả tối đa 3 ngày làm việc sau khi Cửa Hàng xác nhận phương án xử lý.'
+  },
+  {
+    q: 'Tin báo sự cố gửi vào Thứ 7, SLA được tính từ khi nào?',
+    opts: ['Ngay từ lúc gửi tin Thứ 7', 'Từ 09:00 Thứ 7', 'Từ 09:00 Thứ Hai (ngày làm việc kế tiếp)', 'Từ 16:30 Thứ 6 trước đó'],
+    c: 2,
+    exp: 'Tin báo T7, CN hoặc sau 16:30 được tính SLA từ 09:00 ngày làm việc kế tiếp (sáng Thứ Hai).'
+  },
+  {
+    q: 'Đối chiếu công nợ với ĐTNQ diễn ra vào thời gian nào hằng tháng?',
+    opts: ['Từ ngày 01 đến 03', 'Từ ngày 05 đến 08', 'Từ ngày 10 đến 15', 'Cuối tháng (28-31)'],
+    c: 1,
+    exp: 'SOP V2.0: đối chiếu công nợ từ ngày 05 đến 08 hằng tháng, kèm theo thông báo phí duy trì từ Kế toán.'
+  },
+  {
+    q: 'Nhận được thông báo thay đổi số tài khoản ngân hàng qua mạng xã hội, Cửa Hàng cần làm gì?',
+    opts: ['Chuyển tiền ngay theo số tài khoản mới', 'Bỏ qua thông báo đó', 'Xác nhận qua Hotline 0344 858 727 trước khi chuyển tiền', 'Hỏi thêm 1-2 cửa hàng khác xem họ nhận được không'],
+    c: 2,
+    exp: 'Bảo mật thanh toán: mọi thay đổi số tài khoản phải được xác nhận qua Hotline 0344 858 727 trước khi thực hiện chuyển khoản.'
+  },
+  {
+    q: 'Điều nào SAI về quy tắc trong SOP V2.0?',
     opts: [
-      'Thứ 2 – Chủ Nhật: 08:00 – 18:00',
-      'Thứ 2 – Thứ 6: 09:00 – 17:00 (phản hồi 30–60 phút)',
-      'Thứ 2 – Thứ 7: 09:00 – 17:00',
-      'Thứ 2 – Thứ 6: 08:00 – 20:00'
-    ],
-    c: 1,
-    exp: 'Giờ làm việc CCU: Thứ 2 đến Thứ 6, 09:00 – 17:00. Phản hồi trong 30–60 phút. T7 & CN chỉ tiếp nhận, xử lý thứ Hai.'
-  },
-  {
-    q: 'Hotline của Bộ Phận Chuỗi Cung Ứng Phúc Tea là số nào?',
-    opts: ['0344 858 282', '0344 858 727', '0362 858 727', '0344 282 727'],
-    c: 1,
-    exp: 'Hotline CCU Phúc Tea: 0344 858 727 – Trần Thị Hạnh Nhân. Email: hanhnhan@phuctea.com.vn.'
-  },
-  {
-    q: 'Nếu đặt hàng vào Thứ 7, kho sẽ xử lý đơn vào ngày nào?',
-    opts: [
-      'Ngay trong Thứ 7',
-      'Chủ Nhật',
-      'Thứ Hai tuần kế tiếp (ngày làm việc tiếp theo)',
-      'T7 và CN CCU vẫn xử lý như bình thường'
+      'Cửa Hàng không được tự sửa đơn trên KiotViet sau khi đã đặt',
+      'Phí vận chuyển VL đã bao gồm, Cửa Hàng không trả thêm',
+      'Hạn báo lỗi hàng là 3 ngày kể từ ngày nhận',
+      'Giờ chốt đơn là 16:30 các ngày làm việc'
     ],
     c: 2,
-    exp: 'T7 & CN chỉ tiếp nhận thông tin, không xử lý. Đơn đặt T7 sẽ được xử lý vào sáng Thứ Hai tuần kế tiếp.'
-  },
-  {
-    q: 'Toàn bộ NVL và VL bao bì trong hệ thống Phúc Tea gồm bao nhiêu nhóm chính?',
-    opts: ['2 nhóm', '3 nhóm', '4 nhóm', '5 nhóm'],
-    c: 2,
-    exp: 'Có 4 nhóm chính: (1) NVL Độc Quyền, (2) NVL Không Độc Quyền, (3) VL Bao Bì Độc Quyền, (4) VL Bao Bì Không Độc Quyền.'
+    exp: 'SOP V2.0 rút ngắn hạn báo lỗi từ 3 ngày xuống còn 1 ngày làm việc từ ngày nhận hàng (không còn 3 ngày nữa).'
   }
 
 ]; /* end FINAL_QUIZ */
