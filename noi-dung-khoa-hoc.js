@@ -16,33 +16,10 @@ const LESSONS = [
   subtitle: 'Mục đích SOP · Thuật ngữ · Trách nhiệm từng bên',
   content: `
   <div class="lesson-hero">
-    <div class="lesson-hero-icon">📋</div>
+    <div class="lesson-hero-icon">🏪</div>
     <div class="lesson-hero-text">
-      <h4>SOP Chuỗi Cung Ứng Phúc Tea V2.0</h4>
-      <p>Hiệu lực từ <strong>06/11/2026</strong> · Mã SOP: <strong>SC-SOP-01</strong><br/>
-      Bài học này giúp bạn hiểu <em>tại sao</em> SOP tồn tại và <em>ai làm gì</em> trong chuỗi cung ứng.</p>
-    </div>
-  </div>
-
-  <div class="section">
-    <h3>Vì Sao Cần SOP Chuỗi Cung Ứng?</h3>
-    <div class="compare-row">
-      <div class="compare-col col-red">
-        <h4>🔴 Trước khi có SOP</h4>
-        <ul style="padding-left:16px;margin:0">
-          <li>Đặt hàng bị thiếu → đứt NL giữa chừng</li>
-          <li>Nhận hàng lỗi không biết báo ai</li>
-          <li>Mỗi CH làm khác nhau, khó kiểm soát</li>
-        </ul>
-      </div>
-      <div class="compare-col col-green">
-        <h4>✅ Sau khi có SOP V2.0</h4>
-        <ul style="padding-left:16px;margin:0">
-          <li>Quy trình chuẩn từ A→Z</li>
-          <li>Rõ ràng ai làm gì, trong bao lâu</li>
-          <li>SLA cam kết từng bước xử lý</li>
-        </ul>
-      </div>
+      <h4>Chào Mừng Bạn Đến Với Khóa Học Vận Hành Kho!</h4>
+      <p>Khóa học này giúp bạn – <strong>Đối Tác Nhượng Quyền</strong> và <strong>Quản Lý Cửa Hàng</strong> – nắm vững toàn bộ quy trình đặt hàng, nhận hàng và xử lý sự cố theo chuẩn Phúc Tea.</p>
     </div>
   </div>
 
@@ -52,7 +29,7 @@ const LESSONS = [
       <div class="info-row"><div class="ir-label">ĐTNQ</div><div class="ir-value">Đối Tác Nhượng Quyền – chủ 1 hoặc nhiều cửa hàng Phúc Tea</div></div>
       <div class="info-row"><div class="ir-label">CCU</div><div class="ir-value">Bộ phận Chuỗi Cung Ứng – đầu mối hỗ trợ từ Hệ thống</div></div>
       <div class="info-row"><div class="ir-label">MOQ</div><div class="ir-value">Minimum Order Quantity – số lượng đặt tối thiểu bắt buộc mỗi lần</div></div>
-      <div class="info-row"><div class="ir-label">SLA</div><div class="ir-value">Cam kết thời gian: báo trong bao lâu, Hệ thống xử lý trong bao lâu</div></div>
+      <div class="info-row"><div class="ir-label">SLA</div><div class="ir-value">Cam kết thời gian xử lý: Hệ thống cam kết xử lý trong bao lâu</div></div>
       <div class="info-row"><div class="ir-label">KiotViet</div><div class="ir-value">Phần mềm đặt hàng online – tên gian hàng: <strong>taivuphuc</strong></div></div>
       <div class="info-row"><div class="ir-label">Lưu tạm</div><div class="ir-value">Đơn đang soạn trên KiotViet – Hệ thống <strong>CHƯA nhận</strong></div></div>
       <div class="info-row"><div class="ir-label">Hóa đơn</div><div class="ir-value">Đơn đã được Kho xác nhận – xem ở tab <strong>Hóa đơn</strong> KiotViet</div></div>
@@ -63,29 +40,38 @@ const LESSONS = [
   </div>
 
   <div class="section">
-    <h3>👥 Ai Làm Gì?</h3>
+    <h3>✅ Trách Nhiệm Của Bạn (Cửa Hàng / ĐTNQ)</h3>
+    <div class="checklist">
+      <div class="check-num">1</div><div class="check-text">Theo dõi tồn kho theo File Min/Max – đặt hàng trước khi hết</div>
+      <div class="check-num">2</div><div class="check-text">Đặt hàng đúng MOQ trên KiotViet, chốt trước <strong>16:30</strong> ngày làm việc</div>
+      <div class="check-num">3</div><div class="check-text">Chuyển tiền &amp; gửi bằng chứng vào <strong>Group Zalo Kho</strong></div>
+      <div class="check-num">4</div><div class="check-text">Kiểm tra <strong>5 điểm</strong> ngay khi nhận hàng (xem Bài 8)</div>
+      <div class="check-num">5</div><div class="check-text">Báo sự cố <strong>trong 1 ngày làm việc</strong> – quá hạn không được giải quyết</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>🤝 Hệ Thống Cam Kết Với Bạn</h3>
     <div class="card-grid">
       <div class="card-item">
-        <div class="ci-icon">🏢</div>
-        <div class="ci-title">Hệ Thống (CCU & Kho)</div>
-        <div class="ci-desc" style="text-align:left">
-          ✅ Tiếp nhận &amp; xác nhận đơn<br/>
-          ✅ Đóng gói, xuất hàng, gửi Biên nhận<br/>
-          ✅ Thông báo thay đổi giá trước <strong>15 ngày</strong><br/>
-          ✅ Xử lý sự cố đúng SLA<br/>
-          ✅ Đối chiếu công nợ hằng tháng
-        </div>
+        <div class="ci-icon">📦</div>
+        <div class="ci-title">Giao hàng đúng hẹn</div>
+        <div class="ci-desc">Miền Nam 5–7 ngày, Miền Trung/Bắc 7–10 ngày làm việc sau khi thanh toán</div>
       </div>
       <div class="card-item">
-        <div class="ci-icon">🏪</div>
-        <div class="ci-title">Cửa Hàng / ĐTNQ</div>
-        <div class="ci-desc" style="text-align:left">
-          ✅ Theo dõi tồn kho theo File Min/Max<br/>
-          ✅ Đặt hàng đúng MOQ &amp; đúng thời hạn<br/>
-          ✅ Gửi bằng chứng vào Group Zalo Kho<br/>
-          ✅ Kiểm tra <strong>5 điểm</strong> khi nhận hàng<br/>
-          ✅ Báo sự cố <strong>trong 1 ngày làm việc</strong>
-        </div>
+        <div class="ci-icon">💰</div>
+        <div class="ci-title">Báo giá trước 15 ngày</div>
+        <div class="ci-desc">Mọi thay đổi giá NL Độc Quyền sẽ được thông báo trước ít nhất 15 ngày</div>
+      </div>
+      <div class="card-item">
+        <div class="ci-icon">🛡️</div>
+        <div class="ci-title">Xử lý sự cố đúng SLA</div>
+        <div class="ci-desc">Hàng sai/hỏng: phản hồi trong 1 ngày làm việc, giải quyết trong 3 ngày làm việc</div>
+      </div>
+      <div class="card-item">
+        <div class="ci-icon">💬</div>
+        <div class="ci-title">Group Zalo Kho luôn sẵn sàng</div>
+        <div class="ci-desc">Kênh DUY NHẤT – gửi câu hỏi, bằng chứng thanh toán, báo lỗi vào đây</div>
       </div>
     </div>
   </div>
@@ -94,7 +80,7 @@ const LESSONS = [
     <div class="callout callout-danger">
       <div class="callout-icon">⭐</div>
       <div class="callout-body">
-        <strong>3 ĐIỀU CỐT LÕI BÀI 1 – PHẢI NHỚ</strong>
+        <strong>3 ĐIỀU CỐT LÕI – PHẢI NHỚ</strong>
         <ul>
           <li><strong>Group Zalo Kho</strong> = kênh DUY NHẤT cho mọi giao dịch với Kho</li>
           <li>Giờ làm việc: Thứ 2–Thứ 6, <strong>09:00–16:30</strong></li>
@@ -206,13 +192,13 @@ const LESSONS = [
   id: 2,
   icon: '⭐',
   title: 'NL Độc Quyền Phúc Tea',
-  subtitle: '13 sản phẩm · MOQ · Điều không được làm',
+  subtitle: '10 sản phẩm · MOQ · Xuất từ kho nào',
   content: `
   <div class="lesson-hero">
     <div class="lesson-hero-icon">🌟</div>
     <div class="lesson-hero-text">
-      <h4>13 NL Độc Quyền – "Linh Hồn" Của Phúc Tea</h4>
-      <p>Đây là những nguyên liệu Phúc Tea tự nghiên cứu hoặc đặt nhà máy sản xuất riêng. Không thể thay thế bằng bất kỳ sản phẩm nào bên ngoài dù tên giống nhau.</p>
+      <h4>10 NL Độc Quyền – "Linh Hồn" Của Phúc Tea</h4>
+      <p>Phúc Tea tự nghiên cứu và đặt sản xuất riêng. <strong>Không thể thay thế</strong> bằng bất kỳ sản phẩm nào bên ngoài dù tên giống nhau – công thức đặc trưng riêng.</p>
     </div>
   </div>
 
@@ -220,33 +206,31 @@ const LESSONS = [
     <div class="callout callout-danger">
       <div class="callout-icon">🚫</div>
       <div class="callout-body">
-        <strong>QUY TẮC SỐ 1 – TUYỆT ĐỐI KHÔNG VI PHẠM</strong>
-        <p>Không được tự mua NL Độc Quyền từ bất kỳ nguồn nào bên ngoài – dù giá rẻ hơn, dù tên giống hệt. Công thức riêng của Phúc Tea = không thể tìm đâu có hàng tương đương.</p>
+        <strong>QUY TẮC – TUYỆT ĐỐI KHÔNG VI PHẠM</strong>
+        <p>Không được tự mua NL Độc Quyền từ bất kỳ nguồn nào bên ngoài – dù giá rẻ hơn, dù tên giống hệt. Chỉ được nhập <strong>100% từ Hệ thống</strong>.</p>
       </div>
     </div>
   </div>
 
   <div class="section">
-    <h3>📋 Danh Mục 13 NL Độc Quyền</h3>
+    <h3>📋 Danh Mục 10 NL Độc Quyền</h3>
     <div class="table-wrap"><table>
-      <tr><th>STT</th><th>Tên sản phẩm</th><th>ĐVT</th><th>MOQ</th></tr>
-      <tr><td>1</td><td>Cà Phê Mộc 9:1</td><td>Kg</td><td>2 kg</td></tr>
-      <tr style="background:#fefce8"><td>2</td><td><strong>Bột Pha Chế Phúc Tea PT35</strong> ⭐</td><td>Thùng</td><td>1 thùng</td></tr>
-      <tr style="background:#fefce8"><td>3</td><td><strong>Trà Đen Phúc Tea</strong> ⭐</td><td>Gói</td><td>5 gói</td></tr>
-      <tr style="background:#fefce8"><td>4</td><td><strong>Trà Xanh Lài Phúc Tea</strong> ⭐</td><td>Gói</td><td>1 gói</td></tr>
-      <tr><td>5</td><td>Trà Oolong Phúc Tea 02</td><td>Gói</td><td>1 gói</td></tr>
-      <tr><td>6</td><td>Trà Oolong Quế Hoa Phúc Tea 500gr</td><td>Gói</td><td>1 gói</td></tr>
-      <tr><td>7</td><td>Trà Hoa Cỏ Mùa Xuân Phúc Tea 500gr</td><td>Gói</td><td>1 gói</td></tr>
-      <tr><td>8</td><td>Bột Socola Phúc Tea 02</td><td>Gói</td><td>1 gói</td></tr>
-      <tr><td>9</td><td>Trà Hòa Tan Vị Đào Phúc Tea</td><td>Gói</td><td>5 gói</td></tr>
-      <tr><td>10</td><td>Trà Hòa Tan Vị Vải Phúc Tea</td><td>Gói</td><td>5 gói</td></tr>
-      <tr style="background:#fefce8"><td>11</td><td><strong>Trân Châu Giòn Phúc Tea</strong> ⭐</td><td>Thùng</td><td>1 thùng (6 gói)</td></tr>
-      <tr><td>12</td><td>Vải Tươi Ngâm Đường Phúc Tea 565gr</td><td>Thùng</td><td>1 thùng (12 lon)</td></tr>
-      <tr><td>13</td><td>Bột Milk Foam Phúc Tea</td><td>Gói</td><td>1 gói</td></tr>
+      <tr><th>STT</th><th>Tên sản phẩm</th><th>ĐVT</th><th>MOQ</th><th>Kho xuất</th></tr>
+      <tr><td>1</td><td>Cà Phê Mộc 9:1</td><td>Kg</td><td>2 kg</td><td>🏭 Cần Thơ</td></tr>
+      <tr style="background:#fefce8"><td>2</td><td><strong>Bột Pha Chế Phúc Tea PT35</strong> ⭐</td><td>Thùng</td><td>1 thùng</td><td>📦 HCM</td></tr>
+      <tr style="background:#fefce8"><td>3</td><td><strong>Trà Đen Phúc Tea</strong> ⭐</td><td>Gói</td><td>5 gói</td><td>📦 HCM</td></tr>
+      <tr style="background:#fefce8"><td>4</td><td><strong>Trà Xanh Lài Phúc Tea</strong> ⭐</td><td>Gói</td><td>1 gói</td><td>📦 HCM</td></tr>
+      <tr><td>5</td><td>Trà Oolong Phúc Tea 02</td><td>Gói</td><td>1 gói</td><td>📦 HCM</td></tr>
+      <tr><td>6</td><td>Bột Socola Phúc Tea 02</td><td>Gói</td><td>1 gói</td><td>📦 HCM</td></tr>
+      <tr><td>7</td><td>Trà Hòa Tan Vị Đào Phúc Tea</td><td>Gói</td><td>5 gói</td><td>📦 HCM</td></tr>
+      <tr><td>8</td><td>Trà Hòa Tan Vị Vải Phúc Tea</td><td>Gói</td><td>5 gói</td><td>📦 HCM</td></tr>
+      <tr style="background:#fefce8"><td>9</td><td><strong>Trân Châu Giòn Phúc Tea</strong> ⭐</td><td>Thùng</td><td>1 thùng (6 gói)</td><td>📦 HCM</td></tr>
+      <tr><td>10</td><td>Vải Tươi Ngâm Đường Phúc Tea</td><td>Thùng</td><td>1 thùng (12 lon)</td><td>📦 HCM</td></tr>
     </table></div>
     <div class="tag-row">
       <span class="tag tag-yellow">⭐ SP Chính = ưu tiên dự trữ đủ</span>
-      <span class="tag tag-blue">Trên KiotViet: "Bịch" = "Gói" cho cùng sản phẩm</span>
+      <span class="tag tag-blue">📦 HCM = Kho Nguyên Liệu HCM</span>
+      <span class="tag tag-green">🏭 Cần Thơ = Kho Cần Thơ</span>
     </div>
   </div>
 
@@ -260,17 +244,17 @@ const LESSONS = [
       </div>
       <div class="sla-card">
         <span class="sla-num">2 kg</span>
-        <span class="sla-label">Cà Phê Mộc 9:1</span>
+        <span class="sla-label">Cà Phê Mộc 9:1 · <em>xuất từ Kho Cần Thơ</em></span>
         <span class="sla-party">mỗi lần đặt</span>
       </div>
       <div class="sla-card">
         <span class="sla-num">1 thùng</span>
-        <span class="sla-label">Trân Châu Giòn (6 gói)</span>
+        <span class="sla-label">Trân Châu Giòn (6 gói/thùng)</span>
         <span class="sla-party">mỗi lần đặt</span>
       </div>
       <div class="sla-card">
         <span class="sla-num">1 thùng</span>
-        <span class="sla-label">Vải Tươi Ngâm Đường (12 lon)</span>
+        <span class="sla-label">Vải Tươi Ngâm Đường (12 lon/thùng)</span>
         <span class="sla-party">mỗi lần đặt</span>
       </div>
     </div>
@@ -282,7 +266,7 @@ const LESSONS = [
       <div class="callout-body">
         <strong>ĐIỂM CỐT LÕI BÀI 3</strong>
         <ul>
-          <li><strong>13 NL</strong> Độc Quyền – không thay thế bằng bất kỳ hàng nào bên ngoài</li>
+          <li><strong>10 NL</strong> Độc Quyền – không thay thế bằng bất kỳ hàng nào bên ngoài</li>
           <li>4 SP Chính: Bột Pha Chế, Trà Đen, Trà Xanh Lài, Trân Châu Giòn</li>
           <li>Phí VC: <strong>CHƯA bao gồm</strong> → Cửa Hàng trả khi nhận</li>
         </ul>
@@ -298,13 +282,13 @@ const LESSONS = [
   id: 3,
   icon: '🫙',
   title: 'Nguyên Liệu Thương Mại',
-  subtitle: '15 sản phẩm · MOQ · Giá theo thị trường',
+  subtitle: '16 sản phẩm · Mua được tại địa phương · Phải đúng nhãn hiệu',
   content: `
   <div class="lesson-hero">
     <div class="lesson-hero-icon">🏪</div>
     <div class="lesson-hero-text">
-      <h4>15 Nguyên Liệu Thương Mại</h4>
-      <p>Khác với NL Độc Quyền, đây là những NL phổ thông trên thị trường. Hệ thống cung cấp để đảm bảo <strong>nguồn gốc rõ ràng</strong> và <strong>chất lượng đồng nhất</strong> toàn chuỗi. Giá biến động theo thị trường.</p>
+      <h4>16 Nguyên Liệu Thương Mại – Linh Hoạt Nguồn Cung</h4>
+      <p>Đây là những NL <strong>không độc quyền</strong> – bạn có thể tự mua tại địa phương. Tuy nhiên, phải đảm bảo <strong>đúng nhãn hiệu/thương hiệu</strong> quy định để giữ chất lượng chuỗi đồng nhất. Hệ thống cũng cung cấp để bạn đặt tiện lợi hơn.</p>
     </div>
   </div>
 
@@ -312,47 +296,64 @@ const LESSONS = [
     <div class="callout callout-info">
       <div class="callout-icon">💡</div>
       <div class="callout-body">
-        <strong>Nguyên liệu thương mại vs NL Độc Quyền</strong>
+        <strong>Có thể tự mua tại địa phương – nhưng phải đúng nhãn hiệu!</strong>
         <ul>
-          <li>NL Độc Quyền: giá <strong>cố định</strong>, thay đổi báo trước 15 ngày</li>
-          <li>Nguyên liệu thương mại: giá <strong>theo thị trường</strong> → cập nhật tự động trên KiotViet → <strong>kiểm tra giá trước khi lên đơn</strong></li>
+          <li>✅ Mua tại địa phương hoặc đặt qua Hệ thống đều được</li>
+          <li>✅ Giá biến động theo thị trường → Hệ thống cập nhật tự động trên KiotViet</li>
+          <li>⚠️ Dù mua ở đâu, <strong>phải đúng nhãn hiệu/thương hiệu</strong> ghi trong danh mục</li>
+          <li>⚠️ Không được tự ý thay thế bằng sản phẩm khác nhãn dù "cùng loại"</li>
         </ul>
       </div>
     </div>
   </div>
 
   <div class="section">
-    <h3>📋 Danh Mục 15 Nguyên Liệu</h3>
-    <div class="table-wrap"><table>
-      <tr><th>STT</th><th>Tên sản phẩm</th><th>ĐVT</th><th>MOQ</th></tr>
-      <tr><td>14</td><td>Mứt Hibiscus</td><td>Hủ</td><td>1 hủ</td></tr>
-      <tr><td>15</td><td>Gelatine Đức hoặc Pháp</td><td>Gói</td><td>1 gói</td></tr>
-      <tr><td>16</td><td>Syrup Đường Đen Luave</td><td>Can</td><td>1 can (6 can/thùng)</td></tr>
-      <tr><td>17</td><td>Bột Matcha Đài Loan</td><td>Gói</td><td>1 gói</td></tr>
-      <tr><td>18</td><td>Bột Khoai Môn Mole</td><td>Gói</td><td>1 gói</td></tr>
-      <tr><td>19</td><td>Pudding Trứng Mole</td><td>Gói</td><td>1 gói</td></tr>
-      <tr><td>20</td><td>Hạt Chia Úc hoặc Peru</td><td>Gói</td><td>1 gói (1 kg)</td></tr>
-      <tr><td>21</td><td>Đào Ngâm Fresko 820gr</td><td>Thùng</td><td>1 thùng (12 lon)</td></tr>
-      <tr><td>22</td><td>Sinh Tố Xoài Berrino</td><td>Chai</td><td>1 chai (12 chai/thùng)</td></tr>
-      <tr><td>23</td><td>Mứt Thơm Berrino</td><td>Hủ</td><td>1 hủ (15 hủ/thùng)</td></tr>
-      <tr><td>24</td><td>Mứt Dâu Tằm Berrino</td><td>Hủ</td><td>1 hủ (15 hủ/thùng)</td></tr>
-      <tr><td>25</td><td>Thạch Dừa Vải Casa 3,5kg</td><td>Thùng</td><td>1 thùng (4 hủ)</td></tr>
-      <tr style="background:#fefce8"><td>26</td><td><strong>Thạch Nha Đam</strong></td><td>Gói</td><td>5 gói (10 gói/thùng)</td></tr>
-      <tr><td>27</td><td>Xí Muội</td><td>Gói</td><td>1 gói</td></tr>
-      <tr><td>28</td><td>Syrup Đào Mama Rosa</td><td>Chai</td><td>1 chai (12 chai/thùng)</td></tr>
-    </table></div>
+    <div class="callout callout-success">
+      <div class="callout-icon">🌺</div>
+      <div class="callout-body">
+        <strong>Mứt Hibiscus – Trường Hợp Đặc Biệt</strong>
+        <p>Mứt Hibiscus <strong>không phải NL Độc Quyền</strong> nhưng hiện tại <strong>chỉ có Hệ thống mới cung cấp</strong> (không có trên thị trường phổ thông). Vui lòng đặt qua KiotViet như các NL khác.</p>
+      </div>
+    </div>
   </div>
 
   <div class="section">
-    <h3>⚡ MOQ Đặc Biệt</h3>
-    <div class="callout callout-info">
-      <div class="callout-icon">📌</div>
-      <div class="callout-body">
-        <strong>Thạch Nha Đam: MOQ 5 gói</strong>
-        <p>Thùng có 10 gói nhưng đặt tối thiểu <strong>5 gói</strong>/lần – không cần phải đặt cả thùng.</p>
-        <p style="margin-top:6px"><strong>Đào Ngâm, Sinh Tố Xoài:</strong> MOQ 1 thùng (12 lon/chai)<br/>
-        <strong>Mứt Thơm, Mứt Dâu Tằm:</strong> MOQ 1 thùng (15 hủ)<br/>
-        <strong>Thạch Dừa Vải:</strong> MOQ 1 thùng (4 hủ)</p>
+    <h3>📋 Danh Mục 16 Nguyên Liệu Thương Mại</h3>
+    <div class="table-wrap"><table>
+      <tr><th>STT</th><th>Tên sản phẩm</th><th>ĐVT</th><th>MOQ</th><th>Quy cách đóng gói</th></tr>
+      <tr style="background:#fff7ed;border-left:3px solid #f97316"><td>11</td><td><strong>🌺 Mứt Hibiscus</strong><br/><small style="color:#ea580c">Chỉ có Hệ thống cung cấp</small></td><td>Hủ</td><td>1 hủ</td><td>–</td></tr>
+      <tr><td>12</td><td>Bột Milk Foam Phúc Tea</td><td>Gói</td><td>1 gói</td><td>–</td></tr>
+      <tr><td>13</td><td>Gelatine Đức hoặc Pháp</td><td>Gói</td><td>1 gói</td><td>–</td></tr>
+      <tr><td>14</td><td>Syrup Đường Đen Luave</td><td>Can</td><td>1 can</td><td>6 can/thùng</td></tr>
+      <tr><td>15</td><td>Bột Matcha Đài Loan</td><td>Gói</td><td>1 gói</td><td>–</td></tr>
+      <tr><td>16</td><td>Bột Khoai Môn Mole</td><td>Gói</td><td>1 gói</td><td>–</td></tr>
+      <tr><td>17</td><td>Pudding Trứng Mole</td><td>Gói</td><td>1 gói</td><td>–</td></tr>
+      <tr><td>18</td><td>Hạt Chia Úc hoặc Peru</td><td>Gói</td><td>1 gói (1kg)</td><td>–</td></tr>
+      <tr><td>19</td><td>Đào Ngâm Fresko 820gr</td><td>Thùng</td><td>1 thùng</td><td>12 lon/thùng</td></tr>
+      <tr><td>20</td><td>Sinh Tố Xoài Berrino</td><td>Chai</td><td>1 chai</td><td>12 chai/thùng</td></tr>
+      <tr><td>21</td><td>Mứt Thơm Berrino</td><td>Hủ</td><td>1 hủ</td><td>15 hủ/thùng</td></tr>
+      <tr><td>22</td><td>Mứt Dâu Tằm Berrino</td><td>Hủ</td><td>1 hủ</td><td>15 hủ/thùng</td></tr>
+      <tr><td>23</td><td>Thạch Dừa Vải Casa 3,5kg</td><td>Thùng</td><td>1 thùng</td><td>4 hủ/thùng</td></tr>
+      <tr style="background:#fefce8"><td>24</td><td><strong>Thạch Nha Đam</strong></td><td>Gói</td><td>5 gói</td><td>10 gói/thùng</td></tr>
+      <tr><td>25</td><td>Xí Muội Thái</td><td>Gói</td><td>1 gói</td><td>–</td></tr>
+      <tr><td>26</td><td>Syrup Đào Mama Rosa</td><td>Chai</td><td>1 chai</td><td>12 chai/thùng</td></tr>
+    </table></div>
+    <div class="tag-row">
+      <span class="tag tag-yellow">⚠️ Thạch Nha Đam: MOQ 5 gói, không cần đặt cả thùng (10 gói)</span>
+      <span class="tag tag-blue">📦 Tất cả xuất từ Kho Nguyên Liệu HCM</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>💡 Phân Biệt MOQ và Quy Cách Đóng Gói</h3>
+    <div class="compare-row">
+      <div class="compare-col col-green">
+        <h4>✅ MOQ = Số lượng tối thiểu mỗi lần đặt</h4>
+        <p style="font-size:13px">Ví dụ: Sinh Tố Xoài Berrino MOQ = <strong>1 chai</strong> → bạn chỉ cần đặt 1 chai là được</p>
+      </div>
+      <div class="compare-col col-green" style="border-color:#93c5fd;background:#eff6ff">
+        <h4 style="color:#1e40af">ℹ️ Quy cách = Cách đóng gói của nhà cung cấp</h4>
+        <p style="font-size:13px">Sinh Tố Xoài đóng gói theo thùng 12 chai – đây là thông tin tham khảo, không phải MOQ</p>
       </div>
     </div>
   </div>
@@ -363,9 +364,10 @@ const LESSONS = [
       <div class="callout-body">
         <strong>ĐIỂM CỐT LÕI BÀI 4</strong>
         <ul>
-          <li><strong>15 Nguyên liệu</strong> – phải đặt qua KiotViet, không tự mua ngoài thị trường</li>
+          <li>Có thể mua tại địa phương nhưng <strong>phải đúng nhãn hiệu</strong> quy định</li>
+          <li>🌺 <strong>Mứt Hibiscus</strong>: hiện chỉ có Hệ thống, đặt qua KiotViet</li>
           <li>Giá biến động → <strong>kiểm tra trên KiotViet trước khi đặt</strong></li>
-          <li>Phí VC: <strong>CHƯA bao gồm</strong> → Cửa Hàng trả khi nhận</li>
+          <li>MOQ ≠ Quy cách đóng gói – chỉ cần đặt đúng số lượng MOQ</li>
         </ul>
       </div>
     </div>
@@ -828,7 +830,7 @@ const LESSONS = [
       <div class="callout-body">
         <strong>7 QUY TẮC VÀNG (SOP V2.0)</strong>
         <ol style="padding-left:18px;margin-top:8px;line-height:2.6">
-          <li>Mọi NL/VL: <strong>đặt qua KiotViet</strong> – không tự mua ngoài</li>
+          <li><strong>NL ĐQ + VL:</strong> bắt buộc đặt qua KiotViet · <strong>NL thương mại:</strong> có thể tự mua nhưng đúng nhãn hiệu</li>
           <li>Sau đặt hàng: <strong>chụp đơn → gửi Group Zalo Kho</strong></li>
           <li>Sau chuyển khoản: <strong>chụp bill → gửi Group Zalo Kho + kèm mã đơn</strong></li>
           <li>Khi nhận hàng: kiểm tra <strong>5 điểm</strong>, HSD phải còn ≥ 1/3 hạn</li>
@@ -836,6 +838,113 @@ const LESSONS = [
           <li>Phí VC: <strong>NL tự trả</strong> | <strong>VL đã bao gồm</strong></li>
           <li>Mọi thắc mắc: <strong>Group Zalo Kho</strong> hoặc <strong>0344 858 727</strong></li>
         </ol>
+      </div>
+    </div>
+  </div>`
+}
+
+,
+
+/* ===================================================
+   BÀI 9 – CẨM NANG VẬN HÀNH (QUICK REFERENCE)
+   =================================================== */
+{
+  id: 8,
+  icon: '📒',
+  title: 'Cẩm Nang Vận Hành',
+  subtitle: 'Tóm tắt quy trình · Liên hệ · Câu hỏi thường gặp',
+  content: `
+  <div class="lesson-hero">
+    <div class="lesson-hero-icon">📒</div>
+    <div class="lesson-hero-text">
+      <h4>Cẩm Nang Tra Cứu Nhanh</h4>
+      <p>Tóm tắt toàn bộ quy trình vận hành kho trong 1 bài – dùng để tra cứu nhanh khi cần, không phải học lại từ đầu.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>📞 Thông Tin Liên Hệ Quan Trọng</h3>
+    <div class="info-rows">
+      <div class="info-row"><div class="ir-label">Group Zalo Kho</div><div class="ir-value">Kênh DUY NHẤT cho mọi giao dịch với Kho – đặt hàng, thanh toán, báo lỗi</div></div>
+      <div class="info-row"><div class="ir-label">CCU Phúc Tea</div><div class="ir-value"><strong>Trần Thị Hạnh Nhân</strong> · 📞 0344 858 727 · hanhnhan@phuctea.com.vn</div></div>
+      <div class="info-row"><div class="ir-label">Giờ làm việc</div><div class="ir-value">Thứ 2–Thứ 6: 09:00–16:30 · T7/CN: tiếp nhận, xử lý sáng Thứ Hai</div></div>
+      <div class="info-row"><div class="ir-label">Tên gian hàng KV</div><div class="ir-value"><strong>taivuphuc</strong> (trên ứng dụng KiotViet)</div></div>
+      <div class="info-row"><div class="ir-label">Tài khoản ngân hàng</div><div class="ir-value">STK: <strong>689767678888</strong> · PVcombank · Chủ tài khoản: Phúc Tea</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>⚡ Quy Trình Đặt Hàng Tóm Tắt (5 Bước)</h3>
+    <div class="checklist">
+      <div class="check-num">1</div><div class="check-text">Kiểm tra tồn kho theo File Min/Max → xác định SP cần đặt &amp; số lượng</div>
+      <div class="check-num">2</div><div class="check-text">Đăng nhập KiotViet → tìm "taivuphuc" → thêm SP vào giỏ → nhấn <strong>Đặt Hàng</strong> (không phải Lưu Tạm)</div>
+      <div class="check-num">3</div><div class="check-text">Chụp màn hình đơn hàng → gửi vào <strong>Group Zalo Kho</strong></div>
+      <div class="check-num">4</div><div class="check-text">Chuyển khoản theo số tiền hóa đơn → chụp bill → gửi vào Group Zalo Kho kèm <strong>mã đơn hàng</strong></div>
+      <div class="check-num">5</div><div class="check-text">Nhận hàng: kiểm tra 5 điểm → ký xác nhận → báo lỗi (nếu có) trong <strong>1 ngày làm việc</strong></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>🏭 Hàng Xuất Từ Kho Nào?</h3>
+    <div class="card-grid">
+      <div class="card-item">
+        <div class="ci-icon">📦</div>
+        <div class="ci-title">Kho Nguyên Liệu HCM</div>
+        <div class="ci-desc" style="text-align:left">9 NL Độc Quyền + toàn bộ NL Thương Mại (trừ Cà Phê Mộc)</div>
+      </div>
+      <div class="card-item">
+        <div class="ci-icon">🏭</div>
+        <div class="ci-title">Kho Cần Thơ</div>
+        <div class="ci-desc" style="text-align:left">Cà Phê Mộc 9:1 (MOQ 2 kg)</div>
+      </div>
+      <div class="card-item">
+        <div class="ci-icon">🧃</div>
+        <div class="ci-title">Kho Vật Liệu HCM</div>
+        <div class="ci-desc" style="text-align:left">Toàn bộ VL Độc Quyền &amp; VL thông thường (ly, bịch, ống hút, nắp…)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>❓ Câu Hỏi Thường Gặp</h3>
+    <div class="info-rows">
+      <div class="info-row">
+        <div class="ir-label" style="min-width:160px">Lưu Tạm vs Đặt Hàng?</div>
+        <div class="ir-value"><strong>Lưu Tạm</strong> = Kho chưa nhận, không xử lý. Phải nhấn <strong>Đặt Hàng</strong> để đơn được tiếp nhận.</div>
+      </div>
+      <div class="info-row">
+        <div class="ir-label" style="min-width:160px">Quá giờ 16:30 thì sao?</div>
+        <div class="ir-value">Đơn sẽ được xử lý vào sáng ngày làm việc tiếp theo.</div>
+      </div>
+      <div class="info-row">
+        <div class="ir-label" style="min-width:160px">Phí VC thế nào?</div>
+        <div class="ir-value"><strong>NL:</strong> CHƯA bao gồm – Cửa Hàng trả khi nhận. <strong>VL:</strong> ĐÃ bao gồm trong giá.</div>
+      </div>
+      <div class="info-row">
+        <div class="ir-label" style="min-width:160px">Hàng bao lâu tới?</div>
+        <div class="ir-value">Miền Nam: 5–7 ngày · Miền Trung/Bắc: 7–10 ngày làm việc sau khi thanh toán.</div>
+      </div>
+      <div class="info-row">
+        <div class="ir-label" style="min-width:160px">Nhận hàng lỗi thì làm gì?</div>
+        <div class="ir-value">Quay video mở thùng → gửi Group Zalo Kho đủ: Hình/Video + Tên SP + SL lỗi + Mô tả. Báo trong <strong>1 ngày làm việc</strong>.</div>
+      </div>
+      <div class="info-row">
+        <div class="ir-label" style="min-width:160px">NL thương mại tự mua được không?</div>
+        <div class="ir-value">Được, nhưng phải <strong>đúng nhãn hiệu</strong> quy định. Mứt Hibiscus ngoại lệ: chỉ có Hệ thống cung cấp.</div>
+      </div>
+      <div class="info-row">
+        <div class="ir-label" style="min-width:160px">Hóa đơn ở đâu?</div>
+        <div class="ir-value">Tab <strong>Hóa đơn</strong> trên KiotViet. Đơn đã được xác nhận sẽ hiện ở đây.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="callout callout-success">
+      <div class="callout-icon">🏆</div>
+      <div class="callout-body">
+        <strong>Chúc Mừng! Bạn Đã Hoàn Thành 9 Bài Học</strong>
+        <p>Bây giờ hãy làm <strong>Bài Kiểm Tra Tổng Kết</strong> để nhận <strong>Giấy Chứng Nhận</strong> hoàn thành khóa học nhé! 🎓</p>
       </div>
     </div>
   </div>`

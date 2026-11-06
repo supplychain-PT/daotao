@@ -259,6 +259,7 @@ function renderSidebar() {
   const baiHoc = getLessons();
   const tongBai = baiHoc.length;
 
+  const PILL_COLORS = ['#ef4444','#f97316','#d97706','#16a34a','#2563eb','#7c3aed','#db2777','#0891b2','#64748b'];
   const mucBai = baiHoc.map((l, i) => {
     const isDone   = S.done.includes(i);
     const isActive = S.lesson === i && ['lesson', 'quiz', 'result'].includes(S.view);
@@ -267,9 +268,12 @@ function renderSidebar() {
     if (isActive) cls += ' active';
     if (isDone && !isActive) cls += ' done';
     if (isLocked) cls += ' locked';
-    const status = isDone ? '✓ Hoàn thành' : (isLocked ? '🔒 Chưa mở' : 'Chưa học');
+    const status = isDone ? '✓ Hoàn thành' : (isLocked ? '🔒 Chưa mở' : '→ Chưa học');
+    const pillColor = isLocked ? '#94a3b8' : PILL_COLORS[i % PILL_COLORS.length];
+    const pillBg = isActive ? pillColor : (isDone ? pillColor + '22' : pillColor + '18');
+    const pillFg = isActive ? '#fff' : pillColor;
     return `<button type="button" class="${cls}" ${isLocked ? 'disabled' : ''} onclick="navTo(${i})">
-      <span class="li-icon">${isDone && !isActive ? '✓' : i + 1}</span>
+      <span class="li-icon" style="background:${pillBg};color:${pillFg};border:1.5px solid ${isLocked?'#cbd5e1':pillColor+'55'}">${isDone && !isActive ? '✓' : i + 1}</span>
       <span class="li-info">
         <span class="li-name">${l.icon} ${chongHTML(l.title)}</span>
         <span class="li-status">${status}</span>
@@ -316,6 +320,12 @@ function navTo(i) {
   showLesson(i);
 }
 
+// ─── CHUYỂN CHẾ ĐỘ XEM PC / MOBILE ──────────────────────────
+function toggleManHinh() {
+  const isMobile = document.body.classList.toggle('view-mobile');
+  document.getElementById('nutManHinh').textContent = isMobile ? '💻 PC' : '📱 Mobile';
+}
+
 // ─── MENU TRÊN ĐIỆN THOẠI ─────────────────────────────────────
 function moDongSidebar() {
   const sb = document.getElementById('sidebar');
@@ -337,11 +347,6 @@ function showWelcome() {
   renderSidebar();
   const b = thuongHieu();
   const baiHoc = getLessons();
-  const tongCau = baiHoc.reduce((t, l) => t + l.questions.length, 0);
-  const cauMoiBai = [...new Set(baiHoc.map(l => l.questions.length))].sort((a, b2) => a - b2);
-  const moTaCau = cauMoiBai.length === 1
-    ? `<strong>${cauMoiBai[0]} câu hỏi</strong>`
-    : `<strong>${cauMoiBai.join(' hoặc ')} câu hỏi</strong> tuỳ bài`;
 
   document.getElementById('mainContent').innerHTML = `
   <div class="welcome">
@@ -353,14 +358,12 @@ function showWelcome() {
       <strong>Giấy Chứng Nhận</strong>.</p>
     <div class="welcome-stats">
       <div class="stat"><div class="stat-num">${baiHoc.length}</div><div class="stat-label">Bài học</div></div>
-      <div class="stat"><div class="stat-num">${tongCau}</div><div class="stat-label">Câu hỏi theo bài</div></div>
       <div class="stat"><div class="stat-num">${getFinalQuiz().length}</div><div class="stat-label">Câu tổng kết</div></div>
       <div class="stat"><div class="stat-num">${CAU_HINH.DIEM_DAT}%</div><div class="stat-label">Điểm đạt</div></div>
     </div>
     <div class="info-box">
       <strong>📌 Quy tắc:</strong><br>
-      • Mỗi bài có ${moTaCau} - cần đúng từ <strong>${CAU_HINH.DIEM_DAT}%</strong> trở lên để qua<br>
-      • Chưa qua bài hiện tại thì <strong>không mở được bài tiếp theo</strong><br>
+      • Đọc hết nội dung từng bài, sau đó nhấn <strong>Bài Tiếp Theo</strong><br>
       • Hoàn thành ${baiHoc.length}/${baiHoc.length} bài sẽ mở <strong>Bài Kiểm Tra Tổng Kết (${getFinalQuiz().length} câu)</strong><br>
       • Đạt tổng kết từ ${CAU_HINH.DIEM_DAT}% trở lên thì nhận <strong>Giấy Chứng Nhận</strong><br>
       • Câu hỏi và đáp án được <strong>đảo thứ tự mỗi lần làm</strong>

@@ -290,6 +290,8 @@ body.brand-thehoa th{background:var(--green-dark);}
 .checklist{list-style:none;padding:0;margin:14px 0;}
 .checklist li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f3f4f6;font-size:14px;line-height:1.6;}
 .checklist li:last-child{border-bottom:none;}
+/* div-based shorthand: check-num + check-text pairs as 2-col grid */
+div.checklist{display:grid;grid-template-columns:auto 1fr;align-items:start;gap:8px 10px;}
 .check-num{width:26px;height:26px;border-radius:50%;background:var(--green-dark);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
 .check-text{flex:1;}
 .check-sub{display:block;font-size:12px;color:var(--gray);margin-top:2px;}
@@ -415,6 +417,30 @@ button{font-family:inherit;}
   .stat-num{font-size:21px;}
   .btn{padding:11px 16px;font-size:13px;}
 }
+
+/* --- Nut chuyen che do man hinh PC / Mobile --- */
+.nut-man-hinh{background:rgba(255,255,255,.18);border:1.5px solid rgba(255,255,255,.35);color:#fff;
+  font-size:12px;font-weight:600;padding:5px 10px;border-radius:8px;cursor:pointer;white-space:nowrap;
+  flex-shrink:0;transition:background .2s;}
+.nut-man-hinh:hover{background:rgba(255,255,255,.3);}
+
+/* Che do xem mobile: thu nho app ve khung dien thoai */
+body.view-mobile .app{max-width:420px;margin:0 auto;box-shadow:0 0 40px rgba(0,0,0,.15);}
+body.view-mobile .sidebar{display:none;}
+body.view-mobile .nut-menu{display:flex;}
+body.view-mobile .main{padding:14px;}
+
+/* Sidebar items nang cap: chu to hon, pill mau sac */
+.sidebar-title{font-size:12px;font-weight:800;color:var(--gray);text-transform:uppercase;
+  letter-spacing:1.2px;padding:14px 14px 10px;}
+.lesson-item{padding:10px 14px;}
+.li-name{font-size:14px;font-weight:600;line-height:1.35;color:var(--text);}
+.lesson-item.done .li-name{color:var(--green-deeper);}
+.lesson-item.active .li-name{color:var(--green-deeper);}
+.li-icon{width:28px;height:28px;border-radius:8px;font-size:12px;font-weight:800;}
+.li-status{font-size:11px;color:#94a3b8;margin-top:3px;display:block;}
+.lesson-item.done .li-status{color:var(--green-dark);}
+.lesson-item.active .li-status{color:var(--green-dark);font-weight:600;}
 
 /* --- In giay chung nhan --- */
 @media print{
