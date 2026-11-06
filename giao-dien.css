@@ -215,6 +215,109 @@ body.brand-thehoa .lesson-header{background:linear-gradient(135deg,#9c3d47,#c460
 body.brand-thehoa .section h3{color:var(--green-deeper);border-left-color:var(--green-dark);}
 body.brand-thehoa .highlight-box{background:#fff0f1;border-color:#f5b8be;}
 body.brand-thehoa th{background:var(--green-dark);}
+
+/* ===== VISUAL COMPONENTS V2 ===== */
+
+/* Hero banner đầu bài */
+.lesson-hero{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#e6f9ee,#f0fbf4);border-radius:12px;padding:16px 20px;margin-bottom:20px;border-left:5px solid var(--green-dark);}
+.lesson-hero-icon{font-size:44px;flex-shrink:0;}
+.lesson-hero-text h4{font-size:15px;font-weight:700;color:var(--green-deeper);margin-bottom:4px;}
+.lesson-hero-text p{font-size:13px;color:#4b5563;line-height:1.6;}
+
+/* Card grid layout */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:14px 0;}
+.card-item{background:#fff;border:1.5px solid #d4edda;border-radius:12px;padding:16px;text-align:center;transition:box-shadow .2s;}
+.card-item:hover{box-shadow:0 4px 16px rgba(0,0,0,.08);}
+.card-item .ci-icon{font-size:32px;margin-bottom:8px;}
+.card-item .ci-title{font-size:13px;font-weight:700;color:var(--green-deeper);margin-bottom:4px;}
+.card-item .ci-desc{font-size:12px;color:var(--gray);line-height:1.5;}
+
+/* Comparison 2 cột */
+.compare-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0;}
+.compare-col{border-radius:12px;padding:16px;font-size:13px;line-height:1.8;}
+.compare-col.col-red{background:#fff0f0;border:1.5px solid #fca5a5;}
+.compare-col.col-green{background:#f0fbf4;border:1.5px solid #a8dbb9;}
+.compare-col h4{font-size:13px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+
+/* Flow steps ngang */
+.flow-steps{display:flex;align-items:flex-start;gap:0;margin:16px 0;overflow-x:auto;padding-bottom:4px;}
+.flow-step{flex:1;min-width:110px;text-align:center;position:relative;}
+.flow-step:not(:last-child)::after{content:'→';position:absolute;right:-10px;top:17px;font-size:18px;color:var(--green-dark);font-weight:700;}
+.fs-circle{width:40px;height:40px;border-radius:50%;background:var(--green-dark);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;}
+.fs-label{font-size:11px;color:var(--text);line-height:1.4;padding:0 4px;}
+
+/* Callout box với icon lớn */
+.callout{display:flex;gap:16px;background:#fffbeb;border:1.5px solid #fcd34d;border-radius:12px;padding:16px 20px;margin:14px 0;}
+.callout.callout-info{background:#eff6ff;border-color:#93c5fd;}
+.callout.callout-success{background:#f0fbf4;border-color:#a8dbb9;}
+.callout.callout-danger{background:#fff0f0;border-color:#fca5a5;}
+.callout-icon{font-size:28px;flex-shrink:0;margin-top:2px;}
+.callout-body{flex:1;}
+.callout-body strong{display:block;font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.callout-body p,.callout-body ul{font-size:13px;color:#374151;line-height:1.8;margin:0;}
+.callout-body ul{padding-left:16px;}
+
+/* Badge pill tags */
+.tag-row{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0;}
+.tag{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;}
+.tag-green{background:#d1fae5;color:#065f46;}
+.tag-blue{background:#dbeafe;color:#1e40af;}
+.tag-yellow{background:#fef9c3;color:#854d0e;}
+.tag-red{background:#fee2e2;color:#991b1b;}
+.tag-gray{background:#f3f4f6;color:#374151;}
+
+/* Key-value info row */
+.info-rows{background:#fff;border:1.5px solid #e5e7eb;border-radius:12px;overflow:hidden;margin:14px 0;}
+.info-row{display:flex;align-items:flex-start;gap:0;border-bottom:1px solid #f3f4f6;}
+.info-row:last-child{border-bottom:none;}
+.ir-label{background:#f9fafb;padding:10px 14px;font-size:12px;font-weight:700;color:var(--gray);min-width:130px;flex-shrink:0;}
+.ir-value{padding:10px 14px;font-size:13px;color:var(--text);line-height:1.6;}
+
+/* Number highlight */
+.num-highlight{font-size:1.5em;font-weight:800;color:var(--green-dark);}
+.num-highlight.red{color:#dc2626;}
+
+/* SLA table đặc biệt */
+.sla-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0;}
+.sla-card{background:#fff;border-radius:10px;padding:14px 16px;border:1.5px solid #e5e7eb;text-align:center;}
+.sla-card .sla-num{font-size:22px;font-weight:800;color:var(--green-dark);display:block;}
+.sla-card .sla-label{font-size:11px;color:var(--gray);margin-top:3px;}
+.sla-card .sla-party{font-size:10px;background:#e6f9ee;color:var(--green-deeper);padding:2px 8px;border-radius:10px;display:inline-block;margin-top:4px;font-weight:600;}
+.sla-card.sla-warn .sla-num{color:#dc2626;}
+.sla-card.sla-warn{border-color:#fca5a5;background:#fff8f8;}
+
+/* Checklist visual */
+.checklist{list-style:none;padding:0;margin:14px 0;}
+.checklist li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f3f4f6;font-size:14px;line-height:1.6;}
+.checklist li:last-child{border-bottom:none;}
+.check-num{width:26px;height:26px;border-radius:50%;background:var(--green-dark);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.check-text{flex:1;}
+.check-sub{display:block;font-size:12px;color:var(--gray);margin-top:2px;}
+
+/* Visual divider với label */
+.section-divider{display:flex;align-items:center;gap:10px;margin:20px 0;}
+.section-divider span{font-size:12px;font-weight:700;color:var(--gray);white-space:nowrap;text-transform:uppercase;letter-spacing:0.5px;}
+.section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:#e5e7eb;}
+
+/* Timeline step */
+.timeline{padding:0;margin:14px 0;list-style:none;position:relative;}
+.timeline::before{content:'';position:absolute;left:17px;top:0;bottom:0;width:2px;background:#d4edda;}
+.tl-item{display:flex;gap:16px;margin-bottom:16px;position:relative;}
+.tl-dot{width:36px;height:36px;border-radius:50%;background:var(--green-dark);color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:1;}
+.tl-dot.tl-warn{background:#f59e0b;}
+.tl-content{flex:1;padding-top:7px;}
+.tl-content strong{font-size:14px;font-weight:700;color:var(--text);}
+.tl-content p{font-size:13px;color:var(--gray);margin-top:3px;line-height:1.6;}
+.tl-deadline{display:inline-block;background:#fef9c3;color:#854d0e;border-radius:6px;padding:1px 8px;font-size:11px;font-weight:600;margin-top:4px;}
+
+/* Responsive */
+@media(max-width:600px){
+  .compare-row{grid-template-columns:1fr;}
+  .card-grid{grid-template-columns:1fr 1fr;}
+  .sla-grid{grid-template-columns:1fr 1fr;}
+  .flow-steps{gap:4px;}
+  .flow-step{min-width:80px;}
+}
 body.brand-thehoa .btn-primary{background:var(--green-dark);}
 body.brand-thehoa .btn-primary:hover{background:var(--green-deeper);}
 body.brand-thehoa .btn-secondary{color:var(--green-dark);border-color:var(--green-dark);}
