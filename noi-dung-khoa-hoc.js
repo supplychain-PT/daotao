@@ -112,18 +112,18 @@ const LESSONS = [
     <div class="table-wrap"><table>
       <tr><th>STT</th><th>Tên sản phẩm</th><th>ĐVT</th><th>MOQ</th></tr>
       <tr><td>1</td><td>Cà Phê Mộc 9:1</td><td>Kg</td><td>2 kg</td></tr>
-      <tr><td>2</td><td>Bột Pha Chế Phúc Tea PT35</td><td>Thùng</td><td>1 thùng</td></tr>
-      <tr><td>3</td><td>Trà Đen Phúc Tea</td><td>Gói</td><td>5 gói</td></tr>
-      <tr><td>4</td><td>Trà Xanh Lài Phúc Tea</td><td>Gói</td><td>1 gói</td></tr>
+      <tr style="background:#fefce8"><td>2</td><td><strong>Bột Pha Chế Phúc Tea PT35</strong> ⭐ SP Chính</td><td>Thùng</td><td>1 thùng</td></tr>
+      <tr style="background:#fefce8"><td>3</td><td><strong>Trà Đen Phúc Tea</strong> ⭐ SP Chính</td><td>Gói</td><td>5 gói</td></tr>
+      <tr style="background:#fefce8"><td>4</td><td><strong>Trà Xanh Lài Phúc Tea</strong> ⭐ SP Chính</td><td>Gói</td><td>1 gói</td></tr>
       <tr><td>5</td><td>Trà Oolong Phúc Tea 02</td><td>Gói</td><td>1 gói</td></tr>
-      <tr style="background:#fefce8"><td>6</td><td><strong>Trà Oolong Quế Hoa Phúc Tea 500gr</strong> ⭐ Mới</td><td>Gói</td><td>1 gói</td></tr>
-      <tr style="background:#fefce8"><td>7</td><td><strong>Trà Hoa Cỏ Mùa Xuân Phúc Tea 500gr</strong> ⭐ Mới</td><td>Gói</td><td>1 gói</td></tr>
+      <tr><td>6</td><td>Trà Oolong Quế Hoa Phúc Tea 500gr</td><td>Gói</td><td>1 gói</td></tr>
+      <tr><td>7</td><td>Trà Hoa Cỏ Mùa Xuân Phúc Tea 500gr</td><td>Gói</td><td>1 gói</td></tr>
       <tr><td>8</td><td>Bột Socola Phúc Tea 02</td><td>Gói</td><td>1 gói</td></tr>
       <tr><td>9</td><td>Trà Hòa Tan Vị Đào Phúc Tea</td><td>Gói</td><td>5 gói</td></tr>
       <tr><td>10</td><td>Trà Hòa Tan Vị Vải Phúc Tea</td><td>Gói</td><td>5 gói</td></tr>
-      <tr><td>11</td><td>Trân Châu Giòn Phúc Tea</td><td>Thùng</td><td>1 thùng (6 gói)</td></tr>
+      <tr style="background:#fefce8"><td>11</td><td><strong>Trân Châu Giòn Phúc Tea</strong> ⭐ SP Chính</td><td>Thùng</td><td>1 thùng (6 gói)</td></tr>
       <tr><td>12</td><td>Vải Tươi Ngâm Đường Phúc Tea 565gr</td><td>Thùng</td><td>1 thùng (12 lon)</td></tr>
-      <tr style="background:#fefce8"><td>13</td><td><strong>Bột Milk Foam Phúc Tea</strong> ⭐ Chuyển từ Nguyên liệu</td><td>Gói</td><td>1 gói</td></tr>
+      <tr><td>13</td><td>Bột Milk Foam Phúc Tea</td><td>Gói</td><td>1 gói</td></tr>
     </table></div>
     <div class="highlight-box info" style="margin-top:8px">
       📌 Trên KiotViet, một số mặt hàng hiển thị là <strong>"Bịch"</strong> thay vì "Gói" (Trà Đen, Bột Milk Foam, Trà hòa tan) — hai cách gọi là một, không nhầm lẫn.
@@ -189,10 +189,10 @@ const LESSONS = [
     <h3>Nhóm 3 – VL Độc Quyền (9 mặt hàng)</h3>
     <div class="table-wrap"><table>
       <tr><th>STT</th><th>Tên sản phẩm</th><th>ĐVT</th><th>MOQ</th></tr>
-      <tr style="background:#fefce8"><td>29</td><td><strong>Ly Giấy 600ml</strong> (V2: đổi từ 650ml)</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
+      <tr><td>29</td><td>Ly Giấy 600ml</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
       <tr><td>30</td><td>Ly Nhựa 400ml In 5 Màu</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
       <tr><td>31</td><td>Ly Nhựa 500ml In 2 Màu</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
-      <tr><td>32</td><td>Ly Nhựa 600ml In 1 Màu</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
+      <tr style="background:#fefce8"><td>32</td><td><strong>Ly Nhựa 600ml In 1 Màu</strong> ⭐ SP Chính</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
       <tr><td>33</td><td>Combo Xô 1 Lít (xô, nắp, bịch 1 xô)</td><td>Thùng</td><td>1 thùng (300 cái)</td></tr>
       <tr><td>34</td><td>Bịch 1 Ly Phúc Tea 25.01</td><td>Kg</td><td>5 kg (kiện 5 kg)</td></tr>
       <tr><td>35</td><td>Bịch 2 Ly Phúc Tea 25.01</td><td>Kg</td><td>5 kg (kiện 5 kg)</td></tr>
@@ -206,11 +206,11 @@ const LESSONS = [
     <div class="table-wrap"><table>
       <tr><th>STT</th><th>Tên sản phẩm</th><th>ĐVT</th><th>MOQ</th></tr>
       <tr><td>38</td><td>Nắp Cầu Ly 400ml Phi 93</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
-      <tr style="background:#fefce8"><td>39</td><td><strong>Nắp Bằng Cao Phi 95</strong> ⭐ Mới V2</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
+      <tr><td>39</td><td>Nắp Bằng Cao Phi 95</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
       <tr><td>40</td><td>Hũ Nhựa Topping Nắp Liền 4oz (PET)</td><td>Thùng</td><td>1 thùng (2.000 cái)</td></tr>
       <tr><td>41</td><td>Muỗng Vàng 20cm</td><td>Thùng</td><td>1 thùng (2.500 cái)</td></tr>
-      <tr style="background:#fefce8"><td>42</td><td><strong>Bịch Chữ T Phúc Tea</strong></td><td>Kg</td><td>5 kg (kiện 5 kg)</td></tr>
-      <tr style="background:#fefce8"><td>43</td><td><strong>Ống Hút Cà Phê</strong> ⭐ Chuyển từ VL ĐQ</td><td>Kg</td><td>5 kg</td></tr>
+      <tr><td>42</td><td>Bịch Chữ T Phúc Tea</td><td>Kg</td><td>5 kg (kiện 5 kg)</td></tr>
+      <tr><td>43</td><td>Ống Hút Cà Phê</td><td>Kg</td><td>5 kg</td></tr>
       <tr><td>44</td><td>Giấy Chống Tràn 13cm (500 tờ)</td><td>Xấp</td><td>1 xấp</td></tr>
       <tr><td>45</td><td>Giấy Chống Tràn 16cm – Xô (500 tờ)</td><td>Xấp</td><td>1 xấp</td></tr>
     </table></div>
