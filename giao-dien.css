@@ -33,10 +33,10 @@ header h1{font-size:15px;font-weight:700;opacity:.95;flex:1;line-height:1.3;}
 .lesson-item.done .li-status{color:var(--green-dark);}
 
 /* MAIN */
-.main{flex:1;min-width:0;padding:28px 32px;max-width:900px;}
+.main{flex:1;min-width:0;padding:28px 40px;}
 
 /* WELCOME */
-.welcome{background:#fff;border-radius:16px;padding:48px;text-align:center;box-shadow:0 2px 16px rgba(0,0,0,.06);max-width:700px;margin:0 auto;}
+.welcome{background:#fff;border-radius:16px;padding:48px;text-align:center;box-shadow:0 2px 16px rgba(0,0,0,.06);max-width:900px;margin:0 auto;}
 .welcome-logo-big{height:90px;width:auto;margin-bottom:12px;}
 .welcome h2{font-size:26px;color:var(--green-deeper);margin-bottom:6px;}
 .welcome h3{font-size:17px;color:var(--green-dark);margin-bottom:16px;font-weight:600;}
