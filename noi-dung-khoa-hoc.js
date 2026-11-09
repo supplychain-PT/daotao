@@ -643,11 +643,11 @@ const LESSONS = [
     <div class="callout callout-info">
       <div class="callout-icon">📌</div>
       <div class="callout-body">
-        <strong>Thứ tự gửi vào Group Zalo Kho:</strong>
+        <strong>Quy trình xác nhận đơn:</strong>
         <ul>
           <li>Bước 1: Nhắn báo đã lên đơn + <strong>ảnh chụp màn hình đơn KiotViet</strong></li>
-          <li>Bước 2: Gửi <strong>ảnh UNC</strong> (bill chuyển khoản) lên nhóm</li>
-          <li>Thiếu 1 trong 2 → Kho chưa xử lý</li>
+          <li>Bước 2: Kho gửi lại <strong>đơn xác nhận</strong> trên nhóm</li>
+          <li>Bước 3: CH thanh toán <strong>theo đúng đơn xác nhận từ Kho</strong> → gửi ảnh UNC lên nhóm</li>
         </ul>
       </div>
     </div>
@@ -658,6 +658,7 @@ const LESSONS = [
     <div class="table-wrap"><table>
       <tr><th>Thời điểm</th><th>Nội dung nhắn</th></tr>
       <tr><td><strong>Sau đặt hàng</strong></td><td>Anh/chị vừa lên đơn trên KiotViet, nhờ em check 🙏<br/><em>+ Đính kèm ảnh chụp màn hình đơn hàng</em></td></tr>
+      <tr style="background:#f0fdf4"><td><strong>⬇️ Kho gửi lại</strong></td><td><em>Kho gửi đơn xác nhận lên nhóm</em> → CH kiểm tra và thanh toán theo đơn này</td></tr>
       <tr><td><strong>Sau chuyển khoản</strong></td><td><em>Gửi ảnh UNC (bill chuyển khoản) lên nhóm</em></td></tr>
       <tr><td><strong>Điều chỉnh đơn</strong></td><td>Anh/chị cần điều chỉnh <strong>[tên sản phẩm]</strong>, số lượng <strong>[X]</strong></td></tr>
     </table></div>
