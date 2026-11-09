@@ -253,7 +253,8 @@ body.brand-thehoa th{background:var(--green-dark);}
 .callout.callout-danger{background:#fff0f0;border-color:#fca5a5;}
 .callout-icon{font-size:28px;flex-shrink:0;margin-top:2px;}
 .callout-body{flex:1;}
-.callout-body strong{display:block;font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.callout-body > strong{display:block;font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.callout-body li strong,.callout-body p strong{display:inline;font-size:inherit;}
 .callout-body p,.callout-body ul{font-size:13px;color:#374151;line-height:1.8;margin:0;}
 .callout-body ul{padding-left:16px;}
 
@@ -453,7 +454,7 @@ body.view-mobile .main{padding:14px;}
 table{font-size:20px;}
 th{padding:12px 16px;}
 td{font-size:20px;padding:10px 14px;}
-.callout-body strong{font-size:21px;}
+.callout-body > strong{font-size:21px;}
 .callout-body p,.callout-body ul,.callout-body li{font-size:20px;}
 .callout-icon{font-size:38px;}
 .card-item .ci-title{font-size:20px;}
