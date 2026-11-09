@@ -442,6 +442,38 @@ body.view-mobile .main{padding:14px;}
 .lesson-item.done .li-status{color:var(--green-dark);}
 .lesson-item.active .li-status{color:var(--green-dark);font-weight:600;}
 
+/* ══════════════════════════════════════════════════════════════
+   FONT SIZE +50% TRONG NỘI DUNG BÀI HỌC
+   ══════════════════════════════════════════════════════════════ */
+.lesson-title{font-size:32px;}
+.lesson-hero-text h4{font-size:22px;}
+.lesson-hero-text p{font-size:20px;}
+.section h3{font-size:22px;}
+.section p,.section li{font-size:21px;}
+table{font-size:20px;}
+th{padding:12px 16px;}
+td{font-size:20px;padding:10px 14px;}
+.callout-body strong{font-size:21px;}
+.callout-body p,.callout-body ul,.callout-body li{font-size:20px;}
+.callout-icon{font-size:38px;}
+.card-item .ci-title{font-size:20px;}
+.card-item .ci-desc{font-size:18px;}
+.ir-label{font-size:17px;min-width:160px;padding:12px 16px;}
+.ir-value{font-size:20px;padding:12px 16px;}
+.sla-card .sla-num{font-size:33px;}
+.sla-card .sla-label{font-size:17px;}
+.sla-card .sla-party{font-size:14px;}
+.checklist li{font-size:21px;}
+.check-text{font-size:21px;}
+.check-sub{font-size:18px;}
+.tl-content strong{font-size:21px;}
+.tl-content p{font-size:20px;}
+.tl-deadline{font-size:16px;}
+.tl-dot{font-size:20px;width:42px;height:42px;}
+.tag{font-size:16px;padding:5px 14px;}
+.info-box{font-size:21px;}
+.highlight-box{font-size:21px;}
+
 /* --- In giay chung nhan --- */
 @media print{
   header,.sidebar,.cert-actions,.lop-phu,.nut-menu{display:none!important;}
