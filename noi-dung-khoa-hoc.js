@@ -645,8 +645,8 @@ const LESSONS = [
       <div class="callout-body">
         <strong>Thứ tự gửi vào Group Zalo Kho:</strong>
         <ul>
-          <li>Bước 1: Ảnh chụp màn hình đơn KiotViet (sau bấm Đặt hàng)</li>
-          <li>Bước 2: Bill chuyển khoản + kèm mã đơn (DH...)</li>
+          <li>Bước 1: Nhắn báo đã lên đơn + <strong>ảnh chụp màn hình đơn KiotViet</strong></li>
+          <li>Bước 2: Gửi <strong>ảnh UNC</strong> (bill chuyển khoản) lên nhóm</li>
           <li>Thiếu 1 trong 2 → Kho chưa xử lý</li>
         </ul>
       </div>
@@ -656,10 +656,10 @@ const LESSONS = [
   <div class="section">
     <h3>💬 Mẫu Tin Nhắn Group Zalo Kho</h3>
     <div class="table-wrap"><table>
-      <tr><th>Thời điểm</th><th>Mẫu tin nhắn chuẩn</th></tr>
-      <tr><td><strong>Sau Đặt hàng</strong></td><td>[Mã CH – Tên CH]<br/>Đã lên đơn KiotViet mã <strong>DH…</strong>, tổng tiền <strong>…đ</strong>, gồm <strong>…</strong> mặt hàng.<br/><em>(Kèm ảnh màn hình đơn)</em></td></tr>
-      <tr><td><strong>Sau chuyển khoản</strong></td><td>[Mã CH – Tên CH]<br/>Đã chuyển khoản đơn <strong>DH…</strong>, số tiền <strong>…đ</strong>, lúc <strong>…h ngày …</strong><br/><em>(Kèm ảnh bill chuyển khoản)</em></td></tr>
-      <tr><td><strong>Muốn sửa đơn</strong></td><td>[Mã CH – Tên CH]<br/>Nhờ Kho sửa đơn <strong>DH…</strong>: [nêu rõ cần sửa gì]</td></tr>
+      <tr><th>Thời điểm</th><th>Nội dung nhắn</th></tr>
+      <tr><td><strong>Sau đặt hàng</strong></td><td>Anh/chị vừa lên đơn trên KiotViet, nhờ em check 🙏<br/><em>+ Đính kèm ảnh chụp màn hình đơn hàng</em></td></tr>
+      <tr><td><strong>Sau chuyển khoản</strong></td><td><em>Gửi ảnh UNC (bill chuyển khoản) lên nhóm</em></td></tr>
+      <tr><td><strong>Điều chỉnh đơn</strong></td><td>Anh/chị cần điều chỉnh <strong>[tên sản phẩm]</strong>, số lượng <strong>[X]</strong></td></tr>
     </table></div>
   </div>
 
@@ -671,7 +671,7 @@ const LESSONS = [
         <ul>
           <li>STK: <strong>689767678888</strong> PVcombank – nội dung: <strong>chuyen tien</strong></li>
           <li>Giờ chốt: <strong>16:30</strong> Thứ 2–Thứ 6</li>
-          <li>Phải gửi <strong>cả ảnh đơn lẫn bill</strong> vào Zalo Kho – thiếu 1 → Kho chưa xử lý</li>
+          <li>Phải gửi <strong>ảnh đơn KiotViet + ảnh UNC</strong> vào Zalo Kho – thiếu 1 → Kho chưa xử lý</li>
           <li>Thay đổi số TK → xác nhận qua <strong>0344 858 727</strong> trước khi chuyển</li>
         </ul>
       </div>
