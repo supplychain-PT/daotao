@@ -215,17 +215,17 @@ const LESSONS = [
   <div class="section">
     <h3>📋 Danh Mục 10 NL Độc Quyền</h3>
     <div class="table-wrap"><table>
-      <tr><th>STT</th><th>Tên sản phẩm</th><th>ĐVT</th><th>MOQ</th><th>Kho xuất</th></tr>
-      <tr><td>1</td><td>Cà Phê Mộc 9:1</td><td>Kg</td><td>2 kg</td><td>🏭 Cần Thơ</td></tr>
-      <tr style="background:#fefce8"><td>2</td><td><strong>Bột Pha Chế Phúc Tea PT35</strong> ⭐</td><td>Thùng</td><td>1 thùng</td><td>📦 HCM</td></tr>
-      <tr style="background:#fefce8"><td>3</td><td><strong>Trà Đen Phúc Tea</strong> ⭐</td><td>Gói</td><td>5 gói</td><td>📦 HCM</td></tr>
-      <tr style="background:#fefce8"><td>4</td><td><strong>Trà Xanh Lài Phúc Tea</strong> ⭐</td><td>Gói</td><td>1 gói</td><td>📦 HCM</td></tr>
-      <tr><td>5</td><td>Trà Oolong Phúc Tea 02</td><td>Gói</td><td>1 gói</td><td>📦 HCM</td></tr>
-      <tr><td>6</td><td>Bột Socola Phúc Tea 02</td><td>Gói</td><td>1 gói</td><td>📦 HCM</td></tr>
-      <tr><td>7</td><td>Trà Hòa Tan Vị Đào Phúc Tea</td><td>Gói</td><td>5 gói</td><td>📦 HCM</td></tr>
-      <tr><td>8</td><td>Trà Hòa Tan Vị Vải Phúc Tea</td><td>Gói</td><td>5 gói</td><td>📦 HCM</td></tr>
-      <tr style="background:#fefce8"><td>9</td><td><strong>Trân Châu Giòn Phúc Tea</strong> ⭐</td><td>Thùng</td><td>1 thùng (6 gói)</td><td>📦 HCM</td></tr>
-      <tr><td>10</td><td>Vải Tươi Ngâm Đường Phúc Tea</td><td>Thùng</td><td>1 thùng (12 lon)</td><td>📦 HCM</td></tr>
+      <tr><th>STT</th><th>Tên sản phẩm</th><th>ĐVT</th><th>KL tịnh</th><th>MOQ</th><th>Kho xuất</th></tr>
+      <tr><td>1</td><td>Cà Phê Mộc 9:1</td><td>Kg</td><td>1 kg/đơn vị</td><td>2 kg</td><td>🏭 Cần Thơ</td></tr>
+      <tr style="background:#fefce8"><td>2</td><td><strong>Bột Pha Chế Phúc Tea PT35</strong> ⭐</td><td>Thùng</td><td>25 kg/thùng</td><td>1 thùng</td><td>📦 HCM</td></tr>
+      <tr style="background:#fefce8"><td>3</td><td><strong>Trà Đen Phúc Tea</strong> ⭐</td><td>Gói</td><td>500 gr/gói</td><td>5 gói</td><td>📦 HCM</td></tr>
+      <tr style="background:#fefce8"><td>4</td><td><strong>Trà Xanh Lài Phúc Tea</strong> ⭐</td><td>Gói</td><td>500 gr/gói</td><td>1 gói</td><td>📦 HCM</td></tr>
+      <tr><td>5</td><td>Trà Oolong Phúc Tea 02</td><td>Gói</td><td>1 kg/gói</td><td>1 gói</td><td>📦 HCM</td></tr>
+      <tr><td>6</td><td>Bột Socola Phúc Tea 02</td><td>Gói</td><td>500 gr/gói</td><td>1 gói</td><td>📦 HCM</td></tr>
+      <tr><td>7</td><td>Trà Hòa Tan Vị Đào Phúc Tea</td><td>Gói</td><td>500 gr/gói</td><td>5 gói</td><td>📦 HCM</td></tr>
+      <tr><td>8</td><td>Trà Hòa Tan Vị Vải Phúc Tea</td><td>Gói</td><td>500 gr/gói</td><td>5 gói</td><td>📦 HCM</td></tr>
+      <tr style="background:#fefce8"><td>9</td><td><strong>Trân Châu Giòn Phúc Tea</strong> ⭐</td><td>Thùng</td><td>2 kg/gói · 6 gói/thùng</td><td>1 thùng</td><td>📦 HCM</td></tr>
+      <tr><td>10</td><td>Vải Tươi Ngâm Đường Phúc Tea</td><td>Thùng</td><td>12 lon/thùng</td><td>1 thùng</td><td>📦 HCM</td></tr>
     </table></div>
     <div class="tag-row">
       <span class="tag tag-yellow">⭐ SP Chính = ưu tiên dự trữ đủ</span>
@@ -320,23 +320,23 @@ const LESSONS = [
   <div class="section">
     <h3>📋 Danh Mục 16 Nguyên Liệu Thương Mại</h3>
     <div class="table-wrap"><table>
-      <tr><th>STT</th><th>Tên sản phẩm</th><th>ĐVT</th><th>MOQ</th><th>Quy cách đóng gói</th></tr>
-      <tr style="background:#fff7ed;border-left:3px solid #f97316"><td>11</td><td><strong>🌺 Mứt Hibiscus</strong><br/><small style="color:#ea580c">Chỉ có Hệ thống cung cấp</small></td><td>Hủ</td><td>1 hủ</td><td>–</td></tr>
-      <tr><td>12</td><td>Bột Milk Foam Phúc Tea</td><td>Gói</td><td>1 gói</td><td>–</td></tr>
-      <tr><td>13</td><td>Gelatine Đức hoặc Pháp</td><td>Gói</td><td>1 gói</td><td>–</td></tr>
-      <tr><td>14</td><td>Syrup Đường Đen Luave</td><td>Can</td><td>1 can</td><td>6 can/thùng</td></tr>
-      <tr><td>15</td><td>Bột Matcha Đài Loan</td><td>Gói</td><td>1 gói</td><td>–</td></tr>
-      <tr><td>16</td><td>Bột Khoai Môn Mole</td><td>Gói</td><td>1 gói</td><td>–</td></tr>
-      <tr><td>17</td><td>Pudding Trứng Mole</td><td>Gói</td><td>1 gói</td><td>–</td></tr>
-      <tr><td>18</td><td>Hạt Chia Úc hoặc Peru</td><td>Gói</td><td>1 gói (1kg)</td><td>–</td></tr>
-      <tr><td>19</td><td>Đào Ngâm Fresko 820gr</td><td>Thùng</td><td>1 thùng</td><td>12 lon/thùng</td></tr>
-      <tr><td>20</td><td>Sinh Tố Xoài Berrino</td><td>Chai</td><td>1 chai</td><td>12 chai/thùng</td></tr>
-      <tr><td>21</td><td>Mứt Thơm Berrino</td><td>Hủ</td><td>1 hủ</td><td>15 hủ/thùng</td></tr>
-      <tr><td>22</td><td>Mứt Dâu Tằm Berrino</td><td>Hủ</td><td>1 hủ</td><td>15 hủ/thùng</td></tr>
-      <tr><td>23</td><td>Thạch Dừa Vải Casa 3,5kg</td><td>Thùng</td><td>1 thùng</td><td>4 hủ/thùng</td></tr>
-      <tr style="background:#fefce8"><td>24</td><td><strong>Thạch Nha Đam</strong></td><td>Gói</td><td>5 gói</td><td>10 gói/thùng</td></tr>
-      <tr><td>25</td><td>Xí Muội Thái</td><td>Gói</td><td>1 gói</td><td>–</td></tr>
-      <tr><td>26</td><td>Syrup Đào Mama Rosa</td><td>Chai</td><td>1 chai</td><td>12 chai/thùng</td></tr>
+      <tr><th>STT</th><th>Tên sản phẩm</th><th>ĐVT</th><th>KL tịnh</th><th>MOQ</th><th>Quy cách đóng gói</th></tr>
+      <tr style="background:#fff7ed;border-left:3px solid #f97316"><td>11</td><td><strong>🌺 Mứt Hibiscus</strong><br/><small style="color:#ea580c">Chỉ có Hệ thống cung cấp</small></td><td>Hủ</td><td>1 kg/hủ</td><td>1 hủ</td><td>–</td></tr>
+      <tr><td>12</td><td>Bột Milk Foam Phúc Tea</td><td>Gói</td><td>500 gr/gói</td><td>1 gói</td><td>–</td></tr>
+      <tr><td>13</td><td>Gelatine Đức hoặc Pháp</td><td>Gói</td><td>1 kg/gói</td><td>1 gói</td><td>–</td></tr>
+      <tr><td>14</td><td>Syrup Đường Đen Luave</td><td>Can</td><td>–</td><td>1 can</td><td>6 can/thùng</td></tr>
+      <tr><td>15</td><td>Bột Matcha Đài Loan</td><td>Gói</td><td>500 gr/gói</td><td>1 gói</td><td>–</td></tr>
+      <tr><td>16</td><td>Bột Khoai Môn Mole</td><td>Gói</td><td>1 kg/gói</td><td>1 gói</td><td>–</td></tr>
+      <tr><td>17</td><td>Pudding Trứng Mole</td><td>Gói</td><td>1 kg/gói</td><td>1 gói</td><td>–</td></tr>
+      <tr><td>18</td><td>Hạt Chia Úc hoặc Peru</td><td>Gói</td><td>1 kg/gói</td><td>1 gói</td><td>–</td></tr>
+      <tr><td>19</td><td>Đào Ngâm Fresko 820gr</td><td>Thùng</td><td>820 gr/lon</td><td>1 thùng</td><td>12 lon/thùng</td></tr>
+      <tr><td>20</td><td>Sinh Tố Xoài Berrino</td><td>Chai</td><td>–</td><td>1 chai</td><td>12 chai/thùng</td></tr>
+      <tr><td>21</td><td>Mứt Thơm Berrino</td><td>Hủ</td><td>–</td><td>1 hủ</td><td>15 hủ/thùng</td></tr>
+      <tr><td>22</td><td>Mứt Dâu Tằm Berrino</td><td>Hủ</td><td>–</td><td>1 hủ</td><td>15 hủ/thùng</td></tr>
+      <tr><td>23</td><td>Thạch Dừa Vải Casa 3,5kg</td><td>Thùng</td><td>3,5 kg/hủ</td><td>1 thùng</td><td>4 hủ/thùng</td></tr>
+      <tr style="background:#fefce8"><td>24</td><td><strong>Thạch Nha Đam</strong></td><td>Gói</td><td>–</td><td>5 gói</td><td>10 gói/thùng</td></tr>
+      <tr><td>25</td><td>Xí Muội Thái</td><td>Gói</td><td>500 gr/gói</td><td>1 gói</td><td>–</td></tr>
+      <tr><td>26</td><td>Syrup Đào Mama Rosa</td><td>Chai</td><td>–</td><td>1 chai</td><td>12 chai/thùng</td></tr>
     </table></div>
     <div class="tag-row">
       <span class="tag tag-yellow">⚠️ Thạch Nha Đam: MOQ 5 gói, không cần đặt cả thùng (10 gói)</span>
@@ -407,31 +407,31 @@ const LESSONS = [
   <div class="section">
     <h3>Nhóm VL Độc Quyền (9 mặt hàng)</h3>
     <div class="table-wrap"><table>
-      <tr><th>STT</th><th>Tên sản phẩm</th><th>ĐVT</th><th>MOQ</th></tr>
-      <tr><td>29</td><td>Ly Giấy 600ml</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
-      <tr><td>30</td><td>Ly Nhựa 400ml In 5 Màu</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
-      <tr><td>31</td><td>Ly Nhựa 500ml In 2 Màu</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
-      <tr style="background:#fefce8"><td>32</td><td><strong>Ly Nhựa 600ml In 1 Màu</strong> ⭐ SP Chính</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
-      <tr><td>33</td><td>Combo Xô 1 Lít (xô + nắp + bịch 1 xô)</td><td>Thùng</td><td>1 thùng (300 cái)</td></tr>
-      <tr><td>34</td><td>Bịch 1 Ly Phúc Tea 25.01</td><td>Kg</td><td>5 kg (kiện 5 kg)</td></tr>
-      <tr><td>35</td><td>Bịch 2 Ly Phúc Tea 25.01</td><td>Kg</td><td>5 kg (kiện 5 kg)</td></tr>
-      <tr><td>36</td><td>Ống Hút Bọc Kiếng Phúc Tea</td><td>Kg</td><td>5 kg (kiện 5 kg)</td></tr>
-      <tr><td>37</td><td>Cuộn Ép Màng Ly Phúc Tea 25.01</td><td>Cuộn</td><td>1 cuộn</td></tr>
+      <tr><th>STT</th><th>Tên sản phẩm</th><th>ĐVT</th><th>Dung tích / KL</th><th>MOQ</th></tr>
+      <tr><td>29</td><td>Ly Giấy 600ml</td><td>Thùng</td><td>600 ml/cái</td><td>1 thùng (1.000 cái)</td></tr>
+      <tr><td>30</td><td>Ly Nhựa 400ml In 5 Màu</td><td>Thùng</td><td>400 ml/cái</td><td>1 thùng (1.000 cái)</td></tr>
+      <tr><td>31</td><td>Ly Nhựa 500ml In 2 Màu</td><td>Thùng</td><td>500 ml/cái</td><td>1 thùng (1.000 cái)</td></tr>
+      <tr style="background:#fefce8"><td>32</td><td><strong>Ly Nhựa 600ml In 1 Màu</strong> ⭐ SP Chính</td><td>Thùng</td><td>600 ml/cái</td><td>1 thùng (1.000 cái)</td></tr>
+      <tr><td>33</td><td>Combo Xô 1 Lít (xô + nắp + bịch 1 xô)</td><td>Thùng</td><td>1.000 ml/xô</td><td>1 thùng (300 cái)</td></tr>
+      <tr><td>34</td><td>Bịch 1 Ly Phúc Tea 25.01</td><td>Kg</td><td>5 kg/kiện</td><td>5 kg (kiện 5 kg)</td></tr>
+      <tr><td>35</td><td>Bịch 2 Ly Phúc Tea 25.01</td><td>Kg</td><td>5 kg/kiện</td><td>5 kg (kiện 5 kg)</td></tr>
+      <tr><td>36</td><td>Ống Hút Bọc Kiếng Phúc Tea</td><td>Kg</td><td>5 kg/kiện</td><td>5 kg (kiện 5 kg)</td></tr>
+      <tr><td>37</td><td>Cuộn Ép Màng Ly Phúc Tea 25.01</td><td>Cuộn</td><td>–</td><td>1 cuộn</td></tr>
     </table></div>
   </div>
 
   <div class="section">
     <h3>Nhóm Vật Liệu (8 mặt hàng)</h3>
     <div class="table-wrap"><table>
-      <tr><th>STT</th><th>Tên sản phẩm</th><th>ĐVT</th><th>MOQ</th></tr>
-      <tr><td>38</td><td>Nắp Cầu Ly 400ml Phi 93</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
-      <tr><td>39</td><td>Nắp Bằng Cao Phi 95</td><td>Thùng</td><td>1 thùng (1.000 cái)</td></tr>
-      <tr><td>40</td><td>Hũ Nhựa Topping Nắp Liền 4oz (PET)</td><td>Thùng</td><td>1 thùng (2.000 cái)</td></tr>
-      <tr><td>41</td><td>Muỗng Vàng 20cm</td><td>Thùng</td><td>1 thùng (2.500 cái)</td></tr>
-      <tr><td>42</td><td>Bịch Chữ T Phúc Tea</td><td>Kg</td><td>5 kg (kiện 5 kg)</td></tr>
-      <tr><td>43</td><td>Ống Hút Cà Phê</td><td>Kg</td><td>5 kg</td></tr>
-      <tr><td>44</td><td>Giấy Chống Tràn 13cm (500 tờ)</td><td>Xấp</td><td>1 xấp</td></tr>
-      <tr><td>45</td><td>Giấy Chống Tràn 16cm – Xô (500 tờ)</td><td>Xấp</td><td>1 xấp</td></tr>
+      <tr><th>STT</th><th>Tên sản phẩm</th><th>ĐVT</th><th>Dung tích / KL</th><th>MOQ</th></tr>
+      <tr><td>38</td><td>Nắp Cầu Ly 400ml Phi 93</td><td>Thùng</td><td>–</td><td>1 thùng (1.000 cái)</td></tr>
+      <tr><td>39</td><td>Nắp Bằng Cao Phi 95</td><td>Thùng</td><td>–</td><td>1 thùng (1.000 cái)</td></tr>
+      <tr><td>40</td><td>Hũ Nhựa Topping Nắp Liền 4oz (PET)</td><td>Thùng</td><td>4 oz ≈ 118 ml</td><td>1 thùng (2.000 cái)</td></tr>
+      <tr><td>41</td><td>Muỗng Vàng 20cm</td><td>Thùng</td><td>–</td><td>1 thùng (2.500 cái)</td></tr>
+      <tr><td>42</td><td>Bịch Chữ T Phúc Tea</td><td>Kg</td><td>5 kg/kiện</td><td>5 kg (kiện 5 kg)</td></tr>
+      <tr><td>43</td><td>Ống Hút Cà Phê</td><td>Kg</td><td>5 kg/kiện</td><td>5 kg</td></tr>
+      <tr><td>44</td><td>Giấy Chống Tràn 13cm (500 tờ)</td><td>Xấp</td><td>–</td><td>1 xấp</td></tr>
+      <tr><td>45</td><td>Giấy Chống Tràn 16cm – Xô (500 tờ)</td><td>Xấp</td><td>–</td><td>1 xấp</td></tr>
     </table></div>
   </div>
 
