@@ -275,7 +275,7 @@ body.brand-thehoa th{background:var(--green-dark);}
 .ir-value{padding:10px 14px;font-size:13px;color:var(--text);line-height:1.6;}
 
 /* Number highlight */
-.num-highlight{font-size:1.5em;font-weight:800;color:var(--green-dark);}
+.num-highlight{font-weight:800;color:var(--green-dark);}
 .num-highlight.red{color:#dc2626;}
 
 /* SLA table đặc biệt */
