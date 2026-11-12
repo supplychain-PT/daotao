@@ -474,6 +474,13 @@ td{font-size:20px;padding:10px 14px;}
 .tag{font-size:16px;padding:5px 14px;}
 .info-box{font-size:21px;}
 .highlight-box{font-size:21px;}
+.compare-col{font-size:20px;}
+.compare-col h4{font-size:20px;}
+.step-content{font-size:21px;}
+.step-num{font-size:18px;width:32px;height:32px;}
+.fs-label{font-size:17px;}
+.flow-step:not(:last-child)::after{font-size:24px;}
+.fs-circle{font-size:20px;width:46px;height:46px;}
 
 /* --- In giay chung nhan --- */
 @media print{
